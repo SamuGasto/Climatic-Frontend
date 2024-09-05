@@ -2,9 +2,13 @@
   "pages": {
     "/visualizer/page": [
       "static/chunks/[root of the server]__e2ab11._.css",
-      "static/chunks/node_modules_9a5fba._.js",
-      "static/chunks/app_9e4cf7._.js",
-      "static/chunks/app_layout_tsx_e57261._.js",
+      "static/chunks/node_modules_next_7e1630._.js",
+      "static/chunks/node_modules_framer-motion_dist_es_fd5528._.js",
+      "static/chunks/node_modules_tailwind-merge_dist_lib_40ffc2._.js",
+      "static/chunks/node_modules_@react-aria_67b3c0._.js",
+      "static/chunks/node_modules_163722._.js",
+      "static/chunks/_a5c7fd._.js",
+      "static/chunks/app_layout_tsx_b405d2._.js",
       "static/chunks/app_error_tsx_6c72c3._.js",
       "static/chunks/app_error_tsx_e5220d._.js",
       "static/chunks/node_modules_next_dist_compiled_react_a1d82d._.js",
