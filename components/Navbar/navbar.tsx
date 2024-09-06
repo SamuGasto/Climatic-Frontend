@@ -15,7 +15,7 @@ export default function navbar() {
           </Link>
         </NavbarItem>
         <NavbarItem isActive>
-          <Link href="#" aria-current="page">
+          <Link color="foreground" href="#" aria-current="page">
             Preguntas Frecuentes
           </Link>
         </NavbarItem>
