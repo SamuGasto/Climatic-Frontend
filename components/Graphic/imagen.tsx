@@ -34,7 +34,7 @@ interface PropType {
 }
 
 interface Config {
-  series: { name: string; data: number[] }[];
+  series: { name: string; data: { x: string; y: number }[] }[];
   options: ApexOptions;
 }
 
@@ -44,14 +44,20 @@ export default function Imagen(props: PropType) {
   const finalData = seriesData.data.map((latitud, index) => {
     return {
       name: seriesData.latitude[index].toString(),
-      data: latitud,
+      data: latitud.map((element, i) => {
+        return {
+          x: seriesData.longitude[i].toString(),
+          y: element,
+        };
+      }),
     };
   });
 
   const labels = seriesData.longitude.map((l) => {
     return l.toString();
   });
-
+  console.log(finalData[0]["data"]);
+  console.log(finalData[1]["data"]);
   const w = "98%";
   const h = "98%";
   const chartConfig: Config = {
@@ -68,27 +74,13 @@ export default function Imagen(props: PropType) {
       },
       plotOptions: {
         heatmap: {
-          colorScale: {
-            min: 290,
-            max: 300,
-          },
+          radius: 6,
         },
       },
-      colors: [
-        "#eefbf3",
-        "#d6f5e1",
-        "#b1e9c8",
-        "#7ed7a9",
-        "#49be84",
-        "#26a269",
-        "#188354",
-        "#136945",
-        "#125339",
-        "#0f4530",
-        "#08261b",
-      ],
-      labels: labels,
+      colors: ["#ffcd6d"],
       xaxis: {
+        type: "category",
+        categories: labels,
         title: {
           text: "Longitud",
         },
@@ -100,9 +92,6 @@ export default function Imagen(props: PropType) {
       },
       dataLabels: {
         enabled: false,
-      },
-      title: {
-        text: "Tomate",
       },
       noData: {
         text: "Cargando...",
