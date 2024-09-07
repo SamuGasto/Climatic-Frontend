@@ -13,12 +13,21 @@ export default function Footer() {
             <p className="text-sm text-gray-400">Climatic App</p>
           </div>
           <div className="flex flex-col">
-            <h5 className="text-lg font-semibold mb-2 text-white">Enlaces</h5>
+            <h5 className="text-lg font-semibold mb-2 text-white">Sitemap</h5>
+            <div>
+              <Link
+                href="./"
+                color="foreground"
+                className="text-gray-400 hover:text-white transition-colors"
+              >
+                Página principal
+              </Link>
+            </div>
             <div>
               <Link
                 href="/visualizer"
                 color="foreground"
-                className="text-gray-400 hover:text-white transition-colors inline-block"
+                className="text-gray-400 hover:text-white transition-colors"
               >
                 Herramienta Re-análisis
               </Link>
@@ -27,28 +36,25 @@ export default function Footer() {
 
           <div className="flex flex-col">
             <h5 className="text-lg font-semibold mb-2 text-white">
-              Suscríbete
+              Enlaces externos
             </h5>
-            <h6 className="text-lg font-light mb-1 text-white">
-              Para estar al día con actualizaciones
-            </h6>
-            <div className="flex flex-col space-y-2">
-              <Input
-                aria-label="Email para suscripción"
-                placeholder="Tu email"
-                type="email"
-                classNames={{
-                  input: "bg-gray-800 text-white placeholder-gray-500",
-                  inputWrapper:
-                    "bg-gray-800 hover:bg-gray-700 focus:bg-gray-700 w-60",
-                }}
-              />
-              <Button
-                color="primary"
-                className="bg-blue-600 hover:bg-blue-700 text-white w-60 px-6"
+            <div>
+              <Link
+                href="https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-single-levels"
+                color="foreground"
+                className="text-gray-400 hover:text-white transition-colors inline-block"
               >
-                Suscríbete
-              </Button>
+                Datos de ERA5
+              </Link>
+            </div>
+            <div>
+              <Link
+                href="https://cl.linkedin.com/in/ra%C3%BAl-valenzuela-ruiz-5b9b05257"
+                color="foreground"
+                className="text-gray-400 hover:text-white transition-colors inline-block"
+              >
+                Cliente: Raúl Valenzuela
+              </Link>
             </div>
           </div>
         </div>
