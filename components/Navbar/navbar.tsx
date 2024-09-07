@@ -1,11 +1,12 @@
 "use client";
 import React from "react";
-import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button} from "@nextui-org/react";
+import {Image,Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button} from "@nextui-org/react";
 
 export default function navbar() {
   return (
     <Navbar position="static">
       <NavbarBrand>
+        <Image src="/Di-Dema.png" width={80} height={60}/>
         <p className="font-bold text-inherit">CLIMATIC</p>
       </NavbarBrand>
       <NavbarContent className="hidden sm:flex gap-4" justify="end">
