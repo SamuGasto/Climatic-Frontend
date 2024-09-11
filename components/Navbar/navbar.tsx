@@ -6,7 +6,7 @@ export default function navbar() {
   return (
     <Navbar position="static">
       <NavbarBrand>
-        <Image src="/Di-Dema.png" width={80} height={60}/>
+        <Image src="/logo.png" alt="Di-Dema" width={60} height={55} />
         <p className="font-bold text-inherit">CLIMATIC</p>
       </NavbarBrand>
       <NavbarContent className="hidden sm:flex gap-4" justify="end">
