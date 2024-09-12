@@ -1,3 +1,4 @@
+"use client";
 import Visualizador from "@/components/Graphic/general";
 import React from "react";
 
