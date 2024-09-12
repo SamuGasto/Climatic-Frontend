@@ -19,6 +19,7 @@ export default function Deslizador(props: Props) {
       minValue={minimo}
       maxValue={maximo}
       defaultValue={defaultValue}
+      showSteps={true}
       className="flex w-full"
     />
   );

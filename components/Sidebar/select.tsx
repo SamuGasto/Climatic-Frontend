@@ -2,7 +2,7 @@ import React from "react";
 import { Select, SelectItem } from "@nextui-org/react";
 
 type elemento = {
-  key: number;
+  key: string;
   label: string;
 };
 
@@ -10,7 +10,7 @@ interface DesplegableProps {
   titulo?: string;
   explicacion?: string;
   elementos: elemento[];
-  onSelect?: (key: number) => void;
+  onSelect?: (key: string) => void;
   desabilitado?: boolean;
 }
 

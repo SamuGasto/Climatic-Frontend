@@ -12,6 +12,7 @@ const OpcionesTiempo = (props: Props) => {
 
   return (
     <div className="flex flex-col gap-3 w-full">
+      <p>Selección del momento de los datos</p>
       <DatePicker
         isRequired
         isDisabled={desabilitado}
