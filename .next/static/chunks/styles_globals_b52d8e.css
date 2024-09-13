@@ -536,10 +536,6 @@ img, video {
   margin: 0;
 }
 
-.m-3 {
-  margin: .75rem;
-}
-
 .-mx-1 {
   margin-left: -.25rem;
   margin-right: -.25rem;
@@ -2225,6 +2221,10 @@ img, video {
   padding: .25rem;
 }
 
+.p-10 {
+  padding: 2.5rem;
+}
+
 .p-2 {
   padding: .5rem;
 }
@@ -2243,10 +2243,6 @@ img, video {
 
 .p-6 {
   padding: 1.5rem;
-}
-
-.p-10 {
-  padding: 2.5rem;
 }
 
 .\!px-1 {
@@ -2805,18 +2801,6 @@ img, video {
 
 .opacity-disabled {
   opacity: var(--nextui-disabled-opacity);
-}
-
-.opacity-25 {
-  opacity: .25;
-}
-
-.opacity-90 {
-  opacity: .9;
-}
-
-.opacity-80 {
-  opacity: .8;
 }
 
 .shadow {

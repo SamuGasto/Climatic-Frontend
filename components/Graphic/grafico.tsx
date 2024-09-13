@@ -79,14 +79,6 @@ export default function Grafico(props: PropType) {
           radius: 6,
         },
       },
-      fill: {
-        type: "image",
-        image: {
-          src: [Mapa.src],
-          width: 100,
-          height: 100,
-        },
-      },
       colors: ["#ffcd6d"],
       xaxis: {
         type: "category",
@@ -122,7 +114,7 @@ export default function Grafico(props: PropType) {
   return (
     <div className="flex w-full h-full relative justify-center">
       <Card
-        className="flex w-full h-full z-10 absolute opacity-100"
+        className="flex w-full h-full z-10 absolute opacity-75"
         shadow="none"
       >
         <CardBody>

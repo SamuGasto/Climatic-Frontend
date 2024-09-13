@@ -1,4 +1,6 @@
-export const data = {
+import BackendData from "@/types/data";
+
+export const data: BackendData = {
   latitude: [-34.0, -34.25, -34.5, -34.75, -35.0],
   longitude: [
     108.0, 108.25, 108.5, 108.75, 109.0, 109.25, 109.5, 109.75, 110.0,
