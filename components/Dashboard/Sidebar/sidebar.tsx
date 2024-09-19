@@ -16,9 +16,9 @@ function Sidebar() {
           <ul className="space-y-2">
             {boards.map((board, index) => (
               <li key={index}>
-                <button className="w-full text-left px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-gray-900 rounded-md transition-colors">
+                <Button className="w-full text-left px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-gray-900 rounded-md transition-colors">
                   {board.name}
-                </button>
+                </Button>
               </li>
             ))}
           </ul>
