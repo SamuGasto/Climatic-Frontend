@@ -128,7 +128,6 @@ export default function Grafico(props: PropType) {
           />
         </CardBody>
       </Card>
-      <Image className="flex w-full h-full p-10 z-0" src={Mapa.src} />
     </div>
   );
 }

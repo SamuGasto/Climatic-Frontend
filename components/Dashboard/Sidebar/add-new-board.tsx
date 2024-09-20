@@ -5,7 +5,7 @@ import React from "react";
 function ButtonAddBoard() {
   return (
     <div className="mt-8">
-      <Button color="primary" className="w-full">
+      <Button color="primary" className="w-full text-base">
         <AddIcon size={16} className="mr-2" />
         Nuevo tablero
       </Button>

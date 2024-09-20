@@ -5,7 +5,7 @@ import { data } from "./dataexample";
 import GraficoPlotly from "./grafico-plotly";
 
 export default function Visualizador() {
-  //<Grafico seriesData={data} typeChart="heatmap" />
+  //<GraficoPlotly />
   return (
     <div className="flex w-full flex-col gap-10 p-6">
       <Titulo
@@ -13,7 +13,7 @@ export default function Visualizador() {
         original_subtittle="Subtítulo de ejemplo"
       />
 
-      <GraficoPlotly />
+      <Grafico seriesData={data} typeChart="heatmap" />
     </div>
   );
 }
