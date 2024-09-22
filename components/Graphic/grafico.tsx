@@ -4,6 +4,7 @@ import { Card, CardBody } from "@nextui-org/card";
 import VentanaGrafico from "./ventana-grafico";
 import Mapa from "./mapa.jpg";
 import { Image } from "@nextui-org/image";
+import { ChartConfig } from "@/types/chart";
 
 interface PropType {
   seriesData: {
@@ -33,11 +34,6 @@ interface PropType {
     | "treemap";
 }
 
-interface Config {
-  series: { name: string; data: { x: string; y: number }[] }[];
-  options: ApexOptions;
-}
-
 export default function Grafico(props: PropType) {
   const { seriesData, typeChart } = props;
 
@@ -62,7 +58,7 @@ export default function Grafico(props: PropType) {
   //Generar la configuración
   const w = "98%";
   const h = "98%";
-  const chartConfig: Config = {
+  const chartConfig: ChartConfig = {
     series: finalData,
     options: {
       chart: {

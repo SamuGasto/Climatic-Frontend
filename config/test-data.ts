@@ -1,4 +1,5 @@
 import { Board } from "@/types/board";
+import { ChartConfig } from "@/types/chart";
 import BackendData from "@/types/data";
 
 const example_data: BackendData = {
@@ -132,7 +133,7 @@ export const simple_chart_config = {
   },
 };
 
-export const example_chart = {
+export const example_chart: ChartConfig = {
   series: series_example,
   options: {
     chart: {
@@ -140,15 +141,12 @@ export const example_chart = {
       width: "98%",
       type: "heatmap",
       zoom: {
-        enabled: true,
-        type: "xy",
+        enabled: false,
       },
+      toolbar: { show: false },
+      animations: { enabled: false },
     },
-    plotOptions: {
-      heatmap: {
-        radius: 6,
-      },
-    },
+
     colors: ["#ffcd6d"],
     xaxis: {
       type: "category",
@@ -164,13 +162,7 @@ export const example_chart = {
       },
       decimalsInFloat: 1,
     },
-    tooltip: {
-      y: {
-        formatter: (value: number) => {
-          return value.toFixed(3).toString();
-        },
-      },
-    },
+    tooltip: { enabled: false },
     dataLabels: {
       enabled: false,
     },
@@ -187,37 +179,12 @@ export const boards: Board[] = [
       {
         tittle: "Gráfico de ejemplo",
         subtittle: "Un gráfico para probar la aplicación",
-        url: `https://quickchart.io/apex-charts/render?config=${JSON.stringify(simple_chart_config)}`,
+        config: example_chart,
       },
       {
         tittle: "Gráfico de ejemplo",
         subtittle: "Un gráfico para probar la aplicación",
-        url: `https://quickchart.io/apex-charts/render?config=${JSON.stringify(simple_chart_config)}`,
-      },
-      {
-        tittle: "Gráfico de ejemplo",
-        subtittle: "Un gráfico para probar la aplicación",
-        url: `https://quickchart.io/apex-charts/render?config=${JSON.stringify(simple_chart_config)}`,
-      },
-      {
-        tittle: "Gráfico de ejemplo",
-        subtittle: "Un gráfico para probar la aplicación",
-        url: `https://quickchart.io/apex-charts/render?config=${JSON.stringify(simple_chart_config)}`,
-      },
-      {
-        tittle: "Gráfico de ejemplo",
-        subtittle: "Un gráfico para probar la aplicación",
-        url: `https://quickchart.io/apex-charts/render?config=${JSON.stringify(simple_chart_config)}`,
-      },
-      {
-        tittle: "Gráfico de ejemplo",
-        subtittle: "Un gráfico para probar la aplicación",
-        url: `https://quickchart.io/apex-charts/render?config=${JSON.stringify(simple_chart_config)}`,
-      },
-      {
-        tittle: "Gráfico de ejemplo",
-        subtittle: "Un gráfico para probar la aplicación",
-        url: `https://quickchart.io/apex-charts/render?config=${JSON.stringify(simple_chart_config)}`,
+        config: example_chart,
       },
     ],
   },
@@ -227,7 +194,7 @@ export const boards: Board[] = [
       {
         tittle: "Gráfico de ejemplo",
         subtittle: "Un gráfico para probar la aplicación",
-        url: `https://quickchart.io/apex-charts/render?config=${JSON.stringify(simple_chart_config)}`,
+        config: example_chart,
       },
     ],
   },

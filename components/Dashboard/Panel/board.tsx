@@ -1,7 +1,7 @@
-import { example_chart, simple_chart_config } from "@/config/test-data";
 import { Chart } from "@/types/chart";
-import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/card";
+import { Card, CardBody, CardHeader } from "@nextui-org/card";
 import React from "react";
+import ChartImage from "./chart-image";
 
 interface PropType {
   charts: Chart[];
@@ -9,7 +9,6 @@ interface PropType {
 
 function BoardPanel(props: PropType) {
   const { charts } = props;
-  console.log(charts[0].url);
 
   return (
     <div className="grid grid-flow-col gap-6 w-full h-full">
@@ -22,7 +21,9 @@ function BoardPanel(props: PropType) {
                 <h1>{chart.subtittle}</h1>
               </div>
             </CardHeader>
-            <CardBody>{chart.url}</CardBody>
+            <CardBody>
+              <ChartImage config={chart.config} />
+            </CardBody>
           </Card>
         ))}
       </div>
