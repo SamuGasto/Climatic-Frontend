@@ -11,7 +11,12 @@ export default function navbar() {
         <p className="font-bold text-inherit">DiDema</p>    
         </NavbarBrand>       
         <NavbarContent className="hidden sm:flex gap-4" justify="end">
-        <NavbarItem>         
+          <NavbarItem isActive>
+            <Link color="foreground" href="#">
+            CLIMATIC
+            </Link>
+          </NavbarItem>
+        <NavbarItem> 
           <Link color="foreground" href="#">
            Re-Analisís
            </Link>
@@ -25,8 +30,8 @@ export default function navbar() {
           <Link color="foreground" href="#">         
           Sobre Nosotros
           </Link>
-          </NavbarItem>         
-          </NavbarContent> 
+          </NavbarItem>
+          </NavbarContent>
           <NavbarItem className="hidden lg:flex">       
           </NavbarItem>
         <NavbarItem>
