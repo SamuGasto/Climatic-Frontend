@@ -8,7 +8,7 @@ export default function navbar() {
    <Navbar position="static">
     <NavbarBrand>
         <Image src="/logo.png" width={60} height={55}/>        
-        <p className="font-bold text-inherit">CLIMATIC</p>    
+        <p className="font-bold text-inherit">DiDema</p>    
         </NavbarBrand>       
         <NavbarContent className="hidden sm:flex gap-4" justify="end">
         <NavbarItem>         
