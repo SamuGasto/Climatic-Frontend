@@ -12,9 +12,9 @@ interface PropType {
 function MainPanel(props: PropType) {
   const { boardSelected } = props;
   return (
-    <div className="flex flex-col basis-11/12 w-full h-full">
+    <div className="flex flex-col basis-11/12 gap-6 w-full h-full -mt-16">
       <section className="flex flex-row w-full">
-        <div className="flex flex-col w-full justify-items-start">
+        <div className="flex flex-col w-full gap-2 justify-items-start">
           <Tittle text={boardSelected.name} />
           <Search />
         </div>

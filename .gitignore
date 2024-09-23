@@ -1,7 +1,5 @@
 node_modules/
 .next
-.next/
 .swc/
 .*.env
-.env
-/.next
+.vscode/settings.json
