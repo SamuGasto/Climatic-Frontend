@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { Slider, Tooltip } from "@nextui-org/react";
+import { Slider } from "@nextui-org/react";
+import { Consulta } from "@/types/consulta";
+export type SliderValue = number | number[];
 
 type Props = {
   label: string;
@@ -7,10 +9,46 @@ type Props = {
   minimo: number;
   maximo: number;
   defaultValue: number[];
+  getValores?: (valores: string) => void;
+  setConsulta: (consulta: Consulta) => void;
+  consultaOriginal: Consulta;
+  tipo: "latitud" | "longitud";
 };
 
 export default function Deslizador(props: Props) {
-  const { maximo, minimo, step, label, defaultValue } = props;
+  const {
+    maximo,
+    minimo,
+    step,
+    label,
+    defaultValue,
+    getValores,
+    setConsulta,
+    consultaOriginal,
+    tipo,
+  } = props;
+
+  const [sliderValue, setSliderValue] = useState<number | number[]>([0, 0]);
+
+  function configurarConsulta() {
+    let newConsulta = { ...consultaOriginal };
+
+    if (tipo == "latitud") {
+      if (Array.isArray(sliderValue)) {
+        newConsulta.latitud = sliderValue;
+      } else {
+        newConsulta.latitud = [sliderValue, sliderValue];
+      }
+    } else if (tipo == "longitud") {
+      if (Array.isArray(sliderValue)) {
+        newConsulta.longitud = sliderValue;
+      } else {
+        newConsulta.longitud = [sliderValue, sliderValue];
+      }
+    }
+
+    setConsulta(newConsulta);
+  }
 
   return (
     <Slider
@@ -21,6 +59,8 @@ export default function Deslizador(props: Props) {
       defaultValue={defaultValue}
       showSteps={true}
       className="flex w-full"
+      onChange={(value) => setSliderValue(value)}
+      onChangeEnd={(value) => configurarConsulta()}
     />
   );
 }
