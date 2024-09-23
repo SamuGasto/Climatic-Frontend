@@ -4,6 +4,7 @@ import React from "react";
 import ButtonAddBoard from "./add-new-board";
 import BoardButton from "./board-button";
 import { Board } from "@/types/board";
+import { Image } from "@nextui-org/image";
 
 interface PropType {
   boards: Board[];
@@ -13,10 +14,10 @@ interface PropType {
 function Sidebar(props: PropType) {
   const { boards, setBoardSelected } = props;
   return (
-    <div className="w-full h-full basis-1/12 bg-white px-6">
+    <div className="w-full h-full basis-1/12 px-6">
       <div className="p-4">
         <div className="mb-8 justify-center">
-          <Logo size={40} />
+          <Image src="/logo.png" alt="Di-Dema Logo" width={50} height={50} />
         </div>
         <nav>
           <ul className="space-y-2">
