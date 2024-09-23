@@ -108,7 +108,7 @@ export default function Grafico(props: PropType) {
 
   //Renderizar el gráfico
   return (
-    <div className="flex w-full h-96 justify-center">
+    <div className="flex w-full h-full justify-center">
       <Card
         className="flex w-full h-full z-10  bg-white"
         shadow="none"

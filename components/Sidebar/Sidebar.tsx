@@ -57,7 +57,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="flex flex-col gap-12 p-6 w-full shadow-md">
+    <div className="flex flex-col gap-12 p-6 w-1/3 shadow-md">
       <div className="flex flex-col gap-3">
         <p className="text-center">Configuración del gráfico</p>
         <hr />
@@ -99,9 +99,9 @@ const Sidebar = () => {
       <OpcionesArea setConsulta={setConsulta} consultaOriginal={consulta} />
 
       <OpcionesTiempo desabilitado={desabilitarTiempo} />
-
+      <Boton texto="Graficar" funcion={() => console.log([consulta])} />
       <div className="flex flex-col w-full items-end">
-        <Boton texto="Graficar" funcion={() => console.log([consulta])} />
+        
       </div>
     </div>
   );
