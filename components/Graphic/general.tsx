@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import Titulo from "./titulo";
 import Grafico from "./grafico";
 import GraficoPlotly from "./grafico-plotly";
 import BackendData from "@/types/data";
+import { Checkbox } from "@nextui-org/react";
 
 interface PropType {
   data: BackendData;
@@ -27,6 +28,7 @@ interface PropType {
 
 export default function Visualizador(props: PropType) {
   const { data, typeChart } = props;
+  const [coloresNormalizados, setColoresNormalizados] = useState(false);
   //<GraficoPlotly />
   return (
     <div className="flex w-full flex-col gap-10 p-6">
@@ -34,8 +36,14 @@ export default function Visualizador(props: PropType) {
         original_tittle="Título de ejemplo"
         original_subtittle="Subtítulo de ejemplo"
       />
-
-      <Grafico seriesData={data} typeChart={typeChart} />
+      <Checkbox onValueChange={(value) => setColoresNormalizados(value)}>
+        Normalizar Colores
+      </Checkbox>
+      <Grafico
+        seriesData={data}
+        typeChart={typeChart}
+        normalizarColores={coloresNormalizados}
+      />
     </div>
   );
 }

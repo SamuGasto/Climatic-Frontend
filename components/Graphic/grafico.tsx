@@ -32,13 +32,20 @@ interface PropType {
     | "rangeBar"
     | "rangeArea"
     | "treemap";
+  normalizarColores: boolean;
 }
 
 export default function Grafico(props: PropType) {
-  const { seriesData, typeChart } = props;
+  const { seriesData, typeChart, normalizarColores } = props;
 
+  let maxValue = 0;
+  let minValue = 1000;
   //Transformar la data en algo legible para el ApexChart
-  const finalData = seriesData.data.map((latitud, index) => {
+  const defineData = seriesData.data.map((latitud, index) => {
+    const max = Math.max(...latitud);
+    const min = Math.min(...latitud);
+    if (max > maxValue) maxValue = max;
+    if (min < minValue) minValue = min;
     return {
       name: seriesData.latitude[index].toString(),
       data: latitud.map((element, i) => {
@@ -54,6 +61,16 @@ export default function Grafico(props: PropType) {
   const labels = seriesData.longitude.map((l) => {
     return l.toString();
   });
+
+  //Normalizar
+  const finalData = normalizarColores
+    ? defineData.map((latitude) => {
+        latitude.data.map((value) => {
+          value.y = (value.y - minValue) / (maxValue - minValue);
+        });
+        return latitude;
+      })
+    : defineData;
 
   //Generar la configuración
   const w = "98%";
@@ -109,10 +126,7 @@ export default function Grafico(props: PropType) {
   //Renderizar el gráfico
   return (
     <div className="flex w-full h-full justify-center">
-      <Card
-        className="flex w-full h-full z-10  bg-white"
-        shadow="none"
-      >
+      <Card className="flex w-full h-full z-10  bg-white" shadow="none">
         <CardBody>
           <VentanaGrafico
             className="p-2"
