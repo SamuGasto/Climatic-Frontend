@@ -1,6 +1,7 @@
 import { Board } from "@/types/board";
-import { ChartConfig } from "@/types/chart";
+import { ChartConfig, ChartConfigNoInteractive } from "@/types/chart";
 import BackendData from "@/types/data";
+import GenerateChart from "@/utils/GenerateChart";
 
 const example_data: BackendData = {
   latitude: [-34.0, -34.25, -34.5, -34.75, -35.0],
@@ -123,55 +124,6 @@ const label_example = [
   "110",
 ];
 
-export const simple_chart_config = {
-  chart: {
-    type: "heatmap",
-  },
-  series: series_example,
-  xaxis: {
-    categories: label_example,
-  },
-};
-
-export const example_chart: ChartConfig = {
-  series: series_example,
-  options: {
-    chart: {
-      height: "98%",
-      width: "98%",
-      type: "heatmap",
-      zoom: {
-        enabled: false,
-      },
-      toolbar: { show: false },
-      animations: { enabled: false },
-    },
-
-    colors: ["#ffcd6d"],
-    xaxis: {
-      type: "category",
-      categories: label_example,
-      title: {
-        text: "Longitud",
-      },
-      decimalsInFloat: 1,
-    },
-    yaxis: {
-      title: {
-        text: "Latitud",
-      },
-      decimalsInFloat: 1,
-    },
-    tooltip: { enabled: false },
-    dataLabels: {
-      enabled: false,
-    },
-    noData: {
-      text: "Cargando...",
-    },
-  },
-};
-
 export const boards: Board[] = [
   {
     name: "Tablero 1",
@@ -179,12 +131,22 @@ export const boards: Board[] = [
       {
         tittle: "Gráfico de ejemplo",
         subtittle: "Un gráfico para probar la aplicación",
-        config: example_chart,
+        config: GenerateChart(example_data, "heatmap", {
+          color: ["#ffcd6d"],
+        }).Interactive,
+        inactiveConfig: GenerateChart(example_data, "heatmap", {
+          color: ["#ffcd6d"],
+        }).NoInteractive,
       },
       {
         tittle: "Gráfico de ejemplo",
         subtittle: "Un gráfico para probar la aplicación",
-        config: example_chart,
+        config: GenerateChart(example_data, "area", {
+          color: ["#2d9177"],
+        }).Interactive,
+        inactiveConfig: GenerateChart(example_data, "area", {
+          color: ["#2d9177"],
+        }).NoInteractive,
       },
     ],
   },
@@ -194,7 +156,12 @@ export const boards: Board[] = [
       {
         tittle: "Gráfico de ejemplo",
         subtittle: "Un gráfico para probar la aplicación",
-        config: example_chart,
+        config: GenerateChart(example_data, "area", {
+          color: ["#572d91"],
+        }).Interactive,
+        inactiveConfig: GenerateChart(example_data, "area", {
+          color: ["#572d91"],
+        }).NoInteractive,
       },
     ],
   },
