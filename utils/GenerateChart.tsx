@@ -18,6 +18,18 @@ interface FinalCharts {
   NoInteractive: ChartConfig;
 }
 
+export function CreateEmpyChart() {
+  const emptyData: BackendData = {
+    latitude: [],
+    longitude: [],
+    data: [],
+    time: "",
+    units: "",
+  };
+  const { Interactive, NoInteractive } = GenerateChart(emptyData, "bar");
+  return { Interactive, NoInteractive };
+}
+
 function GenerateChart(
   data: BackendData,
   typeChart:

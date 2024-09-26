@@ -12,8 +12,9 @@ export interface ChartConfig {
 }
 
 export interface Chart {
-  tittle: string;
-  subtittle: string;
+  id: number;
+  title: string;
+  subtitle: string;
   config: ChartConfig;
   inactiveConfig: ChartConfig;
 }

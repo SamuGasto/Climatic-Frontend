@@ -126,11 +126,13 @@ const label_example = [
 
 export const boards: Board[] = [
   {
+    id: 0,
     name: "Tablero 1",
     charts: [
       {
-        tittle: "Gráfico de ejemplo",
-        subtittle: "Un gráfico para probar la aplicación",
+        id: 0,
+        title: "Gráfico de ejemplo",
+        subtitle: "Un gráfico para probar la aplicación",
         config: GenerateChart(example_data, "heatmap", {
           color: ["#ffcd6d"],
         }).Interactive,
@@ -139,8 +141,9 @@ export const boards: Board[] = [
         }).NoInteractive,
       },
       {
-        tittle: "Gráfico de ejemplo",
-        subtittle: "Un gráfico para probar la aplicación",
+        id: 1,
+        title: "Gráfico de ejemplo",
+        subtitle: "Un gráfico para probar la aplicación",
         config: GenerateChart(example_data, "area", {
           color: ["#2d9177"],
         }).Interactive,
@@ -149,13 +152,16 @@ export const boards: Board[] = [
         }).NoInteractive,
       },
     ],
+    lastChartId: 1,
   },
   {
+    id: 0,
     name: "Tablero 2",
     charts: [
       {
-        tittle: "Gráfico de ejemplo",
-        subtittle: "Un gráfico para probar la aplicación",
+        id: 0,
+        title: "Gráfico de ejemplo",
+        subtitle: "Un gráfico para probar la aplicación",
         config: GenerateChart(example_data, "area", {
           color: ["#572d91"],
         }).Interactive,
@@ -164,5 +170,6 @@ export const boards: Board[] = [
         }).NoInteractive,
       },
     ],
+    lastChartId: 0,
   },
 ];
