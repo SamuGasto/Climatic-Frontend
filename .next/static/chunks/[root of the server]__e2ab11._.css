@@ -2220,6 +2220,10 @@ img, video {
   padding: 1rem;
 }
 
+.p-5 {
+  padding: 1.25rem;
+}
+
 .\!px-1 {
   padding-left: .25rem !important;
   padding-right: .25rem !important;
@@ -7632,10 +7636,6 @@ img, video {
     margin-bottom: 4rem;
   }
 
-  .sm\:flex {
-    display: flex;
-  }
-
   .sm\:items-start {
     align-items: flex-start;
   }
@@ -7685,10 +7685,6 @@ img, video {
 }
 
 @media (width >= 1024px) {
-  .lg\:flex {
-    display: flex;
-  }
-
   .lg\:text-4xl {
     font-size: 2.25rem;
     line-height: 2.5rem;
