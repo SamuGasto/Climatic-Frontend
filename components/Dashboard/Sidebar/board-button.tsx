@@ -18,7 +18,7 @@ function BoardButton(props: PropType) {
   const { id, board, isActual, setBoardSelected, deleteBoard } = props;
 
   return (
-    <div className="flex flex-row gap-1">
+    <div className="flex flex-row gap-1 justify-center">
       {isActual && (
         <Button
           isIconOnly
@@ -34,12 +34,12 @@ function BoardButton(props: PropType) {
       )}
 
       <Button
-        className="w-full text-left text-base"
+        className="w-44 text-center"
         variant={isActual ? "bordered" : "light"}
         color="primary"
         onClick={() => setBoardSelected(id)}
       >
-        {board.name}
+        <h1 className="w-full text-center text-pretty">{board.name}</h1>
       </Button>
       {isActual && (
         <Button isIconOnly variant="light" color="secondary">

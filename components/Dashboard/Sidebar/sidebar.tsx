@@ -23,13 +23,13 @@ function Sidebar(props: PropType) {
     deleteBoard,
   } = props;
   return (
-    <div className="w-full h-full basis-1/12 px-6">
+    <div className="flex max-w-96 h-full basis-1/12 px-6 border-r-1 mr-5">
       <div className="p-4">
-        <div className="mb-8 justify-center">
+        <div className="flex w-full mb-8 justify-center">
           <Image src="/logo.png" alt="Di-Dema Logo" width={50} height={50} />
         </div>
         <nav>
-          <ul className="space-y-2">
+          <ul className="flex flex-col space-y-2">
             {boards.map((board, index) => (
               <li key={index}>
                 <BoardButton
