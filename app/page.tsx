@@ -1,55 +1,41 @@
-import { Link } from "@nextui-org/link";
-import { Snippet } from "@nextui-org/snippet";
-import { Code } from "@nextui-org/code";
-import { button as buttonStyles } from "@nextui-org/theme";
-
-import { siteConfig } from "@/config/site";
-import { title, subtitle } from "@/components/primitives";
-import { GithubIcon } from "@/components/icons";
+"use client";
+import ModalCreateBoard from "@/components/Dashboard/Panel/board/modal-create-board";
+import MainPanel from "@/components/Dashboard/Panel/main-panel";
+import Sidebar from "@/components/Dashboard/Sidebar/sidebar";
+import { boards } from "@/config/test-data";
+import useStorage from "@/hooks/useStorage";
+import { Board } from "@/types/board";
+import { Chart } from "@/types/chart";
+import { useState } from "react";
 
 export default function Home() {
+  const { userData, AddNewBoard, DeleteBoard } = useStorage();
+  const [boardSelected, setBoardSelected] = useState(0);
+  const [graficoSeleccionado, setGraficoSeleccionado] = useState<Chart>();
+  const [visibleModalCreateBoard, setVisibleModalCreateBoard] = useState(false);
   return (
-    <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-      <div className="inline-block max-w-lg text-center justify-center">
-        <h1 className={title()}>Make&nbsp;</h1>
-        <h1 className={title({ color: "violet" })}>beautiful&nbsp;</h1>
-        <br />
-        <h1 className={title()}>
-          websites regardless of your design experience.
-        </h1>
-        <h2 className={subtitle({ class: "mt-4" })}>
-          Beautiful, fast and modern React UI library.
-        </h2>
-      </div>
-
-      <div className="flex gap-3">
-        <Link
-          isExternal
-          className={buttonStyles({
-            color: "primary",
-            radius: "full",
-            variant: "shadow",
-          })}
-          href={siteConfig.links.docs}
-        >
-          Documentation
-        </Link>
-        <Link
-          isExternal
-          className={buttonStyles({ variant: "bordered", radius: "full" })}
-          href={siteConfig.links.github}
-        >
-          <GithubIcon size={20} />
-          GitHub
-        </Link>
-      </div>
-
-      <div className="mt-8">
-        <Snippet hideCopyButton hideSymbol variant="bordered">
-          <span>
-            Get started by editing <Code color="primary">app/page.tsx</Code>
-          </span>
-        </Snippet>
+    <section className="flex flex-col w-full h-full items-center justify-center gap-4 py-8 md:py-10">
+      <div className="flex flex-row h-full w-full">
+        <Sidebar
+          boards={userData}
+          boardSelected={boardSelected}
+          setBoardSelected={setBoardSelected}
+          set_v_modalCrearTablero={setVisibleModalCreateBoard}
+          deleteBoard={DeleteBoard}
+        />
+        <MainPanel
+          boardSelected={userData[boardSelected]}
+          accionSeleccionarGrafico={setGraficoSeleccionado}
+          set_v_modalCrearTablero={setVisibleModalCreateBoard}
+        />
+        <ModalCreateBoard
+          open={visibleModalCreateBoard}
+          handleOpen={(bool) => setVisibleModalCreateBoard(bool)}
+          actionFunction={(newName: string) => {
+            AddNewBoard(newName);
+            setBoardSelected(userData.length);
+          }}
+        />
       </div>
     </section>
   );
