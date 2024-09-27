@@ -6,15 +6,18 @@ import Search from "./layout/search";
 import ButtonAddChart from "../add-chart";
 import Title from "./layout/title";
 import ChartsCards from "./Charts-Cards/charts-card";
+import { NextRouter } from "next/router";
 
 interface PropType {
   boardName: string;
   charts: Chart[];
   seleccionarGrafico: (chart: Chart) => void;
+  set_v_modalCrearChart: (bool: boolean) => void;
 }
 
 function BoardPanel(props: PropType) {
-  const { boardName, charts, seleccionarGrafico } = props;
+  const { boardName, charts, seleccionarGrafico, set_v_modalCrearChart } =
+    props;
 
   return (
     <div className="">
@@ -23,9 +26,13 @@ function BoardPanel(props: PropType) {
           <Title text={boardName} />
           <Search />
         </div>
-        <ButtonAddChart />
+        <ButtonAddChart set_v_modalCrearChart={set_v_modalCrearChart} />
       </section>
-      <ChartsCards charts={charts} seleccionarGrafico={seleccionarGrafico} />
+      <ChartsCards
+        charts={charts}
+        seleccionarGrafico={seleccionarGrafico}
+        set_v_modalCrearChart={set_v_modalCrearChart}
+      />
     </div>
   );
 }
