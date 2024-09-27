@@ -17,12 +17,12 @@ export default function navbar() {
       <Navbar className="flex w-full" position="static">
         <NavbarBrand>
           <Image src="/logo.png" width={60} height={55} />
-          <p className="font-bold text-inherit ml-3">DiDema</p>
+          <p className="font-bold text-inherit ml-3">CLIMATIC</p>
         </NavbarBrand>
         <NavbarContent className="hidden sm:flex gap-4" justify="end">
           <NavbarItem isActive>
             <Link color="foreground" href="/">
-              CLIMATIC
+              Dashboard
             </Link>
           </NavbarItem>
           <NavbarItem>
