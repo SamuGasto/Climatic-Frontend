@@ -36,7 +36,6 @@ export default function navbar() {
             </Link>
           </NavbarItem>
           <NavbarItem>
-          <ThemeSwitch/>
          </NavbarItem>
         </NavbarContent>
         <NavbarItem className="hidden lg:flex"></NavbarItem>
