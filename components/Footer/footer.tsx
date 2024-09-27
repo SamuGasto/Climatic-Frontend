@@ -41,7 +41,7 @@ export default function Footer() {
             </h5>
             <div>
               <Link
-                href="https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-single-levels"
+                href="https://cloud.google.com/storage/docs/public-datasets/era5?hl=es-419"
                 color="foreground"
                 className="text-gray-400 hover:text-white transition-colors inline-block"
               >

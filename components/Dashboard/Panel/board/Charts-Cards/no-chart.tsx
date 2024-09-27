@@ -6,7 +6,7 @@ import Image from "next/image";
 import addChartIcon from "@/public/add-chart.svg";
 
 interface PropType {
-  funcion: () => void;
+  funcion: (bool: boolean) => void;
 }
 
 function NoChartCard(props: PropType) {
@@ -17,7 +17,9 @@ function NoChartCard(props: PropType) {
       key={"NoChart"}
       shadow="sm"
       isPressable
-      onPress={() => funcion()}
+      onPress={() => {
+        funcion(true);
+      }}
     >
       <CardBody className="flex w-full justify-center items-center">
         <Image alt="DeleteIcon" src={addChartIcon} width={180} height={180} />

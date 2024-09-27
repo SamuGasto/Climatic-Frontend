@@ -4,14 +4,16 @@ import React from "react";
 import ChartImage from "../../chart-image";
 import NoChartCard from "./no-chart";
 import NormalCard from "./normal-card";
+import { NextRouter } from "next/router";
 
 interface PropType {
   charts: Chart[];
   seleccionarGrafico: (chart: Chart) => void;
+  set_v_modalCrearChart: (bool: boolean) => void;
 }
 
 function ChartsCards(props: PropType) {
-  const { charts, seleccionarGrafico } = props;
+  const { charts, seleccionarGrafico, set_v_modalCrearChart } = props;
 
   return (
     <div className="grid grid-flow-col gap-6 w-full h-full">
@@ -23,7 +25,7 @@ function ChartsCards(props: PropType) {
             funcion={seleccionarGrafico}
           />
         ))}
-        <NoChartCard funcion={() => console.log("nada")} />
+        <NoChartCard funcion={set_v_modalCrearChart} />
       </div>
     </div>
   );

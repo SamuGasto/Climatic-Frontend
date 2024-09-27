@@ -2,6 +2,7 @@ import { Chart } from "@/types/chart";
 import { Card, CardBody, CardHeader } from "@nextui-org/card";
 import React from "react";
 import ChartImage from "../../chart-image";
+import { NextRouter, useRouter } from "next/router";
 
 interface PropType {
   index: number;
@@ -11,13 +12,16 @@ interface PropType {
 
 function NormalCard(props: PropType) {
   const { index, chart, funcion } = props;
+
   return (
     <Card
       className="h-72 w-full"
       key={index}
       shadow="sm"
       isPressable
-      onPress={() => funcion(chart)}
+      onPress={() => {
+        funcion(chart);
+      }}
     >
       <CardHeader>
         <div>
