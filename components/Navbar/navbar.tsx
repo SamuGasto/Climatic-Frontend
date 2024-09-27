@@ -36,10 +36,8 @@ export default function navbar() {
             </Link>
           </NavbarItem>
           <NavbarItem>
-            <Link color="foreground" href="#">
-              Sobre Nosotros
-            </Link>
-          </NavbarItem>
+          <ThemeSwitch/>
+         </NavbarItem>
         </NavbarContent>
         <NavbarItem className="hidden lg:flex"></NavbarItem>
         <NavbarItem>
@@ -48,4 +46,4 @@ export default function navbar() {
       </Navbar>
     </Navbar>
   );
-}
+}      
