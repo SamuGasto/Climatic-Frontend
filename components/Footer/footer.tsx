@@ -1,6 +1,6 @@
 "use client";
 import { Image } from "@nextui-org/image";
-import Link from "next/link";
+import {Link} from "@nextui-org/react";
 import React from "react";
 
 export default function Footer() {
@@ -41,18 +41,20 @@ export default function Footer() {
             </h5>
             <div>
               <Link
+                isExternal showAnchorIcon
                 href="https://cloud.google.com/storage/docs/public-datasets/era5?hl=es-419"
                 color="foreground"
-                className="text-gray-400 hover:text-white transition-colors inline-block"
+                className="text-gray-400 hover:text-white transition-colors"
               >
                 Datos de ERA5
               </Link>
             </div>
             <div>
               <Link
+                isExternal showAnchorIcon
                 href="https://cl.linkedin.com/in/ra%C3%BAl-valenzuela-ruiz-5b9b05257"
                 color="foreground"
-                className="text-gray-400 hover:text-white transition-colors inline-block"
+                className="text-gray-400 hover:text-white transition-colors"
               >
                 Cliente: Raúl Valenzuela
               </Link>
