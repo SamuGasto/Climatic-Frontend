@@ -4,16 +4,14 @@ import { Card, CardBody } from "@nextui-org/card";
 import VentanaGrafico from "./ventana-grafico";
 import Mapa from "./mapa.jpg";
 import { Image } from "@nextui-org/image";
+import { ChartConfig, ChartConfigInteractive } from "@/types/chart";
+import BackendData from "@/types/data";
+import NormalizedData from "@/utils/NormalizedData";
+import { useTheme } from "next-themes";
+import GenerateChart from "@/utils/GenerateChart";
 
 interface PropType {
-  seriesData: {
-    latitude: number[];
-    longitude: number[];
-    time?: string | string[];
-    level?: number | number[];
-    data: number[][];
-    units: string;
-  };
+  seriesData: BackendData;
   typeChart:
     | "line"
     | "area"
@@ -31,104 +29,35 @@ interface PropType {
     | "rangeBar"
     | "rangeArea"
     | "treemap";
-}
-
-interface Config {
-  series: { name: string; data: { x: string; y: number }[] }[];
-  options: ApexOptions;
+  normalizarColores: boolean;
 }
 
 export default function Grafico(props: PropType) {
-  const { seriesData, typeChart } = props;
+  const { seriesData, typeChart, normalizarColores } = props;
+  const actualTheme = useTheme();
+  const color = ["#ffcd6d"];
 
-  //Transformar la data en algo legible para el ApexChart
-  const finalData = seriesData.data.map((latitud, index) => {
-    return {
-      name: seriesData.latitude[index].toString(),
-      data: latitud.map((element, i) => {
-        return {
-          x: seriesData.longitude[i].toString(),
-          y: element,
-        };
-      }),
-    };
+  const { Interactive } = GenerateChart(seriesData, typeChart, {
+    color: color,
+    isNormalized: normalizarColores,
+    theme: actualTheme,
   });
-
-  //Consegir las labels para el gráfico
-  const labels = seriesData.longitude.map((l) => {
-    return l.toString();
-  });
-
-  //Generar la configuración
-  const w = "98%";
-  const h = "98%";
-  const chartConfig: Config = {
-    series: finalData,
-    options: {
-      chart: {
-        height: h,
-        width: w,
-        type: typeChart,
-        zoom: {
-          enabled: true,
-          type: "xy",
-        },
-      },
-      plotOptions: {
-        heatmap: {
-          radius: 6,
-        },
-      },
-      colors: ["#ffcd6d"],
-      xaxis: {
-        type: "category",
-        categories: labels,
-        title: {
-          text: "Longitud",
-        },
-        decimalsInFloat: 1,
-      },
-      yaxis: {
-        title: {
-          text: "Latitud",
-        },
-        decimalsInFloat: 1,
-      },
-      tooltip: {
-        y: {
-          formatter: (value) => {
-            return value.toFixed(3).toString();
-          },
-        },
-      },
-      dataLabels: {
-        enabled: false,
-      },
-      noData: {
-        text: "Cargando...",
-      },
-    },
-  };
 
   //Renderizar el gráfico
   return (
-    <div className="flex w-full h-full relative justify-center">
-      <Card
-        className="flex w-full h-full z-10 absolute opacity-75"
-        shadow="none"
-      >
+    <div className="flex w-full h-full justify-center">
+      <Card className="flex w-full h-full z-10 bg-transparent" shadow="none">
         <CardBody>
           <VentanaGrafico
-            className="p-2"
-            options={chartConfig.options}
-            series={chartConfig.series}
-            type={typeChart}
-            width={w}
-            height={h}
+            className="p-2 "
+            options={Interactive.options}
+            series={Interactive.series}
+            type={Interactive.options.chart?.type}
+            width={"98%"}
+            height={"98%"}
           />
         </CardBody>
       </Card>
-      <Image className="flex w-full h-full p-10 z-0" src={Mapa.src} />
     </div>
   );
 }
