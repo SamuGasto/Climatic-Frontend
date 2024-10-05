@@ -33,7 +33,7 @@ export default function CardMember({ src, nombre, rol, main_text, bottom_text, l
           isHoverable
           shadow="lg">
       <CardHeader className="flex gap-5 px-6">
-        <Avatar className="px-"isBordered color={mappedColor} src={src} />
+        <Avatar className="w-16 h-16"isBordered color={mappedColor} src={src}/>
         <div className="flex flex-col">
           <p className="text-2xl">{nombre}</p>
           <p className="text-xl text-default-500">{rol}</p>

@@ -1,14 +1,12 @@
 "use client";
 import React from "react";
 import CardMember from "@/components/CardMember/card-member";
-import {Divider} from "@nextui-org/react"
 
 export default function About() {
   return(
-    <div className="justify-items-center">
+    <div className="justify-items-center -mt-10">
       <h1 className="text-center text-4xl font-bold mb-2">Sobre Nosotros</h1>
-      <p className="text-center text-2xl mb-6 italic"
-          >Di-Dema</p>
+      <p className="text-center text-2xl mb-6 italic">Di-Dema</p>
       <hr className="my-8 h-1 border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25 dark:via-neutral-400" />
       <section className="grid grid-cols-2 gap-y-16 justify-items-center mt-4 mb-24">
         <CardMember

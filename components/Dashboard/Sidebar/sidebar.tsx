@@ -26,7 +26,7 @@ function Sidebar(props: PropType) {
     <div className="flex max-w-96 h-full basis-1/12 px-6 border-r-1 mr-5">
       <div className="p-4">
         <div className="flex w-full mb-8 justify-center">
-          <Image src="/logo2.png" alt="Climatic Logo" width={50} height={50} />
+          <Image src="/logo2.png" alt="Climatic Logo" width={50} height={50} radius="none"/>
         </div>
         <nav>
           <ul className="flex flex-col space-y-2">

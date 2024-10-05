@@ -15,7 +15,7 @@ export default function navbar() {
   return (
     <Navbar className="flex w-full shadow-sm shadow-black dark:shadow-white justify-evenly">
       <NavbarBrand>
-        <Image src="/logo2.png" width={50} height={50} />
+        <Image src="/logo2.png" width={50} height={50} radius="none"/>
         <p className="font-bold text-inherit ml-3">CLIMATIC</p>
       </NavbarBrand>
       <NavbarContent className="hidden sm:flex gap-4" justify="end">
