@@ -1,22 +1,29 @@
+import { AddChartIcon } from "@/components/icons";
+import useModalStore from "@/utils/modalStore";
 import { Button } from "@nextui-org/button";
 import React from "react";
 
 interface PropType {
-  set_v_modalCrearChart: (bool: boolean) => void;
+  refresh: () => void;
 }
 
 function ButtonAddChart(props: PropType) {
-  const { set_v_modalCrearChart } = props;
+  const { refresh } = props;
+  const { toggleModalCreateChart } = useModalStore.getState();
   return (
     <div className="flex self-center mr-5">
       <Button
         size="lg"
         color="primary"
         onPress={() => {
-          set_v_modalCrearChart(true);
+          toggleModalCreateChart(true);
+          refresh();
         }}
       >
-        Add New Chart
+        <div className="flex flex-row items-center gap-3 p-2">
+          <AddChartIcon width={28} />
+          <h1>Nuevo Gráfico</h1>
+        </div>
       </Button>
     </div>
   );

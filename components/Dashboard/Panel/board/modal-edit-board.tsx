@@ -1,4 +1,3 @@
-import { Board } from "@/types/board";
 import { useBoardStore } from "@/utils/boardStore";
 import useModalStore from "@/utils/modalStore";
 import {
@@ -16,57 +15,43 @@ interface PropType {
   refresh: () => void;
 }
 
-function ModalCreateChart(props: PropType) {
+function ModalEditBoard(props: PropType) {
   const { refresh } = props;
-  const { userData, id_boardSelected, addNewChart } = useBoardStore.getState();
-  const { ModalCreateChart, toggleModalCreateChart } = useModalStore.getState();
+  const { userData, id_boardSelected, addNewBoard, updateBoard } =
+    useBoardStore.getState();
+  const { ModalEditBoard, toggleModalEditBoard } = useModalStore.getState();
   const [title, setTitle] = useState("");
-  const [subtitle, setSubtitle] = useState("");
 
   function ReadyButtonFunction() {
-    if (title.trim() === "")
-      addNewChart(
-        userData[id_boardSelected],
-        "Nuevo Tablero",
-        "(sin descripción)"
-      );
-    else addNewChart(userData[id_boardSelected], title, subtitle);
+    if (title.trim() === "") addNewBoard("Nuevo Tablero");
+    else updateBoard(userData[id_boardSelected], title);
 
     setTitle("");
-    setSubtitle("");
-    toggleModalCreateChart(false);
+    toggleModalEditBoard(false);
     refresh();
   }
 
   return (
     <div>
       <Modal
-        isOpen={ModalCreateChart}
+        isOpen={ModalEditBoard}
         onOpenChange={(value) => {
-          toggleModalCreateChart(value);
+          toggleModalEditBoard(value);
           refresh();
         }}
         onKeyDown={(event) => {
-          if (ModalCreateChart && event.key === "Enter") ReadyButtonFunction();
+          if (ModalEditBoard && event.key === "Enter") ReadyButtonFunction();
         }}
       >
         <ModalContent>
-          <ModalHeader>Nuevo Gráfico</ModalHeader>
+          <ModalHeader>Configuración</ModalHeader>
           <ModalBody>
             <Input
               autoFocus
-              label="Titulo del gráfico"
-              placeholder="Ingresa un nombre para tu gráfico"
+              label="Titulo del tablero"
+              placeholder="Ingresa un nuevo nombre para tu tablero"
               value={title}
               onValueChange={(value) => setTitle(value)}
-              variant="underlined"
-            />
-            <Input
-              autoFocus
-              label="Subtitulo del gráfico"
-              placeholder="Ingresa un subtitulo para tu gráfico"
-              value={subtitle}
-              onValueChange={(value) => setSubtitle(value)}
               variant="underlined"
             />
           </ModalBody>
@@ -75,9 +60,8 @@ function ModalCreateChart(props: PropType) {
               color="danger"
               variant="flat"
               onPress={() => {
-                toggleModalCreateChart(false);
+                toggleModalEditBoard(false);
                 setTitle("");
-                setSubtitle("");
                 refresh();
               }}
             >
@@ -98,4 +82,4 @@ function ModalCreateChart(props: PropType) {
   );
 }
 
-export default ModalCreateChart;
+export default ModalEditBoard;

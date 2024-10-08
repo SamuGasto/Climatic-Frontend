@@ -1,12 +1,14 @@
+import { useBoardStore } from "@/utils/boardStore";
 import React from "react";
 
-interface PropType {
-  text: string;
+function TitleCardBoard() {
+  const { userData, id_boardSelected } = useBoardStore.getState();
+
+  return (
+    <h1 className="text-5xl font-semibold p-3">
+      {userData[id_boardSelected].name}
+    </h1>
+  );
 }
 
-function Title(props: PropType) {
-  const { text } = props;
-  return <h1 className="text-5xl font-semibold p-3">{text}</h1>;
-}
-
-export default Title;
+export default TitleCardBoard;

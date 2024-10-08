@@ -1,16 +1,11 @@
-import { Chart } from "@/types/chart";
-import { Card, CardBody, CardHeader } from "@nextui-org/card";
+import { Card, CardBody } from "@nextui-org/card";
 import React from "react";
-import ChartImage from "../../chart-image";
 import Image from "next/image";
 import addChartIcon from "@/public/add-chart.svg";
+import useModalStore from "@/utils/modalStore";
 
-interface PropType {
-  funcion: (bool: boolean) => void;
-}
-
-function NoChartCard(props: PropType) {
-  const { funcion } = props;
+function NoChartCard() {
+  const { toggleModalCreateChart } = useModalStore.getState();
   return (
     <Card
       className="h-72 w-full"
@@ -18,11 +13,11 @@ function NoChartCard(props: PropType) {
       shadow="sm"
       isPressable
       onPress={() => {
-        funcion(true);
+        toggleModalCreateChart(true);
       }}
     >
       <CardBody className="flex w-full justify-center items-center">
-        <Image alt="DeleteIcon" src={addChartIcon} width={180} height={180} />
+        <Image alt="addChartIcon" src={addChartIcon} width={180} height={180} />
       </CardBody>
     </Card>
   );

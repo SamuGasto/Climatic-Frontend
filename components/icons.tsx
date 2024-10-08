@@ -1,4 +1,5 @@
 import * as React from "react";
+import { SVGProps } from "react";
 
 import { IconSvgProps } from "@/types";
 
@@ -226,44 +227,79 @@ export const NextUILogo: React.FC<IconSvgProps> = (props) => {
   );
 };
 
-export const Trash: React.FC<IconSvgProps> = ({
-  size = 36,
-  width,
-  height,
-  ...props
-}) => (
-  <svg
-    fill="currentColor"
-    height={size || height}
-    viewBox="0 0 32 32"
-    width={size || width}
-    {...props}
-  >
-    <path
-      clipRule="evenodd"
-      fill="currentColor"
-      fillRule="evenodd"
-      d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"
-    />
-  </svg>
-);
-
-export const Edit: React.FC<IconSvgProps> = (props) => {
-  const { width, height = 40 } = props;
-
+export function DeleteOffOutline(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
-      fill="none"
-      height={height}
-      viewBox="0 0 161 32"
-      width={width}
       xmlns="http://www.w3.org/2000/svg"
+      width={props.width}
+      height={props.height}
+      viewBox="0 0 24 24"
       {...props}
     >
       <path
-        className="fill-black dark:fill-white"
-        d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z"
-      />
+        fill="currentColor"
+        d="M2 5.27L3.28 4L5 5.72l.28.28l1 1l2 2L16 16.72l2 2l2 2L18.73 22l-1.46-1.46c-.34.29-.77.46-1.27.46H8c-1.1 0-2-.9-2-2V9.27zM8 19h7.73L8 11.27zM18 7v9.18l-2-2V9h-5.18l-2-2zm-2.5-3H19v2H7.82l-2-2H8.5l1-1h5z"
+      ></path>
     </svg>
   );
-};
+}
+
+export function DeleteOutline(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={props.width}
+      height={props.height}
+      viewBox="0 0 24 24"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M16 9v10H8V9zm-1.5-6h-5l-1 1H5v2h14V4h-3.5zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2z"
+      ></path>
+    </svg>
+  );
+}
+
+export function Edit(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={props.width}
+      height={props.height}
+      viewBox="0 0 24 24"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="m18.988 2.012l3 3L19.701 7.3l-3-3zM8 16h3l7.287-7.287l-3-3L8 13z"
+      ></path>
+      <path
+        fill="currentColor"
+        d="M19 19H8.158c-.026 0-.053.01-.079.01c-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .896-2 2v14c0 1.104.897 2 2 2h14a2 2 0 0 0 2-2v-8.668l-2 2z"
+      ></path>
+    </svg>
+  );
+}
+
+export function AddChartIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={props.width}
+      height={props.height}
+      viewBox="0 0 24 24"
+      {...props}
+    >
+      <path fill="currentColor" d="M11 7h2v10h-2zm4 6h2v4h-2z"></path>
+      <path
+        fill="currentColor"
+        d="M19 19H5V5h9V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-9h-2z"
+      ></path>
+      <path
+        fill="currentColor"
+        d="M7 10h2v7H7zm12-5V3h-2v2h-2v2h2v2h2V7h2V5z"
+      ></path>
+    </svg>
+  );
+}

@@ -7,7 +7,6 @@ import {
   NavbarContent,
   NavbarItem,
   Link,
-  Button,
 } from "@nextui-org/react";
 import { ThemeSwitch } from "../theme-switch";
 
@@ -35,8 +34,7 @@ export default function navbar() {
               Preguntas Frecuentes
             </Link>
           </NavbarItem>
-          <NavbarItem>
-         </NavbarItem>
+          <NavbarItem></NavbarItem>
         </NavbarContent>
         <NavbarItem className="hidden lg:flex"></NavbarItem>
         <NavbarItem>
@@ -45,4 +43,4 @@ export default function navbar() {
       </Navbar>
     </Navbar>
   );
-}      
+}

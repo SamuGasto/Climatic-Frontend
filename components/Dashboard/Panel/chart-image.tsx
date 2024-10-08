@@ -1,8 +1,6 @@
 import VentanaGrafico from "@/components/Graphic/ventana-grafico";
 import { ChartConfig } from "@/types/chart";
-import { Image } from "@nextui-org/image";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 interface PropType {
   config: ChartConfig;

@@ -15,52 +15,49 @@ interface PropType {
   refresh: () => void;
 }
 
-function ModalCreateBoard(props: PropType) {
+function ModalConfirm(props: PropType) {
   const { refresh } = props;
-  const { addNewBoard } = useBoardStore.getState();
-  const { ModalCreateBoard, toggleModalCreateBoard } = useModalStore.getState();
-  const [title, setTitle] = useState("");
+  const { userData, id_boardSelected, addNewBoard, updateBoard } =
+    useBoardStore.getState();
+  const {
+    ModalConfirm,
+    ModalConfirmText,
+    functionModalConfirm,
+    toggleModalConfirm,
+  } = useModalStore.getState();
 
   function ReadyButtonFunction() {
-    if (title.trim() === "") addNewBoard("Nuevo Tablero");
-    else addNewBoard(title);
+    functionModalConfirm();
 
-    setTitle("");
-    toggleModalCreateBoard(false);
+    toggleModalConfirm(false, "", () => {});
     refresh();
   }
 
   return (
     <div>
       <Modal
-        isOpen={ModalCreateBoard}
+        isOpen={ModalConfirm}
         onOpenChange={(value) => {
-          toggleModalCreateBoard(value);
+          if (!value) {
+            toggleModalConfirm(false, "", () => {});
+          }
           refresh();
         }}
         onKeyDown={(event) => {
-          if (ModalCreateBoard && event.key === "Enter") ReadyButtonFunction();
+          if (ModalConfirm && event.key === "Enter") ReadyButtonFunction();
         }}
       >
         <ModalContent>
-          <ModalHeader>Nuevo Tablero</ModalHeader>
+          <ModalHeader>Confirmación</ModalHeader>
           <ModalBody>
-            <Input
-              autoFocus
-              label="Titulo del tablero"
-              placeholder="Ingresa un nombre para tu tablero"
-              value={title}
-              onValueChange={(value) => setTitle(value)}
-              variant="underlined"
-            />
+            <h1>{ModalConfirmText}</h1>
           </ModalBody>
           <ModalFooter className="flex justify-between">
             <Button
               color="danger"
               variant="flat"
               onPress={() => {
-                toggleModalCreateBoard(false);
-                setTitle("");
+                toggleModalConfirm(false, "", () => {});
                 refresh();
               }}
             >
@@ -72,7 +69,7 @@ function ModalCreateBoard(props: PropType) {
                 ReadyButtonFunction();
               }}
             >
-              Listo
+              Aceptar
             </Button>
           </ModalFooter>
         </ModalContent>
@@ -81,4 +78,4 @@ function ModalCreateBoard(props: PropType) {
   );
 }
 
-export default ModalCreateBoard;
+export default ModalConfirm;
