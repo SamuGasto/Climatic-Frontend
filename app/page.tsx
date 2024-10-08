@@ -5,15 +5,12 @@ import ModalCreateChart from "@/components/Dashboard/Panel/board/modal-create-ch
 import ModalEditBoard from "@/components/Dashboard/Panel/board/modal-edit-board";
 import MainPanel from "@/components/Dashboard/Panel/main-panel";
 import Sidebar from "@/components/Dashboard/Sidebar/sidebar";
-import { Chart } from "@/types/chart";
-import { useBoardStore } from "@/utils/boardStore";
-import useModalStore from "@/utils/modalStore";
+import { useBoardStore } from "@/utils/Stores/boardStore";
 import { CircularProgress } from "@nextui-org/progress";
 import { useEffect, useState } from "react";
 
 export default function Home() {
   const { loadData } = useBoardStore.getState();
-  const [graficoSeleccionado, setGraficoSeleccionado] = useState<Chart>();
 
   const [isLoading, setIsLoading] = useState(true);
   const [forceRefresh, setForceRefresh] = useState(false);
@@ -29,13 +26,13 @@ export default function Home() {
 
   return (
     <section className="flex flex-col w-full h-full items-center justify-center gap-4 py-8 md:py-10">
-      <div className="flex flex-row h-screen w-full">
+      <div className="flex flex-row min-h-[720] w-full">
         {isLoading ? (
           <div className="flex w-full h-full justify-center self-center">
             <CircularProgress />
           </div>
         ) : (
-          <div className="flex flex-row w-full">
+          <div className="flex flex-row w-full h-full">
             <Sidebar refresh={Refresh} />
             <MainPanel refresh={Refresh} />
           </div>

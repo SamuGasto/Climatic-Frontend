@@ -1,4 +1,4 @@
-import { useBoardStore } from "@/utils/boardStore";
+import { useBoardStore } from "@/utils/Stores/boardStore";
 import React, { useState } from "react";
 import BoardButton from "./board-button";
 

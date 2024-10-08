@@ -3,7 +3,7 @@ import BoardPanel from "./board/has-board";
 import { Board } from "@/types/board";
 import { Chart } from "@/types/chart";
 import { CircularProgress } from "@nextui-org/progress";
-import { useBoardStore } from "@/utils/boardStore";
+import { useBoardStore } from "@/utils/Stores/boardStore";
 
 interface PropType {
   refresh: () => void;

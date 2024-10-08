@@ -1,4 +1,4 @@
-import { useBoardStore } from "@/utils/boardStore";
+import { useBoardStore } from "@/utils/Stores/boardStore";
 import React from "react";
 
 function TitleCardBoard() {

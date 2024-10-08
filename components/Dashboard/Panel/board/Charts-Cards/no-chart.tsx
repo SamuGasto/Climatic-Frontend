@@ -2,9 +2,14 @@ import { Card, CardBody } from "@nextui-org/card";
 import React from "react";
 import Image from "next/image";
 import addChartIcon from "@/public/add-chart.svg";
-import useModalStore from "@/utils/modalStore";
+import useModalStore from "@/utils/Stores/modalStore";
 
-function NoChartCard() {
+interface PropType {
+  refresh: () => void;
+}
+
+function NoChartCard(props: PropType) {
+  const { refresh } = props;
   const { toggleModalCreateChart } = useModalStore.getState();
   return (
     <Card
@@ -14,6 +19,7 @@ function NoChartCard() {
       isPressable
       onPress={() => {
         toggleModalCreateChart(true);
+        refresh();
       }}
     >
       <CardBody className="flex w-full justify-center items-center">

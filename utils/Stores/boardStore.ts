@@ -1,7 +1,7 @@
 import { Board } from "@/types/board";
 import { Chart, ChartConfig } from "@/types/chart";
 import { create } from "zustand";
-import { CreateEmpyChart } from "./GenerateChart";
+import { CreateEmpyChart } from "../GenerateChart";
 
 interface CounterState {
   userData: Board[];
@@ -42,7 +42,7 @@ export const useBoardStore = create<CounterState>((set, get) => ({
       set((state) => ({
         ...state,
         userData: JSON.parse(data),
-        boardSelected: b_selected,
+        id_boardSelected: b_selected,
       }));
     } else {
       const newBoard: Board = {
@@ -51,7 +51,7 @@ export const useBoardStore = create<CounterState>((set, get) => ({
         charts: [],
         lastChartId: 0,
       };
-      set((state) => ({ ...state, userData: [newBoard], boardSelected: 0 }));
+      set((state) => ({ ...state, userData: [newBoard], id_boardSelected: 0 }));
       localStorage.setItem("UserData.data", JSON.stringify([newBoard]));
       localStorage.setItem("UserData.boardSelected", newBoard.id.toString());
     }
@@ -67,8 +67,13 @@ export const useBoardStore = create<CounterState>((set, get) => ({
 
       const finalData = [...get().userData, newBoard];
 
-      set((state) => ({ ...state, userData: finalData }));
+      set((state) => ({
+        ...state,
+        userData: finalData,
+        id_boardSelected: newBoard.id,
+      }));
       localStorage.setItem("UserData.data", JSON.stringify(finalData));
+      localStorage.setItem("UserData.boardSelected", newBoard.id.toString());
     } catch (error) {
       console.error(error);
     }
@@ -165,27 +170,34 @@ export const useBoardStore = create<CounterState>((set, get) => ({
   },
   deleteBoard: (id: number) => {
     try {
-      let finalData = [...get().userData];
-
-      const newData = finalData.filter((value) => value.id !== id);
-
-      set((state) => ({ ...state, userData: newData }));
-      localStorage.setItem("UserData.data", JSON.stringify(newData));
+      const dataFilter = get().userData.filter((value) => value.id !== id);
+      set((state) => ({
+        ...state,
+        userData: dataFilter.map((board, index) => {
+          board.id = index;
+          return board;
+        }),
+        id_boardSelected: id - 1,
+      }));
+      localStorage.setItem("UserData.data", JSON.stringify(dataFilter));
+      localStorage.setItem("UserData.boardSelected", (id - 1).toString());
     } catch (error) {
       console.error(error);
     }
   },
   deleteChart: (boardFather: Board, chart: Chart) => {
     try {
-      let finalData = [...get().userData];
-
-      const newData = finalData.map((board) => {
+      const newData = get().userData.map((board) => {
         let finalBoard = board;
         if (board.id === boardFather.id) {
           finalBoard.charts = board.charts.filter(
             (chartActual) => chartActual.id !== chart.id
           );
         }
+        board.charts.map((chart, index) => {
+          chart.id = index;
+          return chart;
+        });
         return finalBoard;
       });
 

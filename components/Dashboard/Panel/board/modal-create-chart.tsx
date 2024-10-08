@@ -1,6 +1,6 @@
 import { Board } from "@/types/board";
-import { useBoardStore } from "@/utils/boardStore";
-import useModalStore from "@/utils/modalStore";
+import { useBoardStore } from "@/utils/Stores/boardStore";
+import useModalStore from "@/utils/Stores/modalStore";
 import {
   Button,
   Input,
@@ -62,7 +62,6 @@ function ModalCreateChart(props: PropType) {
               variant="underlined"
             />
             <Input
-              autoFocus
               label="Subtitulo del gráfico"
               placeholder="Ingresa un subtitulo para tu gráfico"
               value={subtitle}

@@ -1,5 +1,5 @@
 import { AddChartIcon } from "@/components/icons";
-import useModalStore from "@/utils/modalStore";
+import useModalStore from "@/utils/Stores/modalStore";
 import { Button } from "@nextui-org/button";
 import React from "react";
 

@@ -4,7 +4,7 @@ import Search from "./layout/search";
 import ButtonAddChart from "../add-chart";
 import TitleCardBoard from "./layout/title";
 import ChartsCards from "./Charts-Cards/charts-card";
-import { useBoardStore } from "@/utils/boardStore";
+import { useBoardStore } from "@/utils/Stores/boardStore";
 import { Board } from "@/types/board";
 
 interface PropType {
@@ -35,7 +35,7 @@ function BoardPanel(props: PropType) {
               .includes(filterQuery.toLowerCase().trim())
         )
       );
-  }, [filterQuery]);
+  }, [filterQuery, id_boardSelected, userData]);
 
   return (
     <div className="">
@@ -46,7 +46,7 @@ function BoardPanel(props: PropType) {
         </div>
         <ButtonAddChart refresh={refresh} />
       </section>
-      <ChartsCards charts={dataFiltered} />
+      <ChartsCards refresh={refresh} charts={dataFiltered} />
     </div>
   );
 }

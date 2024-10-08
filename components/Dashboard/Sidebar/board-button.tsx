@@ -1,9 +1,9 @@
 import { Button } from "@nextui-org/button";
 import React, { useEffect, useState } from "react";
-import { useBoardStore } from "@/utils/boardStore";
+import { useBoardStore } from "@/utils/Stores/boardStore";
 import { Board } from "@/types/board";
 import { DeleteOffOutline, DeleteOutline, Edit } from "@/components/icons";
-import useModalStore from "@/utils/modalStore";
+import useModalStore from "@/utils/Stores/modalStore";
 
 interface PropType {
   id: number;
@@ -15,7 +15,7 @@ function BoardButton(props: PropType) {
   const { id, board, refresh } = props;
   const { id_boardSelected, selectBoard, deleteBoard } =
     useBoardStore.getState();
-  const { toggleModalEditBoard } = useModalStore.getState();
+  const { toggleModalConfirm, toggleModalEditBoard } = useModalStore.getState();
   const [active, setActive] = useState(false);
 
   useEffect(() => {
@@ -32,10 +32,16 @@ function BoardButton(props: PropType) {
           color="danger"
           onPress={() => {
             if (id > 0) {
-              deleteBoard(id);
-              selectBoard(id - 1);
+              toggleModalConfirm(
+                true,
+                "¿Estás seguro de eliminar este tablero?",
+                () => {
+                  deleteBoard(id);
+                  refresh();
+                }
+              );
+              refresh();
             }
-            refresh();
           }}
         >
           {id > 0 ? (

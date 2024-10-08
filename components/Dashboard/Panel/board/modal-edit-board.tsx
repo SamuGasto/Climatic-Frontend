@@ -1,5 +1,5 @@
-import { useBoardStore } from "@/utils/boardStore";
-import useModalStore from "@/utils/modalStore";
+import { useBoardStore } from "@/utils/Stores/boardStore";
+import useModalStore from "@/utils/Stores/modalStore";
 import {
   Button,
   Input,

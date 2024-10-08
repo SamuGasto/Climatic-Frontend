@@ -4,7 +4,7 @@ import BoardButton from "./board-button";
 import { Board } from "@/types/board";
 import { Image } from "@nextui-org/image";
 import { Card, CardBody } from "@nextui-org/card";
-import { useBoardStore } from "@/utils/boardStore";
+import { useBoardStore } from "@/utils/Stores/boardStore";
 import BoardList from "./board-list";
 
 interface PropType {

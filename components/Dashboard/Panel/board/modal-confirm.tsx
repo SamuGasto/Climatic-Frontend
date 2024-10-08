@@ -1,5 +1,5 @@
-import { useBoardStore } from "@/utils/boardStore";
-import useModalStore from "@/utils/modalStore";
+import { useBoardStore } from "@/utils/Stores/boardStore";
+import useModalStore from "@/utils/Stores/modalStore";
 import {
   Button,
   Input,
@@ -9,7 +9,7 @@ import {
   ModalFooter,
   ModalHeader,
 } from "@nextui-org/react";
-import React, { useState } from "react";
+import React from "react";
 
 interface PropType {
   refresh: () => void;
@@ -17,8 +17,6 @@ interface PropType {
 
 function ModalConfirm(props: PropType) {
   const { refresh } = props;
-  const { userData, id_boardSelected, addNewBoard, updateBoard } =
-    useBoardStore.getState();
   const {
     ModalConfirm,
     ModalConfirmText,
@@ -50,7 +48,7 @@ function ModalConfirm(props: PropType) {
         <ModalContent>
           <ModalHeader>Confirmación</ModalHeader>
           <ModalBody>
-            <h1>{ModalConfirmText}</h1>
+            <h1 className="text-center">{ModalConfirmText}</h1>
           </ModalBody>
           <ModalFooter className="flex justify-between">
             <Button
