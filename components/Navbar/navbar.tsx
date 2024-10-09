@@ -1,28 +1,40 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   Image,
   Navbar,
   NavbarBrand,
   NavbarContent,
   NavbarItem,
-  Link,
 } from "@nextui-org/react";
 import { ThemeSwitch } from "../theme-switch";
-import { useNavbarStore } from "@/utils/Stores/navbarStore";
-import { useRouter } from "next/compat/router";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 export default function navbar() {
-  const { activePage, changePage } = useNavbarStore.getState();
-  const [refresh, setRefresh] = useState(false);
+  const pathname = usePathname();
 
-  function Refresh() {
-    setRefresh(!refresh);
-  }
+  const isActive = (path: string) => pathname === path;
 
   return (
     <Navbar
       className="flex w-full p-1 px-6 shadow-md dark:border-white dark:border-b-1"
+      classNames={{
+        item: [
+          "flex",
+          "relative",
+          "h-full",
+          "items-center",
+          "data-[active=true]:after:content-['']",
+          "data-[active=true]:after:absolute",
+          "data-[active=true]:after:bottom-4",
+          "data-[active=true]:after:left-0",
+          "data-[active=true]:after:right-0",
+          "data-[active=true]:after:h-[2px]",
+          "data-[active=true]:after:rounded-[2px]",
+          "data-[active=true]:after:bg-primary",
+        ],
+      }}
       position="static"
       maxWidth="full"
     >
@@ -31,40 +43,18 @@ export default function navbar() {
         <p className="font-bold text-inherit ml-3">CLIMATIC</p>
       </NavbarBrand>
       <NavbarContent className="hidden sm:flex gap-4 " justify="end">
-        <NavbarItem isActive={activePage[0]}>
-          <Link
-            color="foreground"
-            href="/"
-            onPress={() => {
-              changePage(0);
-              Refresh();
-            }}
-          >
+        <NavbarItem isActive={isActive("/")}>
+          <Link color="foreground" href="/">
             Dashboard
           </Link>
         </NavbarItem>
-        <NavbarItem isActive={activePage[1]}>
-          <Link
-            color="foreground"
-            href="/visualizer"
-            onPress={() => {
-              changePage(1);
-              Refresh();
-            }}
-          >
+        <NavbarItem isActive={isActive("/visualizer")}>
+          <Link color="foreground" href="/visualizer">
             Re-Analisís
           </Link>
         </NavbarItem>
-        <NavbarItem isActive={activePage[2]}>
-          <Link
-            color="foreground"
-            href="#"
-            aria-current="page"
-            onPress={() => {
-              changePage(2);
-              Refresh();
-            }}
-          >
+        <NavbarItem isActive={isActive("/questions")}>
+          <Link color="foreground" href="#" aria-current="page">
             Preguntas Frecuentes
           </Link>
         </NavbarItem>
