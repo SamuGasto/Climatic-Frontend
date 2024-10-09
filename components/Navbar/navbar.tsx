@@ -10,8 +10,6 @@ import {
   Button,
 } from "@nextui-org/react";
 import { ThemeSwitch } from "../theme-switch";
-import { usePathname } from "next/navigation";
-import Link from "next/link";
 
 export default function navbar() {
   return (
