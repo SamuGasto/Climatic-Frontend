@@ -1,16 +1,18 @@
 "use client";
-import React from "react";
+import React,{useState} from "react";
 import {
   Image,
   Navbar,
   NavbarBrand,
   NavbarContent,
-  NavbarItem,
-  Link,
-  Button} from "@nextui-org/react";
+  NavbarItem} from "@nextui-org/react";
 import { ThemeSwitch } from "../theme-switch";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 export default function navbar() {
+  const pathname = usePathname();
+  const isActive = (path:String) => pathname === path;
   return (
     <Navbar className="flex w-full shadow-sm shadow-black dark:shadow-white justify-evenly">
       <NavbarBrand>
