@@ -29,12 +29,12 @@ export default function navbar() {
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" href="/faq">
+          <Link color="foreground" href="faq">
             Preguntas frecuentes
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" href="/about">
+          <Link color="foreground" href="about">
             Sobre nosotros
           </Link>
         </NavbarItem>
