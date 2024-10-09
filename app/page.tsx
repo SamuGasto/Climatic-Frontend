@@ -3,11 +3,8 @@ import ModalCreateBoard from "@/components/Dashboard/Panel/board/modal-create-bo
 import ModalCreateChart from "@/components/Dashboard/Panel/board/modal-create-chart";
 import MainPanel from "@/components/Dashboard/Panel/main-panel";
 import Sidebar from "@/components/Dashboard/Sidebar/sidebar";
-import { boards } from "@/config/test-data";
 import useStorage from "@/hooks/useStorage";
-import { Board } from "@/types/board";
 import { Chart } from "@/types/chart";
-import { useRouter } from "next/router";
 import { useState } from "react";
 
 export default function Home() {
@@ -17,10 +14,10 @@ export default function Home() {
   const [visibleModalCreateBoard, setVisibleModalCreateBoard] = useState(false);
   const [visibleModalCreateChart, setVisibleModalCreateChart] = useState(false);
 
-  console.log(visibleModalCreateChart);
   return (
     <section className="flex flex-col w-full h-full items-center justify-center gap-4 py-8 md:py-10">
       <div className="flex flex-row h-full w-full">
+        {/* Sidebar solo visible en pantallas medianas o más grandes */}
         <Sidebar
           boards={userData}
           boardSelected={boardSelected}
