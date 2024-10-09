@@ -1,38 +1,52 @@
 import { Chart } from "@/types/chart";
-import { Card, CardBody, CardHeader } from "@nextui-org/card";
-import React from "react";
-import ChartImage from "../chart-image";
+import React, { useEffect, useState } from "react";
 import Search from "./layout/search";
 import ButtonAddChart from "../add-chart";
-import Title from "./layout/title";
+import TitleCardBoard from "./layout/title";
 import ChartsCards from "./Charts-Cards/charts-card";
-import { NextRouter } from "next/router";
+import { useBoardStore } from "@/utils/Stores/boardStore";
+import { Board } from "@/types/board";
 
 interface PropType {
-  boardName: string;
-  charts: Chart[];
-  seleccionarGrafico: (chart: Chart) => void;
-  set_v_modalCrearChart: (bool: boolean) => void;
+  refresh: () => void;
 }
 
 function BoardPanel(props: PropType) {
-  const { boardName, charts, seleccionarGrafico, set_v_modalCrearChart } =
-    props;
+  const { refresh } = props;
+  const { userData, id_boardSelected } = useBoardStore.getState();
+  const [filterQuery, setFilterQuery] = useState("");
+  const [dataFiltered, setDataFiltered] = useState<Chart[]>(
+    userData[id_boardSelected].charts
+  );
+
+  useEffect(() => {
+    if (filterQuery === "") setDataFiltered(userData[id_boardSelected].charts);
+    else
+      setDataFiltered(
+        userData[id_boardSelected].charts.filter(
+          (chart) =>
+            chart.title
+              .toLowerCase()
+              .trim()
+              .includes(filterQuery.toLowerCase().trim()) ||
+            chart.subtitle
+              .toLowerCase()
+              .trim()
+              .includes(filterQuery.toLowerCase().trim())
+        )
+      );
+  }, [filterQuery, id_boardSelected, userData]);
 
   return (
     <div className="">
       <section className="flex flex-row w-full mb-8">
         <div className="flex flex-col w-full gap-2 justify-items-start">
-          <Title text={boardName} />
-          <Search />
+          <TitleCardBoard />
+          <Search filterQuery={filterQuery} setFilterQuery={setFilterQuery} />
         </div>
-        <ButtonAddChart set_v_modalCrearChart={set_v_modalCrearChart} />
+        <ButtonAddChart refresh={refresh} />
       </section>
-      <ChartsCards
-        charts={charts}
-        seleccionarGrafico={seleccionarGrafico}
-        set_v_modalCrearChart={set_v_modalCrearChart}
-      />
+      <ChartsCards refresh={refresh} charts={dataFiltered} />
     </div>
   );
 }
