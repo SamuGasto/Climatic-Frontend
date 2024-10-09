@@ -1,18 +1,14 @@
 import React from "react";
-import { ApexOptions } from "apexcharts";
 import { Card, CardBody } from "@nextui-org/card";
 import VentanaGrafico from "./ventana-grafico";
-import Mapa from "./mapa.jpg";
-import { Image } from "@nextui-org/image";
-import { ChartConfig, ChartConfigInteractive } from "@/types/chart";
 import BackendData from "@/types/data";
-import NormalizedData from "@/utils/NormalizedData";
 import { useTheme } from "next-themes";
 import GenerateChart from "@/utils/GenerateChart";
 
 interface PropType {
   seriesData: BackendData;
   typeChart:
+    | "image"
     | "line"
     | "area"
     | "bar"
@@ -29,19 +25,21 @@ interface PropType {
     | "rangeBar"
     | "rangeArea"
     | "treemap";
-  normalizarColores: boolean;
 }
 
-export default function Grafico(props: PropType) {
-  const { seriesData, typeChart, normalizarColores } = props;
+export default function GraficoApex(props: PropType) {
+  const { seriesData, typeChart } = props;
   const actualTheme = useTheme();
   const color = ["#ffcd6d"];
 
-  const { Interactive } = GenerateChart(seriesData, typeChart, {
-    color: color,
-    isNormalized: normalizarColores,
-    theme: actualTheme,
-  });
+  const { Interactive } = GenerateChart(
+    seriesData,
+    typeChart === "image" ? "bar" : typeChart,
+    {
+      color: color,
+      theme: actualTheme,
+    }
+  );
 
   //Renderizar el gráfico
   return (

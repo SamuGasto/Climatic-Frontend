@@ -35,6 +35,7 @@ function ModalConfirm(props: PropType) {
     <div>
       <Modal
         isOpen={ModalConfirm}
+        backdrop="blur"
         onOpenChange={(value) => {
           if (!value) {
             toggleModalConfirm(false, "", () => {});

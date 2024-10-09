@@ -5,11 +5,12 @@ import React from "react";
 import ChartImage from "../../chart-image";
 import { useChartStore } from "@/utils/Stores/chartStore";
 import { useRouter } from "next/navigation";
-import { DeleteOutline } from "@/components/icons";
+import { BarChartOff, DeleteOutline } from "@/components/icons";
 import { Button } from "@nextui-org/button";
 import { useBoardStore } from "@/utils/Stores/boardStore";
 import useModalStore from "@/utils/Stores/modalStore";
 import { motion } from "framer-motion";
+import ImageChartCard from "./image-chart-card";
 
 interface PropType {
   refresh: () => void;
@@ -66,12 +67,17 @@ function NormalCard(props: PropType) {
           </div>
         </CardHeader>
         <CardBody
+          className="justify-center"
           onClick={() => {
             selectChart(chart);
             router.push("/visualizer");
           }}
         >
-          <ChartImage config={chart.inactiveConfig} />
+          {chart.active ? (
+            <ChartImage config={chart.inactiveConfig} />
+          ) : (
+            <ImageChartCard />
+          )}
         </CardBody>
       </Card>
     </motion.div>

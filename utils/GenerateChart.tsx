@@ -4,8 +4,8 @@ import {
   ChartConfigNoInteractive,
 } from "@/types/chart";
 import BackendData from "@/types/data";
-import NormalizedData from "./NormalizedData";
 import { UseThemeProps } from "next-themes/dist/types";
+import { TransformToSeries } from "./TransformToSeries";
 
 interface ChartOptions {
   color?: any[];
@@ -18,19 +18,20 @@ interface FinalCharts {
   NoInteractive: ChartConfig;
 }
 
-export function CreateEmpyChart() {
+export function CreateEmptyApexChart() {
   const emptyData: BackendData = {
     latitude: [],
     longitude: [],
+    image: "",
     data: [],
     time: "",
     units: "",
   };
-  const { Interactive, NoInteractive } = GenerateChart(emptyData, "bar");
+  const { Interactive, NoInteractive } = GenerateApexChart(emptyData, "bar");
   return { Interactive, NoInteractive };
 }
 
-function GenerateChart(
+function GenerateApexChart(
   data: BackendData,
   typeChart:
     | "line"
@@ -51,27 +52,21 @@ function GenerateChart(
     | "treemap",
   options?: ChartOptions
 ): FinalCharts {
-  const { real, visual } = NormalizedData(data);
+  const seriesData = TransformToSeries(data);
 
   const labels = data.longitude.map((l) => {
     return l.toString();
   });
 
-  const finalVisualData = options?.isNormalized ? visual : real;
-
   const InteractiveChart = ChartConfigInteractive({
-    originalData: real,
-    visualData: finalVisualData,
-    units: data.units,
+    data: seriesData,
     theme: options?.theme?.theme === "light" ? "light" : "dark",
     typeChart: typeChart,
     categories: labels,
     colors: options?.color ? options?.color : ["#858585"],
   });
   const NoInteractiveChart = ChartConfigNoInteractive({
-    originalData: real,
-    visualData: finalVisualData,
-    units: data.units,
+    data: seriesData,
     theme: options?.theme?.theme === "light" ? "light" : "dark",
     typeChart: typeChart,
     categories: labels,
@@ -80,4 +75,4 @@ function GenerateChart(
   return { Interactive: InteractiveChart, NoInteractive: NoInteractiveChart };
 }
 
-export default GenerateChart;
+export default GenerateApexChart;

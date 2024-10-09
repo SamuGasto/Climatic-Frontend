@@ -1,34 +1,19 @@
 import React, { useState } from "react";
 import Titulo from "./titulo";
-import Grafico from "./grafico";
-import GraficoPlotly from "./grafico-plotly";
 import BackendData from "@/types/data";
 import { Checkbox } from "@nextui-org/react";
+import GraficoApex from "./grafico-apex-chart";
+import GraficoImagen from "./grafico-imagen";
+import { useChartStore } from "@/utils/Stores/chartStore";
 
 interface PropType {
-  data: BackendData;
-  typeChart:
-    | "line"
-    | "area"
-    | "bar"
-    | "pie"
-    | "donut"
-    | "radialBar"
-    | "scatter"
-    | "bubble"
-    | "heatmap"
-    | "candlestick"
-    | "boxPlot"
-    | "radar"
-    | "polarArea"
-    | "rangeBar"
-    | "rangeArea"
-    | "treemap";
+  backendData: BackendData;
 }
 
 export default function Visualizador(props: PropType) {
-  const { data, typeChart } = props;
-  const [coloresNormalizados, setColoresNormalizados] = useState(false);
+  const { backendData } = props;
+  const { chartSelected, typeChart } = useChartStore.getState();
+  console.log(chartSelected?.image);
   //<GraficoPlotly />
   return (
     <div className="flex w-full flex-col gap-10 p-6">
@@ -36,14 +21,10 @@ export default function Visualizador(props: PropType) {
         original_tittle="Título de ejemplo"
         original_subtittle="Subtítulo de ejemplo"
       />
-      <Checkbox onValueChange={(value) => setColoresNormalizados(value)}>
-        Normalizar Colores
-      </Checkbox>
-      <Grafico
-        seriesData={data}
-        typeChart={typeChart}
-        normalizarColores={coloresNormalizados}
-      />
+      <div className="flex w-full h-screen">
+        {chartSelected?.image && <GraficoImagen />}
+        <GraficoApex seriesData={backendData} typeChart={typeChart} />
+      </div>
     </div>
   );
 }

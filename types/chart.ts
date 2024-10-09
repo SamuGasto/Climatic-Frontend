@@ -1,5 +1,4 @@
 import { ApexOptions } from "apexcharts";
-import BackendData from "./data";
 
 export interface Series {
   name: string;
@@ -15,14 +14,14 @@ export interface Chart {
   id: number;
   title: string;
   subtitle: string;
+  active: boolean;
+  image: string;
   config: ChartConfig;
   inactiveConfig: ChartConfig;
 }
 
 interface Props {
-  originalData: Series[];
-  visualData: Series[];
-  units: string;
+  data: Series[];
   theme: "dark" | "light";
   typeChart:
     | "line"
@@ -46,18 +45,10 @@ interface Props {
 }
 
 export function ChartConfigInteractive(props: Props): ChartConfig {
-  const {
-    originalData,
-    visualData,
-    units,
-    theme,
-    typeChart,
-    categories,
-    colors,
-  } = props;
+  const { data, theme, typeChart, categories, colors } = props;
 
   const finalJson: ChartConfig = {
-    series: visualData,
+    series: data,
     options: {
       chart: {
         height: "98%",
@@ -88,20 +79,7 @@ export function ChartConfigInteractive(props: Props): ChartConfig {
         },
         decimalsInFloat: 1,
       },
-      tooltip: {
-        y: {
-          formatter: (val: number, { seriesIndex, dataPointIndex }: any) => {
-            return originalData[seriesIndex].data[dataPointIndex].y
-              .toFixed(3)
-              .toString();
-          },
-          title: {
-            formatter: (seriesName: string) => {
-              return units;
-            },
-          },
-        },
-      },
+
       dataLabels: {
         enabled: false,
       },
@@ -117,9 +95,9 @@ export function ChartConfigInteractive(props: Props): ChartConfig {
 }
 
 export function ChartConfigNoInteractive(props: Props): ChartConfig {
-  const { originalData, visualData, typeChart, categories, colors } = props;
+  const { data, typeChart, categories, colors } = props;
   return {
-    series: visualData,
+    series: data,
     options: {
       chart: {
         height: "98%",
