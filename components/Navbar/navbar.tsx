@@ -40,10 +40,10 @@ export default function navbar() {
             Sobre nosotros
           </Link>
         </NavbarItem>
-        <NavbarItem>
+              </NavbarContent>
+         <NavbarItem>
           <ThemeSwitch />
         </NavbarItem>
-      </NavbarContent>
     </Navbar>
   );
 }      
