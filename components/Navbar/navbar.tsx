@@ -12,7 +12,7 @@ import Link from "next/link";
 
 export default function navbar() {
   const pathname = usePathname();
-  const isActive = (path:String) => pathname === path;
+  const isActive = (path: string) => pathname === path;
   return (
     <Navbar className="flex w-full shadow-sm shadow-black dark:shadow-white justify-evenly">
       <NavbarBrand>
