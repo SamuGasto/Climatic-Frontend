@@ -6,8 +6,8 @@ import React from "react";
 
 export default function page() {
   return (
-    <div className="flex flex-row h-full w-full justify-center self-center -mt-10">
-      <Sidebar />
+<div className="flex sm:w-full flex-row w-3/4 h-full justify-center self-center -mt-10">
+<Sidebar />
       <Visualizador data={data} typeChart="heatmap" />
     </div>
   );
