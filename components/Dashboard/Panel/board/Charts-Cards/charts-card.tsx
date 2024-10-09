@@ -1,31 +1,37 @@
 import { Chart } from "@/types/chart";
-import { Card, CardBody, CardHeader } from "@nextui-org/card";
 import React from "react";
-import ChartImage from "../../chart-image";
 import NoChartCard from "./no-chart";
 import NormalCard from "./normal-card";
-import { NextRouter } from "next/router";
+import { motion } from "framer-motion";
 
 interface PropType {
+  refresh: () => void;
   charts: Chart[];
-  seleccionarGrafico: (chart: Chart) => void;
-  set_v_modalCrearChart: (bool: boolean) => void;
 }
 
 function ChartsCards(props: PropType) {
-  const { charts, seleccionarGrafico, set_v_modalCrearChart } = props;
-
+  const { refresh, charts } = props;
   return (
-    <div className="grid grid-flow-col gap-6 w-full h-full">
-      <div className="grid grid-flow-row grid-cols-4 gap-6 w-full h-full">
+    <div className="flex w-full">
+      <div className="grid grid-cols-4 gap-6 w-full">
         {charts.map((chart, index) => (
-          <NormalCard
-            index={index}
-            chart={chart}
-            funcion={seleccionarGrafico}
-          />
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index / 5 }}
+          >
+            <NormalCard refresh={refresh} index={index} chart={chart} />
+          </motion.div>
         ))}
-        <NoChartCard funcion={set_v_modalCrearChart} />
+        {charts.length === 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
+            <NoChartCard key={"NoCard"} refresh={refresh} />
+          </motion.div>
+        )}
       </div>
     </div>
   );
