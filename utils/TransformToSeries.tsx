@@ -1,4 +1,4 @@
-import BackendData from "@/types/data";
+import BackendData from "@/types/backend-data";
 
 export function TransformToSeries(data: BackendData) {
   const firstData = [...data.data];

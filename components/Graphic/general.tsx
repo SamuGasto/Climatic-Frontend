@@ -1,29 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Titulo from "./titulo";
-import BackendData from "@/types/data";
+import BackendData from "@/types/backend-data";
 import { Checkbox } from "@nextui-org/react";
 import GraficoApex from "./grafico-apex-chart";
 import GraficoImagen from "./grafico-imagen";
 import { useChartStore } from "@/utils/Stores/chartStore";
 
-interface PropType {
-  backendData: BackendData;
-}
+export default function Visualizador() {
+  const { chartSelected } = useChartStore.getState();
+  const [refresh, SetRefresh] = useState(false);
 
-export default function Visualizador(props: PropType) {
-  const { backendData } = props;
-  const { chartSelected, typeChart } = useChartStore.getState();
-  console.log(chartSelected?.image);
-  //<GraficoPlotly />
+  useEffect(() => {
+    SetRefresh(!refresh);
+  }, [chartSelected]);
+
   return (
     <div className="flex w-full flex-col gap-10 p-6">
       <Titulo
         original_tittle="Título de ejemplo"
         original_subtittle="Subtítulo de ejemplo"
       />
-      <div className="flex w-full h-screen">
-        {chartSelected?.image && <GraficoImagen />}
-        <GraficoApex seriesData={backendData} typeChart={typeChart} />
+      <div className="flex w-full min-h-[360px]">
+        {chartSelected.backendData.image !== "" ? (
+          <GraficoImagen />
+        ) : (
+          <GraficoApex />
+        )}
       </div>
     </div>
   );

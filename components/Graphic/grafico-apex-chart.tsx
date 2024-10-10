@@ -1,39 +1,17 @@
 import React from "react";
 import { Card, CardBody } from "@nextui-org/card";
 import VentanaGrafico from "./ventana-grafico";
-import BackendData from "@/types/data";
 import { useTheme } from "next-themes";
 import GenerateChart from "@/utils/GenerateChart";
+import { useChartStore } from "@/utils/Stores/chartStore";
 
-interface PropType {
-  seriesData: BackendData;
-  typeChart:
-    | "image"
-    | "line"
-    | "area"
-    | "bar"
-    | "pie"
-    | "donut"
-    | "radialBar"
-    | "scatter"
-    | "bubble"
-    | "heatmap"
-    | "candlestick"
-    | "boxPlot"
-    | "radar"
-    | "polarArea"
-    | "rangeBar"
-    | "rangeArea"
-    | "treemap";
-}
-
-export default function GraficoApex(props: PropType) {
-  const { seriesData, typeChart } = props;
+export default function GraficoApex() {
+  const { chartSelected, typeChart } = useChartStore.getState();
   const actualTheme = useTheme();
   const color = ["#ffcd6d"];
 
   const { Interactive } = GenerateChart(
-    seriesData,
+    chartSelected.backendData,
     typeChart === "image" ? "bar" : typeChart,
     {
       color: color,

@@ -3,7 +3,7 @@ import {
   ChartConfigInteractive,
   ChartConfigNoInteractive,
 } from "@/types/chart";
-import BackendData from "@/types/data";
+import BackendData from "@/types/backend-data";
 import { UseThemeProps } from "next-themes/dist/types";
 import { TransformToSeries } from "./TransformToSeries";
 

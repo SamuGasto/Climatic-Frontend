@@ -1,4 +1,5 @@
 import { ApexOptions } from "apexcharts";
+import BackendData from "./backend-data";
 
 export interface Series {
   name: string;
@@ -15,6 +16,7 @@ export interface Chart {
   title: string;
   subtitle: string;
   active: boolean;
+  backendData: BackendData;
   image: string;
   config: ChartConfig;
   inactiveConfig: ChartConfig;

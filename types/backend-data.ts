@@ -3,7 +3,7 @@ export default interface BackendData {
   longitude: number[];
   image: string;
   time?: string | string[];
-  level?: number[];
+  level?: number | number[];
   data: number[][];
   units: string;
 }

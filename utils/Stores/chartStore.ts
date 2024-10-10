@@ -2,7 +2,7 @@ import { Chart } from "@/types/chart";
 import { create } from "zustand";
 
 interface ChartStore {
-  chartSelected: Chart | null;
+  chartSelected: Chart;
   typeChart:
     | "image"
     | "line"
@@ -21,7 +21,8 @@ interface ChartStore {
     | "rangeBar"
     | "rangeArea"
     | "treemap";
-  selectChart: (newChart: Chart | null) => void;
+  loadChartData: () => void;
+  selectChart: (newChart: Chart) => void;
   changeTypeChart: (
     newType:
       | "image"
@@ -45,11 +46,62 @@ interface ChartStore {
 }
 
 export const useChartStore = create<ChartStore>((set, get) => ({
-  chartSelected: null,
+  chartSelected: {
+    id: 0,
+    title: "",
+    subtitle: "",
+    active: false,
+    backendData: {
+      latitude: [],
+      longitude: [],
+      image: "",
+      data: [],
+      time: [],
+      level: [],
+      units: "",
+    },
+    image: "",
+    config: { series: [], options: {} },
+    inactiveConfig: { series: [], options: {} },
+  },
   typeChart: "image",
-  selectChart: (newChart: Chart | null) => {
+  loadChartData: () => {
+    try {
+      const data = localStorage.getItem("UserData.chartSelected");
+      if (data) {
+        set((state) => ({ ...state, chartSelected: JSON.parse(data) }));
+      } else {
+        const provisionalChart: Chart = {
+          id: 0,
+          title: "",
+          subtitle: "",
+          active: false,
+          backendData: {
+            latitude: [],
+            longitude: [],
+            image: "",
+            data: [],
+            time: [],
+            level: [],
+            units: "",
+          },
+          image: "",
+          config: { series: [], options: {} },
+          inactiveConfig: { series: [], options: {} },
+        };
+        set((state) => ({ ...state, chartSelected: provisionalChart }));
+        localStorage.setItem(
+          "UserData.chartSelected",
+          JSON.stringify(provisionalChart)
+        );
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  },
+  selectChart: (newChart: Chart) => {
     set((state) => ({ ...state, chartSelected: newChart }));
-    console.log(newChart);
+    localStorage.setItem("UserData.chartSelected", JSON.stringify(newChart));
   },
   changeTypeChart: (newType) => {
     set((state) => ({ ...state, typeChart: newType }));

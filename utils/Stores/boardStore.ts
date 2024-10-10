@@ -2,6 +2,7 @@ import { Board } from "@/types/board";
 import { Chart, ChartConfig } from "@/types/chart";
 import { create } from "zustand";
 import { CreateEmptyApexChart } from "../GenerateChart";
+import { exampleData } from "@/config/test-data";
 
 interface CounterState {
   userData: Board[];
@@ -87,6 +88,7 @@ export const useBoardStore = create<CounterState>((set, get) => ({
         title: title,
         subtitle: subtitle,
         active: false,
+        backendData: exampleData,
         image: "",
         config: Interactive,
         inactiveConfig: NoInteractive,
