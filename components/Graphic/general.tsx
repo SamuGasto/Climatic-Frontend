@@ -21,7 +21,7 @@ export default function Visualizador() {
         original_subtittle="Subtítulo de ejemplo"
       />
       <div className="flex w-full min-h-[360px]">
-        {chartSelected.backendData.image !== "" ? (
+        {chartSelected.typeChart !== "image" ? (
           <GraficoImagen />
         ) : (
           <GraficoApex />

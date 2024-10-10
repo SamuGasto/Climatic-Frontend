@@ -60,9 +60,7 @@ export const useChartStore = create<ChartStore>((set, get) => ({
       level: [],
       units: "",
     },
-    image: "",
-    config: { series: [], options: {} },
-    inactiveConfig: { series: [], options: {} },
+    typeChart: "bar",
   },
   typeChart: "image",
   loadChartData: () => {
@@ -85,9 +83,7 @@ export const useChartStore = create<ChartStore>((set, get) => ({
             level: [],
             units: "",
           },
-          image: "",
-          config: { series: [], options: {} },
-          inactiveConfig: { series: [], options: {} },
+          typeChart: "bar",
         };
         set((state) => ({ ...state, chartSelected: provisionalChart }));
         localStorage.setItem(

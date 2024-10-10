@@ -17,9 +17,24 @@ export interface Chart {
   subtitle: string;
   active: boolean;
   backendData: BackendData;
-  image: string;
-  config: ChartConfig;
-  inactiveConfig: ChartConfig;
+  typeChart:
+    | "image"
+    | "line"
+    | "area"
+    | "bar"
+    | "pie"
+    | "donut"
+    | "radialBar"
+    | "scatter"
+    | "bubble"
+    | "heatmap"
+    | "candlestick"
+    | "boxPlot"
+    | "radar"
+    | "polarArea"
+    | "rangeBar"
+    | "rangeArea"
+    | "treemap";
 }
 
 interface Props {
@@ -49,7 +64,7 @@ interface Props {
 export function ChartConfigInteractive(props: Props): ChartConfig {
   const { data, theme, typeChart, categories, colors } = props;
 
-  const finalJson: ChartConfig = {
+  return {
     series: data,
     options: {
       chart: {
@@ -93,7 +108,6 @@ export function ChartConfigInteractive(props: Props): ChartConfig {
       },
     },
   };
-  return finalJson;
 }
 
 export function ChartConfigNoInteractive(props: Props): ChartConfig {

@@ -67,16 +67,24 @@ function NormalCard(props: PropType) {
           </div>
         </CardHeader>
         <CardBody
-          className="justify-center"
+          className="flex w-full h-full justify-center items-center"
           onClick={() => {
             selectChart(chart);
             router.push("/visualizer");
           }}
         >
-          {chart.active ? (
-            <ChartImage config={chart.inactiveConfig} />
+          {!chart.active ? (
+            <div className="flex w-full h-full justify-center items-center">
+              <BarChartOff width={100} />
+            </div>
           ) : (
-            <ImageChartCard />
+            <div className="flex w-5/6 h-5/6 justify-center items-center">
+              {chart.typeChart !== "image" ? (
+                <ChartImage />
+              ) : (
+                <ImageChartCard chart={chart} />
+              )}
+            </div>
           )}
         </CardBody>
       </Card>

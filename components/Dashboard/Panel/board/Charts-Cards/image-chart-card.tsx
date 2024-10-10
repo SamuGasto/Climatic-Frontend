@@ -1,14 +1,22 @@
+import { Chart } from "@/types/chart";
+import { useChartStore } from "@/utils/Stores/chartStore";
 import { Image } from "@nextui-org/image";
+import { CircularProgress } from "@nextui-org/progress";
 import React, { useEffect, useState } from "react";
 
-function ImageChartCard() {
+interface PropType {
+  chart: Chart;
+}
+
+function ImageChartCard(props: PropType) {
+  const { chart } = props;
   const [imageSrc, setImageSrc] = useState("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchImage = async () => {
       try {
-        const response = { image: "" };
+        const response = chart.backendData;
         setImageSrc(`data:image/png;base64,${response.image}`);
         setLoading(false);
       } catch (error) {
@@ -20,7 +28,11 @@ function ImageChartCard() {
     fetchImage();
   }, []);
 
-  return <Image src={imageSrc} />;
+  return (
+    <div className="flex w-full h-full justify-center items-center">
+      {loading ? <CircularProgress /> : <Image src={imageSrc} />}
+    </div>
+  );
 }
 
 export default ImageChartCard;
