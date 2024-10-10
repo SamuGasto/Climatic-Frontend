@@ -37,7 +37,11 @@ const OpcionesTiempo = (props: Props) => {
       />
 
       {tipoGrafico == "0" ? (
-        <SeleccionFecha setConsulta={setConsulta} desabilitado={desabilitado} />
+        <SeleccionFecha
+          setConsulta={setConsulta}
+          consultaOriginal={consultaOriginal}
+          desabilitado={desabilitado}
+        />
       ) : null}
 
       {tipoGrafico == "0" ? (

@@ -20,8 +20,8 @@ const Sidebar = () => {
   const [hayTiempo, setHayTiempo] = useState(false);
   const [consulta, setConsulta] = useState<Consulta>({
     variable: "",
-    latitud: [0, 0],
-    longitud: [0, 0],
+    latitud: [-34.75, -34.25],
+    longitud: [108.25, 109],
     tiempo: ["2021-12-31T23:00:00.000000000", "2021-12-31T23:00:00.000000000"],
     altura: 1,
     esMapaCalor: true,
@@ -102,7 +102,9 @@ const Sidebar = () => {
           onSelect={handleSelect}
         />
 
-        {hayAltura ? <Slider2 /> : null}
+        {hayAltura ? (
+          <Slider2 setConsulta={setConsulta} consultaOriginal={consulta} />
+        ) : null}
 
         {hayComponente ? (
           <Desplegable
