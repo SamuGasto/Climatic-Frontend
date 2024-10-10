@@ -145,6 +145,7 @@ export function ChartConfigNoInteractive(props: Props): ChartConfig {
       dataLabels: {
         enabled: false,
       },
+      legend: { show: false },
       noData: {
         text: "Cargando...",
       },
