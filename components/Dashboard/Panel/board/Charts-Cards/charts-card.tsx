@@ -13,7 +13,7 @@ function ChartsCards(props: PropType) {
   const { refresh, charts } = props;
   return (
     <div className="flex w-full">
-      <div className="grid grid-cols-4 gap-6 w-full">
+      <div className="grid md:grid-cols-4 grid-cols-1 gap-6 w-full ">
         {charts.map((chart, index) => (
           <motion.div
             key={index}

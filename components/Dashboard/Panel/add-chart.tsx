@@ -11,7 +11,7 @@ function ButtonAddChart(props: PropType) {
   const { refresh } = props;
   const { toggleModalCreateChart } = useModalStore.getState();
   return (
-    <div className="flex self-center mr-5">
+    <div className="flex md:self-center self-start mr-5">
       <Button
         size="lg"
         color="primary"
