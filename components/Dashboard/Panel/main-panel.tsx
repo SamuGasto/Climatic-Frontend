@@ -20,7 +20,7 @@ function MainPanel(props: PropType) {
   }, [id_boardSelected]);
 
   return (
-    <div className="flex flex-col basis-11/12 gap-6 w-full h-full -mt-16">
+    <div className="flex sm:flex-row flex-col basis-11/12 gap-6 w-full h-full -mt-16">
       {isLoading ? (
         <CircularProgress className="flex w-full h-full justify-center self-center" />
       ) : (

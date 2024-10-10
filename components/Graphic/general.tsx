@@ -31,7 +31,7 @@ export default function Visualizador(props: PropType) {
   const [coloresNormalizados, setColoresNormalizados] = useState(false);
   //<GraficoPlotly />
   return (
-    <div className="flex w-full flex-col gap-10 p-6">
+    <div className="flex w-full h-full flex-col p-1 gap-5 sm:p-5  ">
       <Titulo
         original_tittle="Título de ejemplo"
         original_subtittle="Subtítulo de ejemplo"
@@ -39,11 +39,12 @@ export default function Visualizador(props: PropType) {
       <Checkbox onValueChange={(value) => setColoresNormalizados(value)}>
         Normalizar Colores
       </Checkbox>
+      <div className="w-full h-full overflow-hidden flex items-center justify-center ">
       <Grafico
         seriesData={data}
         typeChart={typeChart}
-        normalizarColores={coloresNormalizados}
-      />
-    </div>
+        normalizarColores={coloresNormalizados}/>
+        </div>
+        </div>
   );
 }
