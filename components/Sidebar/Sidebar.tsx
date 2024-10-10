@@ -37,7 +37,8 @@ const Sidebar = () => {
   const [consulta, setConsulta] = useState<Consulta>({
     variable: "",
     latitud: [0, 0],
-    longitud: [0, 0],});
+    longitud: [0, 0],
+  imagen :true});
 
   const handleSelect = (key: string) => {
     const newConsulta = { ...consulta };
