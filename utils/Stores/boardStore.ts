@@ -1,7 +1,9 @@
 import { Board } from "@/types/board";
 import { Chart, ChartConfig } from "@/types/chart";
 import { create } from "zustand";
-import { CreateEmpyChart } from "../GenerateChart";
+import { CreateEmptyApexChart } from "../GenerateChart";
+import { exampleData } from "@/config/test-data";
+import BackendData from "@/types/backend-data";
 
 interface CounterState {
   userData: Board[];
@@ -18,10 +20,27 @@ interface CounterState {
   updateChart: (
     boardFather: Board,
     chart: Chart,
+    backendData?: BackendData,
+    typeChart?:
+      | "image"
+      | "line"
+      | "area"
+      | "bar"
+      | "pie"
+      | "donut"
+      | "radialBar"
+      | "scatter"
+      | "bubble"
+      | "heatmap"
+      | "candlestick"
+      | "boxPlot"
+      | "radar"
+      | "polarArea"
+      | "rangeBar"
+      | "rangeArea"
+      | "treemap",
     newTitle?: string,
-    newSubtitle?: string,
-    newConfig?: ChartConfig,
-    newInactiveConfig?: ChartConfig
+    newSubtitle?: string
   ) => void;
   deleteBoard: (id: number) => void;
   deleteChart: (boardFather: Board, chart: Chart) => void;
@@ -80,14 +99,13 @@ export const useBoardStore = create<CounterState>((set, get) => ({
   },
   addNewChart: (boardFather: Board, title: string, subtitle: string) => {
     try {
-      const { Interactive, NoInteractive } = CreateEmpyChart();
-
       const newChart: Chart = {
         id: boardFather.lastChartId + 1,
         title: title,
         subtitle: subtitle,
-        config: Interactive,
-        inactiveConfig: NoInteractive,
+        active: false,
+        backendData: exampleData,
+        typeChart: "area",
       };
 
       let finalData = [...get().userData];
@@ -137,18 +155,35 @@ export const useBoardStore = create<CounterState>((set, get) => ({
   updateChart: (
     boardFather: Board,
     chart: Chart,
+    backendData?: BackendData,
+    typeChart?:
+      | "image"
+      | "line"
+      | "area"
+      | "bar"
+      | "pie"
+      | "donut"
+      | "radialBar"
+      | "scatter"
+      | "bubble"
+      | "heatmap"
+      | "candlestick"
+      | "boxPlot"
+      | "radar"
+      | "polarArea"
+      | "rangeBar"
+      | "rangeArea"
+      | "treemap",
     newTitle?: string,
-    newSubtitle?: string,
-    newConfig?: ChartConfig,
-    newInactiveConfig?: ChartConfig
+    newSubtitle?: string
   ) => {
     try {
       let newValues = chart;
 
+      if (backendData) newValues.backendData = backendData;
+      if (typeChart) newValues.typeChart = typeChart;
       if (newTitle) newValues.title = newTitle;
       if (newSubtitle) newValues.subtitle = newSubtitle;
-      if (newConfig) newValues.config = newConfig;
-      if (newInactiveConfig) newValues.inactiveConfig = newInactiveConfig;
 
       let finalData = [...get().userData];
       finalData.map((boardLocal) => {

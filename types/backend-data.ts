@@ -1,8 +1,9 @@
 export default interface BackendData {
   latitude: number[];
   longitude: number[];
-  time?: string;
-  level?: number[];
+  image: string;
+  time?: string | string[];
+  level?: number | number[];
   data: number[][];
   units: string;
 }

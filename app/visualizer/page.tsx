@@ -1,16 +1,16 @@
 "use client";
-import { data } from "@/components/Graphic/dataexample";
 import Visualizador from "@/components/Graphic/general";
 import Sidebar from "@/components/Sidebar/Sidebar";
-import React from "react";
+import BackendData from "@/types/backend-data";
+import { exampleData } from "@/config/test-data";
+import { useChartStore } from "@/utils/Stores/chartStore";
+import React, { useEffect, useState } from "react";
 
-export default function Page() {
+export default function page() {
   return (
     <div className="flex sm:flex-row w-full h-full justify-center self-center mt-6 gap-15">
       <Sidebar />
-      <div className="w-full sm:w-3/4 h-auto overflow-auto">
-        <Visualizador data={data} typeChart="heatmap" />
-      </div>
+      <Visualizador data={data} typeChart="heatmap" />
     </div>
   );
 }
