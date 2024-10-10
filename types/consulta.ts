@@ -2,6 +2,7 @@ export interface Consulta {
   variable: string,
   latitud: number[],
   longitud: number[],
-  tiempo?: string,
+  tiempo: string[],
   altura?: number,
+  esMapaCalor?: boolean
 }
