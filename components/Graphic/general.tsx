@@ -16,19 +16,29 @@ export default function Visualizador() {
   }, [chartSelected]);
 
   return (
-    <div className="flex w-full flex-col gap-10 p-6">
-      <Titulo
-        original_tittle="Título de ejemplo"
-        original_subtittle="Subtítulo de ejemplo"
-      />
-      <Checkbox onValueChange={(value) => setColoresNormalizados(value)}>
-        Normalizar Colores
-      </Checkbox>
-      <Grafico
-        seriesData={data}
-        typeChart={typeChart}
-        normalizarColores={coloresNormalizados}
-      />
+    <div className="flex w-full">
+      {chartSelected.active ? (
+        <div className="flex w-full flex-col gap-10 p-6">
+          <Titulo
+            original_tittle="Título de ejemplo"
+            original_subtittle="Subtítulo de ejemplo"
+          />
+          <div className="flex w-full min-h-[360px]">
+            {chartSelected.typeChart !== "image" ? (
+              <GraficoImagen />
+            ) : (
+              <GraficoApex />
+            )}
+          </div>
+        </div>
+      ) : (
+        <div className="flex flex-col w-full h-full gap-10 items-center justify-center">
+          <h1 className="font-semibold text-4xl text-center">
+            No se ha creado ningún gráfico todavía...
+          </h1>
+          <BarChartOff width={200} />
+        </div>
+      )}
     </div>
   );
 }

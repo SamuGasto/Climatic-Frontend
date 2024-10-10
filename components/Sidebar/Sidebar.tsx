@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from "@nextui-org/react";
 import Desplegable from "@/components/Sidebar/select";
 import OpcionesArea from "@/components/Sidebar/opciones-area";
 import OpcionesTiempo from "@/components/Sidebar/opciones-tiempo";
@@ -33,136 +32,75 @@ const Sidebar = () => {
     { key: "3", label: "..." },
   ];
 
-  const [variableSeleccionada, setVariableSeleccionada] = useState("");
-  const [deshabilitarTiempo, setDeshabilitarTiempo] = useState(true);
+  const [variableSeleccionada, setvariableSeleccionada] = useState("");
+  const [desabilitarTiempo, setDesabilitarTiempo] = useState(true);
   const [consulta, setConsulta] = useState<Consulta>({
     variable: "",
     latitud: [0, 0],
-    longitud: [0, 0],
-  });
-  const [visible, setVisible] = useState(false);
+    longitud: [0, 0],});
 
   const handleSelect = (key: string) => {
     const newConsulta = { ...consulta };
     newConsulta.variable = key;
     setConsulta(newConsulta);
-    setVariableSeleccionada(key);
-    if (key === "u10" || key === "t2m") {
-      setDeshabilitarTiempo(false);
-    } else {
-      setDeshabilitarTiempo(true);
+
+    setvariableSeleccionada(key);
+    {
+      key == "u10" || key == "t2m"
+        ? setDesabilitarTiempo(false)
+        : setDesabilitarTiempo(true);
+    }
+    if (key == "anor") {
+      setDesabilitarTiempo(true);
     }
   };
 
-  const closeHandler = () => {
-    setVisible(false);
-  };
-
   return (
-    <div className="flex flex-col gap-12 p-6 w-full">
-      <Button
-        onClick={() => setVisible(true)}
-        className="block lg:hidden"
-      >
-        Configurar gráfico
-      </Button>
-      <Modal
-        closeButton
-        open={visible} 
-        onClose={closeHandler}
-        className="lg:hidden"
-        width="90%"
-        blur
-      >
-        <ModalHeader>
-          <p className="text-center">Configuración del gráfico</p>
-        </ModalHeader>
+    <div className="flex flex-col gap-12 p-6 w-1/3 shadow-md">
+      <div className="flex flex-col gap-3">
+        <p className="text-center">Configuración del gráfico</p>
+        <hr />
+      </div>
 
-        <ModalBody>
-          <div className="flex flex-col gap-3 w-full">
-            <Desplegable
-              titulo="Variable"
-              explicacion="Elija la variable que desea graficar"
-              elementos={variables2}
-              onSelect={handleSelect}
-            />
+      <div className="flex flex-col gap-3 w-full">
+        <Desplegable
+          titulo="Variable"
+          explicacion="Elija la variable que desea graficar"
+          elementos={variables2}
+          onSelect={handleSelect}
+        />
 
-            {variableSeleccionada === "u10" && (
-              <>
-                <Desplegable
-                  titulo="Componente del viento"
-                  explicacion="Elija el componente del viento"
-                  elementos={componenteViento}
-                />
-                <Desplegable
-                  titulo="Altura de los datos"
-                  explicacion="Elija la altura de los datos"
-                  elementos={nivelViento}
-                />
-              </>
-            )}
-
-            {variableSeleccionada === "t2m" && (
-              <Desplegable
-                titulo="Altura de los datos"
-                explicacion="Elija la altura de los datos"
-                elementos={nivelTemperatura}
-              />
-            )}
-          </div>
-
-          <OpcionesArea setConsulta={setConsulta} consultaOriginal={consulta} />
-
-          <OpcionesTiempo desabilitado={deshabilitarTiempo} /> {/* Corregido */}
-        </ModalBody>
-
-        <ModalFooter>
-          <Boton texto="Graficar" funcion={() => console.log([consulta])} />
-        </ModalFooter>
-      </Modal>
-
-      <div className="hidden lg:flex flex-col gap-12 p-6 w-1/3 shadow-md">
-        <div className="flex flex-col gap-3">
-          <p className="text-center">Configuración del gráfico</p>
-          <hr />
-        </div>
-
-        <div className="flex flex-col gap-3 w-full">
+        {variableSeleccionada == "u10" ? (
           <Desplegable
-            titulo="Variable"
-            explicacion="Elija la variable que desea graficar"
-            elementos={variables2}
-            onSelect={handleSelect}
+            titulo="Componente del viento"
+            explicacion="Elija el componente del viento"
+            elementos={componenteViento}
           />
+        ) : null}
 
-          {variableSeleccionada === "u10" && (
-            <>
-              <Desplegable
-                titulo="Componente del viento"
-                explicacion="Elija el componente del viento"
-                elementos={componenteViento}
-              />
-              <Desplegable
-                titulo="Altura de los datos"
-                explicacion="Elija la altura de los datos"
-                elementos={nivelViento}
-              />
-            </>
-          )}
+        {variableSeleccionada == "u10" ? (
+          <Desplegable
+            titulo="Altura de los datos"
+            explicacion="Elija la altura de los datos"
+            elementos={nivelViento}
+          />
+        ) : null}
 
-          {variableSeleccionada === "t2m" && (
-            <Desplegable
-              titulo="Altura de los datos"
-              explicacion="Elija la altura de los datos"
-              elementos={nivelTemperatura}
-            />
-          )}
-        </div>
+        {variableSeleccionada == "t2m" ? (
+          <Desplegable
+            titulo="Altura de los datos"
+            explicacion="Elija la altura de los datos"
+            elementos={nivelTemperatura}
+          />
+        ) : null}
+      </div>
 
-        <OpcionesArea setConsulta={setConsulta} consultaOriginal={consulta} />
+      <OpcionesArea setConsulta={setConsulta} consultaOriginal={consulta} />
 
-        <OpcionesTiempo desabilitado={deshabilitarTiempo} /> {/* Corregido */}
-        <Boton texto="Graficar" funcion={() => console.log([consulta])} />
+      <OpcionesTiempo desabilitado={desabilitarTiempo} />
+      <Boton texto="Graficar" funcion={() => console.log([consulta])} />
+      <div className="flex flex-col w-full items-end">
+        
       </div>
     </div>
   );
