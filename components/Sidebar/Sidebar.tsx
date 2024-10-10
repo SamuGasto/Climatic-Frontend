@@ -8,14 +8,8 @@ import { Consulta } from "@/types/consulta";
 
 const Sidebar = () => {
   const componenteViento = [
-    {
-      key: "0",
-      label: "U (Este - Oeste)",
-    },
-    {
-      key: "1",
-      label: "V (Norte - Sur)",
-    },
+    { key: "0", label: "U (Este - Oeste)" },
+    { key: "1", label: "V (Norte - Sur)" },
   ];
 
   const nivelViento = [
@@ -39,6 +33,9 @@ const Sidebar = () => {
     latitud: [0, 0],
     longitud: [0, 0],
   });
+  
+  // Estado para el menú
+  const [menuAbierto, setMenuAbierto] = useState(false);
 
   const handleSelect = (key: string) => {
     const newConsulta = { ...consulta };
@@ -46,62 +43,95 @@ const Sidebar = () => {
     setConsulta(newConsulta);
 
     setvariableSeleccionada(key);
-    {
-      key == "u10" || key == "t2m"
-        ? setDesabilitarTiempo(false)
-        : setDesabilitarTiempo(true);
-    }
-    if (key == "anor") {
-      setDesabilitarTiempo(true);
-    }
+    setDesabilitarTiempo(key === "u10" || key === "t2m" ? false : true);
   };
 
   return (
-<div className="flex flex-col  gap-10 p-6 sm:gap-4 sm:p-3 w-full sm:w-1/3 sm:-mt-5 shadow-md">
-<div className="flex flex-col gap-2">
+    <div className="relative flex flex-col gap-10 p-6 sm:gap-4 sm:p-3 w-full sm:w-1/3 sm:-mt-5 shadow-md">
+      <button
+        className="block sm:hidden p-2 text-gray-700 bg-gray-200 rounded-md focus:outline-none"
+        onClick={() => setMenuAbierto(!menuAbierto)}
+      >
+        {menuAbierto ? "✖️" : "☰"}
+      </button>
+
+      {menuAbierto && (
+        <div className="flex flex-col gap-3 w-full sm:block">
+          <div className="flex flex-col gap-2">
+            <p className="text-center">Configuración del gráfico</p>
+            <hr />
+          </div>
+
+          <Desplegable
+            titulo="Variable"
+            explicacion="Elija la variable que desea graficar"
+            elementos={variables2}
+            onSelect={handleSelect}
+          />
+
+          {variableSeleccionada === "u10" && (
+            <>
+              <Desplegable
+                titulo="Componente del viento"
+                explicacion="Elija el componente del viento"
+                elementos={componenteViento}
+              />
+              <Desplegable
+                titulo="Altura de los datos"
+                explicacion="Elija la altura de los datos"
+                elementos={nivelViento}
+              />
+            </>
+          )}
+
+          {variableSeleccionada === "t2m" && (
+            <Desplegable
+              titulo="Altura de los datos"
+              explicacion="Elija la altura de los datos"
+              elementos={nivelTemperatura}
+            />
+          )}
+
+          <OpcionesArea setConsulta={setConsulta} consultaOriginal={consulta} />
+          <OpcionesTiempo desabilitado={desabilitarTiempo} />
+          <Boton texto="Graficar" funcion={() => console.log([consulta])} />
+        </div>
+      )}
+      
+      {/* Contenido del Sidebar para pantallas más grandes */}
+      <div className="hidden sm:flex flex-col gap-2">
         <p className="text-center">Configuración del gráfico</p>
         <hr />
-      </div>
-
-      <div className="flex flex-col gap-3 w-full">
         <Desplegable
           titulo="Variable"
           explicacion="Elija la variable que desea graficar"
           elementos={variables2}
           onSelect={handleSelect}
         />
-
-        {variableSeleccionada == "u10" ? (
-          <Desplegable
-            titulo="Componente del viento"
-            explicacion="Elija el componente del viento"
-            elementos={componenteViento}
-          />
-        ) : null}
-
-        {variableSeleccionada == "u10" ? (
-          <Desplegable
-            titulo="Altura de los datos"
-            explicacion="Elija la altura de los datos"
-            elementos={nivelViento}
-          />
-        ) : null}
-
-        {variableSeleccionada == "t2m" ? (
+        {variableSeleccionada === "u10" && (
+          <>
+            <Desplegable
+              titulo="Componente del viento"
+              explicacion="Elija el componente del viento"
+              elementos={componenteViento}
+            />
+            <Desplegable
+              titulo="Altura de los datos"
+              explicacion="Elija la altura de los datos"
+              elementos={nivelViento}
+            />
+          </>
+        )}
+        {variableSeleccionada === "t2m" && (
           <Desplegable
             titulo="Altura de los datos"
             explicacion="Elija la altura de los datos"
             elementos={nivelTemperatura}
           />
-        ) : null}
-      </div>
-
-      <OpcionesArea setConsulta={setConsulta} consultaOriginal={consulta} />
-
-      <OpcionesTiempo desabilitado={desabilitarTiempo} />
-      <Boton texto="Graficar" funcion={() => console.log([consulta])} />
-      <div className="flex flex-col w-full items-end">
-        
+        )}
+        <OpcionesArea setConsulta={setConsulta} consultaOriginal={consulta} />
+        <OpcionesTiempo desabilitado={desabilitarTiempo} />
+        <Boton texto="Graficar" funcion={() => console.log([consulta])} />
       </div>
     </div>
   );

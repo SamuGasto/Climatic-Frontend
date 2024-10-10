@@ -17,7 +17,7 @@ export default function navbar() {
     <Navbar className="flex w-full shadow-sm shadow-black dark:shadow-white justify-evenly">
       <NavbarBrand>
         <Image src="/logo2.png" width={60} height={55}/>
-        <p className="font-bold text-inherit ml-3">CLIMATIC</p>
+        <p className="font-bold text-inherit ml-3 ">CLIMATIC</p>
       </NavbarBrand>
       <NavbarContent className="hidden sm:flex gap-4" justify="end">
         <NavbarItem isActive>
