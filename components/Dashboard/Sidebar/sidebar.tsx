@@ -25,7 +25,7 @@ function Sidebar({ refresh, isMobile = false }: PropType) {
         isMobile ? "block" : "hidden md:flex"
       } md:flex-col md:basis-1/12 md:px-6 md:mr-5`}
     >
-      <Card className="w-full h-full bg-white dark:bg-black">
+      <Card className="w-full h-full bg-white dark:bg-black" shadow={isMobile ? "none":"md"}>
         <CardBody>
           {/* Mostrar imagen solo si no está en móvil */}
           {!isMobile && (

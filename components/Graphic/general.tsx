@@ -31,7 +31,7 @@ export default function Visualizador(props: PropType) {
   const [coloresNormalizados, setColoresNormalizados] = useState(false);
   //<GraficoPlotly />
   return (
-    <div className="flex w-full flex-col gap-10 p-6">
+    <div className="flex w-full flex-col md:gap-10 md:p-6 gap-y-6 -m-px">
       <Titulo
         original_tittle="Título de ejemplo"
         original_subtittle="Subtítulo de ejemplo"

@@ -45,11 +45,11 @@ export default function Grafico(props: PropType) {
 
   //Renderizar el gráfico
   return (
-    <div className="flex w-full h-full justify-center">
+    <div className="flex w-full md:h-full h-96 justify-center">
       <Card className="flex w-full h-full z-10 bg-transparent" shadow="none">
         <CardBody>
           <VentanaGrafico
-            className="p-2 "
+            className="md:p-2"
             options={Interactive.options}
             series={Interactive.series}
             type={Interactive.options.chart?.type}
