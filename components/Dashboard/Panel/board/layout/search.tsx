@@ -14,7 +14,7 @@ function Search(props: PropType) {
       
       startContent={<SearchIcon />}
       isClearable
-      className="md:w-1/6 w-auto"
+      className="md:w-1/3 w-auto"
       placeholder="Buscar gráfico..."
       value={filterQuery}
       onValueChange={(newValue) => {

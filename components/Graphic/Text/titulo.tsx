@@ -22,9 +22,9 @@ export default function Titulo() {
   }
 
   return (
-    <div className="flex text-center text-5xl font-bold items-center justify-center">
+    <div className="flex text-center md:text-5xl text-3xl font-bold items-center justify-center">
       {editMode ? (
-        <div className="flex flex-row gap-1">
+        <div className="flex md:flex-row flex-col gap-1">
           <Input
             className="w-auto"
             value={title}

@@ -5,11 +5,13 @@ import OpcionesTiempo from "@/components/Sidebar/opciones-tiempo";
 import Boton from "@/components/Sidebar/boton";
 import { variables2 } from "@/config/variables";
 import { Consulta } from "@/types/consulta";
+import { useTheme } from "next-themes";
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
 
 const Sidebar = () => {
   const [isMobile, setIsMobile] = useState(false);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const actualTheme = useTheme();
   
 
   useEffect(() => {
@@ -109,11 +111,11 @@ const Sidebar = () => {
       {isMobile ? (
         <>
           <Button 
-            className="mb-5" 
+            className="mb-8 mt-10" 
             onPress={onOpen}
             color="primary"
             size="md"
-            variant="shadow"
+            variant={actualTheme.theme === "light" ? "bordered" : "solid"}
             >
             Abrir configuración de gráfico
           </Button>
@@ -125,7 +127,7 @@ const Sidebar = () => {
             closeButton
           >
             <ModalContent>
-              <ModalHeader className="flex flex-col gap-1">Configuración del gráfico</ModalHeader>
+              <ModalHeader className="flex flex-col gap-1">Configuración</ModalHeader>
               <ModalBody>{sidebarContent}</ModalBody>
               <ModalFooter>
                 <Button color="danger" variant="light" onPress={onOpenChange}>
@@ -136,7 +138,7 @@ const Sidebar = () => {
           </Modal>
         </>
       ) : (
-        <div className="hidden md:flex flex-col gap-12 p-6 w-1/3 shadow-md">
+        <div className="hidden md:flex flex-col gap-12 p-6 w-1/3">
           {sidebarContent}
         </div>
       )}

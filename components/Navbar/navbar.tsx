@@ -13,9 +13,11 @@ import { ThemeSwitch } from "../theme-switch";
 import { usePathname } from "next/navigation";
 import { FaBars, FaTimes } from "react-icons/fa";
 import Sidebar from "@/components/Dashboard/Sidebar/sidebar";
+import { useTheme } from "next-themes";
 
 export default function NavbarComponent() {
   const pathname = usePathname();
+  const actualTheme = useTheme();
 
   const isActive = (path: string) => pathname === path;
 
@@ -33,7 +35,7 @@ export default function NavbarComponent() {
   return (
     <>
       <Navbar
-        className="flex w-full p-1 shadow-md dark:border-white dark:border-b-1"
+        className="flex fixed w-full p-1 shadow-md dark:border-white dark:border-b-1"
         classNames={{
           item: [
             "flex",
@@ -61,7 +63,7 @@ export default function NavbarComponent() {
 
         {/* Botón hamburguesa */}
         <div className="sm:hidden flex items-center z-50">
-          <Button className="bg-blue-400" onClick={toggleMenu} size="sm">
+          <Button color="primary" variant={actualTheme.theme === "light" ? "bordered" : "solid"} onClick={toggleMenu} size="sm">
             {isOpen ? <FaTimes size={15} /> : <FaBars size={15} />}
           </Button>
         </div>
@@ -109,7 +111,7 @@ export default function NavbarComponent() {
         } transition-transform duration-300 bg-white dark:bg-black shadow-lg border-r-2 border-black dark:border-white`}
       >
         <div className="grid grid-cols-1 items-center m-3 justify-items-start">
-          <div className="flex flex-row justify-between w-full mb-2">
+          <div className="flex flex-row justify-evenly w-full mb-2 gap-x-16">
             <Image src="/logo2.png" width={50} height={50} radius="none" />
             <ThemeSwitch />
           </div>
@@ -117,7 +119,7 @@ export default function NavbarComponent() {
             className={`text-2xl font-bold mt-3 mb-3 relative ${
               isActive("/") ? "underline underline-offset-4" : ""
             }`}
-            style={isActive("/") ? { textDecorationColor: "blue" } : {}}
+            style={isActive("/") ? { textDecorationColor: "#5B9279" } : {}}
             color="foreground"
             href="/"
             onClick={toggleMenu}
@@ -128,7 +130,7 @@ export default function NavbarComponent() {
             className={`text-xl mb-1 relative ${
               isActive("/visualizer") ? "underline underline-offset-4" : ""
             }`}
-            style={isActive("/visualizer") ? { textDecorationColor: "blue" } : {}}
+            style={isActive("/visualizer") ? { textDecorationColor: "#5B9279" } : {}}
             color="foreground"
             href="/visualizer"
             onClick={toggleMenu}
@@ -139,7 +141,7 @@ export default function NavbarComponent() {
             className={`text-xl mb-1 relative ${
               isActive("/faq") ? "underline underline-offset-4" : ""
             }`}
-            style={isActive("/faq") ? { textDecorationColor: "blue" } : {}}
+            style={isActive("/faq") ? { textDecorationColor: "#5B9279" } : {}}
             color="foreground"
             href="/faq"
             onClick={toggleMenu}
@@ -150,7 +152,7 @@ export default function NavbarComponent() {
             className={`text-xl mb-8 relative ${
               isActive("/about") ? "underline underline-offset-4" : ""
             }`}
-            style={isActive("/about") ? { textDecorationColor: "blue" } : {}}
+            style={isActive("/about") ? { textDecorationColor: "#5B9279" } : {}}
             color="foreground"
             href="/about"
             onClick={toggleMenu}
