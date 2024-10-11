@@ -1,49 +1,85 @@
 import { Button } from "@nextui-org/button";
 import React, { useEffect, useState } from "react";
-import deleteIcon from "@/public/delete.svg";
-import editIcon from "@/public/edit.svg";
-import { Logo, Trash } from "@/components/icons";
-import Image from "next/image";
+import { useBoardStore } from "@/utils/Stores/boardStore";
 import { Board } from "@/types/board";
+import {
+  DeleteOffOutlineIcon,
+  DeleteOutlineIcon,
+  EditIcon,
+} from "@/components/icons";
+import useModalStore from "@/utils/Stores/modalStore";
 
 interface PropType {
   id: number;
-  board: { name: string };
-  isActual: boolean;
-  setBoardSelected: (id: number) => void;
-  deleteBoard: (id: number) => void;
+  board: Board;
+  refresh: () => void;
 }
 
 function BoardButton(props: PropType) {
-  const { id, board, isActual, setBoardSelected, deleteBoard } = props;
+  const { id, board, refresh } = props;
+  const { id_boardSelected, selectBoard, deleteBoard } =
+    useBoardStore.getState();
+  const { toggleModalConfirm, toggleModalEditBoard } = useModalStore.getState();
+  const [active, setActive] = useState(false);
+
+  useEffect(() => {
+    if (id === id_boardSelected) setActive(true);
+    else setActive(false);
+  }, [active, id_boardSelected]);
 
   return (
     <div className="flex flex-row gap-1 justify-center">
-      {isActual && (
+      {active && (
         <Button
           isIconOnly
           variant="light"
-          color="secondary"
+          color="danger"
           onPress={() => {
-            deleteBoard(id);
-            if (id > 0) setBoardSelected(id - 1);
+            if (id > 0) {
+              toggleModalConfirm(
+                true,
+                "¿Estás seguro de eliminar este tablero?",
+                () => {
+                  deleteBoard(id);
+                  refresh();
+                }
+              );
+              refresh();
+            }
           }}
         >
-          <Image alt="DeleteIcon" src={deleteIcon} width={24} height={24} />
+          {id > 0 ? (
+            <DeleteOutlineIcon width={28} />
+          ) : (
+            <DeleteOffOutlineIcon width={28} />
+          )}
         </Button>
       )}
 
       <Button
         className="w-44 text-center"
-        variant={isActual ? "bordered" : "light"}
+        variant={active ? "bordered" : "light"}
         color="primary"
-        onClick={() => setBoardSelected(id)}
+        onClick={() => {
+          selectBoard(id);
+          setActive(true);
+          refresh();
+        }}
       >
-        <h1 className="w-full text-center text-pretty">{board.name}</h1>
+        <h1 className="w-full text-center text-pretty truncate">{board.name}</h1>
       </Button>
-      {isActual && (
-        <Button isIconOnly variant="light" color="secondary">
-          <Image alt="DelteIcon" src={editIcon} width={24} height={24} />
+
+      {active && (
+        <Button
+          isIconOnly
+          variant="light"
+          color="primary"
+          onPress={() => {
+            toggleModalEditBoard(true);
+            refresh();
+          }}
+        >
+          <EditIcon width={28} />
         </Button>
       )}
     </div>

@@ -1,46 +1,30 @@
-import React, { useState } from "react";
-import Tittle from "./board/layout/title";
-import Search from "./board/layout/search";
-import ButtonAddChart from "./add-chart";
+import React, { useEffect, useState } from "react";
 import BoardPanel from "./board/has-board";
 import { Board } from "@/types/board";
 import { Chart } from "@/types/chart";
-import useStorage from "@/hooks/useStorage";
-import { useCounterStore } from "@/utils/counterStore";
-import NoBoard from "./board/no-board";
-import ModalCreateBoard from "./board/modal-create-board";
-import { NextRouter } from "next/router";
+import { CircularProgress } from "@nextui-org/progress";
+import { useBoardStore } from "@/utils/Stores/boardStore";
 
 interface PropType {
-  boardSelected: Board;
-  accionSeleccionarGrafico: (chart: Chart) => void;
-  set_v_modalCrearTablero: (value: boolean) => void;
-  set_v_modalCrearChart: (value: boolean) => void;
+  refresh: () => void;
 }
 
 function MainPanel(props: PropType) {
-  const {
-    boardSelected,
-    accionSeleccionarGrafico,
-    set_v_modalCrearTablero,
-    set_v_modalCrearChart,
-  } = props;
+  const { refresh } = props;
+
+  const { userData, id_boardSelected } = useBoardStore.getState();
+
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    if (userData[id_boardSelected]) setIsLoading(false);
+  }, [id_boardSelected]);
 
   return (
     <div className="flex flex-col basis-11/12 gap-6 w-full h-full -mt-16">
-      {boardSelected ? (
-        <BoardPanel
-          boardName={boardSelected.name}
-          charts={boardSelected.charts}
-          seleccionarGrafico={accionSeleccionarGrafico}
-          set_v_modalCrearChart={set_v_modalCrearChart}
-        />
+      {isLoading ? (
+        <CircularProgress className="flex w-full h-full justify-center self-center" />
       ) : (
-        <NoBoard
-          accionCrearNuevoTablero={() => {
-            set_v_modalCrearTablero(true);
-          }}
-        />
+        <BoardPanel refresh={refresh} />
       )}
     </div>
   );

@@ -1,4 +1,6 @@
 import { Board } from "@/types/board";
+import { useBoardStore } from "@/utils/Stores/boardStore";
+import useModalStore from "@/utils/Stores/modalStore";
 import {
   Button,
   Input,
@@ -8,23 +10,48 @@ import {
   ModalFooter,
   ModalHeader,
 } from "@nextui-org/react";
+import { useTheme } from "next-themes";
 import React, { useState } from "react";
 
 interface PropType {
-  open: boolean;
-  boardFather: Board;
-  handleOpen: (openState: boolean) => void;
-  createChart: (boardFather: Board, title: string, subtitle: string) => void;
+  refresh: () => void;
 }
 
 function ModalCreateChart(props: PropType) {
-  const { open, boardFather, handleOpen, createChart } = props;
+  const { refresh } = props;
+  const { userData, id_boardSelected, addNewChart } = useBoardStore.getState();
+  const { ModalCreateChart, toggleModalCreateChart } = useModalStore.getState();
   const [title, setTitle] = useState("");
   const [subtitle, setSubtitle] = useState("");
+  const actualTheme = useTheme();
+
+  function ReadyButtonFunction() {
+    if (title.trim() === "")
+      addNewChart(
+        userData[id_boardSelected],
+        "Nuevo gráfico",
+        "(sin descripción)"
+      );
+    else addNewChart(userData[id_boardSelected], title, subtitle);
+
+    setTitle("");
+    setSubtitle("");
+    toggleModalCreateChart(false);
+    refresh();
+  }
 
   return (
     <div>
-      <Modal isOpen={open} onOpenChange={handleOpen}>
+      <Modal
+        isOpen={ModalCreateChart}
+        onOpenChange={(value) => {
+          toggleModalCreateChart(value);
+          refresh();
+        }}
+        onKeyDown={(event) => {
+          if (ModalCreateChart && event.key === "Enter") ReadyButtonFunction();
+        }}
+      >
         <ModalContent>
           <ModalHeader>Nuevo Gráfico</ModalHeader>
           <ModalBody>
@@ -37,7 +64,6 @@ function ModalCreateChart(props: PropType) {
               variant="underlined"
             />
             <Input
-              autoFocus
               label="Subtitulo del gráfico"
               placeholder="Ingresa un subtitulo para tu gráfico"
               value={subtitle}
@@ -50,8 +76,10 @@ function ModalCreateChart(props: PropType) {
               color="danger"
               variant="flat"
               onPress={() => {
-                handleOpen(false);
+                toggleModalCreateChart(false);
                 setTitle("");
+                setSubtitle("");
+                refresh();
               }}
             >
               Cancelar
@@ -59,17 +87,9 @@ function ModalCreateChart(props: PropType) {
             <Button
               color="primary"
               onPress={() => {
-                if (title.trim() === "")
-                  createChart(
-                    boardFather,
-                    "Nuevo Tablero",
-                    "(sin descripción)"
-                  );
-                else createChart(boardFather, title, subtitle);
-
-                setTitle("");
-                handleOpen(false);
+                ReadyButtonFunction();
               }}
+              variant={actualTheme.theme === "light" ? "bordered" : "solid"}
             >
               Listo
             </Button>

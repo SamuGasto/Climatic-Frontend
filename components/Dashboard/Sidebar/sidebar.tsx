@@ -1,51 +1,52 @@
-import { AddIcon, Logo } from "@/components/icons";
-import { Button } from "@nextui-org/button";
-import React from "react";
+"use client";
+import React, { useEffect } from "react";
 import ButtonAddBoard from "./add-new-board";
 import BoardButton from "./board-button";
-import { Board } from "@/types/board";
 import { Image } from "@nextui-org/image";
+import { Card, CardBody } from "@nextui-org/card";
+import { useBoardStore } from "@/utils/Stores/boardStore";
+import BoardList from "./board-list";
 
 interface PropType {
-  boards: Board[];
-  boardSelected: number;
-  setBoardSelected: (id: number) => void;
-  set_v_modalCrearTablero: (value: boolean) => void;
-  deleteBoard: (id: number) => void;
+  refresh: () => void;
+  isMobile?: boolean; // Nueva prop para diferenciar cuándo el Sidebar está en mobile
 }
 
-function Sidebar(props: PropType) {
-  const {
-    boards,
-    boardSelected,
-    setBoardSelected,
-    set_v_modalCrearTablero,
-    deleteBoard,
-  } = props;
+function Sidebar({ refresh, isMobile = false }: PropType) {
+  const { loadData } = useBoardStore.getState();
+
+  useEffect(() => {
+    loadData();
+  }, []);
+
   return (
-    <div className="flex max-w-96 h-full basis-1/12 px-6 border-r-1 mr-5">
-      <div className="p-4">
-        <div className="flex w-full mb-8 justify-center">
-          <Image src="/logo.png" alt="Di-Dema Logo" width={50} height={50} />
-        </div>
-        <nav>
-          <ul className="flex flex-col space-y-2">
-            {boards.map((board, index) => (
-              <li key={index}>
-                <BoardButton
-                  id={index}
-                  board={board}
-                  setBoardSelected={setBoardSelected}
-                  isActual={board.id === boardSelected - 1 ? true : false}
-                  deleteBoard={deleteBoard}
-                />
-              </li>
-            ))}
-          </ul>
-        </nav>
-        <ButtonAddBoard action={set_v_modalCrearTablero} />
-      </div>
+    <div
+      className={`${
+        isMobile ? "block" : "hidden md:flex"
+      } md:flex-col md:basis-1/12 md:px-6 md:mr-5`}
+    >
+      <Card className="w-full h-full bg-white dark:bg-black" shadow={isMobile ? "none":"md"}>
+        <CardBody>
+          {/* Mostrar imagen solo si no está en móvil */}
+          {!isMobile && (
+            <div className="flex w-full mb-8 justify-center">
+              <Image
+                radius="none"
+                src="/logo2.png"
+                alt="Climatic Logo"
+                width={50}
+                height={50}
+              />
+            </div>
+          )}
+          <nav>
+            <BoardList refresh={refresh} />
+          </nav>
+          <ButtonAddBoard refresh={refresh} />
+        </CardBody>
+      </Card>
     </div>
   );
 }
+
 export default Sidebar;
