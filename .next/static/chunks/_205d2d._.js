@@ -663,10 +663,221 @@ var _c;
 __turbopack_refresh__.register(_c, "Visualizador");
 
 })()),
-"[project]/components/Sidebar/Sidebar.tsx [app-client] (ecmascript)": (function({ r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_import__, s: __turbopack_esm__, v: __turbopack_export_value__, n: __turbopack_export_namespace__, c: __turbopack_cache__, M: __turbopack_modules__, l: __turbopack_load__, j: __turbopack_dynamic__, P: __turbopack_resolve_absolute_path__, U: __turbopack_relative_url__, R: __turbopack_resolve_module_id_path__, g: global, __dirname, k: __turbopack_refresh__, m: module, e: exports, t: require }) { !function() {
+"[project]/components/Sidebar/Sidebar.tsx [app-client] (ecmascript)": (({ r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_import__, s: __turbopack_esm__, v: __turbopack_export_value__, n: __turbopack_export_namespace__, c: __turbopack_cache__, M: __turbopack_modules__, l: __turbopack_load__, j: __turbopack_dynamic__, P: __turbopack_resolve_absolute_path__, U: __turbopack_relative_url__, R: __turbopack_resolve_module_id_path__, g: global, __dirname, k: __turbopack_refresh__ }) => (() => {
+"use strict";
 
+__turbopack_esm__({
+    "default": ()=>__TURBOPACK__default__export__
+});
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/components/Sidebar/select.tsx [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$opciones$2d$area$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/components/Sidebar/opciones-area.tsx [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$opciones$2d$tiempo$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/components/Sidebar/opciones-tiempo.tsx [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$boton$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/components/Sidebar/boton.tsx [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$variables$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/config/variables.ts [app-client] (ecmascript)");
+"__TURBOPACK__ecmascript__hoisting__location__";
+;
+var _s = __turbopack_refresh__.signature();
+;
+;
+;
+;
+;
+;
+const Sidebar = ()=>{
+    _s();
+    const componenteViento = [
+        {
+            key: "0",
+            label: "U (Este - Oeste)"
+        },
+        {
+            key: "1",
+            label: "V (Norte - Sur)"
+        }
+    ];
+    const nivelViento = [
+        {
+            key: "0",
+            label: "A 10 metros sobre la superficie"
+        },
+        {
+            key: "1",
+            label: "otro nivel 1"
+        },
+        {
+            key: "2",
+            label: "otro nivel 2"
+        },
+        {
+            key: "3",
+            label: "..."
+        }
+    ];
+    const nivelTemperatura = [
+        {
+            key: "0",
+            label: "A 2 metros sobre la superficie"
+        },
+        {
+            key: "1",
+            label: "otro nivel 1"
+        },
+        {
+            key: "2",
+            label: "otro nivel 2"
+        },
+        {
+            key: "3",
+            label: "..."
+        }
+    ];
+    const [variableSeleccionada, setvariableSeleccionada] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [desabilitarTiempo, setDesabilitarTiempo] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
+    const [consulta, setConsulta] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])({
+        variable: "",
+        latitud: [
+            0,
+            0
+        ],
+        longitud: [
+            0,
+            0
+        ],
+        imagen: true
+    });
+    const handleSelect = (key)=>{
+        const newConsulta = {
+            ...consulta
+        };
+        newConsulta.variable = key;
+        setConsulta(newConsulta);
+        setvariableSeleccionada(key);
+        {
+            key == "u10" || key == "t2m" ? setDesabilitarTiempo(false) : setDesabilitarTiempo(true);
+        }
+        if (key == "anor") {
+            setDesabilitarTiempo(true);
+        }
+    };
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        className: "flex flex-col gap-12 p-6 w-1/3 shadow-md",
+        children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "flex flex-col gap-3",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                        className: "text-center",
+                        children: "Configuración del gráfico"
+                    }, void 0, false, {
+                        fileName: "[project]/components/Sidebar/Sidebar.tsx",
+                        lineNumber: 62,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("hr", {}, void 0, false, {
+                        fileName: "[project]/components/Sidebar/Sidebar.tsx",
+                        lineNumber: 63,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/components/Sidebar/Sidebar.tsx",
+                lineNumber: 61,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "flex flex-col gap-3 w-full",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                        titulo: "Variable",
+                        explicacion: "Elija la variable que desea graficar",
+                        elementos: __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$variables$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["variables2"],
+                        onSelect: handleSelect
+                    }, void 0, false, {
+                        fileName: "[project]/components/Sidebar/Sidebar.tsx",
+                        lineNumber: 67,
+                        columnNumber: 9
+                    }, this),
+                    variableSeleccionada == "u10" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                        titulo: "Componente del viento",
+                        explicacion: "Elija el componente del viento",
+                        elementos: componenteViento
+                    }, void 0, false, {
+                        fileName: "[project]/components/Sidebar/Sidebar.tsx",
+                        lineNumber: 75,
+                        columnNumber: 11
+                    }, this) : null,
+                    variableSeleccionada == "u10" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                        titulo: "Altura de los datos",
+                        explicacion: "Elija la altura de los datos",
+                        elementos: nivelViento
+                    }, void 0, false, {
+                        fileName: "[project]/components/Sidebar/Sidebar.tsx",
+                        lineNumber: 83,
+                        columnNumber: 11
+                    }, this) : null,
+                    variableSeleccionada == "t2m" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                        titulo: "Altura de los datos",
+                        explicacion: "Elija la altura de los datos",
+                        elementos: nivelTemperatura
+                    }, void 0, false, {
+                        fileName: "[project]/components/Sidebar/Sidebar.tsx",
+                        lineNumber: 91,
+                        columnNumber: 11
+                    }, this) : null
+                ]
+            }, void 0, true, {
+                fileName: "[project]/components/Sidebar/Sidebar.tsx",
+                lineNumber: 66,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$opciones$2d$area$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                setConsulta: setConsulta,
+                consultaOriginal: consulta
+            }, void 0, false, {
+                fileName: "[project]/components/Sidebar/Sidebar.tsx",
+                lineNumber: 99,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$opciones$2d$tiempo$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                desabilitado: desabilitarTiempo
+            }, void 0, false, {
+                fileName: "[project]/components/Sidebar/Sidebar.tsx",
+                lineNumber: 101,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$boton$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                texto: "Graficar",
+                funcion: ()=>console.log([
+                        consulta
+                    ])
+            }, void 0, false, {
+                fileName: "[project]/components/Sidebar/Sidebar.tsx",
+                lineNumber: 102,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "flex flex-col w-full items-end"
+            }, void 0, false, {
+                fileName: "[project]/components/Sidebar/Sidebar.tsx",
+                lineNumber: 103,
+                columnNumber: 7
+            }, this)
+        ]
+    }, void 0, true, {
+        fileName: "[project]/components/Sidebar/Sidebar.tsx",
+        lineNumber: 60,
+        columnNumber: 5
+    }, this);
+};
+_s(Sidebar, "I4IRHNSa9cWm/yigEBHIz5ZvvEc=");
+_c = Sidebar;
+const __TURBOPACK__default__export__ = Sidebar;
+var _c;
+__turbopack_refresh__.register(_c, "Sidebar");
 
-}.call(this) }),
+})()),
 "[project]/app/visualizer/page.tsx [app-client] (ecmascript)": (({ r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_import__, s: __turbopack_esm__, v: __turbopack_export_value__, n: __turbopack_export_namespace__, c: __turbopack_cache__, M: __turbopack_modules__, l: __turbopack_load__, j: __turbopack_dynamic__, P: __turbopack_resolve_absolute_path__, U: __turbopack_relative_url__, R: __turbopack_resolve_module_id_path__, g: global, __dirname, k: __turbopack_refresh__ }) => (() => {
 "use strict";
 
