@@ -1,19 +1,19 @@
-export const variables2 = [{
-  key: "u10", // "v10"
-  label: "Velocidad del viento", // U/V wind component
-},
-/*{
+export const variables = [{
   key: "u", // "v" 
-  label: "Componente del viento", // U/V
-},*/
+  label: "Velocidad del viento", // U/V
+},
 {
-  key: "t2m",
+  key: "u10", // "v10"
+  label: "Velocidad del viento a 10 metros de la superficie", // U/V wind component
+},
+{
+  key: "t",
   label: "Temperatura",
 },
-/*{
-  key: "t",
-  label: "Temperatura en la superficie",
-},*/
+{
+  key: "t2m",
+  label: "Temperatura a 2 metro de la superficie",
+},
 {
   key: "anor",
   label: "Ángulo de la orografía a escala subcuadrícula",
@@ -27,7 +27,7 @@ export const variables2 = [{
   label: "Geopotencial",
 },
 {
-  key: "z",
+  key: "z_surface",
   label: "Geopotencial en la superficie",
 },
 {
@@ -35,12 +35,12 @@ export const variables2 = [{
   label: "Covertura de vegetación alta", // tambien existe vegetación baja
 },
 {
-  key: "cl",
-  label: "Covertura de lagos",
+  key: "tvh", // "tvl"
+  label: "Tipo de vegetación alta", // tambien esta la baja
 },
 {
-  key: "dl",
-  label: "Profundidad del lago",
+  key: "cl",
+  label: "Covertura de lagos",
 },
 {
   key: "lsm",
@@ -76,7 +76,7 @@ export const variables2 = [{
 },
 {
   key: "sdor",
-  label: "Desviación estándar de la orografía", // se podría convinar con la anterior
+  label: "Desviación estándar de la orografía",
 },
 {
   key: "sp",
@@ -91,10 +91,7 @@ export const variables2 = [{
   label: "Covertura total de nubes",
 },
 {
-  key: "tvh", // "tvl"
-  label: "Tipo de vegetación alta", // tambien esta la baja
-},
-{
-  key: "swvl1", // "swvl2" "swvl3" "swvl4"
-  label: "Contenido volumétrico de agua", // capa 1, 2, 3 o 4
-},]
+ key: "w",
+ label: "Velocidad vertical en la atmósfera",
+}
+]
