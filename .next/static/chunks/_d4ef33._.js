@@ -1,4 +1,4 @@
-(globalThis.TURBOPACK = globalThis.TURBOPACK || []).push(["static/chunks/_205d2d._.js", {
+(globalThis.TURBOPACK = globalThis.TURBOPACK || []).push(["static/chunks/_d4ef33._.js", {
 
 "[project]/components/Graphic/editable-text.tsx [app-client] (ecmascript)": (({ r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_import__, s: __turbopack_esm__, v: __turbopack_export_value__, n: __turbopack_export_namespace__, c: __turbopack_cache__, M: __turbopack_modules__, l: __turbopack_load__, j: __turbopack_dynamic__, P: __turbopack_resolve_absolute_path__, U: __turbopack_relative_url__, R: __turbopack_resolve_module_id_path__, g: global, __dirname, k: __turbopack_refresh__ }) => (() => {
 "use strict";
@@ -663,6 +663,561 @@ var _c;
 __turbopack_refresh__.register(_c, "Visualizador");
 
 })()),
+"[project]/components/Sidebar/select.tsx [app-client] (ecmascript)": (({ r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_import__, s: __turbopack_esm__, v: __turbopack_export_value__, n: __turbopack_export_namespace__, c: __turbopack_cache__, M: __turbopack_modules__, l: __turbopack_load__, j: __turbopack_dynamic__, P: __turbopack_resolve_absolute_path__, U: __turbopack_relative_url__, R: __turbopack_resolve_module_id_path__, g: global, __dirname, k: __turbopack_refresh__ }) => (() => {
+"use strict";
+
+__turbopack_esm__({
+    "default": ()=>Desplegable
+});
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$nextui$2d$org$2f$select$2f$dist$2f$chunk$2d$CEHIK4GH$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__select_default__as__Select$3e$__ = __turbopack_import__("[project]/node_modules/@nextui-org/select/dist/chunk-CEHIK4GH.mjs [app-client] (ecmascript) <export select_default as Select>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$nextui$2d$org$2f$listbox$2f$dist$2f$chunk$2d$VHPYXGWP$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__listbox_item_base_default__as__SelectItem$3e$__ = __turbopack_import__("[project]/node_modules/@nextui-org/listbox/dist/chunk-VHPYXGWP.mjs [app-client] (ecmascript) <export listbox_item_base_default as SelectItem>");
+"__TURBOPACK__ecmascript__hoisting__location__";
+;
+;
+function Desplegable(props) {
+    const { titulo, explicacion, elementos, onSelect, desabilitado } = props;
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        className: "flex w-full",
+        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$nextui$2d$org$2f$select$2f$dist$2f$chunk$2d$CEHIK4GH$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__select_default__as__Select$3e$__["Select"], {
+            size: "md",
+            label: explicacion,
+            placeholder: titulo,
+            className: "flex w-full",
+            isDisabled: desabilitado,
+            children: elementos.map((elemento)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$nextui$2d$org$2f$listbox$2f$dist$2f$chunk$2d$VHPYXGWP$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__listbox_item_base_default__as__SelectItem$3e$__["SelectItem"], {
+                    onClick: ()=>onSelect?.(elemento.key),
+                    children: elemento.label
+                }, elemento.key, false, {
+                    fileName: "[project]/components/Sidebar/select.tsx",
+                    lineNumber: 30,
+                    columnNumber: 11
+                }, this))
+        }, void 0, false, {
+            fileName: "[project]/components/Sidebar/select.tsx",
+            lineNumber: 22,
+            columnNumber: 7
+        }, this)
+    }, void 0, false, {
+        fileName: "[project]/components/Sidebar/select.tsx",
+        lineNumber: 21,
+        columnNumber: 5
+    }, this);
+}
+_c = Desplegable;
+var _c;
+__turbopack_refresh__.register(_c, "Desplegable");
+
+})()),
+"[project]/components/Sidebar/slider.tsx [app-client] (ecmascript)": (({ r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_import__, s: __turbopack_esm__, v: __turbopack_export_value__, n: __turbopack_export_namespace__, c: __turbopack_cache__, M: __turbopack_modules__, l: __turbopack_load__, j: __turbopack_dynamic__, P: __turbopack_resolve_absolute_path__, U: __turbopack_relative_url__, R: __turbopack_resolve_module_id_path__, g: global, __dirname, k: __turbopack_refresh__ }) => (() => {
+"use strict";
+
+__turbopack_esm__({
+    "default": ()=>Deslizador
+});
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$nextui$2d$org$2f$slider$2f$dist$2f$chunk$2d$O6IB4TCE$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__slider_default__as__Slider$3e$__ = __turbopack_import__("[project]/node_modules/@nextui-org/slider/dist/chunk-O6IB4TCE.mjs [app-client] (ecmascript) <export slider_default as Slider>");
+"__TURBOPACK__ecmascript__hoisting__location__";
+;
+var _s = __turbopack_refresh__.signature();
+;
+;
+function Deslizador(props) {
+    _s();
+    const { maximo, minimo, step, label, defaultValue, setConsulta, consultaOriginal, tipo } = props;
+    const [sliderValue, setSliderValue] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([
+        minimo,
+        maximo
+    ]);
+    function configurarConsulta() {
+        let newConsulta = {
+            ...consultaOriginal
+        };
+        if (tipo == "latitud") {
+            if (Array.isArray(sliderValue)) {
+                newConsulta.latitud = sliderValue;
+            } else {
+                newConsulta.latitud = [
+                    sliderValue,
+                    sliderValue
+                ];
+            }
+        } else if (tipo == "longitud") {
+            if (Array.isArray(sliderValue)) {
+                newConsulta.longitud = sliderValue;
+            } else {
+                newConsulta.longitud = [
+                    sliderValue,
+                    sliderValue
+                ];
+            }
+        }
+        setConsulta(newConsulta);
+    }
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$nextui$2d$org$2f$slider$2f$dist$2f$chunk$2d$O6IB4TCE$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__slider_default__as__Slider$3e$__["Slider"], {
+        label: label,
+        step: step,
+        minValue: minimo,
+        maxValue: maximo,
+        defaultValue: defaultValue,
+        showSteps: true,
+        className: "flex w-full",
+        onChange: (value)=>setSliderValue(value),
+        onChangeEnd: (value)=>configurarConsulta()
+    }, void 0, false, {
+        fileName: "[project]/components/Sidebar/slider.tsx",
+        lineNumber: 55,
+        columnNumber: 5
+    }, this);
+}
+_s(Deslizador, "ObY+kVmxcQoeNur2wax5OI8zAVY=");
+_c = Deslizador;
+var _c;
+__turbopack_refresh__.register(_c, "Deslizador");
+
+})()),
+"[project]/components/Sidebar/opciones-area.tsx [app-client] (ecmascript)": (({ r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_import__, s: __turbopack_esm__, v: __turbopack_export_value__, n: __turbopack_export_namespace__, c: __turbopack_cache__, M: __turbopack_modules__, l: __turbopack_load__, j: __turbopack_dynamic__, P: __turbopack_resolve_absolute_path__, U: __turbopack_relative_url__, R: __turbopack_resolve_module_id_path__, g: global, __dirname, k: __turbopack_refresh__ }) => (() => {
+"use strict";
+
+__turbopack_esm__({
+    "default": ()=>__TURBOPACK__default__export__
+});
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$slider$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/components/Sidebar/slider.tsx [app-client] (ecmascript)");
+"__TURBOPACK__ecmascript__hoisting__location__";
+;
+;
+const OpcionesArea = (props)=>{
+    const { setConsulta, consultaOriginal } = props;
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        className: "flex w-full flex-col gap-3",
+        children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                className: "flex place-content-center",
+                children: "Área de los datos"
+            }, void 0, false, {
+                fileName: "[project]/components/Sidebar/opciones-area.tsx",
+                lineNumber: 15,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$slider$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                label: "Rango de la latitud",
+                maximo: -34,
+                minimo: -35,
+                step: 0.25,
+                defaultValue: [
+                    -34.75,
+                    -34.25
+                ],
+                setConsulta: setConsulta,
+                consultaOriginal: consultaOriginal,
+                tipo: "latitud"
+            }, void 0, false, {
+                fileName: "[project]/components/Sidebar/opciones-area.tsx",
+                lineNumber: 17,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$slider$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                label: "Rango de la longitud",
+                maximo: 110,
+                minimo: 108,
+                step: 0.25,
+                defaultValue: [
+                    108.25,
+                    109
+                ],
+                setConsulta: setConsulta,
+                consultaOriginal: consultaOriginal,
+                tipo: "longitud"
+            }, void 0, false, {
+                fileName: "[project]/components/Sidebar/opciones-area.tsx",
+                lineNumber: 28,
+                columnNumber: 7
+            }, this)
+        ]
+    }, void 0, true, {
+        fileName: "[project]/components/Sidebar/opciones-area.tsx",
+        lineNumber: 14,
+        columnNumber: 5
+    }, this);
+};
+_c = OpcionesArea;
+const __TURBOPACK__default__export__ = OpcionesArea;
+var _c;
+__turbopack_refresh__.register(_c, "OpcionesArea");
+
+})()),
+"[project]/components/Sidebar/time-input.tsx [app-client] (ecmascript)": (({ r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_import__, s: __turbopack_esm__, v: __turbopack_export_value__, n: __turbopack_export_namespace__, c: __turbopack_cache__, M: __turbopack_modules__, l: __turbopack_load__, j: __turbopack_dynamic__, P: __turbopack_resolve_absolute_path__, U: __turbopack_relative_url__, R: __turbopack_resolve_module_id_path__, g: global, __dirname, k: __turbopack_refresh__ }) => (() => {
+"use strict";
+
+__turbopack_esm__({
+    "default": ()=>SeleccionHora
+});
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$nextui$2d$org$2f$date$2d$input$2f$dist$2f$chunk$2d$2LGXQJSC$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__time_input_default__as__TimeInput$3e$__ = __turbopack_import__("[project]/node_modules/@nextui-org/date-input/dist/chunk-2LGXQJSC.mjs [app-client] (ecmascript) <export time_input_default as TimeInput>");
+"__TURBOPACK__ecmascript__hoisting__location__";
+;
+;
+function SeleccionHora(props) {
+    const { desabilitado, setConsulta, consultaOriginal, esLimiteIni } = props;
+    const configurarConsulta = (valor)=>{
+        let tiempo = consultaOriginal.tiempo[0];
+        let result = String(valor);
+        if (result.length < 2) {
+            result = "0" + result;
+        }
+        result = tiempo.slice(0, 11) + result + ":00:00.000000000";
+        let newConsulta = {
+            ...consultaOriginal
+        };
+        newConsulta.tiempo[0] = result;
+        setConsulta(newConsulta);
+    };
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$nextui$2d$org$2f$date$2d$input$2f$dist$2f$chunk$2d$2LGXQJSC$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__time_input_default__as__TimeInput$3e$__["TimeInput"], {
+        isDisabled: desabilitado,
+        label: "Seleccione la hora",
+        isRequired: true,
+        granularity: "hour",
+        onChange: (value)=>configurarConsulta(value.hour)
+    }, void 0, false, {
+        fileName: "[project]/components/Sidebar/time-input.tsx",
+        lineNumber: 30,
+        columnNumber: 5
+    }, this);
+}
+_c = SeleccionHora;
+var _c;
+__turbopack_refresh__.register(_c, "SeleccionHora");
+
+})()),
+"[project]/components/Sidebar/fecha-rango.tsx [app-client] (ecmascript)": (({ r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_import__, s: __turbopack_esm__, v: __turbopack_export_value__, n: __turbopack_export_namespace__, c: __turbopack_cache__, M: __turbopack_modules__, l: __turbopack_load__, j: __turbopack_dynamic__, P: __turbopack_resolve_absolute_path__, U: __turbopack_relative_url__, R: __turbopack_resolve_module_id_path__, g: global, __dirname, k: __turbopack_refresh__ }) => (() => {
+"use strict";
+
+__turbopack_esm__({
+    "default": ()=>FechaRango
+});
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$nextui$2d$org$2f$date$2d$picker$2f$dist$2f$chunk$2d$2AFCYV3K$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__date_range_picker_default__as__DateRangePicker$3e$__ = __turbopack_import__("[project]/node_modules/@nextui-org/date-picker/dist/chunk-2AFCYV3K.mjs [app-client] (ecmascript) <export date_range_picker_default as DateRangePicker>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$internationalized$2f$date$2f$dist$2f$string$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/@internationalized/date/dist/string.mjs [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+"__TURBOPACK__ecmascript__hoisting__location__";
+;
+var _s = __turbopack_refresh__.signature();
+;
+;
+;
+function FechaRango(props) {
+    _s();
+    const { setConsulta } = props;
+    const [value, setValue] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$nextui$2d$org$2f$date$2d$picker$2f$dist$2f$chunk$2d$2AFCYV3K$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__date_range_picker_default__as__DateRangePicker$3e$__["DateRangePicker"], {
+        label: "Rango de fechas",
+        className: "max-w-xs",
+        minValue: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$internationalized$2f$date$2f$dist$2f$string$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["parseDate"])("1959-01-01"),
+        maxValue: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$internationalized$2f$date$2f$dist$2f$string$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["parseDate"])("2021-12-31"),
+        onChange: (value)=>console.log(value)
+    }, void 0, false, {
+        fileName: "[project]/components/Sidebar/fecha-rango.tsx",
+        lineNumber: 15,
+        columnNumber: 5
+    }, this);
+}
+_s(FechaRango, "EEjdpY/CSe7/lDQurV9yi1RbKSs=");
+_c = FechaRango;
+var _c;
+__turbopack_refresh__.register(_c, "FechaRango");
+
+})()),
+"[project]/components/Sidebar/seleccion-fecha.tsx [app-client] (ecmascript)": (({ r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_import__, s: __turbopack_esm__, v: __turbopack_export_value__, n: __turbopack_export_namespace__, c: __turbopack_cache__, M: __turbopack_modules__, l: __turbopack_load__, j: __turbopack_dynamic__, P: __turbopack_resolve_absolute_path__, U: __turbopack_relative_url__, R: __turbopack_resolve_module_id_path__, g: global, __dirname, k: __turbopack_refresh__ }) => (() => {
+"use strict";
+
+__turbopack_esm__({
+    "default": ()=>SeleccionFecha
+});
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$nextui$2d$org$2f$date$2d$picker$2f$dist$2f$chunk$2d$RUXXUVWM$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__date_picker_default__as__DatePicker$3e$__ = __turbopack_import__("[project]/node_modules/@nextui-org/date-picker/dist/chunk-RUXXUVWM.mjs [app-client] (ecmascript) <export date_picker_default as DatePicker>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$internationalized$2f$date$2f$dist$2f$string$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/@internationalized/date/dist/string.mjs [app-client] (ecmascript)");
+"__TURBOPACK__ecmascript__hoisting__location__";
+;
+;
+;
+function SeleccionFecha(props) {
+    const { desabilitado, setConsulta, consultaOriginal } = props;
+    const configurarConsulta = (dia, mes, año)=>{
+        let rAño = String(año);
+        if (rAño.length < 4) {
+            return;
+        }
+        let rDia = String(dia);
+        if (rDia.length < 2) {
+            rDia = "0" + rDia;
+        }
+        let rMes = String(mes);
+        if (rMes.length < 2) {
+            rMes = "0" + rMes;
+        }
+        let result = rAño + "-" + rMes + "-" + rDia;
+        let tiempo = consultaOriginal.tiempo[0];
+        result = result + tiempo.slice(10, tiempo.length);
+        let newConsulta = {
+            ...consultaOriginal
+        };
+        newConsulta.tiempo[0] = result;
+        setConsulta(newConsulta);
+    };
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$nextui$2d$org$2f$date$2d$picker$2f$dist$2f$chunk$2d$RUXXUVWM$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__date_picker_default__as__DatePicker$3e$__["DatePicker"], {
+        isRequired: true,
+        isDisabled: desabilitado,
+        minValue: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$internationalized$2f$date$2f$dist$2f$string$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["parseDate"])("1959-01-01"),
+        maxValue: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$internationalized$2f$date$2f$dist$2f$string$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["parseDate"])("2021-12-31"),
+        label: "Escoja una fecha",
+        className: "flex w-full",
+        onChange: (value)=>configurarConsulta(value.day, value.month, value.year)
+    }, void 0, false, {
+        fileName: "[project]/components/Sidebar/seleccion-fecha.tsx",
+        lineNumber: 39,
+        columnNumber: 5
+    }, this);
+}
+_c = SeleccionFecha;
+var _c;
+__turbopack_refresh__.register(_c, "SeleccionFecha");
+
+})()),
+"[project]/components/Sidebar/opciones-tiempo.tsx [app-client] (ecmascript)": (({ r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_import__, s: __turbopack_esm__, v: __turbopack_export_value__, n: __turbopack_export_namespace__, c: __turbopack_cache__, M: __turbopack_modules__, l: __turbopack_load__, j: __turbopack_dynamic__, P: __turbopack_resolve_absolute_path__, U: __turbopack_relative_url__, R: __turbopack_resolve_module_id_path__, g: global, __dirname, k: __turbopack_refresh__ }) => (() => {
+"use strict";
+
+__turbopack_esm__({
+    "default": ()=>__TURBOPACK__default__export__
+});
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$time$2d$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/components/Sidebar/time-input.tsx [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/components/Sidebar/select.tsx [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$fecha$2d$rango$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/components/Sidebar/fecha-rango.tsx [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$seleccion$2d$fecha$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/components/Sidebar/seleccion-fecha.tsx [app-client] (ecmascript)");
+"__TURBOPACK__ecmascript__hoisting__location__";
+;
+var _s = __turbopack_refresh__.signature();
+;
+;
+;
+;
+;
+const OpcionesTiempo = (props)=>{
+    _s();
+    const { setConsulta, desabilitado, consultaOriginal } = props;
+    const [tipoGrafico, setTipoGrafico] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const handleSelect = (key)=>{
+        setTipoGrafico(key);
+    };
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        className: "flex flex-col gap-3 w-full",
+        children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                className: "flex place-content-center",
+                children: "Tipo de gráfico"
+            }, void 0, false, {
+                fileName: "[project]/components/Sidebar/opciones-tiempo.tsx",
+                lineNumber: 26,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                elementos: [
+                    {
+                        key: "0",
+                        label: "Mapa de calor"
+                    },
+                    {
+                        key: "1",
+                        label: "Serie de tiempo"
+                    }
+                ],
+                titulo: "Gráfico",
+                explicacion: "Seleccione el tipo de gráfico",
+                desabilitado: desabilitado,
+                onSelect: handleSelect
+            }, void 0, false, {
+                fileName: "[project]/components/Sidebar/opciones-tiempo.tsx",
+                lineNumber: 28,
+                columnNumber: 7
+            }, this),
+            tipoGrafico == "0" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$seleccion$2d$fecha$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                setConsulta: setConsulta,
+                consultaOriginal: consultaOriginal,
+                desabilitado: desabilitado
+            }, void 0, false, {
+                fileName: "[project]/components/Sidebar/opciones-tiempo.tsx",
+                lineNumber: 40,
+                columnNumber: 9
+            }, this) : null,
+            tipoGrafico == "0" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$time$2d$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                setConsulta: setConsulta,
+                consultaOriginal: consultaOriginal,
+                desabilitado: desabilitado
+            }, void 0, false, {
+                fileName: "[project]/components/Sidebar/opciones-tiempo.tsx",
+                lineNumber: 48,
+                columnNumber: 9
+            }, this) : null,
+            tipoGrafico == "1" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$fecha$2d$rango$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                setConsulta: setConsulta
+            }, void 0, false, {
+                fileName: "[project]/components/Sidebar/opciones-tiempo.tsx",
+                lineNumber: 55,
+                columnNumber: 29
+            }, this) : null
+        ]
+    }, void 0, true, {
+        fileName: "[project]/components/Sidebar/opciones-tiempo.tsx",
+        lineNumber: 25,
+        columnNumber: 5
+    }, this);
+};
+_s(OpcionesTiempo, "L6WsjuHWXfQ450Trd9TX/Y34l4g=");
+_c = OpcionesTiempo;
+const __TURBOPACK__default__export__ = OpcionesTiempo;
+var _c;
+__turbopack_refresh__.register(_c, "OpcionesTiempo");
+
+})()),
+"[project]/components/Sidebar/boton.tsx [app-client] (ecmascript)": (({ r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_import__, s: __turbopack_esm__, v: __turbopack_export_value__, n: __turbopack_export_namespace__, c: __turbopack_cache__, M: __turbopack_modules__, l: __turbopack_load__, j: __turbopack_dynamic__, P: __turbopack_resolve_absolute_path__, U: __turbopack_relative_url__, R: __turbopack_resolve_module_id_path__, g: global, __dirname, k: __turbopack_refresh__ }) => (() => {
+"use strict";
+
+__turbopack_esm__({
+    "default": ()=>Boton
+});
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$nextui$2d$org$2f$button$2f$dist$2f$chunk$2d$DBLREEYE$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__button_default__as__Button$3e$__ = __turbopack_import__("[project]/node_modules/@nextui-org/button/dist/chunk-DBLREEYE.mjs [app-client] (ecmascript) <export button_default as Button>");
+"__TURBOPACK__ecmascript__hoisting__location__";
+;
+;
+function Boton(props) {
+    const { texto, funcion } = props;
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$nextui$2d$org$2f$button$2f$dist$2f$chunk$2d$DBLREEYE$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__button_default__as__Button$3e$__["Button"], {
+        color: "primary",
+        fullWidth: false,
+        onClick: funcion,
+        className: "flex flex-shrink-0",
+        children: texto
+    }, void 0, false, {
+        fileName: "[project]/components/Sidebar/boton.tsx",
+        lineNumber: 13,
+        columnNumber: 5
+    }, this);
+}
+_c = Boton;
+var _c;
+__turbopack_refresh__.register(_c, "Boton");
+
+})()),
+"[project]/config/variables.ts [app-client] (ecmascript)": (({ r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_import__, s: __turbopack_esm__, v: __turbopack_export_value__, n: __turbopack_export_namespace__, c: __turbopack_cache__, M: __turbopack_modules__, l: __turbopack_load__, j: __turbopack_dynamic__, P: __turbopack_resolve_absolute_path__, U: __turbopack_relative_url__, R: __turbopack_resolve_module_id_path__, g: global, __dirname, k: __turbopack_refresh__ }) => (() => {
+"use strict";
+
+__turbopack_esm__({
+    "variables": ()=>variables
+});
+const variables = [
+    {
+        key: "u",
+        label: "Velocidad del viento"
+    },
+    {
+        key: "u10",
+        label: "Velocidad del viento a 10 metros de la superficie"
+    },
+    {
+        key: "t",
+        label: "Temperatura"
+    },
+    {
+        key: "t2m",
+        label: "Temperatura a 2 metro de la superficie"
+    },
+    {
+        key: "anor",
+        label: "Ángulo de la orografía a escala subcuadrícula"
+    },
+    {
+        key: "isor",
+        label: "Anisotropía de la orografía a escala subcuadrícula"
+    },
+    {
+        key: "z",
+        label: "Geopotencial"
+    },
+    {
+        key: "z_surface",
+        label: "Geopotencial en la superficie"
+    },
+    {
+        key: "cvh",
+        label: "Covertura de vegetación alta"
+    },
+    {
+        key: "tvh",
+        label: "Tipo de vegetación alta"
+    },
+    {
+        key: "cl",
+        label: "Covertura de lagos"
+    },
+    {
+        key: "lsm",
+        label: "Segmentación entre tierra y mar"
+    },
+    {
+        key: "msl",
+        label: "Presión media a nivel del mar"
+    },
+    {
+        key: "siconc",
+        label: "Covertura de hielo en el mar"
+    },
+    {
+        key: "sst",
+        label: "Temperatura en la superfice del mar"
+    },
+    {
+        key: "slor",
+        label: "Pendiente de la orografía"
+    },
+    {
+        key: "slt",
+        label: "Tipo de suelo"
+    },
+    {
+        key: "q",
+        label: "Humedad específica"
+    },
+    {
+        key: "sdfor",
+        label: "Desviación estándar de la orografía filtrada"
+    },
+    {
+        key: "sdor",
+        label: "Desviación estándar de la orografía"
+    },
+    {
+        key: "sp",
+        label: "Presión en la superficie"
+    },
+    {
+        key: "tisr",
+        label: "Radiación solar incidente"
+    },
+    {
+        key: "tcc",
+        label: "Covertura total de nubes"
+    },
+    {
+        key: "w",
+        label: "Velocidad vertical en la atmósfera"
+    }
+];
+
+})()),
 "[project]/components/Sidebar/Sidebar.tsx [app-client] (ecmascript)": (function({ r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_import__, s: __turbopack_esm__, v: __turbopack_export_value__, n: __turbopack_export_namespace__, c: __turbopack_cache__, M: __turbopack_modules__, l: __turbopack_load__, j: __turbopack_dynamic__, P: __turbopack_resolve_absolute_path__, U: __turbopack_relative_url__, R: __turbopack_resolve_module_id_path__, g: global, __dirname, k: __turbopack_refresh__, m: module, e: exports, t: require }) { !function() {
 
 
@@ -721,4 +1276,4 @@ _s(page, "OD7bBpZva5O2jO+Puf00hKivP7c=");
 })()),
 }]);
 
-//# sourceMappingURL=_205d2d._.js.map
+//# sourceMappingURL=_d4ef33._.js.map

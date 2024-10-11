@@ -670,10 +670,10 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$nextui$2d$
 ;
 ;
 function Deslizador(props) {
-    const { maximo, minimo, step, label, defaultValue, getValores, setConsulta, consultaOriginal, tipo } = props;
+    const { maximo, minimo, step, label, defaultValue, setConsulta, consultaOriginal, tipo } = props;
     const [sliderValue, setSliderValue] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])([
-        0,
-        0
+        minimo,
+        maximo
     ]);
     function configurarConsulta() {
         let newConsulta = {
@@ -712,7 +712,7 @@ function Deslizador(props) {
         onChangeEnd: (value)=>configurarConsulta()
     }, void 0, false, {
         fileName: "[project]/components/Sidebar/slider.tsx",
-        lineNumber: 54,
+        lineNumber: 55,
         columnNumber: 5
     }, this);
 }
@@ -725,27 +725,21 @@ __turbopack_esm__({
     "default": ()=>__TURBOPACK__default__export__
 });
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/next/dist/server/future/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/next/dist/server/future/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$slider$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/components/Sidebar/slider.tsx [app-ssr] (ecmascript)");
 "__TURBOPACK__ecmascript__hoisting__location__";
 ;
 ;
-;
 const OpcionesArea = (props)=>{
     const { setConsulta, consultaOriginal } = props;
-    const [valores, setValores] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("hola");
-    const getValores = (v)=>{
-        setValores(v);
-        console.log(valores);
-    };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "flex w-full flex-col gap-3",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                children: "Configuración del area del gráfico"
+                className: "flex place-content-center",
+                children: "Área de los datos"
             }, void 0, false, {
                 fileName: "[project]/components/Sidebar/opciones-area.tsx",
-                lineNumber: 22,
+                lineNumber: 15,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$slider$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -757,13 +751,12 @@ const OpcionesArea = (props)=>{
                     -34.75,
                     -34.25
                 ],
-                getValores: getValores,
                 setConsulta: setConsulta,
                 consultaOriginal: consultaOriginal,
                 tipo: "latitud"
             }, void 0, false, {
                 fileName: "[project]/components/Sidebar/opciones-area.tsx",
-                lineNumber: 23,
+                lineNumber: 17,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$slider$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -780,13 +773,13 @@ const OpcionesArea = (props)=>{
                 tipo: "longitud"
             }, void 0, false, {
                 fileName: "[project]/components/Sidebar/opciones-area.tsx",
-                lineNumber: 35,
+                lineNumber: 28,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/Sidebar/opciones-area.tsx",
-        lineNumber: 21,
+        lineNumber: 14,
         columnNumber: 5
     }, this);
 };
@@ -805,14 +798,29 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$nextui$2d$
 ;
 ;
 function SeleccionHora(props) {
-    const { desabilitado } = props;
+    const { desabilitado, setConsulta, consultaOriginal, esLimiteIni } = props;
+    const configurarConsulta = (valor)=>{
+        let tiempo = consultaOriginal.tiempo[0];
+        let result = String(valor);
+        if (result.length < 2) {
+            result = "0" + result;
+        }
+        result = tiempo.slice(0, 11) + result + ":00:00.000000000";
+        let newConsulta = {
+            ...consultaOriginal
+        };
+        newConsulta.tiempo[0] = result;
+        setConsulta(newConsulta);
+    };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$nextui$2d$org$2f$date$2d$input$2f$dist$2f$chunk$2d$2LGXQJSC$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__time_input_default__as__TimeInput$3e$__["TimeInput"], {
         isDisabled: desabilitado,
         label: "Seleccione la hora",
-        isRequired: true
+        isRequired: true,
+        granularity: "hour",
+        onChange: (value)=>configurarConsulta(value.hour)
     }, void 0, false, {
         fileName: "[project]/components/Sidebar/time-input.tsx",
-        lineNumber: 12,
+        lineNumber: 30,
         columnNumber: 5
     }, this);
 }
@@ -825,45 +833,84 @@ __turbopack_esm__({
     "default": ()=>__TURBOPACK__default__export__
 });
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/next/dist/server/future/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/next/dist/server/future/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$time$2d$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/components/Sidebar/time-input.tsx [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$nextui$2d$org$2f$date$2d$picker$2f$dist$2f$chunk$2d$RUXXUVWM$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__date_picker_default__as__DatePicker$3e$__ = __turbopack_import__("[project]/node_modules/@nextui-org/date-picker/dist/chunk-RUXXUVWM.mjs [app-ssr] (ecmascript) <export date_picker_default as DatePicker>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/components/Sidebar/select.tsx [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$fecha$2d$rango$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/components/Sidebar/fecha-rango.tsx [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$seleccion$2d$fecha$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/components/Sidebar/seleccion-fecha.tsx [app-ssr] (ecmascript)");
 "__TURBOPACK__ecmascript__hoisting__location__";
 ;
 ;
 ;
+;
+;
+;
 const OpcionesTiempo = (props)=>{
-    const { desabilitado } = props;
+    const { setConsulta, desabilitado, consultaOriginal } = props;
+    const [tipoGrafico, setTipoGrafico] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
+    const handleSelect = (key)=>{
+        setTipoGrafico(key);
+    };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "flex flex-col gap-3 w-full",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                children: "Selección del momento de los datos"
+                className: "flex place-content-center",
+                children: "Tipo de gráfico"
             }, void 0, false, {
                 fileName: "[project]/components/Sidebar/opciones-tiempo.tsx",
-                lineNumber: 15,
+                lineNumber: 26,
                 columnNumber: 7
             }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$nextui$2d$org$2f$date$2d$picker$2f$dist$2f$chunk$2d$RUXXUVWM$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__date_picker_default__as__DatePicker$3e$__["DatePicker"], {
-                isRequired: true,
-                isDisabled: desabilitado,
-                label: "Escoja una fecha",
-                className: "flex w-full"
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
+                elementos: [
+                    {
+                        key: "0",
+                        label: "Mapa de calor"
+                    },
+                    {
+                        key: "1",
+                        label: "Serie de tiempo"
+                    }
+                ],
+                titulo: "Gráfico",
+                explicacion: "Seleccione el tipo de gráfico",
+                desabilitado: desabilitado,
+                onSelect: handleSelect
             }, void 0, false, {
                 fileName: "[project]/components/Sidebar/opciones-tiempo.tsx",
-                lineNumber: 16,
+                lineNumber: 28,
                 columnNumber: 7
             }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$time$2d$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
+            tipoGrafico == "0" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$seleccion$2d$fecha$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
+                setConsulta: setConsulta,
+                consultaOriginal: consultaOriginal,
                 desabilitado: desabilitado
             }, void 0, false, {
                 fileName: "[project]/components/Sidebar/opciones-tiempo.tsx",
-                lineNumber: 23,
-                columnNumber: 7
-            }, this)
+                lineNumber: 40,
+                columnNumber: 9
+            }, this) : null,
+            tipoGrafico == "0" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$time$2d$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
+                setConsulta: setConsulta,
+                consultaOriginal: consultaOriginal,
+                desabilitado: desabilitado
+            }, void 0, false, {
+                fileName: "[project]/components/Sidebar/opciones-tiempo.tsx",
+                lineNumber: 48,
+                columnNumber: 9
+            }, this) : null,
+            tipoGrafico == "1" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$fecha$2d$rango$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
+                setConsulta: setConsulta
+            }, void 0, false, {
+                fileName: "[project]/components/Sidebar/opciones-tiempo.tsx",
+                lineNumber: 55,
+                columnNumber: 29
+            }, this) : null
         ]
     }, void 0, true, {
         fileName: "[project]/components/Sidebar/opciones-tiempo.tsx",
-        lineNumber: 14,
+        lineNumber: 25,
         columnNumber: 5
     }, this);
 };
@@ -901,24 +948,26 @@ function Boton(props) {
 "use strict";
 
 __turbopack_esm__({
-    "variables2": ()=>variables2
+    "variables": ()=>variables
 });
-const variables2 = [
+const variables = [
     {
-        key: "u10",
+        key: "u",
         label: "Velocidad del viento"
     },
-    /*{
-  key: "u", // "v" 
-  label: "Componente del viento", // U/V
-},*/ {
-        key: "t2m",
+    {
+        key: "u10",
+        label: "Velocidad del viento a 10 metros de la superficie"
+    },
+    {
+        key: "t",
         label: "Temperatura"
     },
-    /*{
-  key: "t",
-  label: "Temperatura en la superficie",
-},*/ {
+    {
+        key: "t2m",
+        label: "Temperatura a 2 metro de la superficie"
+    },
+    {
         key: "anor",
         label: "Ángulo de la orografía a escala subcuadrícula"
     },
@@ -931,7 +980,7 @@ const variables2 = [
         label: "Geopotencial"
     },
     {
-        key: "z",
+        key: "z_surface",
         label: "Geopotencial en la superficie"
     },
     {
@@ -939,12 +988,12 @@ const variables2 = [
         label: "Covertura de vegetación alta"
     },
     {
-        key: "cl",
-        label: "Covertura de lagos"
+        key: "tvh",
+        label: "Tipo de vegetación alta"
     },
     {
-        key: "dl",
-        label: "Profundidad del lago"
+        key: "cl",
+        label: "Covertura de lagos"
     },
     {
         key: "lsm",
@@ -995,384 +1044,16 @@ const variables2 = [
         label: "Covertura total de nubes"
     },
     {
-        key: "tvh",
-        label: "Tipo de vegetación alta"
-    },
-    {
-        key: "swvl1",
-        label: "Contenido volumétrico de agua"
+        key: "w",
+        label: "Velocidad vertical en la atmósfera"
     }
 ];
 
 })()),
-"[project]/components/Sidebar/Sidebar.tsx [app-ssr] (ecmascript)": (({ r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_import__, s: __turbopack_esm__, v: __turbopack_export_value__, n: __turbopack_export_namespace__, c: __turbopack_cache__, M: __turbopack_modules__, l: __turbopack_load__, j: __turbopack_dynamic__, P: __turbopack_resolve_absolute_path__, U: __turbopack_relative_url__, R: __turbopack_resolve_module_id_path__, g: global, __dirname, x: __turbopack_external_require__, y: __turbopack_external_import__ }) => (() => {
-"use strict";
+"[project]/components/Sidebar/Sidebar.tsx [app-ssr] (ecmascript)": (function({ r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_import__, s: __turbopack_esm__, v: __turbopack_export_value__, n: __turbopack_export_namespace__, c: __turbopack_cache__, M: __turbopack_modules__, l: __turbopack_load__, j: __turbopack_dynamic__, P: __turbopack_resolve_absolute_path__, U: __turbopack_relative_url__, R: __turbopack_resolve_module_id_path__, g: global, __dirname, x: __turbopack_external_require__, y: __turbopack_external_import__, m: module, e: exports, t: require }) { !function() {
 
-__turbopack_esm__({
-    "default": ()=>__TURBOPACK__default__export__
-});
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/next/dist/server/future/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/next/dist/server/future/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/components/Sidebar/select.tsx [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$opciones$2d$area$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/components/Sidebar/opciones-area.tsx [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$opciones$2d$tiempo$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/components/Sidebar/opciones-tiempo.tsx [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$boton$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/components/Sidebar/boton.tsx [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$variables$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/config/variables.ts [app-ssr] (ecmascript)");
-"__TURBOPACK__ecmascript__hoisting__location__";
-;
-;
-;
-;
-;
-;
-;
-const Sidebar = ()=>{
-    const [variableSeleccionada, setvariableSeleccionada] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
-    const [desabilitarTiempo, setDesabilitarTiempo] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(true);
-    const [consulta, setConsulta] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])({
-        variable: "",
-        latitud: [
-            0,
-            0
-        ],
-        longitud: [
-            0,
-            0
-        ],
-        imagen: true
-    });
-    const [isModalOpen, setIsModalOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
-    const [isMobile, setIsMobile] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
-    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
-        const handleResize = ()=>{
-            setIsMobile(window.innerWidth <= 768);
-        };
-        window.addEventListener("resize", handleResize);
-        handleResize();
-        return ()=>window.removeEventListener("resize", handleResize);
-    }, []);
-    const handleSelect = (key)=>{
-        const newConsulta = {
-            ...consulta
-        };
-        newConsulta.variable = key;
-        setConsulta(newConsulta);
-        setvariableSeleccionada(key);
-        key === "u10" || key === "t2m" ? setDesabilitarTiempo(false) : setDesabilitarTiempo(true);
-        if (key === "anor") {
-            setDesabilitarTiempo(true);
-        }
-    };
-    const componenteViento = [
-        {
-            key: "0",
-            label: "U (Este - Oeste)"
-        },
-        {
-            key: "1",
-            label: "V (Norte - Sur)"
-        }
-    ];
-    const nivelViento = [
-        {
-            key: "0",
-            label: "A 10 metros sobre la superficie"
-        },
-        {
-            key: "1",
-            label: "otro nivel 1"
-        },
-        {
-            key: "2",
-            label: "otro nivel 2"
-        },
-        {
-            key: "3",
-            label: "..."
-        }
-    ];
-    const nivelTemperatura = [
-        {
-            key: "0",
-            label: "A 2 metros sobre la superficie"
-        },
-        {
-            key: "1",
-            label: "otro nivel 1"
-        },
-        {
-            key: "2",
-            label: "otro nivel 2"
-        },
-        {
-            key: "3",
-            label: "..."
-        }
-    ];
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        children: isMobile ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
-            children: [
-                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                    onClick: ()=>setIsModalOpen(true),
-                    className: "bg-blue-500 text-white p-2 rounded-md",
-                    children: "Abrir Configuración"
-                }, void 0, false, {
-                    fileName: "[project]/components/Sidebar/Sidebar.tsx",
-                    lineNumber: 68,
-                    columnNumber: 11
-                }, this),
-                isModalOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4",
-                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "bg-white w-full max-w-lg p-6 rounded-lg shadow-lg overflow-y-auto max-h-full",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex justify-between items-center",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                        className: "text-xl font-bold",
-                                        children: "Configuración del gráfico"
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/Sidebar/Sidebar.tsx",
-                                        lineNumber: 80,
-                                        columnNumber: 19
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                        onClick: ()=>setIsModalOpen(false),
-                                        className: "text-gray-600 hover:text-gray-800",
-                                        children: "X"
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/Sidebar/Sidebar.tsx",
-                                        lineNumber: 81,
-                                        columnNumber: 19
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/components/Sidebar/Sidebar.tsx",
-                                lineNumber: 79,
-                                columnNumber: 17
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex flex-col gap-3 mt-4",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                        titulo: "Variable",
-                                        explicacion: "Elija la variable que desea graficar",
-                                        elementos: __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$variables$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["variables2"],
-                                        onSelect: handleSelect
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/Sidebar/Sidebar.tsx",
-                                        lineNumber: 90,
-                                        columnNumber: 19
-                                    }, this),
-                                    variableSeleccionada === "u10" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                                titulo: "Componente del viento",
-                                                explicacion: "Elija el componente del viento",
-                                                elementos: componenteViento
-                                            }, void 0, false, {
-                                                fileName: "[project]/components/Sidebar/Sidebar.tsx",
-                                                lineNumber: 99,
-                                                columnNumber: 23
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                                titulo: "Altura de los datos",
-                                                explicacion: "Elija la altura de los datos",
-                                                elementos: nivelViento
-                                            }, void 0, false, {
-                                                fileName: "[project]/components/Sidebar/Sidebar.tsx",
-                                                lineNumber: 104,
-                                                columnNumber: 23
-                                            }, this)
-                                        ]
-                                    }, void 0, true),
-                                    variableSeleccionada === "t2m" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                        titulo: "Altura de los datos",
-                                        explicacion: "Elija la altura de los datos",
-                                        elementos: nivelTemperatura
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/Sidebar/Sidebar.tsx",
-                                        lineNumber: 113,
-                                        columnNumber: 21
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$opciones$2d$area$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                        setConsulta: setConsulta,
-                                        consultaOriginal: consulta
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/Sidebar/Sidebar.tsx",
-                                        lineNumber: 120,
-                                        columnNumber: 19
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$opciones$2d$tiempo$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                        desabilitado: desabilitarTiempo
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/Sidebar/Sidebar.tsx",
-                                        lineNumber: 121,
-                                        columnNumber: 19
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/components/Sidebar/Sidebar.tsx",
-                                lineNumber: 89,
-                                columnNumber: 17
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex justify-end gap-3 mt-4",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                        onClick: ()=>setIsModalOpen(false),
-                                        className: "bg-gray-300 p-2 rounded-md",
-                                        children: "Cerrar"
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/Sidebar/Sidebar.tsx",
-                                        lineNumber: 125,
-                                        columnNumber: 19
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$boton$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                        texto: "Graficar",
-                                        funcion: ()=>console.log([
-                                                consulta
-                                            ])
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/Sidebar/Sidebar.tsx",
-                                        lineNumber: 131,
-                                        columnNumber: 19
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/components/Sidebar/Sidebar.tsx",
-                                lineNumber: 124,
-                                columnNumber: 17
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/components/Sidebar/Sidebar.tsx",
-                        lineNumber: 78,
-                        columnNumber: 15
-                    }, this)
-                }, void 0, false, {
-                    fileName: "[project]/components/Sidebar/Sidebar.tsx",
-                    lineNumber: 77,
-                    columnNumber: 13
-                }, this)
-            ]
-        }, void 0, true) : // Barra lateral completa para pantallas más grandes
-        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "flex flex-col gap-12 p-6 w-full max-w-sm lg:max-w-md shadow-md",
-            children: [
-                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "flex flex-col gap-3",
-                    children: [
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                            className: "text-center text-lg",
-                            children: "Configuración del gráfico"
-                        }, void 0, false, {
-                            fileName: "[project]/components/Sidebar/Sidebar.tsx",
-                            lineNumber: 141,
-                            columnNumber: 13
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("hr", {}, void 0, false, {
-                            fileName: "[project]/components/Sidebar/Sidebar.tsx",
-                            lineNumber: 142,
-                            columnNumber: 13
-                        }, this)
-                    ]
-                }, void 0, true, {
-                    fileName: "[project]/components/Sidebar/Sidebar.tsx",
-                    lineNumber: 140,
-                    columnNumber: 11
-                }, this),
-                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "flex flex-col gap-3 w-full",
-                    children: [
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                            titulo: "Variable",
-                            explicacion: "Elija la variable que desea graficar",
-                            elementos: __TURBOPACK__imported__module__$5b$project$5d2f$config$2f$variables$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["variables2"],
-                            onSelect: handleSelect
-                        }, void 0, false, {
-                            fileName: "[project]/components/Sidebar/Sidebar.tsx",
-                            lineNumber: 146,
-                            columnNumber: 13
-                        }, this),
-                        variableSeleccionada === "u10" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                    titulo: "Componente del viento",
-                                    explicacion: "Elija el componente del viento",
-                                    elementos: componenteViento
-                                }, void 0, false, {
-                                    fileName: "[project]/components/Sidebar/Sidebar.tsx",
-                                    lineNumber: 155,
-                                    columnNumber: 17
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                    titulo: "Altura de los datos",
-                                    explicacion: "Elija la altura de los datos",
-                                    elementos: nivelViento
-                                }, void 0, false, {
-                                    fileName: "[project]/components/Sidebar/Sidebar.tsx",
-                                    lineNumber: 160,
-                                    columnNumber: 17
-                                }, this)
-                            ]
-                        }, void 0, true),
-                        variableSeleccionada === "t2m" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                            titulo: "Altura de los datos",
-                            explicacion: "Elija la altura de los datos",
-                            elementos: nivelTemperatura
-                        }, void 0, false, {
-                            fileName: "[project]/components/Sidebar/Sidebar.tsx",
-                            lineNumber: 169,
-                            columnNumber: 15
-                        }, this)
-                    ]
-                }, void 0, true, {
-                    fileName: "[project]/components/Sidebar/Sidebar.tsx",
-                    lineNumber: 145,
-                    columnNumber: 11
-                }, this),
-                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$opciones$2d$area$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                    setConsulta: setConsulta,
-                    consultaOriginal: consulta
-                }, void 0, false, {
-                    fileName: "[project]/components/Sidebar/Sidebar.tsx",
-                    lineNumber: 177,
-                    columnNumber: 11
-                }, this),
-                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$opciones$2d$tiempo$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                    desabilitado: desabilitarTiempo
-                }, void 0, false, {
-                    fileName: "[project]/components/Sidebar/Sidebar.tsx",
-                    lineNumber: 178,
-                    columnNumber: 11
-                }, this),
-                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Sidebar$2f$boton$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                    texto: "Graficar",
-                    funcion: ()=>console.log([
-                            consulta
-                        ])
-                }, void 0, false, {
-                    fileName: "[project]/components/Sidebar/Sidebar.tsx",
-                    lineNumber: 180,
-                    columnNumber: 11
-                }, this)
-            ]
-        }, void 0, true, {
-            fileName: "[project]/components/Sidebar/Sidebar.tsx",
-            lineNumber: 139,
-            columnNumber: 9
-        }, this)
-    }, void 0, false, {
-        fileName: "[project]/components/Sidebar/Sidebar.tsx",
-        lineNumber: 65,
-        columnNumber: 5
-    }, this);
-};
-const __TURBOPACK__default__export__ = Sidebar;
 
-})()),
+}.call(this) }),
 "[project]/app/visualizer/page.tsx [app-ssr] (ecmascript)": (({ r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_import__, s: __turbopack_esm__, v: __turbopack_export_value__, n: __turbopack_export_namespace__, c: __turbopack_cache__, M: __turbopack_modules__, l: __turbopack_load__, j: __turbopack_dynamic__, P: __turbopack_resolve_absolute_path__, U: __turbopack_relative_url__, R: __turbopack_resolve_module_id_path__, g: global, __dirname, x: __turbopack_external_require__, y: __turbopack_external_import__ }) => (() => {
 "use strict";
 
