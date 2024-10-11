@@ -33,6 +33,7 @@ export default function About() {
           main_text="Estudiante de Ingeniería civil en Computación." 
           bottom_text="Universidad de O'Higgins."
           color="rojo"
+          link_ref="https://www.linkedin.com/in/nicol%C3%A1s-mu%C3%B1oz-sanchez-44824228b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
         />
         <CardMember
           nombre="Bayron Astudillo"
@@ -40,6 +41,7 @@ export default function About() {
           main_text="Estudiante de Ingeniería civil en Computación." 
           bottom_text="Universidad de O'Higgins."
           color="morado"
+          link_ref="https://www.linkedin.com/in/bayron-astudillo-7a446128a/"
         />
       </section>
       </div>
