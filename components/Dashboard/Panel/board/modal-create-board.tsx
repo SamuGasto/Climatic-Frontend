@@ -9,6 +9,7 @@ import {
   ModalFooter,
   ModalHeader,
 } from "@nextui-org/react";
+import { useTheme } from "next-themes";
 import React, { useState } from "react";
 
 interface PropType {
@@ -20,7 +21,7 @@ function ModalCreateBoard(props: PropType) {
   const { addNewBoard } = useBoardStore.getState();
   const { ModalCreateBoard, toggleModalCreateBoard } = useModalStore.getState();
   const [title, setTitle] = useState("");
-
+  const actualTheme = useTheme();
   function ReadyButtonFunction() {
     if (title.trim() === "") addNewBoard("Nuevo Tablero");
     else addNewBoard(title);
@@ -71,6 +72,7 @@ function ModalCreateBoard(props: PropType) {
               onPress={() => {
                 ReadyButtonFunction();
               }}
+              variant={actualTheme.theme === "light" ? "bordered" : "solid"}
             >
               Listo
             </Button>

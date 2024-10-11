@@ -44,8 +44,9 @@ export default function Footer() {
                 href="https://cloud.google.com/storage/docs/public-datasets/era5?hl=es-419"
                 color="foreground"
                 className="text-gray-400 hover:text-white transition-colors inline-block"
+                legacyBehavior
               >
-                Datos de ERA5
+                <a target="_blank">Datos de ERA5</a>
               </Link>
             </div>
             <div>
@@ -53,8 +54,9 @@ export default function Footer() {
                 href="https://cl.linkedin.com/in/ra%C3%BAl-valenzuela-ruiz-5b9b05257"
                 color="foreground"
                 className="text-gray-400 hover:text-white transition-colors inline-block"
+                legacyBehavior
               >
-                Cliente: Raúl Valenzuela
+                <a target="_blank">Cliente: Raúl Valenzuela</a>
               </Link>
             </div>
           </div>

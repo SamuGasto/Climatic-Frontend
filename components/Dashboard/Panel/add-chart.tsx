@@ -1,6 +1,7 @@
 import { AddChartIcon } from "@/components/icons";
 import useModalStore from "@/utils/Stores/modalStore";
 import { Button } from "@nextui-org/button";
+import { useTheme } from "next-themes";
 import React from "react";
 
 interface PropType {
@@ -10,6 +11,8 @@ interface PropType {
 function ButtonAddChart(props: PropType) {
   const { refresh } = props;
   const { toggleModalCreateChart } = useModalStore.getState();
+
+  const actualTheme = useTheme();
   return (
     <div className="flex self-center mr-5">
       <Button
@@ -19,6 +22,7 @@ function ButtonAddChart(props: PropType) {
           toggleModalCreateChart(true);
           refresh();
         }}
+        variant={actualTheme.theme === "light" ? "bordered" : "solid"}
       >
         <div className="flex flex-row items-center gap-3 p-2">
           <AddChartIcon width={28} />
