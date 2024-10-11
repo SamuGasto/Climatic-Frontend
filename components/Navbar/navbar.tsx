@@ -11,9 +11,9 @@ import {
 } from "@nextui-org/react";
 import { ThemeSwitch } from "../theme-switch";
 import { usePathname } from "next/navigation";
-import { FaBars, FaTimes } from "react-icons/fa";
 import Sidebar from "@/components/Dashboard/Sidebar/sidebar";
 import { useTheme } from "next-themes";
+import { CloseIcon, MenuHamburgerIcon } from "../icons";
 
 export default function NavbarComponent() {
   const pathname = usePathname();
@@ -63,8 +63,17 @@ export default function NavbarComponent() {
 
         {/* Botón hamburguesa */}
         <div className="sm:hidden flex items-center z-50">
-          <Button color="primary" variant={actualTheme.theme === "light" ? "bordered" : "solid"} onClick={toggleMenu} size="sm">
-            {isOpen ? <FaTimes size={15} /> : <FaBars size={15} />}
+          <Button
+            color="primary"
+            variant="solid"
+            onClick={toggleMenu}
+            size="sm"
+          >
+            {!isOpen ? (
+              <MenuHamburgerIcon width={15} />
+            ) : (
+              <CloseIcon width={15} />
+            )}
           </Button>
         </div>
 
@@ -130,7 +139,9 @@ export default function NavbarComponent() {
             className={`text-xl mb-1 relative ${
               isActive("/visualizer") ? "underline underline-offset-4" : ""
             }`}
-            style={isActive("/visualizer") ? { textDecorationColor: "#5B9279" } : {}}
+            style={
+              isActive("/visualizer") ? { textDecorationColor: "#5B9279" } : {}
+            }
             color="foreground"
             href="/visualizer"
             onClick={toggleMenu}

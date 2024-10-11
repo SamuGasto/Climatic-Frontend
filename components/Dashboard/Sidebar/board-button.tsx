@@ -58,7 +58,7 @@ function BoardButton(props: PropType) {
 
       <Button
         className="w-44 text-center"
-        variant={active ? "bordered" : "light"}
+        variant={active ? "solid" : "light"}
         color="primary"
         onClick={() => {
           selectBoard(id);
@@ -66,7 +66,9 @@ function BoardButton(props: PropType) {
           refresh();
         }}
       >
-        <h1 className="w-full text-center text-pretty truncate">{board.name}</h1>
+        <h1 className="w-full text-center text-pretty truncate">
+          {board.name}
+        </h1>
       </Button>
 
       {active && (

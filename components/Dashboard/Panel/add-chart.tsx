@@ -12,9 +12,8 @@ function ButtonAddChart(props: PropType) {
   const { refresh } = props;
   const { toggleModalCreateChart } = useModalStore.getState();
 
-  const actualTheme = useTheme();
   return (
-    <div className="flex md:self-center self-start mr-5">
+    <div className="flex md:self-center mr-5">
       <Button
         size="lg"
         color="primary"
@@ -22,9 +21,9 @@ function ButtonAddChart(props: PropType) {
           toggleModalCreateChart(true);
           refresh();
         }}
-        variant={actualTheme.theme === "light" ? "bordered" : "solid"}
+        variant="solid"
       >
-        <div className="flex flex-row items-center gap-3 p-2">
+        <div className="flex w-full flex-row items-center gap-3 p-2">
           <AddChartIcon width={28} />
           <h1>Nuevo Gráfico</h1>
         </div>

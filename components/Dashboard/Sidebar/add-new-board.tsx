@@ -21,7 +21,7 @@ function ButtonAddBoard(props: PropType) {
           toggleModalCreateBoard(true);
           refresh();
         }}
-        variant={actualTheme.theme === "light" ? "bordered" : "solid"}
+        variant="solid"
       >
         <PlusIcon width={24} className="mr-2" />
         Nuevo tablero

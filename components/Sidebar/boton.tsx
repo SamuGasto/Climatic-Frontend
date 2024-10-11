@@ -9,14 +9,13 @@ type Props = {
 
 export default function Boton(props: Props) {
   const { texto, funcion } = props;
-  const actualTheme = useTheme();
   return (
     <Button
       color="primary"
       fullWidth={false}
       onClick={funcion}
       className="flex flex-shrink-0"
-      variant={actualTheme.theme === "light" ? "bordered" : "solid"}
+      variant="solid"
     >
       {texto}
     </Button>
