@@ -14,7 +14,7 @@ function ButtonAddChart(props: PropType) {
 
   const actualTheme = useTheme();
   return (
-    <div className="flex self-center mr-5">
+    <div className="flex md:self-center self-start mr-5">
       <Button
         size="lg"
         color="primary"

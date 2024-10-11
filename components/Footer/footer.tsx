@@ -14,7 +14,7 @@ export default function Footer() {
             <h4 className="text-lg font-semibold mt-2 text-white">Di-Dema</h4>
             <p className="text-sm text-gray-400">Climatic App</p>
           </div>
-          <div className="flex flex-col ">
+          <div className="flex flex-col">
             <h5 className="text-lg font-semibold mb-2 text-white">Sitemap</h5>
             <div>
               <Link

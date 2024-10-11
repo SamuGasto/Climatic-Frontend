@@ -66,7 +66,7 @@ function BoardButton(props: PropType) {
           refresh();
         }}
       >
-        <h1 className="w-full text-center text-pretty">{board.name}</h1>
+        <h1 className="w-full text-center text-pretty truncate">{board.name}</h1>
       </Button>
 
       {active && (
