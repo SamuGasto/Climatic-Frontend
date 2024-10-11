@@ -9,7 +9,6 @@ type Props = {
   minimo: number;
   maximo: number;
   defaultValue: number[];
-  getValores?: (valores: string) => void;
   setConsulta: (consulta: Consulta) => void;
   consultaOriginal: Consulta;
   tipo: "latitud" | "longitud";
@@ -22,13 +21,15 @@ export default function Deslizador(props: Props) {
     step,
     label,
     defaultValue,
-    getValores,
     setConsulta,
     consultaOriginal,
     tipo,
   } = props;
 
-  const [sliderValue, setSliderValue] = useState<number | number[]>([0, 0]);
+  const [sliderValue, setSliderValue] = useState<number | number[]>([
+    minimo,
+    maximo,
+  ]);
 
   function configurarConsulta() {
     let newConsulta = { ...consultaOriginal };

@@ -3,57 +3,88 @@ import Desplegable from "@/components/Sidebar/select";
 import OpcionesArea from "@/components/Sidebar/opciones-area";
 import OpcionesTiempo from "@/components/Sidebar/opciones-tiempo";
 import Boton from "@/components/Sidebar/boton";
-import { variables2 } from "@/config/variables";
+import Slider2 from "./slider2";
+
+import { variables } from "@/config/variables";
 import { Consulta } from "@/types/consulta";
+import { varConAltura } from "@/config/var_con_altura";
+import { componentes } from "@/config/componente";
+import { varComponente } from "@/config/var_componente";
+import { varConTiempo } from "@/config/var_con_tiempo";
 
+//Al elegir var con el Enter, no se actualiza
 const Sidebar = () => {
-  const componenteViento = [
-    {
-      key: "0",
-      label: "U (Este - Oeste)",
-    },
-    {
-      key: "1",
-      label: "V (Norte - Sur)",
-    },
-  ];
-
-  const nivelViento = [
-    { key: "0", label: "A 10 metros sobre la superficie" },
-    { key: "1", label: "otro nivel 1" },
-    { key: "2", label: "otro nivel 2" },
-    { key: "3", label: "..." },
-  ];
-
-  const nivelTemperatura = [
-    { key: "0", label: "A 2 metros sobre la superficie" },
-    { key: "1", label: "otro nivel 1" },
-    { key: "2", label: "otro nivel 2" },
-    { key: "3", label: "..." },
-  ];
-
-  const [variableSeleccionada, setvariableSeleccionada] = useState("");
-  const [desabilitarTiempo, setDesabilitarTiempo] = useState(true);
+  const [hayAltura, sethayAltura] = useState(false);
+  const [hayComponente, sethayComponente] = useState(false);
+  const [componente, setcomponente] = useState("");
+  const [hayTiempo, setHayTiempo] = useState(false);
   const [consulta, setConsulta] = useState<Consulta>({
     variable: "",
-    latitud: [0, 0],
-    longitud: [0, 0],
+    latitud: [-34.75, -34.25],
+    longitud: [108.25, 109],
+    tiempo: ["2021-12-31T23:00:00.000000000", "2021-12-31T23:00:00.000000000"],
+    altura: 1,
+    esMapaCalor: true,
   });
 
   const handleSelect = (key: string) => {
+    if (varComponente.includes(key)) {
+      //console.log("AGREGAR CAMBIAR COMPONENTE");
+
+      definirVariable(key, componente);
+    }
+
     const newConsulta = { ...consulta };
     newConsulta.variable = key;
     setConsulta(newConsulta);
 
-    setvariableSeleccionada(key);
     {
-      key == "u10" || key == "t2m"
-        ? setDesabilitarTiempo(false)
-        : setDesabilitarTiempo(true);
+      varConAltura.includes(newConsulta.variable)
+        ? sethayAltura(true)
+        : sethayAltura(false);
     }
-    if (key == "anor") {
-      setDesabilitarTiempo(true);
+
+    {
+      varComponente.includes(newConsulta.variable)
+        ? sethayComponente(true)
+        : sethayComponente(false);
     }
+
+    {
+      varConTiempo.includes(newConsulta.variable)
+        ? setHayTiempo(true)
+        : setHayTiempo(false);
+    }
+  };
+
+  const handleComponente = (key: string) => {
+    setcomponente(key);
+    definirVariable(consulta.variable, key);
+  };
+
+  const definirVariable = (variable: string, componente: string) => {
+    let newConsulta = { ...consulta };
+    let resultado = "";
+
+    switch (variable) {
+      case "u":
+        if (componente === "u") {
+          resultado = "u";
+        } else {
+          resultado = "v";
+        }
+        break;
+      case "u10":
+        if (componente === "u") {
+          resultado = "u10";
+        } else {
+          resultado = "v10";
+        }
+        break;
+    }
+    newConsulta.variable = resultado;
+
+    setConsulta(newConsulta);
   };
 
   return (
@@ -67,42 +98,35 @@ const Sidebar = () => {
         <Desplegable
           titulo="Variable"
           explicacion="Elija la variable que desea graficar"
-          elementos={variables2}
+          elementos={variables}
           onSelect={handleSelect}
         />
 
-        {variableSeleccionada == "u10" ? (
+        {hayAltura ? (
+          <Slider2 setConsulta={setConsulta} consultaOriginal={consulta} />
+        ) : null}
+
+        {hayComponente ? (
           <Desplegable
             titulo="Componente del viento"
             explicacion="Elija el componente del viento"
-            elementos={componenteViento}
-          />
-        ) : null}
-
-        {variableSeleccionada == "u10" ? (
-          <Desplegable
-            titulo="Altura de los datos"
-            explicacion="Elija la altura de los datos"
-            elementos={nivelViento}
-          />
-        ) : null}
-
-        {variableSeleccionada == "t2m" ? (
-          <Desplegable
-            titulo="Altura de los datos"
-            explicacion="Elija la altura de los datos"
-            elementos={nivelTemperatura}
+            elementos={componentes}
+            onSelect={handleComponente}
           />
         ) : null}
       </div>
 
       <OpcionesArea setConsulta={setConsulta} consultaOriginal={consulta} />
 
-      <OpcionesTiempo desabilitado={desabilitarTiempo} />
+      <OpcionesTiempo
+        setConsulta={setConsulta}
+        consultaOriginal={consulta}
+        desabilitado={!hayTiempo}
+      />
+
       <Boton texto="Graficar" funcion={() => console.log([consulta])} />
-      <div className="flex flex-col w-full items-end">
-        
-      </div>
+
+      <div className="flex flex-col w-full items-end"></div>
     </div>
   );
 };
