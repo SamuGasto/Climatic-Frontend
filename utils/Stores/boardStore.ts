@@ -1,7 +1,12 @@
 import { Board } from "@/types/board";
 import { Chart, ChartConfig } from "@/types/chart";
 import { create } from "zustand";
-import { CreateEmpyChart } from "../GenerateChart";
+import { CreateEmptyApexChart } from "../GenerateChart";
+import { exampleData } from "@/config/test-data";
+import BackendData from "@/types/backend-data";
+import { title } from "process";
+import { subtitle } from "@/components/primitives";
+import { useChartStore } from "./chartStore";
 
 interface CounterState {
   userData: Board[];
@@ -18,15 +23,34 @@ interface CounterState {
   updateChart: (
     boardFather: Board,
     chart: Chart,
+    backendData?: BackendData,
+    typeChart?:
+      | "image"
+      | "line"
+      | "area"
+      | "bar"
+      | "pie"
+      | "donut"
+      | "radialBar"
+      | "scatter"
+      | "bubble"
+      | "heatmap"
+      | "candlestick"
+      | "boxPlot"
+      | "radar"
+      | "polarArea"
+      | "rangeBar"
+      | "rangeArea"
+      | "treemap",
     newTitle?: string,
-    newSubtitle?: string,
-    newConfig?: ChartConfig,
-    newInactiveConfig?: ChartConfig
+    newSubtitle?: string
   ) => void;
   deleteBoard: (id: number) => void;
   deleteChart: (boardFather: Board, chart: Chart) => void;
   selectBoard: (id: number) => void;
 }
+
+const { selectChart } = useChartStore.getState();
 
 export const useBoardStore = create<CounterState>((set, get) => ({
   userData: [],
@@ -49,7 +73,6 @@ export const useBoardStore = create<CounterState>((set, get) => ({
         id: 0,
         name: "Primer tablero",
         charts: [],
-        lastChartId: 0,
       };
       set((state) => ({ ...state, userData: [newBoard], id_boardSelected: 0 }));
       localStorage.setItem("UserData.data", JSON.stringify([newBoard]));
@@ -62,7 +85,6 @@ export const useBoardStore = create<CounterState>((set, get) => ({
         id: get().userData.length,
         name: name,
         charts: [],
-        lastChartId: 0,
       };
 
       const finalData = [...get().userData, newBoard];
@@ -80,14 +102,13 @@ export const useBoardStore = create<CounterState>((set, get) => ({
   },
   addNewChart: (boardFather: Board, title: string, subtitle: string) => {
     try {
-      const { Interactive, NoInteractive } = CreateEmpyChart();
-
       const newChart: Chart = {
-        id: boardFather.lastChartId + 1,
+        id: boardFather.charts.length,
         title: title,
         subtitle: subtitle,
-        config: Interactive,
-        inactiveConfig: NoInteractive,
+        active: false,
+        backendData: exampleData,
+        typeChart: "area",
       };
 
       let finalData = [...get().userData];
@@ -95,7 +116,6 @@ export const useBoardStore = create<CounterState>((set, get) => ({
       finalData.map((boardLocal) => {
         if (boardLocal.id === boardFather.id) {
           boardLocal.charts.push(newChart);
-          boardLocal.lastChartId = boardLocal.lastChartId + 1;
         }
         return boardLocal;
       });
@@ -106,18 +126,12 @@ export const useBoardStore = create<CounterState>((set, get) => ({
       console.error(error);
     }
   },
-  updateBoard: (
-    board: Board,
-    newName: string,
-    newCharts?: Chart[],
-    newLastChartId?: number
-  ) => {
+  updateBoard: (board: Board, newName: string, newCharts?: Chart[]) => {
     try {
       let newValues = board;
 
       if (newName) newValues.name = newName;
       if (newCharts) newValues.charts = newCharts;
-      if (newLastChartId) newValues.lastChartId = newLastChartId;
 
       let finalData = [...get().userData];
 
@@ -137,33 +151,53 @@ export const useBoardStore = create<CounterState>((set, get) => ({
   updateChart: (
     boardFather: Board,
     chart: Chart,
+    backendData?: BackendData,
+    typeChart?:
+      | "image"
+      | "line"
+      | "area"
+      | "bar"
+      | "pie"
+      | "donut"
+      | "radialBar"
+      | "scatter"
+      | "bubble"
+      | "heatmap"
+      | "candlestick"
+      | "boxPlot"
+      | "radar"
+      | "polarArea"
+      | "rangeBar"
+      | "rangeArea"
+      | "treemap",
     newTitle?: string,
-    newSubtitle?: string,
-    newConfig?: ChartConfig,
-    newInactiveConfig?: ChartConfig
+    newSubtitle?: string
   ) => {
     try {
-      let newValues = chart;
+      let newChart = {
+        ...chart,
+        backendData: backendData ? backendData : chart.backendData,
+        typeChart: typeChart ? typeChart : chart.typeChart,
+        title: newTitle ? newTitle : chart.title,
+        subtitle: newSubtitle ? newSubtitle : chart.subtitle,
+      };
 
-      if (newTitle) newValues.title = newTitle;
-      if (newSubtitle) newValues.subtitle = newSubtitle;
-      if (newConfig) newValues.config = newConfig;
-      if (newInactiveConfig) newValues.inactiveConfig = newInactiveConfig;
-
-      let finalData = [...get().userData];
-      finalData.map((boardLocal) => {
+      const newData = get().userData.map((boardLocal) => {
         if (boardLocal.id === boardFather.id) {
-          boardFather.charts.map((chart) => {
-            if (chart.id === newValues.id) {
-              chart = newValues;
+          const updatedCharts = boardFather.charts.map((chart) => {
+            if (chart.id === newChart.id) {
+              return newChart;
             }
+            return chart;
           });
+          return { ...boardLocal, charts: updatedCharts };
         }
         return boardLocal;
       });
 
-      set((state) => ({ ...state, userData: finalData }));
-      localStorage.setItem("UserData.data", JSON.stringify(finalData));
+      set((state) => ({ ...state, userData: newData }));
+      selectChart(newChart);
+      localStorage.setItem("UserData.data", JSON.stringify(newData));
     } catch (error) {
       console.error(error);
     }

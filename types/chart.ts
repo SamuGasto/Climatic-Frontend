@@ -1,5 +1,5 @@
 import { ApexOptions } from "apexcharts";
-import BackendData from "./data";
+import BackendData from "./backend-data";
 
 export interface Series {
   name: string;
@@ -15,14 +15,30 @@ export interface Chart {
   id: number;
   title: string;
   subtitle: string;
-  config: ChartConfig;
-  inactiveConfig: ChartConfig;
+  active: boolean;
+  backendData: BackendData;
+  typeChart:
+    | "image"
+    | "line"
+    | "area"
+    | "bar"
+    | "pie"
+    | "donut"
+    | "radialBar"
+    | "scatter"
+    | "bubble"
+    | "heatmap"
+    | "candlestick"
+    | "boxPlot"
+    | "radar"
+    | "polarArea"
+    | "rangeBar"
+    | "rangeArea"
+    | "treemap";
 }
 
 interface Props {
-  originalData: Series[];
-  visualData: Series[];
-  units: string;
+  data: Series[];
   theme: "dark" | "light";
   typeChart:
     | "line"
@@ -46,18 +62,10 @@ interface Props {
 }
 
 export function ChartConfigInteractive(props: Props): ChartConfig {
-  const {
-    originalData,
-    visualData,
-    units,
-    theme,
-    typeChart,
-    categories,
-    colors,
-  } = props;
+  const { data, theme, typeChart, categories, colors } = props;
 
-  const finalJson: ChartConfig = {
-    series: visualData,
+  return {
+    series: data,
     options: {
       chart: {
         height: "98%",
@@ -88,20 +96,7 @@ export function ChartConfigInteractive(props: Props): ChartConfig {
         },
         decimalsInFloat: 1,
       },
-      tooltip: {
-        y: {
-          formatter: (val: number, { seriesIndex, dataPointIndex }: any) => {
-            return originalData[seriesIndex].data[dataPointIndex].y
-              .toFixed(3)
-              .toString();
-          },
-          title: {
-            formatter: (seriesName: string) => {
-              return units;
-            },
-          },
-        },
-      },
+
       dataLabels: {
         enabled: false,
       },
@@ -113,13 +108,12 @@ export function ChartConfigInteractive(props: Props): ChartConfig {
       },
     },
   };
-  return finalJson;
 }
 
 export function ChartConfigNoInteractive(props: Props): ChartConfig {
-  const { originalData, visualData, typeChart, categories, colors } = props;
+  const { data, typeChart, categories, colors } = props;
   return {
-    series: visualData,
+    series: data,
     options: {
       chart: {
         height: "98%",
@@ -151,6 +145,7 @@ export function ChartConfigNoInteractive(props: Props): ChartConfig {
       dataLabels: {
         enabled: false,
       },
+      legend: { show: false },
       noData: {
         text: "Cargando...",
       },

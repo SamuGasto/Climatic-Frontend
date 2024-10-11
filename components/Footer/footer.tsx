@@ -1,6 +1,6 @@
 "use client";
 import { Image } from "@nextui-org/image";
-import {Link} from "@nextui-org/react";
+import Link from "next/link";
 import React from "react";
 
 export default function Footer() {
@@ -13,7 +13,7 @@ export default function Footer() {
             <h4 className="text-lg font-semibold mt-2 text-white">Di-Dema</h4>
             <p className="text-sm text-gray-400">Climatic App</p>
           </div>
-          <div className="flex flex-col ">
+          <div className="flex flex-col">
             <h5 className="text-lg font-semibold mb-2 text-white">Sitemap</h5>
             <div>
               <Link
@@ -41,22 +41,22 @@ export default function Footer() {
             </h5>
             <div>
               <Link
-                isExternal showAnchorIcon
                 href="https://cloud.google.com/storage/docs/public-datasets/era5?hl=es-419"
                 color="foreground"
-                className="text-gray-400 hover:text-white transition-colors"
+                className="text-gray-400 hover:text-white transition-colors inline-block"
+                legacyBehavior
               >
-                Datos de ERA5
+                <a target="_blank">Datos de ERA5</a>
               </Link>
             </div>
             <div>
               <Link
-                isExternal showAnchorIcon
                 href="https://cl.linkedin.com/in/ra%C3%BAl-valenzuela-ruiz-5b9b05257"
                 color="foreground"
-                className="text-gray-400 hover:text-white transition-colors"
+                className="text-gray-400 hover:text-white transition-colors inline-block"
+                legacyBehavior
               >
-                Cliente: Raúl Valenzuela
+                <a target="_blank">Cliente: Raúl Valenzuela</a>
               </Link>
             </div>
           </div>

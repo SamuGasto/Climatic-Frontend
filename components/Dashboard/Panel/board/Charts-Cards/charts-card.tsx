@@ -1,8 +1,8 @@
 import { Chart } from "@/types/chart";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import NoChartCard from "./no-chart";
 import NormalCard from "./normal-card";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
 interface PropType {
   refresh: () => void;
@@ -11,15 +11,16 @@ interface PropType {
 
 function ChartsCards(props: PropType) {
   const { refresh, charts } = props;
+
   return (
     <div className="flex w-full">
-      <div className="grid md:grid-cols-4 grid-cols-1 gap-6 w-full ">
+      <motion.div className="container grid grid-cols-4 gap-6 w-full">
         {charts.map((chart, index) => (
           <motion.div
             key={index}
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index / 5 }}
+            transition={{ delay: index / 8 }}
           >
             <NormalCard refresh={refresh} index={index} chart={chart} />
           </motion.div>
@@ -32,7 +33,7 @@ function ChartsCards(props: PropType) {
             <NoChartCard key={"NoCard"} refresh={refresh} />
           </motion.div>
         )}
-      </div>
+      </motion.div>
     </div>
   );
 }
