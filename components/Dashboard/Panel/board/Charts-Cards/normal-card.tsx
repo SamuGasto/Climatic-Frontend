@@ -5,7 +5,7 @@ import React from "react";
 import ChartImage from "../../chart-image";
 import { useChartStore } from "@/utils/Stores/chartStore";
 import { useRouter } from "next/navigation";
-import { BarChartOff, DeleteOutline } from "@/components/icons";
+import { BarChartOffIcon, DeleteOutlineIcon } from "@/components/icons";
 import { Button } from "@nextui-org/button";
 import { useBoardStore } from "@/utils/Stores/boardStore";
 import useModalStore from "@/utils/Stores/modalStore";
@@ -36,14 +36,14 @@ function NormalCard(props: PropType) {
         <CardHeader>
           <div className="flex flex-row w-full justify-between">
             <div
-              className="flex grow flex-col"
+              className="flex w-5/6 flex-col"
               onClick={() => {
                 selectChart(chart);
                 router.push("/visualizer");
               }}
             >
               <h1 className="text-xl font-semibold text-left">{chart.title}</h1>
-              <h1>{chart.subtitle}</h1>
+              <p className="truncate ">{chart.subtitle}</p>
             </div>
             <Button
               isIconOnly
@@ -62,7 +62,7 @@ function NormalCard(props: PropType) {
                 refresh();
               }}
             >
-              <DeleteOutline width={28} />
+              <DeleteOutlineIcon width={28} />
             </Button>
           </div>
         </CardHeader>
@@ -75,7 +75,7 @@ function NormalCard(props: PropType) {
         >
           {!chart.active ? (
             <div className="flex w-full h-full justify-center items-center">
-              <BarChartOff width={100} />
+              <BarChartOffIcon width={100} />
             </div>
           ) : (
             <div className="flex w-5/6 h-5/6 justify-center items-center">

@@ -2,7 +2,11 @@ import { Button } from "@nextui-org/button";
 import React, { useEffect, useState } from "react";
 import { useBoardStore } from "@/utils/Stores/boardStore";
 import { Board } from "@/types/board";
-import { DeleteOffOutline, DeleteOutline, Edit } from "@/components/icons";
+import {
+  DeleteOffOutlineIcon,
+  DeleteOutlineIcon,
+  EditIcon,
+} from "@/components/icons";
 import useModalStore from "@/utils/Stores/modalStore";
 
 interface PropType {
@@ -45,9 +49,9 @@ function BoardButton(props: PropType) {
           }}
         >
           {id > 0 ? (
-            <DeleteOutline width={28} />
+            <DeleteOutlineIcon width={28} />
           ) : (
-            <DeleteOffOutline width={28} />
+            <DeleteOffOutlineIcon width={28} />
           )}
         </Button>
       )}
@@ -62,7 +66,7 @@ function BoardButton(props: PropType) {
           refresh();
         }}
       >
-        <h1 className="w-full text-center text-pretty">{board.name}</h1>
+        <h1 className="w-full text-center text-pretty truncate">{board.name}</h1>
       </Button>
 
       {active && (
@@ -75,7 +79,7 @@ function BoardButton(props: PropType) {
             refresh();
           }}
         >
-          <Edit width={28} />
+          <EditIcon width={28} />
         </Button>
       )}
     </div>
