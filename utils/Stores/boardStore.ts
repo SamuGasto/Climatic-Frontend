@@ -23,6 +23,7 @@ interface CounterState {
   updateChart: (
     boardFather: Board,
     chart: Chart,
+    active: boolean,
     backendData?: BackendData,
     typeChart?:
       | "image"
@@ -151,6 +152,7 @@ export const useBoardStore = create<CounterState>((set, get) => ({
   updateChart: (
     boardFather: Board,
     chart: Chart,
+    active: boolean,
     backendData?: BackendData,
     typeChart?:
       | "image"
@@ -176,6 +178,7 @@ export const useBoardStore = create<CounterState>((set, get) => ({
     try {
       let newChart = {
         ...chart,
+        active: active,
         backendData: backendData ? backendData : chart.backendData,
         typeChart: typeChart ? typeChart : chart.typeChart,
         title: newTitle ? newTitle : chart.title,

@@ -25,7 +25,7 @@ export default function Visualizador() {
         <Divider className="" />
         {chartSelected.active ? (
           <div className="flex w-full min-h-[360px]">
-            {chartSelected.typeChart !== "image" ? (
+            {chartSelected.typeChart === "image" ? (
               <GraficoImagen />
             ) : (
               <GraficoApex />

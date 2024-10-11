@@ -26,13 +26,11 @@ function ModalCreateChart(props: PropType) {
   const actualTheme = useTheme();
 
   function ReadyButtonFunction() {
-    if (title.trim() === "")
-      addNewChart(
-        userData[id_boardSelected],
-        "Nuevo gráfico",
-        "(sin descripción)"
-      );
-    else addNewChart(userData[id_boardSelected], title, subtitle);
+    addNewChart(
+      userData[id_boardSelected],
+      title.trim() === "" ? "Nuevo gráfico" : title.trim(),
+      subtitle.trim() === "" ? "(sin descripción)" : subtitle.trim()
+    );
 
     setTitle("");
     setSubtitle("");

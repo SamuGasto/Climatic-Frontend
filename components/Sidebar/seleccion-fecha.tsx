@@ -32,6 +32,7 @@ export default function SeleccionFecha(props: Props) {
 
     let newConsulta = { ...consultaOriginal };
     newConsulta.tiempo[0] = result;
+
     setConsulta(newConsulta);
   };
 

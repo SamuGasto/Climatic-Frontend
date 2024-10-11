@@ -15,6 +15,7 @@ function Subtitulo() {
     updateChart(
       userData[id_boardSelected],
       chartSelected,
+      chartSelected.active,
       undefined,
       undefined,
       undefined,

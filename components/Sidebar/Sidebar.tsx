@@ -11,9 +11,13 @@ import { varConAltura } from "@/config/var_con_altura";
 import { componentes } from "@/config/componente";
 import { varComponente } from "@/config/var_componente";
 import { varConTiempo } from "@/config/var_con_tiempo";
+import { SendQuery } from "@/utils/QueryBackend";
+import { useChartStore } from "@/utils/Stores/chartStore";
+import { log } from "console";
 
 //Al elegir var con el Enter, no se actualiza
 const Sidebar = () => {
+  const { chartSelected } = useChartStore.getState();
   const [hayAltura, sethayAltura] = useState(false);
   const [hayComponente, sethayComponente] = useState(false);
   const [componente, setcomponente] = useState("");
@@ -22,9 +26,10 @@ const Sidebar = () => {
     variable: "",
     latitud: [-34.75, -34.25],
     longitud: [108.25, 109],
-    tiempo: ["2021-12-31T23:00:00.000000000", "2021-12-31T23:00:00.000000000"],
-    altura: 1,
-    esMapaCalor: true,
+    imagen: "true",
+    typeChart: "image",
+    tiempo: ["2021-12-31T23:00:00.000000000"],
+    altura: [1],
   });
 
   const handleSelect = (key: string) => {
@@ -124,7 +129,12 @@ const Sidebar = () => {
         desabilitado={!hayTiempo}
       />
 
-      <Boton texto="Graficar" funcion={() => console.log([consulta])} />
+      <Boton
+        texto="Graficar"
+        funcion={() => {
+          SendQuery(chartSelected, consulta);
+        }}
+      />
 
       <div className="flex flex-col w-full items-end"></div>
     </div>
