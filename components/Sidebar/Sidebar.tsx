@@ -3,43 +3,6 @@ import Desplegable from "@/components/Sidebar/select";
 import OpcionesArea from "@/components/Sidebar/opciones-area";
 import OpcionesTiempo from "@/components/Sidebar/opciones-tiempo";
 import Boton from "@/components/Sidebar/boton";
-import { variables2 } from "@/config/variables";
-import { Consulta } from "@/types/consulta";
-
-const Sidebar = () => {
-  const componenteViento = [
-    {
-      key: "0",
-      label: "U (Este - Oeste)",
-    },
-    {
-      key: "1",
-      label: "V (Norte - Sur)",
-    },
-  ];
-
-  const nivelViento = [
-    { key: "0", label: "A 10 metros sobre la superficie" },
-    { key: "1", label: "otro nivel 1" },
-    { key: "2", label: "otro nivel 2" },
-    { key: "3", label: "..." },
-  ];
-
-  const nivelTemperatura = [
-    { key: "0", label: "A 2 metros sobre la superficie" },
-    { key: "1", label: "otro nivel 1" },
-    { key: "2", label: "otro nivel 2" },
-    { key: "3", label: "..." },
-  ];
-
-  const [variableSeleccionada, setvariableSeleccionada] = useState("");
-  const [desabilitarTiempo, setDesabilitarTiempo] = useState(true);
-  const [consulta, setConsulta] = useState<Consulta>({
-    variable: "",
-    latitud: [0, 0],
-    longitud: [0, 0],
-  imagen :true});
-
 import { Consulta } from "@/types/consulta";
 import { useTheme } from "next-themes";
 import {
@@ -79,6 +42,7 @@ const Sidebar = () => {
     tiempo: ["2021-12-31T23:00:00.000000000", "2021-12-31T23:00:00.000000000"],
     altura: [1],
   });
+
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768); // Detecta si el ancho es menor que 768px (mobile)
@@ -136,23 +100,42 @@ const Sidebar = () => {
   };
 
   const handleSelect = (key: string) => {
+    if (varComponente.includes(key)) {
+      //console.log("AGREGAR CAMBIAR COMPONENTE");
+
+      definirVariable(key, componente);
+    }
+
     const newConsulta = { ...consulta };
     newConsulta.variable = key;
     setConsulta(newConsulta);
 
-    setvariableSeleccionada(key);
     {
-      key == "u10" || key == "t2m"
-        ? setDesabilitarTiempo(false)
-        : setDesabilitarTiempo(true);
+      varConAltura.includes(newConsulta.variable)
+        ? sethayAltura(true)
+        : sethayAltura(false);
     }
-    if (key == "anor") {
-      setDesabilitarTiempo(true);
+
+    {
+      varComponente.includes(newConsulta.variable)
+        ? sethayComponente(true)
+        : sethayComponente(false);
+    }
+
+    {
+      varConTiempo.includes(newConsulta.variable)
+        ? setHayTiempo(true)
+        : setHayTiempo(false);
     }
   };
 
-  return (
-    <div className="flex flex-col gap-12 p-6 w-1/3 shadow-md">
+  const handleComponente = (key: string) => {
+    setcomponente(key);
+    definirVariable(consulta.variable, key);
+  };
+
+  const sidebarContent = (
+    <div className="flex flex-col gap-12 p-6 w-full shadow-md">
       <div className="flex flex-col gap-3">
         <p className="text-center">Configuración del gráfico</p>
         <hr />
@@ -162,10 +145,9 @@ const Sidebar = () => {
         <Desplegable
           titulo="Variable"
           explicacion="Elija la variable que desea graficar"
-          elementos={variables2}
+          elementos={variables}
           onSelect={handleSelect}
         />
-        {variableSeleccionada == "u10" ? (
         {hayAltura ? (
           <Slider2 setConsulta={setConsulta} consultaOriginal={consulta} />
         ) : null}
@@ -173,32 +155,14 @@ const Sidebar = () => {
           <Desplegable
             titulo="Componente del viento"
             explicacion="Elija el componente del viento"
-            elementos={componenteViento}
-          />
-        ) : null}
-
-        {variableSeleccionada == "u10" ? (
-          <Desplegable
-            titulo="Altura de los datos"
-            explicacion="Elija la altura de los datos"
-            elementos={nivelViento}
-          />
-        ) : null}
-
-        {variableSeleccionada == "t2m" ? (
-          <Desplegable
-            titulo="Altura de los datos"
-            explicacion="Elija la altura de los datos"
-            elementos={nivelTemperatura}
+            elementos={componentes}
+            onSelect={handleComponente}
           />
         ) : null}
       </div>
 
       <OpcionesArea setConsulta={setConsulta} consultaOriginal={consulta} />
-      <OpcionesTiempo desabilitado={desabilitarTiempo} />
-      <Boton texto="Graficar" funcion={() => console.log([consulta])} />
-      <div className="flex flex-col w-full items-end">
-      </div>
+
       <OpcionesTiempo
         setConsulta={setConsulta}
         consultaOriginal={consulta}
@@ -215,6 +179,7 @@ const Sidebar = () => {
       <div className="flex flex-col w-full items-end"></div>
     </div>
   );
+
   return (
     <div className="flex w-1/3">
       {isMobile ? (

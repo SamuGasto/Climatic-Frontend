@@ -6,6 +6,7 @@ import {
   NavbarBrand,
   NavbarContent,
   NavbarItem,
+  Link
 } from "@nextui-org/react";
 import { ThemeSwitch } from "../theme-switch";
 import { usePathname } from "next/navigation";
