@@ -9,7 +9,8 @@ import {
   ModalFooter,
   ModalHeader,
 } from "@nextui-org/react";
-import React, { useState } from "react";
+import { useTheme } from "next-themes";
+import React, { useEffect, useState } from "react";
 
 interface PropType {
   refresh: () => void;
@@ -21,6 +22,11 @@ function ModalEditBoard(props: PropType) {
     useBoardStore.getState();
   const { ModalEditBoard, toggleModalEditBoard } = useModalStore.getState();
   const [title, setTitle] = useState("");
+  const actualTheme = useTheme();
+
+  useEffect(() => {
+    if (userData[id_boardSelected]) setTitle(userData[id_boardSelected].name);
+  }, [ModalEditBoard]);
 
   function ReadyButtonFunction() {
     if (title.trim() === "") addNewBoard("Nuevo Tablero");
@@ -72,6 +78,7 @@ function ModalEditBoard(props: PropType) {
               onPress={() => {
                 ReadyButtonFunction();
               }}
+              variant={actualTheme.theme === "light" ? "bordered" : "solid"}
             >
               Listo
             </Button>

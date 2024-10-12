@@ -10,6 +10,7 @@ import {
   ModalFooter,
   ModalHeader,
 } from "@nextui-org/react";
+import { useTheme } from "next-themes";
 import React, { useState } from "react";
 
 interface PropType {
@@ -22,15 +23,14 @@ function ModalCreateChart(props: PropType) {
   const { ModalCreateChart, toggleModalCreateChart } = useModalStore.getState();
   const [title, setTitle] = useState("");
   const [subtitle, setSubtitle] = useState("");
+  const actualTheme = useTheme();
 
   function ReadyButtonFunction() {
-    if (title.trim() === "")
-      addNewChart(
-        userData[id_boardSelected],
-        "Nuevo Tablero",
-        "(sin descripción)"
-      );
-    else addNewChart(userData[id_boardSelected], title, subtitle);
+    addNewChart(
+      userData[id_boardSelected],
+      title.trim() === "" ? "Nuevo gráfico" : title.trim(),
+      subtitle.trim() === "" ? "(sin descripción)" : subtitle.trim()
+    );
 
     setTitle("");
     setSubtitle("");
@@ -87,6 +87,7 @@ function ModalCreateChart(props: PropType) {
               onPress={() => {
                 ReadyButtonFunction();
               }}
+              variant={actualTheme.theme === "light" ? "bordered" : "solid"}
             >
               Listo
             </Button>

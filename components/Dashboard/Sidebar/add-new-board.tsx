@@ -1,6 +1,7 @@
-import { AddIcon } from "@/components/icons";
+import { PlusIcon } from "@/components/icons";
 import useModalStore from "@/utils/Stores/modalStore";
 import { Button } from "@nextui-org/button";
+import { useTheme } from "next-themes";
 import React from "react";
 
 interface PropType {
@@ -10,6 +11,7 @@ interface PropType {
 function ButtonAddBoard(props: PropType) {
   const { refresh } = props;
   const { toggleModalCreateBoard } = useModalStore.getState();
+  const actualTheme = useTheme();
   return (
     <div className="mt-8">
       <Button
@@ -19,8 +21,9 @@ function ButtonAddBoard(props: PropType) {
           toggleModalCreateBoard(true);
           refresh();
         }}
+        variant="solid"
       >
-        <AddIcon size={16} className="mr-2" />
+        <PlusIcon width={24} className="mr-2" />
         Nuevo tablero
       </Button>
     </div>

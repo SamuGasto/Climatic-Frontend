@@ -39,8 +39,8 @@ function BoardPanel(props: PropType) {
 
   return (
     <div className="">
-      <section className="flex flex-row w-full mb-8">
-        <div className="flex flex-col w-full gap-2 justify-items-start">
+      <section className="flex md:flex-row flex-col w-full mb-8 ">
+        <div className="flex flex-col w-full gap-2 justify-items-start mb-8 md:mb-0">
           <TitleCardBoard />
           <Search filterQuery={filterQuery} setFilterQuery={setFilterQuery} />
         </div>

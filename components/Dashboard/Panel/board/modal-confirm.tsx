@@ -9,6 +9,7 @@ import {
   ModalFooter,
   ModalHeader,
 } from "@nextui-org/react";
+import { useTheme } from "next-themes";
 import React from "react";
 
 interface PropType {
@@ -23,6 +24,7 @@ function ModalConfirm(props: PropType) {
     functionModalConfirm,
     toggleModalConfirm,
   } = useModalStore.getState();
+  const actualTheme = useTheme();
 
   function ReadyButtonFunction() {
     functionModalConfirm();
@@ -67,6 +69,7 @@ function ModalConfirm(props: PropType) {
               onPress={() => {
                 ReadyButtonFunction();
               }}
+              variant={actualTheme.theme === "light" ? "bordered" : "solid"}
             >
               Aceptar
             </Button>

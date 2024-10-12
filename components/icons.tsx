@@ -187,18 +187,6 @@ export const SearchIcon = (props: IconSvgProps) => (
   </svg>
 );
 
-export const AddIcon = (props: IconSvgProps) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    height="24px"
-    viewBox="0 -960 960 960"
-    width="24px"
-    fill="#e8eaed"
-  >
-    <path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z" />
-  </svg>
-);
-
 export const NextUILogo: React.FC<IconSvgProps> = (props) => {
   const { width, height = 40 } = props;
 
@@ -227,7 +215,21 @@ export const NextUILogo: React.FC<IconSvgProps> = (props) => {
   );
 };
 
-export function DeleteOffOutline(props: SVGProps<SVGSVGElement>) {
+export function PlusIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={props.width}
+      height={props.height}
+      viewBox="0 0 24 24"
+      {...props}
+    >
+      <path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"></path>
+    </svg>
+  );
+}
+
+export function DeleteOffOutlineIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -244,7 +246,7 @@ export function DeleteOffOutline(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-export function DeleteOutline(props: SVGProps<SVGSVGElement>) {
+export function DeleteOutlineIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -261,7 +263,7 @@ export function DeleteOutline(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-export function Edit(props: SVGProps<SVGSVGElement>) {
+export function EditIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -304,7 +306,7 @@ export function AddChartIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-export function BarChartOff(props: SVGProps<SVGSVGElement>) {
+export function BarChartOffIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -316,6 +318,64 @@ export function BarChartOff(props: SVGProps<SVGSVGElement>) {
       <path
         fill="currentColor"
         d="M4 20V9h4v11zm6 0V10l4 4v6zm4-8.85l-4-4V4h4zm6 6l-4-4V13h4zm-.225 5.475l-18.4-18.4L2.8 2.8l18.4 18.4z"
+      ></path>
+    </svg>
+  );
+}
+
+export function SaveIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={props.width}
+      height={props.height}
+      viewBox="0 0 24 24"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M3 5.75A2.75 2.75 0 0 1 5.75 3h9.965a3.25 3.25 0 0 1 2.298.952l2.035 2.035c.61.61.952 1.437.952 2.299v9.964A2.75 2.75 0 0 1 18.25 21H5.75A2.75 2.75 0 0 1 3 18.25zM5.75 4.5c-.69 0-1.25.56-1.25 1.25v12.5c0 .69.56 1.25 1.25 1.25H6v-5.25A2.25 2.25 0 0 1 8.25 12h7.5A2.25 2.25 0 0 1 18 14.25v5.25h.25c.69 0 1.25-.56 1.25-1.25V8.286c0-.465-.184-.91-.513-1.238l-2.035-2.035a1.75 1.75 0 0 0-.952-.49V7.25a2.25 2.25 0 0 1-2.25 2.25h-4.5A2.25 2.25 0 0 1 7 7.25V4.5zm10.75 15v-5.25a.75.75 0 0 0-.75-.75h-7.5a.75.75 0 0 0-.75.75v5.25zm-8-15v2.75c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75V4.5z"
+      ></path>
+    </svg>
+  );
+}
+
+export function MenuHamburgerIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={props.width}
+      height={props.height}
+      viewBox="0 0 21 21"
+      {...props}
+    >
+      <path
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M4.5 6.5h12m-12.002 4h11.997M4.5 14.5h11.995"
+      ></path>
+    </svg>
+  );
+}
+
+export function CloseIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={props.width}
+      height={props.height}
+      viewBox="0 0 32 32"
+      {...props}
+    >
+      <path
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M9 23L23 9m0 14L9 9"
       ></path>
     </svg>
   );

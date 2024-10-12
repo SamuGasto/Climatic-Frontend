@@ -5,47 +5,65 @@ import {
   Navbar,
   NavbarBrand,
   NavbarContent,
-  NavbarItem} from "@nextui-org/react";
+  NavbarItem,
+} from "@nextui-org/react";
 import { ThemeSwitch } from "../theme-switch";
 import { usePathname } from "next/navigation";
-import Link from "next/link";
+import Sidebar from "@/components/Dashboard/Sidebar/sidebar";
+import { useTheme } from "next-themes";
+import { CloseIcon, MenuHamburgerIcon } from "../icons";
 
-export default function navbar() {
+export default function NavbarComponent() {
   const pathname = usePathname();
+
   const isActive = (path: string) => pathname === path;
+
   return (
-    <Navbar className="flex w-full shadow-sm shadow-black dark:shadow-white justify-evenly">
+    <Navbar
+      className="flex w-full p-1 px-6 shadow-md dark:border-white dark:border-b-1"
+      classNames={{
+        item: [
+          "flex",
+          "relative",
+          "h-full",
+          "items-center",
+          "data-[active=true]:after:content-['']",
+          "data-[active=true]:after:absolute",
+          "data-[active=true]:after:bottom-4",
+          "data-[active=true]:after:left-0",
+          "data-[active=true]:after:right-0",
+          "data-[active=true]:after:h-[2px]",
+          "data-[active=true]:after:rounded-[2px]",
+          "data-[active=true]:after:bg-primary",
+        ],
+      }}
+      position="static"
+      maxWidth="full"
+    >
       <NavbarBrand>
-        <Link href="/">
-        <Image src="/logo2.png" width={60} height={55}/>
-        </Link>
-        <p className="font-bold text-inherit ml-3 ">CLIMATIC</p>
+        <Image src="/logo.png" width={60} height={55} />
+        <p className="font-bold text-inherit ml-3">CLIMATIC</p>
       </NavbarBrand>
-      <NavbarContent className="hidden sm:flex gap-4" justify="end">
-        <NavbarItem isActive>
+      <NavbarContent className="hidden sm:flex gap-4 " justify="end">
+        <NavbarItem isActive={isActive("/")}>
           <Link color="foreground" href="/">
             Dashboard
           </Link>
         </NavbarItem>
-        <NavbarItem>
+        <NavbarItem isActive={isActive("/visualizer")}>
           <Link color="foreground" href="/visualizer">
-            Re-Análisis
+            Re-Analisís
           </Link>
         </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="faq">
-            Preguntas frecuentes
+        <NavbarItem isActive={isActive("/questions")}>
+          <Link color="foreground" href="#" aria-current="page">
+            Preguntas Frecuentes
           </Link>
         </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="about">
-            Sobre nosotros
-          </Link>
-        </NavbarItem>
-              </NavbarContent>
-         <NavbarItem>
-          <ThemeSwitch />
-        </NavbarItem>
+      </NavbarContent>
+      <NavbarItem>
+        <ThemeSwitch />
+      </NavbarItem>
     </Navbar>
   );
 }      

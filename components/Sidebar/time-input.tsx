@@ -19,7 +19,7 @@ export default function SeleccionHora(props: Props) {
     if (result.length < 2) {
       result = "0" + result;
     }
-    result = tiempo.slice(0, 11) + result + ":00:00.000000000";
+    result = tiempo.slice(0, 11) + result + ":00:00";
 
     let newConsulta = { ...consultaOriginal };
     newConsulta.tiempo[0] = result;

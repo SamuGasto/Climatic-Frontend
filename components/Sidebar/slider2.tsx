@@ -22,7 +22,7 @@ export default function Slider2(props: Props) {
 
   const configurarConsulta = (valor: number) => {
     let newConsulta = { ...consultaOriginal };
-    newConsulta.altura = valor;
+    newConsulta.altura = [valor];
     setConsulta(newConsulta);
   };
 
