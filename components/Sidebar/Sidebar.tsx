@@ -27,7 +27,6 @@ import { useChartStore } from "@/utils/Stores/chartStore";
 const Sidebar = () => {
   const [isMobile, setIsMobile] = useState(false);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const { chartSelected } = useChartStore.getState();
   const actualTheme = useTheme();
   const [hayAltura, sethayAltura] = useState(false);
   const [hayComponente, sethayComponente] = useState(false);
@@ -172,7 +171,7 @@ const Sidebar = () => {
       <Boton
         texto="Graficar"
         funcion={() => {
-          SendQuery(chartSelected, consulta);
+          SendQuery(consulta);
         }}
       />
 

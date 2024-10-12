@@ -26,7 +26,7 @@ function Subtitulo() {
   return (
     <div className="flex w-3/4 text-center text-wrap text-base items-center justify-center">
       {editMode ? (
-        <div className="flex w-full min-h-48 border gap-1">
+        <div className="flex w-full min-h-48 gap-1">
           <Textarea
             value={subtitle}
             onValueChange={(value) => {

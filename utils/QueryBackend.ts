@@ -3,9 +3,12 @@ import { Chart } from "@/types/chart";
 import { Consulta } from "@/types/consulta";
 import { useBoardStore } from "./Stores/boardStore";
 import axios from "axios";
+import { useChartStore } from "./Stores/chartStore";
 
-export async function SendQuery(chart: Chart, consulta: Consulta) {
+export async function SendQuery(consulta: Consulta) {
   const { userData, id_boardSelected, updateChart } = useBoardStore.getState();
+
+  const { chartSelected } = useChartStore.getState();
 
   let backendData: BackendData = {
     latitude: [],
@@ -71,7 +74,7 @@ export async function SendQuery(chart: Chart, consulta: Consulta) {
 
     updateChart(
       userData[id_boardSelected],
-      chart,
+      chartSelected,
       active,
       backendData,
       consulta.typeChart
