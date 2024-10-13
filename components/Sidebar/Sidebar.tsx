@@ -134,7 +134,7 @@ const Sidebar = () => {
   };
 
   const sidebarContent = (
-    <div className="flex flex-col gap-12 p-6 w-full shadow-md">
+    <div className="flex flex-col gap-12 md:p-6 w-full md:shadow-md">
       <div className="flex flex-col gap-3">
         <p className="text-center">Configuración del gráfico</p>
         <hr />
@@ -180,9 +180,9 @@ const Sidebar = () => {
   );
 
   return (
-    <div className="flex w-1/3">
+    <div className="flex w-full px-12 md:px-0 md:w-1/3">
       {isMobile ? (
-        <div className="flex w-full">
+        <div className="flex w-full self-center">
           <Button
             className="mb-8 mt-10"
             onPress={onOpen}
@@ -204,7 +204,7 @@ const Sidebar = () => {
               <ModalHeader className="flex flex-col gap-1">
                 Configuración
               </ModalHeader>
-              <ModalBody>{sidebarContent}</ModalBody>
+              <ModalBody >{sidebarContent}</ModalBody>
               <ModalFooter>
                 <Button color="danger" variant="light" onPress={onOpenChange}>
                   Cerrar

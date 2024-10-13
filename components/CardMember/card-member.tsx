@@ -32,11 +32,11 @@ export default function CardMember({ src, nombre, rol, main_text, bottom_text, l
           fullWidth
           isHoverable
           shadow="lg">
-      <CardHeader className="flex gap-5 px-6">
-        <Avatar className="w-10 h-10"isBordered color={mappedColor} src={src}/>
-        <div className="flex flex-col">
-          <p className="text-xl sm:text-2xl">{nombre}</p>
-          <p className="text-lg sm:text-xl text-default-500">{rol}</p>
+      <CardHeader className="flex gap-5 md:px-6 px-3">
+        <Avatar className="md:w-20 md:h-20 w-14 h-14 ml-1 md:ml-0 absolute md:relative" isBordered color={mappedColor} src={src} radius="full"/>
+        <div className="flex flex-col md:ml-6 ml-20">
+          <p className="text-xl sm:text-2xl font-bold">{nombre}</p>
+          <p className="text-lg sm:text-xl text-default-800 italic">{rol}</p>
         </div>
       </CardHeader>
       <Divider />

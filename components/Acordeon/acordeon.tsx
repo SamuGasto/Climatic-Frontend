@@ -17,9 +17,6 @@ export default function Acordeon(){
         <AccordionItem key="4" aria-label="Pregunta 4" title="¿Qué tipo de gráficos puedo crear en Climatic?">
             Puedes crear una variedad de gráficos, incluyendo mapas de temperatura, gráficos de precipitación, visualizaciones de viento, y más. Los tipos de gráficos dependerán de las variables climáticas que desees analizar.
         </AccordionItem>
-        <AccordionItem className="mb-24" key="5" aria-label="Pregunta 5" title="¿Hay algún cobro por utilizar Climatic?">
-            No. Por ahora...
-        </AccordionItem>
     </Accordion>
   );
 }

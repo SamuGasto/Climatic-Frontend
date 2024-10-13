@@ -8,6 +8,7 @@ import {
   NavbarItem,
   Link,
   Button,
+  Divider,
 } from "@nextui-org/react";
 import { ThemeSwitch } from "../theme-switch";
 import { usePathname } from "next/navigation";
@@ -123,7 +124,9 @@ export default function NavbarComponent() {
           <div className="flex flex-row justify-evenly w-full mb-2 gap-x-16">
             <Image src="/logo2.png" width={50} height={50} radius="none" />
             <ThemeSwitch />
+            
           </div>
+          <Divider className="my-1 bg-black dark:bg-white" />
           <Link
             className={`text-2xl font-bold mt-3 mb-3 relative ${
               isActive("/") ? "underline underline-offset-4" : ""
@@ -160,7 +163,7 @@ export default function NavbarComponent() {
             {" > "} Preguntas Frecuentes
           </Link>
           <Link
-            className={`text-xl mb-8 relative ${
+            className={`text-xl mb-5 relative ${
               isActive("/about") ? "underline underline-offset-4" : ""
             }`}
             style={isActive("/about") ? { textDecorationColor: "#5B9279" } : {}}
@@ -171,6 +174,7 @@ export default function NavbarComponent() {
             {" > "} Sobre Nosotros
           </Link>
           {/* Sidebar in mobile menu */}
+          <Divider className="mb-4 bg-black dark:bg-white" />
           <div className="flex flex-col w-full ">
             <h4 className="text-center text-2xl italic mb-3">Tableros</h4>
             <Sidebar refresh={Refresh} isMobile={true} />
