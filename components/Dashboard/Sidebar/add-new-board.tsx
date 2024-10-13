@@ -23,7 +23,7 @@ function ButtonAddBoard(props: PropType) {
         }}
         variant="solid"
       >
-        <PlusIcon width={24} className="mr-2" />
+        <PlusIcon width={22} className="mr-2" />
         Nuevo tablero
       </Button>
     </div>
