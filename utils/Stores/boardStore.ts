@@ -7,6 +7,7 @@ import BackendData from "@/types/backend-data";
 import { title } from "process";
 import { subtitle } from "@/components/primitives";
 import { useChartStore } from "./chartStore";
+import _ from "lodash";
 
 interface CounterState {
   userData: Board[];
@@ -207,7 +208,31 @@ export const useBoardStore = create<CounterState>((set, get) => ({
   },
   deleteBoard: (id: number) => {
     try {
+      const { chartSelected, selectChart } = useChartStore.getState();
       const dataFilter = get().userData.filter((value) => value.id !== id);
+
+      get().userData[id].charts.map((chart) => {
+        if (_.isEqual(chart, chartSelected)) {
+          selectChart({
+            id: -1,
+            title: "",
+            subtitle: "",
+            active: false,
+            typeChart: "area",
+            backendData: {
+              latitude: [],
+              longitude: [],
+              image: "",
+              data: [],
+              time: [],
+              level: [],
+              units: "",
+            },
+          });
+        }
+        return chart;
+      });
+
       set((state) => ({
         ...state,
         userData: dataFilter.map((board, index) => {
@@ -216,6 +241,7 @@ export const useBoardStore = create<CounterState>((set, get) => ({
         }),
         id_boardSelected: id - 1,
       }));
+
       localStorage.setItem("UserData.data", JSON.stringify(dataFilter));
       localStorage.setItem("UserData.boardSelected", (id - 1).toString());
     } catch (error) {
@@ -224,6 +250,8 @@ export const useBoardStore = create<CounterState>((set, get) => ({
   },
   deleteChart: (boardFather: Board, chart: Chart) => {
     try {
+      const { chartSelected, selectChart } = useChartStore.getState();
+
       const newData = get().userData.map((board) => {
         let finalBoard = board;
         if (board.id === boardFather.id) {
@@ -237,6 +265,24 @@ export const useBoardStore = create<CounterState>((set, get) => ({
         });
         return finalBoard;
       });
+
+      if (_.isEqual(chart, chartSelected))
+        selectChart({
+          id: -1,
+          title: "",
+          subtitle: "",
+          active: false,
+          typeChart: "area",
+          backendData: {
+            latitude: [],
+            longitude: [],
+            image: "",
+            data: [],
+            time: [],
+            level: [],
+            units: "",
+          },
+        });
 
       set((state) => ({ ...state, userData: newData }));
       localStorage.setItem("UserData.data", JSON.stringify(newData));

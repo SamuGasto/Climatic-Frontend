@@ -47,7 +47,7 @@ interface ChartStore {
 
 export const useChartStore = create<ChartStore>((set, get) => ({
   chartSelected: {
-    id: 0,
+    id: -1,
     title: "",
     subtitle: "",
     active: false,
@@ -70,7 +70,7 @@ export const useChartStore = create<ChartStore>((set, get) => ({
         set((state) => ({ ...state, chartSelected: JSON.parse(data) }));
       } else {
         const provisionalChart: Chart = {
-          id: 0,
+          id: -1,
           title: "",
           subtitle: "",
           active: false,

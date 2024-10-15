@@ -13,7 +13,7 @@ function NoChartCard(props: PropType) {
   const { toggleModalCreateChart } = useModalStore.getState();
   return (
     <Card
-      className="h-72 w-full"
+      className="h-72 w-96"
       key={"NoChart"}
       shadow="sm"
       isPressable
