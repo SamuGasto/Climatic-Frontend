@@ -8,7 +8,7 @@ export default function Footer() {
   return (
     <footer className="bg-dark text-gray-300 py-4">
       <div className="container mx-auto px-2">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-1 gap-8">
           <div className="flex flex-col items-center">
             <Image src="/logo.png" alt="Di-Dema Logo" width={50} height={50} />
             <h4 className="text-lg font-semibold mt-2 text-white">Di-Dema</h4>
