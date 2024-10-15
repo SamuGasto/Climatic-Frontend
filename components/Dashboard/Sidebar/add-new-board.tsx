@@ -16,14 +16,14 @@ function ButtonAddBoard(props: PropType) {
     <div className="mt-8">
       <Button
         color="primary"
-        className="w-full text-base"
+        className =" max-w-45 text-base flex flex-row"
         onPress={() => {
           toggleModalCreateBoard(true);
           refresh();
         }}
         variant="solid"
       >
-        <PlusIcon width={24} className="mr-2" />
+        <PlusIcon width={18} className="mr-2" />
         Nuevo tablero
       </Button>
     </div>

@@ -55,4 +55,3 @@ export default function page() {
     </div>
   );
 }
-//Sidebar modifica su ancho cuando se elige una variable con nombre largo

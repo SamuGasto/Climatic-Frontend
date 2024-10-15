@@ -57,10 +57,11 @@ export default function NavbarComponent() {
       >
         {/* Marca / Logo */}
         <NavbarBrand className="flex items-center">
+          <Link href="/">
           <Image src="/logo2.png" width={50} height={50} radius="none" />
+          </Link>
           <p className="font-bold text-inherit ml-3">CLIMATIC</p>
         </NavbarBrand>
-
         {/* Botón hamburguesa */}
         <div className="sm:hidden flex items-center z-50">
           <Button
