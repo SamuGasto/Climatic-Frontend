@@ -15,6 +15,7 @@ export default function Titulo() {
     updateChart(
       userData[id_boardSelected],
       chartSelected,
+      chartSelected.active,
       undefined,
       undefined,
       title === "" ? "Sin título" : title

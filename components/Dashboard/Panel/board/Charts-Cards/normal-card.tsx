@@ -32,7 +32,7 @@ function NormalCard(props: PropType) {
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.9 }}
     >
-      <Card className="h-72 w-full" key={index} shadow="sm">
+      <Card className="h-72 w-96" key={index} shadow="sm">
         <CardHeader>
           <div className="flex flex-row w-full justify-between">
             <div
@@ -42,7 +42,9 @@ function NormalCard(props: PropType) {
                 router.push("/visualizer");
               }}
             >
-              <h1 className="text-xl font-semibold text-left">{chart.title}</h1>
+              <h1 className="text-xl font-semibold text-left truncate">
+                {chart.title}
+              </h1>
               <p className="truncate ">{chart.subtitle}</p>
             </div>
             <Button
