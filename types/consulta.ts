@@ -2,7 +2,7 @@ export interface Consulta {
   variable: string;
   latitud: number[];
   longitud: number[];
-  imagen?: string;
+  imagen?: boolean;
   typeChart?: string
     /*| "image"
     | "line"

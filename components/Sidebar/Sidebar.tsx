@@ -4,6 +4,7 @@ import OpcionesTiempo from "@/components/Sidebar/opciones-tiempo";
 import Boton from "@/components/Sidebar/boton";
 import { Consulta } from "@/types/consulta";
 import OpcionesVariable from "./opciones-variable";
+import { varUsanImagen } from "@/config/var_usan_imagen";
 
 //Al elegir var con el Enter, no se actualiza
 const Sidebar = () => {
@@ -15,6 +16,7 @@ const Sidebar = () => {
     tiempo: ["2021-12-31T23:00:00.000000000", "2021-12-31T23:00:00.000000000"],
     nivel: 1,
     typeChart: "heatmap",
+    imagen: false,
   });
 
   const [variable, setVariable] = useState("");
@@ -39,8 +41,14 @@ const Sidebar = () => {
     }
     newConsulta.typeChart = typeChart;
 
+    if (varUsanImagen.includes(variable)) {
+      newConsulta.imagen = true;
+    } else {
+      newConsulta.imagen = false;
+    }
+
     setConsulta(newConsulta);
-    console.log(newConsulta);
+    //console.log(newConsulta);
   };
 
   return (
