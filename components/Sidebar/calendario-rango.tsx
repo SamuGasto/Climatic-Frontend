@@ -1,5 +1,4 @@
 import { RangeCalendar } from "@nextui-org/react";
-import { today, getLocalTimeZone } from "@internationalized/date";
 import { parseDate } from "@internationalized/date";
 
 export default function CalendarioRango() {

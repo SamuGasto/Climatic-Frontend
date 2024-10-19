@@ -1,28 +1,24 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import Deslizador from "./slider";
-import { Consulta } from "@/types/consulta";
 
 type Props = {
-  consultaOriginal: Consulta;
-  setConsulta: (consulta: Consulta) => void;
+  setLatitud: React.Dispatch<React.SetStateAction<number[]>>;
+  setLongitud: React.Dispatch<React.SetStateAction<number[]>>;
 };
 
 const OpcionesArea = (props: Props) => {
-  const { setConsulta, consultaOriginal } = props;
+  const { setLatitud, setLongitud } = props;
 
   return (
     <div className="flex w-full flex-col gap-3">
-      <p className="flex place-content-center">Área de los datos</p>
-
+      <p>Configuración del area del gráfico</p>
       <Deslizador
         label="Rango de la latitud"
         maximo={-34}
         minimo={-35}
         step={0.25}
         defaultValue={[-34.75, -34.25]}
-        setConsulta={setConsulta}
-        consultaOriginal={consultaOriginal}
-        tipo="latitud"
+        setValores={setLatitud}
       />
 
       <Deslizador
@@ -31,9 +27,7 @@ const OpcionesArea = (props: Props) => {
         minimo={108}
         step={0.25}
         defaultValue={[108.25, 109]}
-        setConsulta={setConsulta}
-        consultaOriginal={consultaOriginal}
-        tipo="longitud"
+        setValores={setLongitud}
       />
     </div>
   );

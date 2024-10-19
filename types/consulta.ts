@@ -2,8 +2,8 @@ export interface Consulta {
   variable: string;
   latitud: number[];
   longitud: number[];
-  imagen: string;
-  typeChart:
+  imagen?: string;
+  typeChart?:
     | "image"
     | "line"
     | "area"
@@ -22,5 +22,5 @@ export interface Consulta {
     | "rangeArea"
     | "treemap";
   tiempo?: string[];
-  altura?: number[];
+  nivel?: number;
 }
