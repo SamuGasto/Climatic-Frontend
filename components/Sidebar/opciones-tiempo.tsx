@@ -1,25 +1,19 @@
-import { DateRangePicker } from "@nextui-org/react";
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import SeleccionHora from "./time-input";
 import Desplegable from "@/components/Sidebar/select";
 import FechaRango from "./fecha-rango";
-import { Consulta } from "@/types/consulta";
 import SeleccionFecha from "./seleccion-fecha";
 
 type Props = {
   desabilitado: boolean;
-  setConsulta: (consulta: Consulta) => void;
-  consultaOriginal: Consulta;
+  setFecha: React.Dispatch<React.SetStateAction<string[]>>;
+  setHora: React.Dispatch<React.SetStateAction<string>>;
+  setTypeChart: React.Dispatch<React.SetStateAction<string>>;
+  typeChart: string;
 };
 
 const OpcionesTiempo = (props: Props) => {
-  const { setConsulta, desabilitado, consultaOriginal } = props;
-
-  const [tipoGrafico, setTipoGrafico] = useState("");
-
-  const handleSelect = (key: string) => {
-    setTipoGrafico(key);
-  };
+  const { desabilitado, setFecha, setHora, setTypeChart, typeChart } = props;
 
   return (
     <div className="flex flex-col gap-3 w-full">
@@ -27,32 +21,24 @@ const OpcionesTiempo = (props: Props) => {
 
       <Desplegable
         elementos={[
-          { key: "0", label: "Mapa de calor" },
-          { key: "1", label: "Serie de tiempo" },
+          { key: "heatmap", label: "Mapa de calor" },
+          { key: "line", label: "Serie de tiempo" },
         ]}
         titulo="Gráfico"
         explicacion="Seleccione el tipo de gráfico"
         desabilitado={desabilitado}
-        onSelect={handleSelect}
+        onSelect={(value) => setTypeChart(value)}
       />
 
-      {tipoGrafico == "0" ? (
-        <SeleccionFecha
-          setConsulta={setConsulta}
-          consultaOriginal={consultaOriginal}
-          desabilitado={desabilitado}
-        />
+      {typeChart == "heatmap" ? (
+        <SeleccionFecha desabilitado={desabilitado} setFecha={setFecha} />
       ) : null}
 
-      {tipoGrafico == "0" ? (
-        <SeleccionHora
-          setConsulta={setConsulta}
-          consultaOriginal={consultaOriginal}
-          desabilitado={desabilitado}
-        />
+      {typeChart == "heatmap" ? (
+        <SeleccionHora desabilitado={desabilitado} setHora={setHora} />
       ) : null}
 
-      {tipoGrafico == "1" ? <FechaRango setConsulta={setConsulta} /> : null}
+      {typeChart == "line" ? <FechaRango setFecha={setFecha} /> : null}
     </div>
   );
 };

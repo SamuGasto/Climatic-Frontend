@@ -84,6 +84,7 @@ export default function OpcionesVariable(props: Props) {
           explicacion="Elija el componente del viento"
           elementos={componentes}
           onSelect={handleComponente}
+          valPorDefecto={"u"}
         />
       ) : null}
     </div>

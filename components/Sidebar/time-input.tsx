@@ -4,26 +4,18 @@ import { Consulta } from "@/types/consulta";
 
 type Props = {
   desabilitado: boolean;
-  setConsulta: (consulta: Consulta) => void;
-  consultaOriginal: Consulta;
-  esLimiteIni?: boolean;
+  setHora: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export default function SeleccionHora(props: Props) {
-  const { desabilitado, setConsulta, consultaOriginal, esLimiteIni } = props;
+  const { desabilitado, setHora } = props;
 
   const configurarConsulta = (valor: number) => {
-    let tiempo = consultaOriginal.tiempo[0];
-
-    let result = String(valor);
-    if (result.length < 2) {
-      result = "0" + result;
+    let hora = String(valor);
+    if (hora.length < 2) {
+      hora = "0" + hora;
     }
-    result = tiempo.slice(0, 11) + result + ":00:00";
-
-    let newConsulta = { ...consultaOriginal };
-    newConsulta.tiempo[0] = result;
-    setConsulta(newConsulta);
+    setHora(hora + ":00:00.000000000");
   };
 
   return (
