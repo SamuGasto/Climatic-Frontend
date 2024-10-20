@@ -9,6 +9,15 @@ import { varUsanImagen } from "@/config/var_usan_imagen";
 //Al elegir var con el Enter, no se actualiza
 const Sidebar = () => {
   const [hayTiempo, setHayTiempo] = useState(false);
+
+  const [variable, setVariable] = useState("");
+  const [latitud, setLatitud] = useState([-34.75, -34.25]);
+  const [longitud, setLongitud] = useState([108.25, 109]);
+  const [nivel, setNivel] = useState(1);
+  const [fecha, setFecha] = useState(["2021-12-31", "2021-12-31"]);
+  const [hora, setHora] = useState("00:00:00.000000000");
+  const [typeChart, setTypeChart] = useState("heatmap");
+
   const [consulta, setConsulta] = useState<Consulta>({
     variable: "",
     latitud: [-34.75, -34.25],
@@ -18,14 +27,6 @@ const Sidebar = () => {
     typeChart: "heatmap",
     imagen: false,
   });
-
-  const [variable, setVariable] = useState("");
-  const [latitud, setLatitud] = useState([-34.75, -34.25]);
-  const [longitud, setLongitud] = useState([108.25, 109]);
-  const [nivel, setNivel] = useState(1);
-  const [fecha, setFecha] = useState(["2021-12-31", "2021-12-31"]);
-  const [hora, setHora] = useState("00:00:00.000000000");
-  const [typeChart, setTypeChart] = useState("heatmap");
 
   const funcionBoton = () => {
     let newConsulta = { ...consulta };
@@ -48,7 +49,7 @@ const Sidebar = () => {
     }
 
     setConsulta(newConsulta);
-    //console.log(newConsulta);
+    console.log(newConsulta);
   };
 
   return (

@@ -7,5 +7,4 @@ export const componentes = [
     key: "u",
     label: "U (Este - Oeste)",
   },
-  
 ];
