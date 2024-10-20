@@ -3,10 +3,11 @@ import { parseDate } from "@internationalized/date";
 
 type Props = {
   setFecha: React.Dispatch<React.SetStateAction<string[]>>;
+  desabilitado?: boolean;
 };
 
 export default function FechaRango(props: Props) {
-  const { setFecha } = props;
+  const { setFecha, desabilitado } = props;
 
   const crearFecha = (dia: number, mes: number, año: number) => {
     if (año >= 1959 && año <= 2021) {
@@ -48,6 +49,7 @@ export default function FechaRango(props: Props) {
       className="max-w-xs"
       minValue={parseDate("1959-01-01")}
       maxValue={parseDate("2021-12-31")}
+      isDisabled={desabilitado}
       onChange={(value) =>
         crearFechas(
           value.start.day,

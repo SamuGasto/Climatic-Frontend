@@ -49,7 +49,7 @@ const Sidebar = () => {
     }
 
     setConsulta(newConsulta);
-    console.log(newConsulta);
+    //console.log(newConsulta);
   };
 
   return (
@@ -65,6 +65,7 @@ const Sidebar = () => {
         setHayTiempo={setHayTiempo}
         setVariable={setVariable}
         setNivel={setNivel}
+        setTypeChart={setTypeChart}
       />
 
       <OpcionesArea setLatitud={setLatitud} setLongitud={setLongitud} />
@@ -73,12 +74,10 @@ const Sidebar = () => {
         desabilitado={!hayTiempo}
         setFecha={setFecha}
         setHora={setHora}
-        setTypeChart={setTypeChart}
         typeChart={typeChart}
       />
 
       <Boton texto="Graficar" funcion={funcionBoton} />
-
       <div className="flex flex-col w-full items-end"></div>
     </div>
   );

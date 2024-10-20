@@ -8,15 +8,17 @@ import { varConAltura } from "@/config/var_con_altura";
 import { varConTiempo } from "@/config/var_con_tiempo";
 import { tamañoVegetacion } from "@/config/tamaño_vegetacion";
 import { varTamañoVegetacion } from "@/config/var_tamaño_vegetacion";
+import { tiposGraficos } from "@/config/tipos_de_graficos";
 
 type Props = {
   setHayTiempo: React.Dispatch<React.SetStateAction<boolean>>;
   setVariable: React.Dispatch<React.SetStateAction<string>>;
   setNivel: React.Dispatch<React.SetStateAction<number>>;
+  setTypeChart: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export default function OpcionesVariable(props: Props) {
-  const { setHayTiempo, setVariable, setNivel } = props;
+  const { setHayTiempo, setVariable, setNivel, setTypeChart } = props;
 
   const [hayAltura, sethayAltura] = useState(false);
   const [hayComponente, sethayComponente] = useState(false);
@@ -100,6 +102,13 @@ export default function OpcionesVariable(props: Props) {
 
   return (
     <div className="flex flex-col gap-3 w-full">
+      <Desplegable
+        elementos={tiposGraficos}
+        titulo="Gráfico"
+        explicacion="Seleccione el tipo de gráfico"
+        onSelect={(value) => setTypeChart(value)}
+      />
+
       <Desplegable
         titulo="Variable"
         explicacion="Elija la variable que desea graficar"

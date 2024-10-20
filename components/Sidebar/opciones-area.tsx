@@ -11,7 +11,7 @@ const OpcionesArea = (props: Props) => {
 
   return (
     <div className="flex w-full flex-col gap-3">
-      <p>Configuración del area del gráfico</p>
+      <p className="flex place-content-center">Selección del área</p>
       <Deslizador
         label="Rango de la latitud"
         maximo={-34}
