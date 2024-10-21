@@ -35,7 +35,7 @@ function ModalCreateBoard(props: PropType) {
     <div>
       <Modal
         isOpen={ModalCreateBoard}
-        onOpenChange={(value) => {
+        onOpenChange={(value) =>  {
           toggleModalCreateBoard(value);
           refresh();
         }}
@@ -51,7 +51,7 @@ function ModalCreateBoard(props: PropType) {
               label="Titulo del tablero"
               placeholder="Ingresa un nombre para tu tablero"
               value={title}
-              onValueChange={(value) => {if(value.length <= 20) setTitle(value);}}
+              onValueChange={(value) => {if(value.length <= 40) setTitle(value);}}
               variant="underlined"
             />
           </ModalBody>
