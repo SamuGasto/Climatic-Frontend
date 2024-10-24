@@ -6,6 +6,7 @@ import { useChartStore } from "@/utils/Stores/chartStore";
 import { Button } from "@nextui-org/button";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import Plotly from "@/components/Graphic/Test/plotly";
 
 export default function page() {
   const { chartSelected, loadChartData } = useChartStore.getState();

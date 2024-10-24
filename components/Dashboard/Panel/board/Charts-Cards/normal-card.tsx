@@ -32,7 +32,7 @@ function NormalCard(props: PropType) {
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.9 }}
     >
-      <Card className="h-72 w-96" key={index} shadow="sm">
+      <Card className="h-64 w-[360]" key={index} shadow="sm">
         <CardHeader>
           <div className="flex flex-row w-full justify-between">
             <div
