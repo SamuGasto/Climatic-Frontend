@@ -12,10 +12,18 @@ interface DesplegableProps {
   elementos: elemento[];
   onSelect?: (key: string) => void;
   desabilitado?: boolean;
+  valPorDefecto?: string;
 }
 
 export default function Desplegable(props: DesplegableProps) {
-  const { titulo, explicacion, elementos, onSelect, desabilitado } = props;
+  const {
+    titulo,
+    explicacion,
+    elementos,
+    onSelect,
+    desabilitado,
+    valPorDefecto,
+  } = props;
 
   return (
     <div className="flex w-full">
@@ -25,6 +33,7 @@ export default function Desplegable(props: DesplegableProps) {
         placeholder={titulo}
         className="flex w-full"
         isDisabled={desabilitado}
+        defaultSelectedKeys={valPorDefecto}
       >
         {elementos.map((elemento) => (
           <SelectItem

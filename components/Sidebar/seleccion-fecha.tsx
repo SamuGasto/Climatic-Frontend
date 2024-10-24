@@ -1,39 +1,28 @@
 import { DatePicker } from "@nextui-org/react";
 import { parseDate } from "@internationalized/date";
-import { Consulta } from "@/types/consulta";
 
 type Props = {
   desabilitado: boolean;
-  setConsulta: (consulta: Consulta) => void;
-  consultaOriginal: Consulta;
+  setFecha: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
 export default function SeleccionFecha(props: Props) {
-  const { desabilitado, setConsulta, consultaOriginal } = props;
+  const { desabilitado, setFecha } = props;
 
-  const configurarConsulta = (dia: number, mes: number, año: number) => {
-    let rAño = String(año);
-    if (rAño.length < 4) {
-      return;
+  const crearFecha = (dia: number, mes: number, año: number) => {
+    if (año >= 1959 && año <= 2021) {
+      let sDia = String(dia);
+      if (sDia.length < 2) {
+        sDia = "0" + sDia;
+      }
+
+      let sMes = String(mes);
+      if (sMes.length < 2) {
+        sMes = "0" + sMes;
+      }
+
+      setFecha([String(año) + "-" + sMes + "-" + sDia]);
     }
-
-    let rDia = String(dia);
-    if (rDia.length < 2) {
-      rDia = "0" + rDia;
-    }
-    let rMes = String(mes);
-    if (rMes.length < 2) {
-      rMes = "0" + rMes;
-    }
-
-    let result = rAño + "-" + rMes + "-" + rDia;
-    let tiempo = consultaOriginal.tiempo[0];
-    result = result + tiempo.slice(10, tiempo.length);
-
-    let newConsulta = { ...consultaOriginal };
-    newConsulta.tiempo[0] = result;
-
-    setConsulta(newConsulta);
   };
 
   return (
@@ -44,9 +33,7 @@ export default function SeleccionFecha(props: Props) {
       maxValue={parseDate("2021-12-31")}
       label="Escoja una fecha"
       className="flex w-full"
-      onChange={(value) =>
-        configurarConsulta(value.day, value.month, value.year)
-      }
+      onChange={(value) => crearFecha(value.day, value.month, value.year)}
     />
   );
 }

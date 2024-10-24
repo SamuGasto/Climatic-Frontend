@@ -32,11 +32,11 @@ export const variables = [{
 },
 {
   key: "cvh", // "cvl"
-  label: "Covertura de vegetación alta", // tambien existe vegetación baja
+  label: "Covertura de vegetación", // tambien existe vegetación baja
 },
 {
   key: "tvh", // "tvl"
-  label: "Tipo de vegetación alta", // tambien esta la baja
+  label: "Tipo de vegetación", // tambien esta la baja
 },
 {
   key: "cl",

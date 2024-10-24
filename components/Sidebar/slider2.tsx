@@ -1,15 +1,13 @@
 import { useState } from "react";
 import { Slider } from "@nextui-org/react";
 import { niveles } from "@/config/niveles";
-import { Consulta } from "@/types/consulta";
 
 type Props = {
-  setConsulta: (consulta: Consulta) => void;
-  consultaOriginal: Consulta;
+  setNivel: React.Dispatch<React.SetStateAction<number>>;
 };
 
 export default function Slider2(props: Props) {
-  const { setConsulta, consultaOriginal } = props;
+  const { setNivel } = props;
   const [valorSeleccionado, setValorSeleccionado] = useState(niveles[0]);
 
   const onChange = (value: number | number[]) => {
@@ -20,22 +18,15 @@ export default function Slider2(props: Props) {
     setValorSeleccionado(valorMasCercano);
   };
 
-  const configurarConsulta = (valor: number) => {
-    let newConsulta = { ...consultaOriginal };
-    newConsulta.altura = [valor];
-    setConsulta(newConsulta);
-  };
-
   return (
     <div>
       <Slider
-        label="Seleccione la altura de los datos"
+        label="Seleccione el nivel de los datos"
         minValue={Math.min(...niveles)}
         maxValue={Math.max(...niveles)}
         value={valorSeleccionado}
         onChange={(value) => onChange(value)}
-        //marks={niveles.map((val) => ({ value: val, label: val.toString() }))}
-        onChangeEnd={(value) => configurarConsulta(valorSeleccionado)}
+        onChangeEnd={() => setNivel(valorSeleccionado)}
       />
     </div>
   );
