@@ -58,9 +58,7 @@ function ModalCreateChart(props: PropType) {
               label="Titulo del gráfico"
               placeholder="Ingresa un nombre para tu gráfico"
               value={title}
-              onValueChange={(value) => {
-                if (value.length <= 40) setTitle(value);
-              }}
+              onValueChange={(value) => setTitle(value)}
               variant="underlined"
             />
             <Input
