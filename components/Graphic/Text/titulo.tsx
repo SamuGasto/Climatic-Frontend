@@ -30,7 +30,7 @@ export default function Titulo() {
             className="w-auto"
             value={title}
             onValueChange={(value) => {
-              setTitle(value);
+              if (value.length <= 40) setTitle(value);
             }}
             variant="bordered"
           ></Input>
