@@ -8,6 +8,7 @@ import Sidebar from "@/components/Dashboard/Sidebar/sidebar";
 import { useBoardStore } from "@/utils/Stores/boardStore";
 import { CircularProgress } from "@nextui-org/progress";
 import { useEffect, useState } from "react";
+import { Pagination } from "@nextui-org/react";
 
 export default function Home() {
   const { loadData } = useBoardStore.getState();
@@ -25,13 +26,16 @@ export default function Home() {
   }, []);
 
   return (
+    
     <section className="flex flex-col w-full h-full items-center justify-center gap-4 py-8 md:py-10">
       <div className="flex flex-row min-h-[720] w-full">
-        {isLoading ? (
+        {isLoading ? (        
           <div className="flex w-full h-full justify-center self-center">
+            
             <CircularProgress />
-          </div>
+          </div>       
         ) : (
+          
           <div className="flex flex-row w-full h-full">
             <Sidebar refresh={Refresh} />
             <MainPanel refresh={Refresh} />
@@ -42,6 +46,7 @@ export default function Home() {
         <ModalEditBoard refresh={Refresh} />
         <ModalConfirm refresh={Refresh} />
       </div>
+      <Pagination isCompact showControls total={10} initialPage={1} />
     </section>
   );
 }

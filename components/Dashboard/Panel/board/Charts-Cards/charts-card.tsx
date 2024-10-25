@@ -14,7 +14,7 @@ function ChartsCards(props: PropType) {
 
   return (
     <div className="flex w-full">
-      <motion.div className="container grid md:grid-cols-4 grid-cols-4 gap-28 w-screen">
+      <motion.div className="container grid md:grid-cols-3 grid-cols-1 gap-28 w-screen">
         {charts.map((chart, index) => (
           <motion.div
             key={index}
