@@ -13,8 +13,28 @@ import { tiposGraficos } from "@/config/tipos_de_graficos";
 type Props = {
   setHayTiempo: React.Dispatch<React.SetStateAction<boolean>>;
   setVariable: React.Dispatch<React.SetStateAction<string>>;
-  setNivel: React.Dispatch<React.SetStateAction<number>>;
-  setTypeChart: React.Dispatch<React.SetStateAction<string>>;
+  setNivel: React.Dispatch<React.SetStateAction<number | null>>;
+  setTypeChart: React.Dispatch<
+    React.SetStateAction<
+      | "image"
+      | "line"
+      | "area"
+      | "bar"
+      | "pie"
+      | "donut"
+      | "radialBar"
+      | "scatter"
+      | "bubble"
+      | "heatmap"
+      | "candlestick"
+      | "boxPlot"
+      | "radar"
+      | "polarArea"
+      | "rangeBar"
+      | "rangeArea"
+      | "treemap"
+    >
+  >;
 };
 
 export default function OpcionesVariable(props: Props) {
@@ -67,25 +87,14 @@ export default function OpcionesVariable(props: Props) {
     }
     setVariable(key);
 
-    {
-      varConAltura.includes(key) ? sethayAltura(true) : sethayAltura(false);
-    }
-
-    {
-      varComponente.includes(key)
-        ? sethayComponente(true)
-        : sethayComponente(false);
-    }
-
-    {
-      varTamañoVegetacion.includes(key)
-        ? setHayTamañoVegetacion(true)
-        : setHayTamañoVegetacion(false);
-    }
-
-    {
-      varConTiempo.includes(key) ? setHayTiempo(true) : setHayTiempo(false);
-    }
+    varConAltura.includes(key) ? sethayAltura(true) : sethayAltura(false);
+    varComponente.includes(key)
+      ? sethayComponente(true)
+      : sethayComponente(false);
+    varTamañoVegetacion.includes(key)
+      ? setHayTamañoVegetacion(true)
+      : setHayTamañoVegetacion(false);
+    varConTiempo.includes(key) ? setHayTiempo(true) : setHayTiempo(false);
   };
 
   const handleComponente = (key: string) => {
@@ -106,7 +115,31 @@ export default function OpcionesVariable(props: Props) {
         elementos={tiposGraficos}
         titulo="Gráfico"
         explicacion="Seleccione el tipo de gráfico"
-        onSelect={(value) => setTypeChart(value)}
+        onSelect={(value) => {
+          if (
+            value !== "image" ||
+            "line" ||
+            "area" ||
+            "bar" ||
+            "pie" ||
+            "donut" ||
+            "radialBar" ||
+            "scatter" ||
+            "bubble" ||
+            "heatmap" ||
+            "candlestick" ||
+            "boxPlot" ||
+            "radar" ||
+            "polarArea" ||
+            "rangeBar" ||
+            "rangeArea" ||
+            "treemap"
+          ) {
+            setTypeChart("image");
+          } else {
+            setTypeChart(value);
+          }
+        }}
       />
 
       <Desplegable

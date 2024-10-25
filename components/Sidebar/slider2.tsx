@@ -3,7 +3,7 @@ import { Slider } from "@nextui-org/react";
 import { niveles } from "@/config/niveles";
 
 type Props = {
-  setNivel: React.Dispatch<React.SetStateAction<number>>;
+  setNivel: React.Dispatch<React.SetStateAction<number | null>>;
 };
 
 export default function Slider2(props: Props) {

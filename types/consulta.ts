@@ -2,9 +2,9 @@ export interface Consulta {
   variable: string;
   latitud: number[];
   longitud: number[];
-  imagen?: boolean;
-  typeChart?: string
-    /*| "image"
+  imagen: boolean;
+  typeChart:
+    | "image"
     | "line"
     | "area"
     | "bar"
@@ -20,7 +20,7 @@ export interface Consulta {
     | "polarArea"
     | "rangeBar"
     | "rangeArea"
-    | "treemap";*/
+    | "treemap";
   tiempo?: string[];
   nivel?: number;
 }

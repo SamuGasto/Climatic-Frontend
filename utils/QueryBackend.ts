@@ -1,5 +1,4 @@
 import BackendData from "@/types/backend-data";
-import { Chart } from "@/types/chart";
 import { Consulta } from "@/types/consulta";
 import { useBoardStore } from "./Stores/boardStore";
 import axios from "axios";
@@ -40,22 +39,12 @@ export async function SendQuery(consulta: Consulta) {
     ];
   }
 
-  let altura: (string | number)[] = [];
-  if (consulta.altura) {
-    altura = [
-      consulta.altura[0],
-      consulta.altura.length > 1
-        ? `,${consulta.altura[consulta.altura.length - 1]}`
-        : "",
-    ];
-  }
-
   let active = false;
 
   try {
     let finalText = "";
-    if (consulta.tiempo && consulta.altura) {
-      finalText = `http://127.0.0.1:8000/zarr/${consulta.variable}/${consulta.imagen}/${latitude[0]}${latitude[1]}/${longitude[0]}${longitude[1]}/${time[0]}${time[1]}/${altura[0]}${altura[1]}`;
+    if (consulta.tiempo && consulta.nivel) {
+      finalText = `http://127.0.0.1:8000/zarr/${consulta.variable}/${consulta.imagen}/${latitude[0]}${latitude[1]}/${longitude[0]}${longitude[1]}/${time[0]}${time[1]}/${consulta.nivel}`;
     } else if (consulta.tiempo) {
       finalText = `http://127.0.0.1:8000/zarr/${consulta.variable}/${consulta.imagen}/${latitude[0]}${latitude[1]}/${longitude[0]}${longitude[1]}/${time[0]}${time[1]}`;
     } else {

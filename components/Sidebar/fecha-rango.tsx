@@ -2,7 +2,7 @@ import { DateRangePicker } from "@nextui-org/react";
 import { parseDate } from "@internationalized/date";
 
 type Props = {
-  setFecha: React.Dispatch<React.SetStateAction<string[]>>;
+  setFecha: React.Dispatch<React.SetStateAction<string[] | null>>;
   desabilitado?: boolean;
 };
 

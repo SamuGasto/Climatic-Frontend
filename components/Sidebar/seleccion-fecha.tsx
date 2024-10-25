@@ -3,7 +3,7 @@ import { parseDate } from "@internationalized/date";
 
 type Props = {
   desabilitado: boolean;
-  setFecha: React.Dispatch<React.SetStateAction<string[]>>;
+  setFecha: React.Dispatch<React.SetStateAction<string[] | null>>;
 };
 
 export default function SeleccionFecha(props: Props) {
