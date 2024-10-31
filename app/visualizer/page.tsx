@@ -36,7 +36,7 @@ export default function page() {
     <div className="flex w-full">
       {hasChart ? (
         <div className="grid grid-cols-1 md:flex md:flex-row h-full w-full justify-center self-start -mt-10">
-          <Sidebar refresh={Refresh} />
+          <Sidebar refresh={() => Refresh()} />
           <Visualizador />
         </div>
       ) : (

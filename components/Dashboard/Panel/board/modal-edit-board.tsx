@@ -57,7 +57,9 @@ function ModalEditBoard(props: PropType) {
               label="Titulo del tablero"
               placeholder="Ingresa un nuevo nombre para tu tablero"
               value={title}
-              onValueChange={(value) => setTitle(value)}
+              onValueChange={(value) => {
+                if (value.length <= 40) setTitle(value);
+              }}
               variant="underlined"
             />
           </ModalBody>

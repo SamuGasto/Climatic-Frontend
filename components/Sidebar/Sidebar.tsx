@@ -73,14 +73,18 @@ const Sidebar = ({ refresh }: { refresh: () => void }) => {
 
     if (varUsanImagen.includes(variable)) {
       newConsulta.imagen = true;
+      newConsulta.typeChart = "image";
     } else {
       newConsulta.imagen = false;
     }
 
     setConsulta(newConsulta);
     SendQuery(newConsulta)
-      .then(() => refresh())
-      .then(() => setCargandoConsulta(false));
+      .then(() => setCargandoConsulta(false))
+      .then(() => {
+        console.log("por recargar");
+        refresh();
+      });
   };
 
   return (

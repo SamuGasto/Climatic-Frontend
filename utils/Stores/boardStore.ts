@@ -177,7 +177,7 @@ export const useBoardStore = create<CounterState>((set, get) => ({
     newSubtitle?: string
   ) => {
     try {
-      let newChart = {
+      let newChart: Chart = {
         ...chart,
         active: active,
         backendData: backendData ? backendData : chart.backendData,
