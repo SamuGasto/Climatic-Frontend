@@ -1,4 +1,3 @@
-import { exampleData } from "@/config/test-data";
 import { useChartStore } from "@/utils/Stores/chartStore";
 import { Image } from "@nextui-org/image";
 import { CircularProgress } from "@nextui-org/progress";

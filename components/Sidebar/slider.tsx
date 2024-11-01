@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Slider } from "@nextui-org/react";
-import { Consulta } from "@/types/consulta";
 export type SliderValue = number | number[];
 
 type Props = {
@@ -9,6 +8,7 @@ type Props = {
   minimo: number;
   maximo: number;
   defaultValue: number[];
+  getValores?: (valores: string) => void;
   setConsulta: (consulta: Consulta) => void;
   consultaOriginal: Consulta;
   tipo: "latitud" | "longitud";
@@ -21,15 +21,13 @@ export default function Deslizador(props: Props) {
     step,
     label,
     defaultValue,
+    getValores,
     setConsulta,
     consultaOriginal,
     tipo,
   } = props;
 
-  const [sliderValue, setSliderValue] = useState<number | number[]>([
-    minimo,
-    maximo,
-  ]);
+  const [sliderValue, setSliderValue] = useState<number | number[]>([0, 0]);
 
   function configurarConsulta() {
     let newConsulta = { ...consultaOriginal };
@@ -60,8 +58,13 @@ export default function Deslizador(props: Props) {
       defaultValue={defaultValue}
       showSteps={true}
       className="flex w-full"
-      onChange={(value) => setSliderValue(value)}
-      onChangeEnd={(value) => configurarConsulta()}
+      onChangeEnd={(value) => {
+        if (Array.isArray(value)) {
+          setValores(value);
+        } else {
+          setValores([value]);
+        }
+      }}
     />
   );
 }

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import NoChartCard from "./no-chart";
 import NormalCard from "./normal-card";
 import { motion, Variants } from "framer-motion";
+import { Pagination } from "@nextui-org/react";
 
 interface PropType {
   refresh: () => void;
@@ -11,10 +12,11 @@ interface PropType {
 
 function ChartsCards(props: PropType) {
   const { refresh, charts } = props;
+  const [segmentChart, setSegmentChart] = useState(0);
 
   return (
     <div className="flex w-full">
-      <motion.div className="container grid md:grid-cols-3 grid-cols-1 gap-28 w-screen">
+      <motion.div className="container grid md:grid-cols-4 grid-cols-1 gap-6 md:w-full w-96">
         {charts.map((chart, index) => (
           <motion.div
             key={index}
@@ -34,6 +36,14 @@ function ChartsCards(props: PropType) {
           </motion.div>
         )}
       </motion.div>
+      <Pagination
+        className="flex w-full justify-center align-bottom"
+        isCompact
+        showControls
+        total={Math.ceil(charts.length / 8)}
+        initialPage={1}
+        onChange={(page) => setSegmentChart(page - 1)}
+      />
     </div>
   );
 }
