@@ -13,6 +13,7 @@ function GraficoImagen() {
     const fetchImage = () => {
       try {
         const response = chartSelected.backendData.image;
+        console.log(response)
         setImageSrc(`data:image/png;base64,${response}`);
         setLoading(false);
       } catch (error) {
