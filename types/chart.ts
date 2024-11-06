@@ -11,52 +11,30 @@ export interface ChartConfig {
   options: ApexOptions;
 }
 
+export type typeChart =
+  | "contorno"
+  | "vectoriales"
+  | "clasificacion"
+  | "isobaras"
+  | "lineas"
+  | "dispersion"
+  | "rosa_de_vientos"
+  | "polares"
+  | "barras";
+
 export interface Chart {
   id: number;
   title: string;
   subtitle: string;
   active: boolean;
   backendData: BackendData;
-  typeChart:
-    | "image"
-    | "line"
-    | "area"
-    | "bar"
-    | "pie"
-    | "donut"
-    | "radialBar"
-    | "scatter"
-    | "bubble"
-    | "heatmap"
-    | "candlestick"
-    | "boxPlot"
-    | "radar"
-    | "polarArea"
-    | "rangeBar"
-    | "rangeArea"
-    | "treemap";
+  typeChart: typeChart;
 }
 
 interface Props {
   data: Series[];
   theme: "dark" | "light";
-  typeChart:
-    | "line"
-    | "area"
-    | "bar"
-    | "pie"
-    | "donut"
-    | "radialBar"
-    | "scatter"
-    | "bubble"
-    | "heatmap"
-    | "candlestick"
-    | "boxPlot"
-    | "radar"
-    | "polarArea"
-    | "rangeBar"
-    | "rangeArea"
-    | "treemap";
+  typeChart: typeChart;
   categories: string[];
   colors: any[] | undefined;
 }
@@ -70,7 +48,7 @@ export function ChartConfigInteractive(props: Props): ChartConfig {
       chart: {
         height: "98%",
         width: "98%",
-        type: typeChart,
+        type: "bar", // HAY QUE ARREGLARLO
         zoom: {
           enabled: true,
           type: "xy",
@@ -118,7 +96,7 @@ export function ChartConfigNoInteractive(props: Props): ChartConfig {
       chart: {
         height: "98%",
         width: "98%",
-        type: typeChart,
+        type: "bar",
         zoom: {
           enabled: false,
         },

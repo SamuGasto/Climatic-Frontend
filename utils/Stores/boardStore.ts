@@ -1,5 +1,5 @@
 import { Board } from "@/types/board";
-import { Chart, ChartConfig } from "@/types/chart";
+import { Chart, ChartConfig, typeChart } from "@/types/chart";
 import { create } from "zustand";
 import { CreateEmptyApexChart } from "../GenerateChart";
 import { exampleData } from "@/config/test-data";
@@ -26,24 +26,7 @@ interface CounterState {
     chart: Chart,
     active: boolean,
     backendData?: BackendData,
-    typeChart?:
-      | "image"
-      | "line"
-      | "area"
-      | "bar"
-      | "pie"
-      | "donut"
-      | "radialBar"
-      | "scatter"
-      | "bubble"
-      | "heatmap"
-      | "candlestick"
-      | "boxPlot"
-      | "radar"
-      | "polarArea"
-      | "rangeBar"
-      | "rangeArea"
-      | "treemap",
+    typeChart?: typeChart,
     newTitle?: string,
     newSubtitle?: string
   ) => void;
@@ -110,7 +93,7 @@ export const useBoardStore = create<CounterState>((set, get) => ({
         subtitle: subtitle,
         active: false,
         backendData: exampleData,
-        typeChart: "area",
+        typeChart: "contorno",
       };
 
       let finalData = [...get().userData];
@@ -155,24 +138,7 @@ export const useBoardStore = create<CounterState>((set, get) => ({
     chart: Chart,
     active: boolean,
     backendData?: BackendData,
-    typeChart?:
-      | "image"
-      | "line"
-      | "area"
-      | "bar"
-      | "pie"
-      | "donut"
-      | "radialBar"
-      | "scatter"
-      | "bubble"
-      | "heatmap"
-      | "candlestick"
-      | "boxPlot"
-      | "radar"
-      | "polarArea"
-      | "rangeBar"
-      | "rangeArea"
-      | "treemap",
+    typeChart?: typeChart,
     newTitle?: string,
     newSubtitle?: string
   ) => {
@@ -218,7 +184,7 @@ export const useBoardStore = create<CounterState>((set, get) => ({
             title: "",
             subtitle: "",
             active: false,
-            typeChart: "area",
+            typeChart: "barras",
             backendData: {
               latitude: [],
               longitude: [],
@@ -272,7 +238,7 @@ export const useBoardStore = create<CounterState>((set, get) => ({
           title: "",
           subtitle: "",
           active: false,
-          typeChart: "area",
+          typeChart: "barras",
           backendData: {
             latitude: [],
             longitude: [],

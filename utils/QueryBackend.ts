@@ -53,20 +53,19 @@ export async function SendQuery(consulta: Consulta) {
 
     backendData = await axios.get(finalText).then((res) => {
       active = true;
+      console.log(backendData);
+      console.log(active);
+
+      updateChart(
+        userData[id_boardSelected],
+        chartSelected,
+        active,
+        backendData,
+        consulta.typeChart
+      );
       return res.data;
     });
   } catch (error) {
     console.error(error);
-  } finally {
-    console.log(backendData);
-    console.log(active);
-
-    updateChart(
-      userData[id_boardSelected],
-      chartSelected,
-      active,
-      backendData,
-      consulta.typeChart
-    );
   }
 }

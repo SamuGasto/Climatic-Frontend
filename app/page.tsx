@@ -1,12 +1,8 @@
 "use client";
-import ModalConfirm from "@/components/Dashboard/Panel/board/modal-confirm";
-import ModalCreateBoard from "@/components/Dashboard/Panel/board/modal-create-board";
-import ModalCreateChart from "@/components/Dashboard/Panel/board/modal-create-chart";
-import ModalEditBoard from "@/components/Dashboard/Panel/board/modal-edit-board";
-import MainPanel from "@/components/Dashboard/Panel/main-panel";
+import Modal from "@/components/Dashboard/Modals/components";
+import PanelComponents from "@/components/Dashboard/Panel/components";
 import Sidebar from "@/components/Dashboard/Sidebar/sidebar";
 import { useBoardStore } from "@/utils/Stores/boardStore";
-import { CircularProgress } from "@nextui-org/progress";
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -27,20 +23,12 @@ export default function Home() {
   return (
     <section className="flex flex-col w-full h-full items-center justify-center gap-4 py-8 md:py-10">
       <div className="flex flex-row min-h-[720] w-full">
-        {isLoading ? (
-          <div className="flex w-full h-full justify-center self-center">
-            <CircularProgress />
-          </div>
-        ) : (
-          <div className="flex flex-row w-full h-full">
-            <Sidebar refresh={Refresh} />
-            <MainPanel refresh={Refresh} />
-          </div>
-        )}
-        <ModalCreateBoard refresh={Refresh} />
-        <ModalCreateChart refresh={Refresh} />
-        <ModalEditBoard refresh={Refresh} />
-        <ModalConfirm refresh={Refresh} />
+        <Sidebar refresh={Refresh} />
+        <PanelComponents.MainPanel refresh={Refresh} />
+        <Modal.create_board refresh={Refresh} />
+        <Modal.create_chart refresh={Refresh} />
+        <Modal.edit_board refresh={Refresh} />
+        <Modal.confirm refresh={Refresh} />
       </div>
     </section>
   );
