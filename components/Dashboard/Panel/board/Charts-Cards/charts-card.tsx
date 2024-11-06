@@ -20,14 +20,22 @@ function ChartsCards(props: PropType) {
         {charts
           .slice(segmentChart * 8, segmentChart * 8 + 8)
           .map((chart, index) => (
-            <div key={index}>
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index / 8 }}
+            >
               <NormalCard refresh={refresh} index={index} chart={chart} />
-            </div>
+            </motion.div>
           ))}
         {charts.length === 0 && (
-          <div>
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
             <NoChartCard key={"NoCard"} refresh={refresh} />
-          </div>
+          </motion.div>
         )}
       </motion.div>
       <Pagination
