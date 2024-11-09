@@ -4,12 +4,7 @@ import Image from "next/image";
 import addChartIcon from "@/public/add-chart.svg";
 import useModalStore from "@/utils/Stores/modalStore";
 
-interface PropType {
-  refresh: () => void;
-}
-
-function NoChartCard(props: PropType) {
-  const { refresh } = props;
+function NoChartCard() {
   const { toggleModalCreateChart } = useModalStore.getState();
   return (
     <Card
@@ -19,7 +14,6 @@ function NoChartCard(props: PropType) {
       isPressable
       onPress={() => {
         toggleModalCreateChart(true);
-        refresh();
       }}
     >
       <CardBody className="flex w-full justify-center items-center">

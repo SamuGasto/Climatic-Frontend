@@ -12,12 +12,7 @@ import {
 import { useTheme } from "next-themes";
 import React, { useState } from "react";
 
-interface PropType {
-  refresh: () => void;
-}
-
-function ModalCreateBoard(props: PropType) {
-  const { refresh } = props;
+function ModalCreateBoard() {
   const { addNewBoard } = useBoardStore.getState();
   const { ModalCreateBoard, toggleModalCreateBoard } = useModalStore.getState();
   const [title, setTitle] = useState("");
@@ -28,7 +23,6 @@ function ModalCreateBoard(props: PropType) {
 
     setTitle("");
     toggleModalCreateBoard(false);
-    refresh();
   }
 
   return (
@@ -37,7 +31,6 @@ function ModalCreateBoard(props: PropType) {
         isOpen={ModalCreateBoard}
         onOpenChange={(value) => {
           toggleModalCreateBoard(value);
-          refresh();
         }}
         onKeyDown={(event) => {
           if (ModalCreateBoard && event.key === "Enter") ReadyButtonFunction();
@@ -64,7 +57,6 @@ function ModalCreateBoard(props: PropType) {
               onPress={() => {
                 toggleModalCreateBoard(false);
                 setTitle("");
-                refresh();
               }}
             >
               Cancelar

@@ -12,12 +12,7 @@ import {
 import { useTheme } from "next-themes";
 import React, { useEffect, useState } from "react";
 
-interface PropType {
-  refresh: () => void;
-}
-
-function ModalEditBoard(props: PropType) {
-  const { refresh } = props;
+function ModalEditBoard() {
   const { userData, id_boardSelected, addNewBoard, updateBoard } =
     useBoardStore.getState();
   const { ModalEditBoard, toggleModalEditBoard } = useModalStore.getState();
@@ -34,7 +29,6 @@ function ModalEditBoard(props: PropType) {
 
     setTitle("");
     toggleModalEditBoard(false);
-    refresh();
   }
 
   return (
@@ -43,7 +37,6 @@ function ModalEditBoard(props: PropType) {
         isOpen={ModalEditBoard}
         onOpenChange={(value) => {
           toggleModalEditBoard(value);
-          refresh();
         }}
         onKeyDown={(event) => {
           if (ModalEditBoard && event.key === "Enter") ReadyButtonFunction();
@@ -70,7 +63,6 @@ function ModalEditBoard(props: PropType) {
               onPress={() => {
                 toggleModalEditBoard(false);
                 setTitle("");
-                refresh();
               }}
             >
               Cancelar

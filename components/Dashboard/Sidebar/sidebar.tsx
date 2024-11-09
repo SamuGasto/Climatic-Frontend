@@ -8,24 +8,20 @@ import { useBoardStore } from "@/utils/Stores/boardStore";
 import BoardList from "./board-list";
 
 interface PropType {
-  refresh: () => void;
   isMobile?: boolean; // Nueva prop para diferenciar cuándo el Sidebar está en mobile
 }
 
-function Sidebar({ refresh, isMobile = false }: PropType) {
-  const { loadData } = useBoardStore.getState();
-
-  useEffect(() => {
-    loadData();
-  }, []);
-
+function Sidebar({ isMobile = false }: PropType) {
   return (
     <div
       className={`${
         isMobile ? "block" : "hidden md:flex"
       } md:flex-col md:basis-1/12 md:px-6 md:mr-5`}
     >
-      <Card className="w-full h-full bg-white dark:bg-black" shadow={isMobile ? "none":"md"}>
+      <Card
+        className="w-full h-full bg-white dark:bg-black"
+        shadow={isMobile ? "none" : "md"}
+      >
         <CardBody>
           {/* Mostrar imagen solo si no está en móvil */}
           {!isMobile && (
@@ -40,9 +36,9 @@ function Sidebar({ refresh, isMobile = false }: PropType) {
             </div>
           )}
           <nav>
-            <BoardList refresh={refresh} />
+            <BoardList />
           </nav>
-          <ButtonAddBoard refresh={refresh} />
+          <ButtonAddBoard />
         </CardBody>
       </Card>
     </div>

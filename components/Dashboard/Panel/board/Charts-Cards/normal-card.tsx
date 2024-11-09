@@ -13,13 +13,12 @@ import { motion } from "framer-motion";
 import ImageChartCard from "./image-chart-card";
 
 interface PropType {
-  refresh: () => void;
   index: number;
   chart: Chart;
 }
 
 function NormalCard(props: PropType) {
-  const { refresh, index, chart } = props;
+  const { index, chart } = props;
   const { userData, id_boardSelected, deleteChart } = useBoardStore.getState();
   const { toggleModalConfirm } = useModalStore.getState();
   const { selectChart } = useChartStore.getState();
@@ -58,10 +57,8 @@ function NormalCard(props: PropType) {
                   "¿Estás seguro en eliminar este gráfico?",
                   () => {
                     deleteChart(userData[id_boardSelected], chart);
-                    refresh();
                   }
                 );
-                refresh();
               }}
             >
               <DeleteOutlineIcon width={28} />
@@ -81,7 +78,10 @@ function NormalCard(props: PropType) {
             </div>
           ) : (
             <div className="flex w-5/6 h-5/6 justify-center items-center">
-              {chart.typeChart !== "image" ? (
+              {chart.typeChart == "contorno" ||
+              chart.typeChart == "vectoriales" ||
+              chart.typeChart == "isobaras" ||
+              chart.typeChart == "dispersion" ? (
                 <ChartImage />
               ) : (
                 <ImageChartCard chart={chart} />

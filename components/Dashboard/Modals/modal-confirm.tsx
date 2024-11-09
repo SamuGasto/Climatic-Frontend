@@ -12,12 +12,7 @@ import {
 import { useTheme } from "next-themes";
 import React from "react";
 
-interface PropType {
-  refresh: () => void;
-}
-
-function ModalConfirm(props: PropType) {
-  const { refresh } = props;
+function ModalConfirm() {
   const {
     ModalConfirm,
     ModalConfirmText,
@@ -30,7 +25,6 @@ function ModalConfirm(props: PropType) {
     functionModalConfirm();
 
     toggleModalConfirm(false, "", () => {});
-    refresh();
   }
 
   return (
@@ -42,7 +36,6 @@ function ModalConfirm(props: PropType) {
           if (!value) {
             toggleModalConfirm(false, "", () => {});
           }
-          refresh();
         }}
         onKeyDown={(event) => {
           if (ModalConfirm && event.key === "Enter") ReadyButtonFunction();
@@ -59,7 +52,6 @@ function ModalConfirm(props: PropType) {
               variant="flat"
               onPress={() => {
                 toggleModalConfirm(false, "", () => {});
-                refresh();
               }}
             >
               Cancelar

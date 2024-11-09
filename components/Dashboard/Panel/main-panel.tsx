@@ -5,13 +5,7 @@ import { Chart } from "@/types/chart";
 import { CircularProgress } from "@nextui-org/progress";
 import { useBoardStore } from "@/utils/Stores/boardStore";
 
-interface PropType {
-  refresh: () => void;
-}
-
-function MainPanel(props: PropType) {
-  const { refresh } = props;
-
+function MainPanel() {
   const { userData, id_boardSelected } = useBoardStore.getState();
 
   const [isLoading, setIsLoading] = useState(true);
@@ -24,7 +18,7 @@ function MainPanel(props: PropType) {
       {isLoading ? (
         <CircularProgress className="flex w-full h-full justify-center self-center" />
       ) : (
-        <BoardPanel refresh={refresh} />
+        <BoardPanel />
       )}
     </div>
   );

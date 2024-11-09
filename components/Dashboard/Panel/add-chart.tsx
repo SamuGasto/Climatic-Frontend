@@ -4,12 +4,7 @@ import { Button } from "@nextui-org/button";
 import { useTheme } from "next-themes";
 import React from "react";
 
-interface PropType {
-  refresh: () => void;
-}
-
-function ButtonAddChart(props: PropType) {
-  const { refresh } = props;
+function ButtonAddChart() {
   const { toggleModalCreateChart } = useModalStore.getState();
 
   return (
@@ -19,7 +14,6 @@ function ButtonAddChart(props: PropType) {
         color="primary"
         onPress={() => {
           toggleModalCreateChart(true);
-          refresh();
         }}
         variant="solid"
       >

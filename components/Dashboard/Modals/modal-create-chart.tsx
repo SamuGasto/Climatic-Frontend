@@ -13,12 +13,7 @@ import {
 import { useTheme } from "next-themes";
 import React, { useState } from "react";
 
-interface PropType {
-  refresh: () => void;
-}
-
-function ModalCreateChart(props: PropType) {
-  const { refresh } = props;
+function ModalCreateChart() {
   const { userData, id_boardSelected, addNewChart } = useBoardStore.getState();
   const { ModalCreateChart, toggleModalCreateChart } = useModalStore.getState();
   const [title, setTitle] = useState("");
@@ -35,7 +30,6 @@ function ModalCreateChart(props: PropType) {
     setTitle("");
     setSubtitle("");
     toggleModalCreateChart(false);
-    refresh();
   }
 
   return (
@@ -44,7 +38,6 @@ function ModalCreateChart(props: PropType) {
         isOpen={ModalCreateChart}
         onOpenChange={(value) => {
           toggleModalCreateChart(value);
-          refresh();
         }}
         onKeyDown={(event) => {
           if (ModalCreateChart && event.key === "Enter") ReadyButtonFunction();
@@ -79,7 +72,6 @@ function ModalCreateChart(props: PropType) {
                 toggleModalCreateChart(false);
                 setTitle("");
                 setSubtitle("");
-                refresh();
               }}
             >
               Cancelar

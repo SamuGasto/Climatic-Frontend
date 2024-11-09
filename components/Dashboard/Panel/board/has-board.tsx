@@ -7,12 +7,7 @@ import ChartsCards from "./Charts-Cards/charts-card";
 import { useBoardStore } from "@/utils/Stores/boardStore";
 import { Board } from "@/types/board";
 
-interface PropType {
-  refresh: () => void;
-}
-
-function BoardPanel(props: PropType) {
-  const { refresh } = props;
+function BoardPanel() {
   const { userData, id_boardSelected } = useBoardStore.getState();
   const [filterQuery, setFilterQuery] = useState("");
   const [dataFiltered, setDataFiltered] = useState<Chart[]>(
@@ -44,9 +39,9 @@ function BoardPanel(props: PropType) {
           <TitleCardBoard />
           <Search filterQuery={filterQuery} setFilterQuery={setFilterQuery} />
         </div>
-        <ButtonAddChart refresh={refresh} />
+        <ButtonAddChart />
       </section>
-      <ChartsCards refresh={refresh} charts={dataFiltered} />
+      <ChartsCards charts={dataFiltered} />
     </div>
   );
 }

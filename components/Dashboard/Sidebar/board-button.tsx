@@ -12,11 +12,10 @@ import useModalStore from "@/utils/Stores/modalStore";
 interface PropType {
   id: number;
   board: Board;
-  refresh: () => void;
 }
 
 function BoardButton(props: PropType) {
-  const { id, board, refresh } = props;
+  const { id, board } = props;
   const { id_boardSelected, selectBoard, deleteBoard } =
     useBoardStore.getState();
   const { toggleModalConfirm, toggleModalEditBoard } = useModalStore.getState();
@@ -41,10 +40,8 @@ function BoardButton(props: PropType) {
                 "¿Estás seguro de eliminar este tablero?",
                 () => {
                   deleteBoard(id);
-                  refresh();
                 }
               );
-              refresh();
             }
           }}
         >
@@ -63,7 +60,6 @@ function BoardButton(props: PropType) {
         onClick={() => {
           selectBoard(id);
           setActive(true);
-          refresh();
         }}
       >
         <h1 className="w-full text-center text-pretty truncate">
@@ -78,7 +74,6 @@ function BoardButton(props: PropType) {
           color="primary"
           onPress={() => {
             toggleModalEditBoard(true);
-            refresh();
           }}
         >
           <EditIcon width={28} />

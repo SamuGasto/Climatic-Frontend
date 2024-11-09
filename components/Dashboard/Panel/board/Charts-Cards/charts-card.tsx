@@ -6,12 +6,11 @@ import { motion, Variants } from "framer-motion";
 import { Pagination } from "@nextui-org/react";
 
 interface PropType {
-  refresh: () => void;
   charts: Chart[];
 }
 
 function ChartsCards(props: PropType) {
-  const { refresh, charts } = props;
+  const { charts } = props;
   const [segmentChart, setSegmentChart] = useState(0);
 
   return (
@@ -21,12 +20,12 @@ function ChartsCards(props: PropType) {
           .slice(segmentChart * 8, segmentChart * 8 + 8)
           .map((chart, index) => (
             <div key={index}>
-              <NormalCard refresh={refresh} index={index} chart={chart} />
+              <NormalCard index={index} chart={chart} />
             </div>
           ))}
         {charts.length === 0 && (
           <div>
-            <NoChartCard key={"NoCard"} refresh={refresh} />
+            <NoChartCard key={"NoCard"} />
           </div>
         )}
       </motion.div>
