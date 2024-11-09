@@ -6,9 +6,9 @@ import {
   NavbarBrand,
   NavbarContent,
   NavbarItem,
-  Link,
   Button,
 } from "@nextui-org/react";
+import Link from "next/link";
 import { ThemeSwitch } from "../theme-switch";
 import { usePathname } from "next/navigation";
 import Sidebar from "@/components/Dashboard/Sidebar/sidebar";
@@ -173,7 +173,7 @@ export default function NavbarComponent() {
           {/* Sidebar in mobile menu */}
           <div className="flex flex-col w-full ">
             <h4 className="text-center text-2xl italic mb-3">Tableros</h4>
-            <Sidebar refresh={Refresh} isMobile={true} />
+            <Sidebar isMobile={true} />
           </div>
         </div>
       </div>

@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import CardMember from "@/components/CardMember/card-member";
 

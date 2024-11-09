@@ -1,5 +1,5 @@
+"use client";
 import { Chart } from "@/types/chart";
-import { useChartStore } from "@/utils/Stores/chartStore";
 import { Image } from "@nextui-org/image";
 import { CircularProgress } from "@nextui-org/progress";
 import React, { useEffect, useState } from "react";

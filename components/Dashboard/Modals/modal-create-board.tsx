@@ -1,5 +1,6 @@
-import { useBoardStore } from "@/utils/Stores/boardStore";
-import useModalStore from "@/utils/Stores/modalStore";
+"use client";
+import { useBoardStore } from "@/providers/board-store-provider";
+import { useModalStore } from "@/providers/modal-store-provider";
 import {
   Button,
   Input,
@@ -13,8 +14,11 @@ import { useTheme } from "next-themes";
 import React, { useState } from "react";
 
 function ModalCreateBoard() {
-  const { addNewBoard } = useBoardStore.getState();
-  const { ModalCreateBoard, toggleModalCreateBoard } = useModalStore.getState();
+  const addNewBoard = useBoardStore((state) => state.addNewBoard);
+  const toggleModalCreateBoard = useModalStore(
+    (state) => state.toggleModalCreateBoard
+  );
+  const ModalCreateBoard = useModalStore((state) => state.ModalCreateBoard);
   const [title, setTitle] = useState("");
   const actualTheme = useTheme();
   function ReadyButtonFunction() {

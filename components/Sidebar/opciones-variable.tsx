@@ -9,32 +9,13 @@ import { varConTiempo } from "@/config/var_con_tiempo";
 import { tamañoVegetacion } from "@/config/tamaño_vegetacion";
 import { varTamañoVegetacion } from "@/config/var_tamaño_vegetacion";
 import { tiposGraficos } from "@/config/tipos_de_graficos";
+import { typeChart } from "@/types/chart";
 
 type Props = {
   setHayTiempo: React.Dispatch<React.SetStateAction<boolean>>;
   setVariable: React.Dispatch<React.SetStateAction<string>>;
   setNivel: React.Dispatch<React.SetStateAction<number | null>>;
-  setTypeChart: React.Dispatch<
-    React.SetStateAction<
-      | "image"
-      | "line"
-      | "area"
-      | "bar"
-      | "pie"
-      | "donut"
-      | "radialBar"
-      | "scatter"
-      | "bubble"
-      | "heatmap"
-      | "candlestick"
-      | "boxPlot"
-      | "radar"
-      | "polarArea"
-      | "rangeBar"
-      | "rangeArea"
-      | "treemap"
-    >
-  >;
+  setTypeChart: React.Dispatch<React.SetStateAction<typeChart>>;
 };
 
 export default function OpcionesVariable(props: Props) {
@@ -117,27 +98,19 @@ export default function OpcionesVariable(props: Props) {
         explicacion="Seleccione el tipo de gráfico"
         onSelect={(value) => {
           if (
-            value !== "image" ||
-            "line" ||
-            "area" ||
-            "bar" ||
-            "pie" ||
-            "donut" ||
-            "radialBar" ||
-            "scatter" ||
-            "bubble" ||
-            "heatmap" ||
-            "candlestick" ||
-            "boxPlot" ||
-            "radar" ||
-            "polarArea" ||
-            "rangeBar" ||
-            "rangeArea" ||
-            "treemap"
+            value === "contorno" ||
+            "vectoriales" ||
+            "clasificacion" ||
+            "isobaras" ||
+            "lineas" ||
+            "dispersion" ||
+            "rosa_de_vientos" ||
+            "polares" ||
+            "barras"
           ) {
-            setTypeChart("image");
+            setTypeChart("contorno");
           } else {
-            setTypeChart(value);
+            setTypeChart("contorno");
           }
         }}
       />

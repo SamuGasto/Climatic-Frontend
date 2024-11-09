@@ -1,13 +1,14 @@
 import { Button } from "@nextui-org/button";
 import React, { useEffect, useState } from "react";
-import { useBoardStore } from "@/utils/Stores/boardStore";
+
 import { Board } from "@/types/board";
 import {
   DeleteOffOutlineIcon,
   DeleteOutlineIcon,
   EditIcon,
 } from "@/components/icons";
-import useModalStore from "@/utils/Stores/modalStore";
+import { useModalStore } from "@/providers/modal-store-provider";
+import { useBoardStore } from "@/providers/board-store-provider";
 
 interface PropType {
   id: number;
@@ -16,9 +17,13 @@ interface PropType {
 
 function BoardButton(props: PropType) {
   const { id, board } = props;
-  const { id_boardSelected, selectBoard, deleteBoard } =
-    useBoardStore.getState();
-  const { toggleModalConfirm, toggleModalEditBoard } = useModalStore.getState();
+  const id_boardSelected = useBoardStore((state) => state.id_boardSelected);
+  const selectBoard = useBoardStore((state) => state.selectBoard);
+  const deleteBoard = useBoardStore((state) => state.deleteBoard);
+  const toggleModalConfirm = useModalStore((state) => state.toggleModalConfirm);
+  const toggleModalEditBoard = useModalStore(
+    (state) => state.toggleModalEditBoard
+  );
   const [active, setActive] = useState(false);
 
   useEffect(() => {

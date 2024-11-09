@@ -1,14 +1,16 @@
+"use client";
 import { Chart } from "@/types/chart";
 import React, { useEffect, useState } from "react";
 import Search from "./layout/search";
 import ButtonAddChart from "../add-chart";
 import TitleCardBoard from "./layout/title";
 import ChartsCards from "./Charts-Cards/charts-card";
-import { useBoardStore } from "@/utils/Stores/boardStore";
+import { useBoardStore } from "@/providers/board-store-provider";
 import { Board } from "@/types/board";
 
 function BoardPanel() {
-  const { userData, id_boardSelected } = useBoardStore.getState();
+  const userData = useBoardStore((state) => state.userData);
+  const id_boardSelected = useBoardStore((state) => state.id_boardSelected);
   const [filterQuery, setFilterQuery] = useState("");
   const [dataFiltered, setDataFiltered] = useState<Chart[]>(
     userData[id_boardSelected].charts

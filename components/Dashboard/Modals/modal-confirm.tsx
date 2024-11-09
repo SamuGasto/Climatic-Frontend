@@ -1,5 +1,5 @@
-import { useBoardStore } from "@/utils/Stores/boardStore";
-import useModalStore from "@/utils/Stores/modalStore";
+"use client";
+import { useModalStore } from "@/providers/modal-store-provider";
 import {
   Button,
   Input,
@@ -13,12 +13,12 @@ import { useTheme } from "next-themes";
 import React from "react";
 
 function ModalConfirm() {
-  const {
-    ModalConfirm,
-    ModalConfirmText,
-    functionModalConfirm,
-    toggleModalConfirm,
-  } = useModalStore.getState();
+  const ModalConfirm = useModalStore((state) => state.ModalConfirm);
+  const ModalConfirmText = useModalStore((state) => state.ModalConfirmText);
+  const functionModalConfirm = useModalStore(
+    (state) => state.functionModalConfirm
+  );
+  const toggleModalConfirm = useModalStore((state) => state.toggleModalConfirm);
   const actualTheme = useTheme();
 
   function ReadyButtonFunction() {

@@ -1,6 +1,6 @@
-import { Board } from "@/types/board";
-import { useBoardStore } from "@/utils/Stores/boardStore";
-import useModalStore from "@/utils/Stores/modalStore";
+"use client";
+import { useBoardStore } from "@/providers/board-store-provider";
+import { useModalStore } from "@/providers/modal-store-provider";
 import {
   Button,
   Input,
@@ -14,8 +14,13 @@ import { useTheme } from "next-themes";
 import React, { useState } from "react";
 
 function ModalCreateChart() {
-  const { userData, id_boardSelected, addNewChart } = useBoardStore.getState();
-  const { ModalCreateChart, toggleModalCreateChart } = useModalStore.getState();
+  const userData = useBoardStore((state) => state.userData);
+  const id_boardSelected = useBoardStore((state) => state.id_boardSelected);
+  const addNewChart = useBoardStore((state) => state.addNewChart);
+  const toggleModalCreateChart = useModalStore(
+    (state) => state.toggleModalCreateChart
+  );
+  const ModalCreateChart = useModalStore((state) => state.ModalCreateChart);
   const [title, setTitle] = useState("");
   const [subtitle, setSubtitle] = useState("");
   const actualTheme = useTheme();

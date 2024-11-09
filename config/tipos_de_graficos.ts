@@ -1,4 +1,4 @@
 export const tiposGraficos = [
-  { key: "heatmap", label: "Mapa de calor" },
-  { key: "line", label: "Serie de tiempo" },
+  { key: "contorno", label: "Mapa de calor" },
+  { key: "barras", label: "Serie de tiempo" },
 ];

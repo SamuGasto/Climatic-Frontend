@@ -1,18 +1,19 @@
 import VentanaGrafico from "@/components/Graphic/ventana-grafico";
 import { ChartConfig } from "@/types/chart";
 import GenerateApexChart from "@/utils/GenerateChart";
-import { useChartStore } from "@/utils/Stores/chartStore";
+import { useChartStore } from "@/providers/chart-store-provider";
 import { useTheme } from "next-themes";
 import React from "react";
 
 function ChartImage() {
-  const { chartSelected, typeChart } = useChartStore.getState();
+  const chartSelected = useChartStore((state) => state.chartSelected);
+  const typeChart = useChartStore((state) => state.typeChart);
   const actualTheme = useTheme();
   const color = ["#ffcd6d"];
 
   const { NoInteractive } = GenerateApexChart(
     chartSelected.backendData,
-    typeChart === "image" ? "bar" : typeChart,
+    typeChart === "barras" ? "bar" : "area", //HAY QUE CORREGIR ESTO
     {
       color: color,
       theme: actualTheme,

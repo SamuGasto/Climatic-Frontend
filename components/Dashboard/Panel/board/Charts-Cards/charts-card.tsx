@@ -1,3 +1,4 @@
+"use client";
 import { Chart } from "@/types/chart";
 import React, { useEffect, useState } from "react";
 import NoChartCard from "./no-chart";

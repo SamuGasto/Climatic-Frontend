@@ -1,10 +1,7 @@
-"use client";
-import React, { useEffect } from "react";
+import React from "react";
 import ButtonAddBoard from "./add-new-board";
-import BoardButton from "./board-button";
 import { Image } from "@nextui-org/image";
 import { Card, CardBody } from "@nextui-org/card";
-import { useBoardStore } from "@/utils/Stores/boardStore";
 import BoardList from "./board-list";
 
 interface PropType {

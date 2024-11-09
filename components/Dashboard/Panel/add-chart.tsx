@@ -1,11 +1,13 @@
 import { AddChartIcon } from "@/components/icons";
-import useModalStore from "@/utils/Stores/modalStore";
+import { useModalStore } from "@/providers/modal-store-provider";
 import { Button } from "@nextui-org/button";
 import { useTheme } from "next-themes";
 import React from "react";
 
 function ButtonAddChart() {
-  const { toggleModalCreateChart } = useModalStore.getState();
+  const toggleModalCreateChart = useModalStore(
+    (state) => state.toggleModalCreateChart
+  );
 
   return (
     <div className="flex md:self-center mr-5">

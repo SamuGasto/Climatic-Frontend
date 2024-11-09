@@ -1,11 +1,14 @@
+"use client";
 import { PlusIcon } from "@/components/icons";
-import useModalStore from "@/utils/Stores/modalStore";
+import { useModalStore } from "@/providers/modal-store-provider";
 import { Button } from "@nextui-org/button";
 import { useTheme } from "next-themes";
 import React from "react";
 
 function ButtonAddBoard() {
-  const { toggleModalCreateBoard } = useModalStore.getState();
+  const toggleModalCreateBoard = useModalStore(
+    (state) => state.toggleModalCreateBoard
+  );
   const actualTheme = useTheme();
   return (
     <div className="mt-8">

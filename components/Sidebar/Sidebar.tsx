@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import OpcionesArea from "@/components/Sidebar/opciones-area";
 import OpcionesTiempo from "@/components/Sidebar/opciones-tiempo";
@@ -6,17 +7,17 @@ import { Consulta } from "@/types/consulta";
 import OpcionesVariable from "./opciones-variable";
 import { varUsanImagen } from "@/config/var_usan_imagen";
 import { SendQuery } from "@/utils/Query/QueryBackend";
+import { typeChart } from "@/types/chart";
 
 const consultaInicial: Consulta = {
   variable: "",
   latitud: [-34.75, -34.25],
   longitud: [108.25, 109],
-  typeChart: "heatmap",
-  imagen: false,
+  typeChart: "contorno",
 };
 
 //Al elegir var con el Enter, no se actualiza
-const Sidebar = ({ refresh }: { refresh: () => void }) => {
+const Sidebar = () => {
   const [hayTiempo, setHayTiempo] = useState(false);
 
   const [variable, setVariable] = useState("");
@@ -25,25 +26,7 @@ const Sidebar = ({ refresh }: { refresh: () => void }) => {
   const [nivel, setNivel] = useState<number | null>(null);
   const [fecha, setFecha] = useState<string[] | null>(null);
   const [hora, setHora] = useState("00:00:00.000000000");
-  const [typeChart, setTypeChart] = useState<
-    | "image"
-    | "line"
-    | "area"
-    | "bar"
-    | "pie"
-    | "donut"
-    | "radialBar"
-    | "scatter"
-    | "bubble"
-    | "heatmap"
-    | "candlestick"
-    | "boxPlot"
-    | "radar"
-    | "polarArea"
-    | "rangeBar"
-    | "rangeArea"
-    | "treemap"
-  >("heatmap");
+  const [typeChart, setTypeChart] = useState<typeChart>("contorno");
 
   const [consulta, setConsulta] = useState<Consulta>(consultaInicial);
   const [cargandoConsulta, setCargandoConsulta] = useState(false);
@@ -55,8 +38,7 @@ const Sidebar = ({ refresh }: { refresh: () => void }) => {
       variable: variable,
       latitud: latitud,
       longitud: longitud,
-      imagen: true,
-      typeChart: "area",
+      typeChart: "contorno",
     };
 
     if (nivel) newConsulta.nivel = nivel;
@@ -71,20 +53,8 @@ const Sidebar = ({ refresh }: { refresh: () => void }) => {
 
     newConsulta.typeChart = typeChart;
 
-    if (varUsanImagen.includes(variable)) {
-      newConsulta.imagen = true;
-      newConsulta.typeChart = "image";
-    } else {
-      newConsulta.imagen = false;
-    }
-
     setConsulta(newConsulta);
-    SendQuery(newConsulta)
-      .then(() => setCargandoConsulta(false))
-      .then(() => {
-        console.log("por recargar");
-        refresh();
-      });
+    SendQuery(newConsulta).then(() => setCargandoConsulta(false));
   };
 
   return (

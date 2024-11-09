@@ -1,18 +1,20 @@
+"use client";
 import React from "react";
 import { Card, CardBody } from "@nextui-org/card";
 import VentanaGrafico from "./ventana-grafico";
 import { useTheme } from "next-themes";
-import { useChartStore } from "@/utils/Stores/chartStore";
+import { useChartStore } from "@/providers/chart-store-provider";
 import GenerateApexChart from "@/utils/GenerateChart";
 
 export default function GraficoApex() {
-  const { chartSelected, typeChart } = useChartStore.getState();
+  const chartSelected = useChartStore((state) => state.chartSelected);
+  const typeChart = useChartStore((state) => state.typeChart);
   const actualTheme = useTheme();
   const color = ["#ffcd6d"];
 
   const { Interactive } = GenerateApexChart(
     chartSelected.backendData,
-    typeChart === "image" ? "bar" : typeChart,
+    typeChart === "barras" ? "clasificacion" : "barras", //Hay que arreglar esto, la opcion del caso false
     {
       color: color,
       theme: actualTheme,

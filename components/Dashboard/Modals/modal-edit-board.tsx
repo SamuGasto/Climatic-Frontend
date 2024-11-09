@@ -1,5 +1,6 @@
-import { useBoardStore } from "@/utils/Stores/boardStore";
-import useModalStore from "@/utils/Stores/modalStore";
+"use client";
+import { useBoardStore } from "@/providers/board-store-provider";
+import { useModalStore } from "@/providers/modal-store-provider";
 import {
   Button,
   Input,
@@ -13,9 +14,14 @@ import { useTheme } from "next-themes";
 import React, { useEffect, useState } from "react";
 
 function ModalEditBoard() {
-  const { userData, id_boardSelected, addNewBoard, updateBoard } =
-    useBoardStore.getState();
-  const { ModalEditBoard, toggleModalEditBoard } = useModalStore.getState();
+  const userData = useBoardStore((state) => state.userData);
+  const id_boardSelected = useBoardStore((state) => state.id_boardSelected);
+  const addNewBoard = useBoardStore((state) => state.addNewBoard);
+  const updateBoard = useBoardStore((state) => state.updateBoard);
+  const ModalEditBoard = useModalStore((state) => state.ModalEditBoard);
+  const toggleModalEditBoard = useModalStore(
+    (state) => state.toggleModalEditBoard
+  );
   const [title, setTitle] = useState("");
   const actualTheme = useTheme();
 

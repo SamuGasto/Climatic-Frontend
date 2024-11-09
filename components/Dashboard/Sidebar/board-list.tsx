@@ -1,9 +1,10 @@
-import { useBoardStore } from "@/utils/Stores/boardStore";
-import React, { useState } from "react";
+"use client";
+import { useBoardStore } from "@/providers/board-store-provider";
+import React from "react";
 import BoardButton from "./board-button";
 
 function BoardList() {
-  const { userData } = useBoardStore.getState();
+  const userData = useBoardStore((state) => state.userData);
 
   return (
     <ul className="flex flex-col space-y-2">

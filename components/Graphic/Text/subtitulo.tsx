@@ -1,13 +1,16 @@
+"use client";
 import { SaveIcon } from "@/components/icons";
-import { useBoardStore } from "@/utils/Stores/boardStore";
-import { useChartStore } from "@/utils/Stores/chartStore";
+import { useBoardStore } from "@/providers/board-store-provider";
+import { useChartStore } from "@/providers/chart-store-provider";
 import { Button } from "@nextui-org/button";
 import { Input, Textarea } from "@nextui-org/input";
 import React, { useState } from "react";
 
 function Subtitulo() {
-  const { userData, id_boardSelected, updateChart } = useBoardStore.getState();
-  const { chartSelected } = useChartStore.getState();
+  const userData = useBoardStore((state) => state.userData);
+  const id_boardSelected = useBoardStore((state) => state.id_boardSelected);
+  const updateChart = useBoardStore((state) => state.updateChart);
+  const chartSelected = useChartStore((state) => state.chartSelected);
   const [editMode, setEditMode] = useState(false);
   const [subtitle, setSubtitle] = useState(chartSelected.subtitle);
 
