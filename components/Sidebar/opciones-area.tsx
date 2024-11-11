@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Deslizador from "./slider";
+import DeslizadorDoble from "./slider";
 
 type Props = {
   setLatitud: React.Dispatch<React.SetStateAction<number[]>>;
@@ -12,7 +12,7 @@ const OpcionesArea = (props: Props) => {
   return (
     <div className="flex w-full flex-col gap-3">
       <p className="flex place-content-center">Selección del área</p>
-      <Deslizador
+      <DeslizadorDoble
         label="Rango de la latitud"
         maximo={-34}
         minimo={-35}
@@ -21,7 +21,7 @@ const OpcionesArea = (props: Props) => {
         setValores={setLatitud}
       />
 
-      <Deslizador
+      <DeslizadorDoble
         label="Rango de la longitud"
         maximo={110}
         minimo={108}

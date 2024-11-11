@@ -93,5 +93,9 @@ export const variables = [{
 {
  key: "w",
  label: "Velocidad vertical en la atmósfera",
-}
+},
+{
+  key: "swvl",
+  label: "Contenido volumétrico de agua",
+},
 ]

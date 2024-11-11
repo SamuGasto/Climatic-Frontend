@@ -3,14 +3,16 @@ import Desplegable from "./select";
 import Slider2 from "./slider2";
 import { variables } from "@/config/variables";
 import { componentes } from "@/config/componente";
-import { varComponente } from "@/config/var_componente";
+import { varComponente } from "@/config/subvariables/var_componente";
 import { varConAltura } from "@/config/var_con_altura";
 import { varConTiempo } from "@/config/var_con_tiempo";
 import { tamañoVegetacion } from "@/config/tamaño_vegetacion";
-import { varTamañoVegetacion } from "@/config/var_tamaño_vegetacion";
+import { varTamañoVegetacion } from "@/config/subvariables/var_tamaño_vegetacion";
 import { tiposGraficos } from "@/config/tipos_de_graficos";
 import Desplegable2 from "./desplegable2";
 import { mapaVariables } from "@/config/mapa-variables";
+import Deslizador from "./deslizador";
+import { varContenidoVolumetrico } from "@/config/subvariables/var_contenido_volumetrico";
 
 type elemento = {
   key: string;
@@ -30,10 +32,16 @@ export default function OpcionesVariable(props: Props) {
     props;
 
   const [hayAltura, sethayAltura] = useState(false);
+
   const [hayComponente, sethayComponente] = useState(false);
   const [componente, setComponente] = useState("u");
+
   const [hayTamañoVegetacion, setHayTamañoVegetacion] = useState(false);
   const [tamañoVegetacionActual, setTamañoVegetacionActual] = useState("h");
+
+  const [hayContenidoVolumetrico, setHayContenidoVolumetrico] = useState(false);
+  const [contenidoVolumetrico, setContenidoVolumetrico] = useState("1");
+
   const [vari, setVari] = useState("");
 
   const definirVariable = (variable: string, subVariable: string) => {
@@ -67,6 +75,17 @@ export default function OpcionesVariable(props: Props) {
         } else {
           return "tvh";
         }
+
+      case "swvl":
+        if (subVariable === "1") {
+          return "swvl1";
+        } else if (subVariable === "2") {
+          return "swvl2";
+        } else if (subVariable === "3") {
+          return "swvl3";
+        } else {
+          return "swvl4";
+        }
     }
     return "Error";
   };
@@ -77,16 +96,25 @@ export default function OpcionesVariable(props: Props) {
       key = definirVariable(key, componente);
     } else if (varTamañoVegetacion.includes(key)) {
       key = definirVariable(key, tamañoVegetacionActual);
+    } else if (varContenidoVolumetrico.includes(key)) {
+      key = definirVariable(key, contenidoVolumetrico);
     }
     setVariable(key);
 
     varConAltura.includes(key) ? sethayAltura(true) : sethayAltura(false);
+
     varComponente.includes(key)
       ? sethayComponente(true)
       : sethayComponente(false);
+
     varTamañoVegetacion.includes(key)
       ? setHayTamañoVegetacion(true)
       : setHayTamañoVegetacion(false);
+
+    varContenidoVolumetrico.includes(key)
+      ? setHayContenidoVolumetrico(true)
+      : setHayContenidoVolumetrico(false);
+
     varConTiempo.includes(key) ? setHayTiempo(true) : setHayTiempo(false);
   };
 
@@ -98,6 +126,19 @@ export default function OpcionesVariable(props: Props) {
 
   const handleTamañoVegetacion = (key: string) => {
     setTamañoVegetacionActual(key);
+    key = definirVariable(vari, key);
+    setVariable(key);
+  };
+
+  const handleContenidoVolumetrico = (valor: number | number[]) => {
+    let key;
+    if (Array.isArray(valor)) {
+      key = String(valor[0]);
+    } else {
+      key = String(valor);
+    }
+    setContenidoVolumetrico(key);
+
     key = definirVariable(vari, key);
     setVariable(key);
   };
@@ -164,6 +205,17 @@ export default function OpcionesVariable(props: Props) {
           elementos={tamañoVegetacion}
           onSelect={handleTamañoVegetacion}
           valPorDefecto={"h"}
+        />
+      ) : null}
+
+      {hayContenidoVolumetrico ? (
+        <Deslizador
+          label="Capa del suelo"
+          minimo={1}
+          maximo={4}
+          step={1}
+          defaultValue={[1]}
+          onChangeEnd={handleContenidoVolumetrico}
         />
       ) : null}
     </div>
