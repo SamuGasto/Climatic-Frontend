@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Select, SelectItem, SelectSection } from "@nextui-org/react";
-import { mapaVariables } from "@/config/mapa-variables";
 
 type elemento = {
   key: string;
@@ -23,17 +22,12 @@ export default function Desplegable2(props: DesplegableProps) {
   const {
     titulo,
     explicacion,
-    elementos,
     onSelect,
     desabilitado,
     valPorDefecto,
-    typeChart,
     elementosParaGrafico,
     elementosOtroGrafico,
   } = props;
-
-  console.log(elementosParaGrafico);
-  console.log(elementosOtroGrafico);
 
   return (
     <div className="flex w-full">
@@ -46,10 +40,7 @@ export default function Desplegable2(props: DesplegableProps) {
         defaultSelectedKeys={valPorDefecto}
         disallowEmptySelection
       >
-        <SelectSection
-          showDivider
-          title="Variables que funcionan con el gráfico seleccionado"
-        >
+        <SelectSection showDivider title="Variables recomendadas">
           {elementosParaGrafico.map((elemento) => (
             <SelectItem
               onClick={() => onSelect?.(elemento.key)}
@@ -59,6 +50,7 @@ export default function Desplegable2(props: DesplegableProps) {
             </SelectItem>
           ))}
         </SelectSection>
+
         <SelectSection title="Otras variables">
           {elementosOtroGrafico.map((elemento) => (
             <SelectItem

@@ -7,16 +7,7 @@ type Props = {
   desabilitado: boolean;
   setFecha: React.Dispatch<React.SetStateAction<string[] | null>>;
   setHora: React.Dispatch<React.SetStateAction<string>>;
-  typeChart:
-    | "contorno"
-    | "vectoriales"
-    | "clasificacion"
-    | "isobaras"
-    | "lineas"
-    | "dispersion"
-    | "rosa_de_vientos"
-    | "polares"
-    | "barras";
+  typeChart: string;
 };
 
 const OpcionesTiempo = (props: Props) => {

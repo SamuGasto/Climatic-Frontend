@@ -25,17 +25,7 @@ const Sidebar = ({ refresh }: { refresh: () => void }) => {
   const [nivel, setNivel] = useState<number | null>(null);
   const [fecha, setFecha] = useState<string[] | null>(null);
   const [hora, setHora] = useState("00:00:00.000000000");
-  const [typeChart, setTypeChart] = useState<
-    | "contorno"
-    | "vectoriales"
-    | "clasificacion"
-    | "isobaras"
-    | "lineas"
-    | "dispersion"
-    | "rosa_de_vientos"
-    | "polares"
-    | "barras"
-  >("contorno");
+  const [typeChart, setTypeChart] = useState<string>("contorno");
 
   const [consulta, setConsulta] = useState<Consulta>(consultaInicial);
   const [cargandoConsulta, setCargandoConsulta] = useState(false);

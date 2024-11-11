@@ -7,4 +7,8 @@ export const componentes = [
     key: "u",
     label: "U (Este - Oeste)",
   },
+  {
+    key: "vu",
+    label: "V-U (Norte - Sur - Este - Oeste)"
+  }
 ];

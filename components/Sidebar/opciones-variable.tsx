@@ -21,19 +21,7 @@ type Props = {
   setHayTiempo: React.Dispatch<React.SetStateAction<boolean>>;
   setVariable: React.Dispatch<React.SetStateAction<string>>;
   setNivel: React.Dispatch<React.SetStateAction<number | null>>;
-  setTypeChart: React.Dispatch<
-    React.SetStateAction<
-      | "contorno"
-      | "vectoriales"
-      | "clasificacion"
-      | "isobaras"
-      | "lineas"
-      | "dispersion"
-      | "rosa_de_vientos"
-      | "polares"
-      | "barras"
-    >
-  >;
+  setTypeChart: React.Dispatch<React.SetStateAction<string>>;
   typeChart: string;
 };
 
@@ -53,14 +41,18 @@ export default function OpcionesVariable(props: Props) {
       case "u":
         if (subVariable === "u") {
           return "u";
-        } else {
+        } else if (subVariable === "v") {
           return "v";
+        } else {
+          return "vu";
         }
       case "u10":
         if (subVariable === "u") {
           return "u10";
-        } else {
+        } else if (subVariable === "v") {
           return "v10";
+        } else {
+          return "vu10";
         }
 
       case "cvh":
@@ -112,29 +104,18 @@ export default function OpcionesVariable(props: Props) {
 
   const [elementosParaGrafico, setElementosParaGrafico] =
     useState<elemento[]>(variables);
-  const [elementosOtroGrafico, setElementosOtroGrafico] =
-    useState<elemento[]>(variables);
+  const [elementosOtroGrafico, setElementosOtroGrafico] = useState<elemento[]>(
+    []
+  );
 
-  const cambiarTipoGrafico = (
-    valor:
-      | "contorno"
-      | "vectoriales"
-      | "clasificacion"
-      | "isobaras"
-      | "lineas"
-      | "dispersion"
-      | "rosa_de_vientos"
-      | "polares"
-      | "barras"
-  ) => {
-    console.log("Se cambia tipo ");
+  const cambiarTipoGrafico = (valor: string) => {
     setTypeChart(valor);
 
     let listAux1: elemento[] = [];
     let listAux2: elemento[] = [];
 
     variables.forEach((elemento) => {
-      if (mapaVariables[typeChart].includes(elemento.key)) {
+      if (mapaVariables[valor].includes(elemento.key)) {
         listAux1.push({ key: elemento.key, label: elemento.label });
       } else {
         listAux2.push({ key: elemento.key, label: elemento.label });
@@ -147,47 +128,21 @@ export default function OpcionesVariable(props: Props) {
 
   return (
     <div className="flex flex-col gap-3 w-full">
+      <Desplegable
+        elementos={tiposGraficos}
+        titulo="Gráfico"
+        explicacion="Seleccione el tipo de gráfico"
+        onSelect={(value) => cambiarTipoGrafico(value)}
+      />
+
       <Desplegable2
-        titulo="Variable 2"
-        explicacion="Elija la variable que desea graficar 2"
+        titulo="Variable"
+        explicacion="Elija la variable que desea graficar"
         elementos={variables}
         onSelect={handleVariable}
         typeChart={typeChart}
         elementosParaGrafico={elementosParaGrafico}
         elementosOtroGrafico={elementosOtroGrafico}
-      />
-
-      <Desplegable
-        elementos={tiposGraficos}
-        titulo="Gráfico"
-        explicacion="Seleccione el tipo de gráfico"
-        onSelect={(value) => {
-          if (
-            value !== "contorno" ||
-            "vectoriales" ||
-            "clasificacion" ||
-            "isobaras" ||
-            "lineas" ||
-            "dispersion" ||
-            "rosa_de_vientos" ||
-            "polares" ||
-            "barras"
-          ) {
-            setTypeChart("contorno");
-            console.log(value);
-          } else {
-            console.log(value);
-            console.log("else");
-            cambiarTipoGrafico(value);
-          }
-        }}
-      />
-
-      <Desplegable
-        titulo="Variable"
-        explicacion="Elija la variable que desea graficar"
-        elementos={variables}
-        onSelect={handleVariable}
       />
 
       {hayAltura ? <Slider2 setNivel={setNivel} /> : null}

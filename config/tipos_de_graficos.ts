@@ -5,7 +5,6 @@ export const tiposGraficos = [
   { key: "isobaras", label: "Mapa de isobaras" },
   { key: "lineas", label: "Serie de tiempo" },
   { key: "dispersion", label: "Gráfico de dispersión" },
-  { key: "rosa_de_vientos", label: "Rosa de vientos" },
   { key: "polares", label: "Gráfico polar" },
   { key: "barras", label: "Gráfico de barras" },
 ];
