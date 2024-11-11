@@ -10,6 +10,12 @@ import { tamañoVegetacion } from "@/config/tamaño_vegetacion";
 import { varTamañoVegetacion } from "@/config/var_tamaño_vegetacion";
 import { tiposGraficos } from "@/config/tipos_de_graficos";
 import Desplegable2 from "./desplegable2";
+import { mapaVariables } from "@/config/mapa-variables";
+
+type elemento = {
+  key: string;
+  label: string;
+};
 
 type Props = {
   setHayTiempo: React.Dispatch<React.SetStateAction<boolean>>;
@@ -104,6 +110,41 @@ export default function OpcionesVariable(props: Props) {
     setVariable(key);
   };
 
+  const [elementosParaGrafico, setElementosParaGrafico] =
+    useState<elemento[]>(variables);
+  const [elementosOtroGrafico, setElementosOtroGrafico] =
+    useState<elemento[]>(variables);
+
+  const cambiarTipoGrafico = (
+    valor:
+      | "contorno"
+      | "vectoriales"
+      | "clasificacion"
+      | "isobaras"
+      | "lineas"
+      | "dispersion"
+      | "rosa_de_vientos"
+      | "polares"
+      | "barras"
+  ) => {
+    console.log("Se cambia tipo ");
+    setTypeChart(valor);
+
+    let listAux1: elemento[] = [];
+    let listAux2: elemento[] = [];
+
+    variables.forEach((elemento) => {
+      if (mapaVariables[typeChart].includes(elemento.key)) {
+        listAux1.push({ key: elemento.key, label: elemento.label });
+      } else {
+        listAux2.push({ key: elemento.key, label: elemento.label });
+      }
+    });
+
+    setElementosParaGrafico(listAux1);
+    setElementosOtroGrafico(listAux2);
+  };
+
   return (
     <div className="flex flex-col gap-3 w-full">
       <Desplegable2
@@ -112,6 +153,8 @@ export default function OpcionesVariable(props: Props) {
         elementos={variables}
         onSelect={handleVariable}
         typeChart={typeChart}
+        elementosParaGrafico={elementosParaGrafico}
+        elementosOtroGrafico={elementosOtroGrafico}
       />
 
       <Desplegable
@@ -131,8 +174,11 @@ export default function OpcionesVariable(props: Props) {
             "barras"
           ) {
             setTypeChart("contorno");
+            console.log(value);
           } else {
-            setTypeChart(value);
+            console.log(value);
+            console.log("else");
+            cambiarTipoGrafico(value);
           }
         }}
       />

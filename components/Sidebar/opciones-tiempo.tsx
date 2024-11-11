@@ -21,7 +21,7 @@ type Props = {
 
 const OpcionesTiempo = (props: Props) => {
   const { desabilitado, setFecha, setHora, typeChart } = props;
-  console.log(typeChart);
+
   return (
     <div className="flex flex-col gap-3 w-full">
       <p className="flex place-content-center">Selección de la fecha</p>

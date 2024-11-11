@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Select, SelectItem, SelectSection } from "@nextui-org/react";
-import { mapaContorno } from "@/config/var_segun_graficos/mapa_contorno";
 import { mapaVariables } from "@/config/mapa-variables";
 
 type elemento = {
@@ -16,6 +15,8 @@ interface DesplegableProps {
   desabilitado?: boolean;
   valPorDefecto?: string;
   typeChart: string;
+  elementosParaGrafico: elemento[];
+  elementosOtroGrafico: elemento[];
 }
 
 export default function Desplegable2(props: DesplegableProps) {
@@ -27,19 +28,12 @@ export default function Desplegable2(props: DesplegableProps) {
     desabilitado,
     valPorDefecto,
     typeChart,
+    elementosParaGrafico,
+    elementosOtroGrafico,
   } = props;
 
-  let listAux1: elemento[] = [];
-  let listAux2: elemento[] = [];
-
-  elementos.map((elemento) =>
-    mapaVariables[typeChart].includes(elemento.key)
-      ? (listAux1 = [...listAux1, { key: elemento.key, label: elemento.label }])
-      : (listAux2 = [...listAux2, { key: elemento.key, label: elemento.label }])
-  );
-
-  const [elementosParaGrafico, setElementosParaGrafico] = useState(listAux1);
-  const [elementosOtroGrafico, setElementosOtroGrafico] = useState(listAux2);
+  console.log(elementosParaGrafico);
+  console.log(elementosOtroGrafico);
 
   return (
     <div className="flex w-full">
