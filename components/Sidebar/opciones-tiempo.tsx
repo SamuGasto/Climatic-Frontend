@@ -8,23 +8,15 @@ type Props = {
   setFecha: React.Dispatch<React.SetStateAction<string[] | null>>;
   setHora: React.Dispatch<React.SetStateAction<string>>;
   typeChart:
-    | "image"
-    | "line"
-    | "area"
-    | "bar"
-    | "pie"
-    | "donut"
-    | "radialBar"
-    | "scatter"
-    | "bubble"
-    | "heatmap"
-    | "candlestick"
-    | "boxPlot"
-    | "radar"
-    | "polarArea"
-    | "rangeBar"
-    | "rangeArea"
-    | "treemap";
+    | "contorno"
+    | "vectoriales"
+    | "clasificacion"
+    | "isobaras"
+    | "lineas"
+    | "dispersion"
+    | "rosa_de_vientos"
+    | "polares"
+    | "barras";
 };
 
 const OpcionesTiempo = (props: Props) => {
@@ -34,15 +26,15 @@ const OpcionesTiempo = (props: Props) => {
     <div className="flex flex-col gap-3 w-full">
       <p className="flex place-content-center">Selección de la fecha</p>
 
-      {typeChart === "heatmap" || "image" ? (
+      {typeChart !== "lineas" ? (
         <SeleccionFecha desabilitado={desabilitado} setFecha={setFecha} />
       ) : null}
 
-      {typeChart === "heatmap" || "image" ? (
+      {typeChart !== "lineas" ? (
         <SeleccionHora desabilitado={desabilitado} setHora={setHora} />
       ) : null}
 
-      {typeChart === "line" ? (
+      {typeChart === "lineas" ? (
         <FechaRango desabilitado={desabilitado} setFecha={setFecha} />
       ) : null}
     </div>

@@ -11,7 +11,7 @@ const consultaInicial: Consulta = {
   variable: "",
   latitud: [-34.75, -34.25],
   longitud: [108.25, 109],
-  typeChart: "heatmap",
+  typeChart: "contorno",
   imagen: false,
 };
 
@@ -26,24 +26,16 @@ const Sidebar = ({ refresh }: { refresh: () => void }) => {
   const [fecha, setFecha] = useState<string[] | null>(null);
   const [hora, setHora] = useState("00:00:00.000000000");
   const [typeChart, setTypeChart] = useState<
-    | "image"
-    | "line"
-    | "area"
-    | "bar"
-    | "pie"
-    | "donut"
-    | "radialBar"
-    | "scatter"
-    | "bubble"
-    | "heatmap"
-    | "candlestick"
-    | "boxPlot"
-    | "radar"
-    | "polarArea"
-    | "rangeBar"
-    | "rangeArea"
-    | "treemap"
-  >("heatmap");
+    | "contorno"
+    | "vectoriales"
+    | "clasificacion"
+    | "isobaras"
+    | "lineas"
+    | "dispersion"
+    | "rosa_de_vientos"
+    | "polares"
+    | "barras"
+  >("contorno");
 
   const [consulta, setConsulta] = useState<Consulta>(consultaInicial);
   const [cargandoConsulta, setCargandoConsulta] = useState(false);
@@ -56,7 +48,7 @@ const Sidebar = ({ refresh }: { refresh: () => void }) => {
       latitud: latitud,
       longitud: longitud,
       imagen: true,
-      typeChart: "area",
+      typeChart: "contorno",
     };
 
     if (nivel) newConsulta.nivel = nivel;
@@ -73,7 +65,7 @@ const Sidebar = ({ refresh }: { refresh: () => void }) => {
 
     if (varUsanImagen.includes(variable)) {
       newConsulta.imagen = true;
-      newConsulta.typeChart = "image";
+      newConsulta.typeChart = "contorno";
     } else {
       newConsulta.imagen = false;
     }
@@ -101,6 +93,7 @@ const Sidebar = ({ refresh }: { refresh: () => void }) => {
         setVariable={setVariable}
         setNivel={setNivel}
         setTypeChart={setTypeChart}
+        typeChart={typeChart}
       />
 
       <OpcionesArea setLatitud={setLatitud} setLongitud={setLongitud} />

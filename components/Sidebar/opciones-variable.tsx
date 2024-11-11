@@ -9,6 +9,7 @@ import { varConTiempo } from "@/config/var_con_tiempo";
 import { tamañoVegetacion } from "@/config/tamaño_vegetacion";
 import { varTamañoVegetacion } from "@/config/var_tamaño_vegetacion";
 import { tiposGraficos } from "@/config/tipos_de_graficos";
+import Desplegable2 from "./desplegable2";
 
 type Props = {
   setHayTiempo: React.Dispatch<React.SetStateAction<boolean>>;
@@ -16,29 +17,23 @@ type Props = {
   setNivel: React.Dispatch<React.SetStateAction<number | null>>;
   setTypeChart: React.Dispatch<
     React.SetStateAction<
-      | "image"
-      | "line"
-      | "area"
-      | "bar"
-      | "pie"
-      | "donut"
-      | "radialBar"
-      | "scatter"
-      | "bubble"
-      | "heatmap"
-      | "candlestick"
-      | "boxPlot"
-      | "radar"
-      | "polarArea"
-      | "rangeBar"
-      | "rangeArea"
-      | "treemap"
+      | "contorno"
+      | "vectoriales"
+      | "clasificacion"
+      | "isobaras"
+      | "lineas"
+      | "dispersion"
+      | "rosa_de_vientos"
+      | "polares"
+      | "barras"
     >
   >;
+  typeChart: string;
 };
 
 export default function OpcionesVariable(props: Props) {
-  const { setHayTiempo, setVariable, setNivel, setTypeChart } = props;
+  const { setHayTiempo, setVariable, setNivel, setTypeChart, typeChart } =
+    props;
 
   const [hayAltura, sethayAltura] = useState(false);
   const [hayComponente, sethayComponente] = useState(false);
@@ -111,31 +106,31 @@ export default function OpcionesVariable(props: Props) {
 
   return (
     <div className="flex flex-col gap-3 w-full">
+      <Desplegable2
+        titulo="Variable 2"
+        explicacion="Elija la variable que desea graficar 2"
+        elementos={variables}
+        onSelect={handleVariable}
+        typeChart={typeChart}
+      />
+
       <Desplegable
         elementos={tiposGraficos}
         titulo="Gráfico"
         explicacion="Seleccione el tipo de gráfico"
         onSelect={(value) => {
           if (
-            value !== "image" ||
-            "line" ||
-            "area" ||
-            "bar" ||
-            "pie" ||
-            "donut" ||
-            "radialBar" ||
-            "scatter" ||
-            "bubble" ||
-            "heatmap" ||
-            "candlestick" ||
-            "boxPlot" ||
-            "radar" ||
-            "polarArea" ||
-            "rangeBar" ||
-            "rangeArea" ||
-            "treemap"
+            value !== "contorno" ||
+            "vectoriales" ||
+            "clasificacion" ||
+            "isobaras" ||
+            "lineas" ||
+            "dispersion" ||
+            "rosa_de_vientos" ||
+            "polares" ||
+            "barras"
           ) {
-            setTypeChart("image");
+            setTypeChart("contorno");
           } else {
             setTypeChart(value);
           }
