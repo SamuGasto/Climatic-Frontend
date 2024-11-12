@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import ButtonAddBoard from "./add-new-board";
 import { Card, CardBody } from "@nextui-org/card";
 import BoardList from "./board-list";
@@ -6,17 +6,19 @@ import { Divider } from "@nextui-org/react";
 import Image from "next/image";
 
 interface PropType {
-  isMobile?: boolean; // Nueva prop para diferenciar cuándo el Sidebar está en mobile
+  inNavMenu?: boolean; // Nueva prop para diferenciar cuándo el Sidebar está en mobile
 }
 
-function Sidebar({ isMobile = false }: PropType) {
+function Sidebar({ inNavMenu = false }: PropType) {
   return (
-    <div className="md:flex md:flex-col md:basis-1/12 md:px-6 md:mr-5 md:h-full md:min-h-[700]">
-      <Card className="w-full h-full" shadow={isMobile ? "none" : "md"}>
+    <div
+      className={`${!inNavMenu ? "hidden md:visible" : ""} md:flex md:flex-col md:basis-1/12 md:px-6 md:mr-5 md:h-full md:min-h-[700]`}
+    >
+      <Card className="w-full h-full" shadow={inNavMenu ? "none" : "md"}>
         <CardBody>
           {/* Mostrar imagen solo si no está en móvil */}
-          {!isMobile && (
-            <div className="flex w-full mb-8 justify-center">
+          {!inNavMenu ? (
+            <div className="flex w-full mt-1 mb-4 justify-center">
               <Image
                 src="/logo2.png"
                 alt="Climatic Logo"
@@ -24,6 +26,8 @@ function Sidebar({ isMobile = false }: PropType) {
                 height={50}
               />
             </div>
+          ) : (
+            <h1 className="text-center text-xl pb-2">Mis Tableros</h1>
           )}
           <Divider />
           <nav className="py-4">

@@ -11,7 +11,7 @@ function NoChartCard() {
   );
   return (
     <Card
-      className="h-72 w-96"
+      className="h-64 w-[360]"
       key={"NoChart"}
       shadow="sm"
       isPressable
