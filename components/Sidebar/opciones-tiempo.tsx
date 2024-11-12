@@ -21,13 +21,9 @@ const OpcionesTiempo = (props: Props) => {
         <SeleccionFecha desabilitado={desabilitado} setFecha={setFecha} />
       ) : null}
 
-      {typeChart !== "lineas" ? (
-        <SeleccionHora desabilitado={desabilitado} setHora={setHora} />
-      ) : null}
+      {typeChart === "lineas" ? <FechaRango setFecha={setFecha} /> : null}
 
-      {typeChart === "lineas" ? (
-        <FechaRango desabilitado={desabilitado} setFecha={setFecha} />
-      ) : null}
+      <SeleccionHora desabilitado={desabilitado} setHora={setHora} />
     </div>
   );
 };
