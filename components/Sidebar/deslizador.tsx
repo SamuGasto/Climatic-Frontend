@@ -7,10 +7,19 @@ type Props = {
   maximo: number;
   defaultValue: number;
   onChangeEnd?: (valor: number | number[]) => void;
+  deshabilitado: boolean;
 };
 
 export default function Deslizador(props: Props) {
-  const { maximo, minimo, step, label, defaultValue, onChangeEnd } = props;
+  const {
+    maximo,
+    minimo,
+    step,
+    label,
+    defaultValue,
+    onChangeEnd,
+    deshabilitado,
+  } = props;
 
   return (
     <Slider
@@ -23,6 +32,8 @@ export default function Deslizador(props: Props) {
       onChangeEnd={(value) => {
         onChangeEnd?.(value);
       }}
+      isDisabled={!deshabilitado}
+      showSteps={true}
     />
   );
 }

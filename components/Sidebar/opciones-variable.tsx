@@ -13,6 +13,9 @@ import Desplegable2 from "./desplegable2";
 import { mapaVariables } from "@/config/mapa-variables";
 import Deslizador from "./deslizador";
 import { varContenidoVolumetrico } from "@/config/subvariables/var_contenido_volumetrico";
+import { varUnidadesTemperatura } from "@/config/subvariables/var_unidades_temperatura";
+import { unidadesTemperatura } from "@/config/subvariables/opcion_unidades_temperaturas";
+import { opcionesSerieTiempo } from "@/config/subvariables/opciones_serie_tiempo";
 
 type elemento = {
   key: string;
@@ -24,12 +27,21 @@ type Props = {
   setVariable: React.Dispatch<React.SetStateAction<string>>;
   setNivel: React.Dispatch<React.SetStateAction<number | null>>;
   setTypeChart: React.Dispatch<React.SetStateAction<string>>;
+  setUnidadMedida: React.Dispatch<React.SetStateAction<string>>;
+  setCalculoDatos: React.Dispatch<React.SetStateAction<string>>;
   typeChart: string;
 };
 
 export default function OpcionesVariable(props: Props) {
-  const { setHayTiempo, setVariable, setNivel, setTypeChart, typeChart } =
-    props;
+  const {
+    setHayTiempo,
+    setVariable,
+    setNivel,
+    setTypeChart,
+    typeChart,
+    setUnidadMedida,
+    setCalculoDatos,
+  } = props;
 
   const [hayAltura, sethayAltura] = useState(false);
 
@@ -41,6 +53,8 @@ export default function OpcionesVariable(props: Props) {
 
   const [hayContenidoVolumetrico, setHayContenidoVolumetrico] = useState(false);
   const [contenidoVolumetrico, setContenidoVolumetrico] = useState("1");
+
+  const [usaTemperatura, setUsaTemperatura] = useState(false);
 
   const [vari, setVari] = useState("");
 
@@ -114,6 +128,10 @@ export default function OpcionesVariable(props: Props) {
     varContenidoVolumetrico.includes(key)
       ? setHayContenidoVolumetrico(true)
       : setHayContenidoVolumetrico(false);
+
+    varUnidadesTemperatura.includes(key)
+      ? setUsaTemperatura(true)
+      : setUsaTemperatura(false);
 
     varConTiempo.includes(key) ? setHayTiempo(true) : setHayTiempo(false);
   };
@@ -216,6 +234,27 @@ export default function OpcionesVariable(props: Props) {
           step={1}
           defaultValue={1}
           onChangeEnd={handleContenidoVolumetrico}
+          deshabilitado={false}
+        />
+      ) : null}
+
+      {usaTemperatura ? (
+        <Desplegable
+          titulo="Unidad de medida"
+          explicacion="Elija la unidad de medida"
+          elementos={unidadesTemperatura}
+          onSelect={setUnidadMedida}
+          valPorDefecto={"K"}
+        />
+      ) : null}
+
+      {typeChart === "lineas" ? (
+        <Desplegable
+          titulo="Cálculo de los datos"
+          explicacion="Seleccione como se mostrarán los datos"
+          elementos={opcionesSerieTiempo}
+          onSelect={setCalculoDatos}
+          valPorDefecto={"mean"}
         />
       ) : null}
     </div>

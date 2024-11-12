@@ -9,8 +9,8 @@ import { SendQuery } from "@/utils/QueryBackend";
 
 const consultaInicial: Consulta = {
   variable: "",
-  latitud: [-34.75, -34.25],
-  longitud: [108.25, 109],
+  latitud: -34,
+  longitud: 108,
   typeChart: "contorno",
   imagen: false,
 };
@@ -20,12 +20,14 @@ const Sidebar = ({ refresh }: { refresh: () => void }) => {
   const [hayTiempo, setHayTiempo] = useState(false);
 
   const [variable, setVariable] = useState("");
-  const [latitud, setLatitud] = useState([-34.75, -34.25]);
-  const [longitud, setLongitud] = useState([108.25, 109]);
+  const [latitud, setLatitud] = useState(-34);
+  const [longitud, setLongitud] = useState(108);
   const [nivel, setNivel] = useState<number | null>(null);
   const [fecha, setFecha] = useState<string[] | null>(null);
   const [hora, setHora] = useState("00:00:00.000000000");
   const [typeChart, setTypeChart] = useState<string>("contorno");
+  const [unidadMedida, setUnidadMedida] = useState<string>("K");
+  const [calculoDatos, setCalculoDatos] = useState<string>("mean");
 
   const [consulta, setConsulta] = useState<Consulta>(consultaInicial);
   const [cargandoConsulta, setCargandoConsulta] = useState(false);
@@ -39,6 +41,8 @@ const Sidebar = ({ refresh }: { refresh: () => void }) => {
       longitud: longitud,
       imagen: true,
       typeChart: "contorno",
+      unidadMedida: unidadMedida,
+      calculoDatos: calculoDatos,
     };
 
     if (nivel) newConsulta.nivel = nivel;
@@ -83,10 +87,24 @@ const Sidebar = ({ refresh }: { refresh: () => void }) => {
         setVariable={setVariable}
         setNivel={setNivel}
         setTypeChart={setTypeChart}
+        setUnidadMedida={setUnidadMedida}
         typeChart={typeChart}
+        setCalculoDatos={setCalculoDatos}
       />
 
-      <OpcionesArea setLatitud={setLatitud} setLongitud={setLongitud} />
+      {typeChart !== "lineas" ? (
+        <OpcionesArea
+          setLatitud={setLatitud}
+          setLongitud={setLongitud}
+          deshabilitado={false}
+        />
+      ) : (
+        <OpcionesArea
+          setLatitud={setLatitud}
+          setLongitud={setLongitud}
+          deshabilitado={true}
+        />
+      )}
 
       <OpcionesTiempo
         desabilitado={!hayTiempo}
