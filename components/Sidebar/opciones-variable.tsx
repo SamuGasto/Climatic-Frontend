@@ -214,7 +214,7 @@ export default function OpcionesVariable(props: Props) {
           minimo={1}
           maximo={4}
           step={1}
-          defaultValue={[1]}
+          defaultValue={1}
           onChangeEnd={handleContenidoVolumetrico}
         />
       ) : null}

@@ -11,6 +11,9 @@ export const mapaVariables: { [key: string]: string[] } = {
     "sdor", //Desviación estándar de la orografía
     "z", //Geopotencial
     "z_surface",  //Geopotencial en la superficie
+    "msl", //Presión media a nivel del mar
+    "sp", //Presión en la superficie
+    "swvl", //Contenido volumétrico de agua
   ],
   "vectoriales": [
     "u", //viento
@@ -24,12 +27,7 @@ export const mapaVariables: { [key: string]: string[] } = {
     "siconc", //Covertura de hielo en el mar
     "tcc", //Covertura total de nubes
     "slt", //Tipo de suelo
-  ],
-  "isobaras": [
-    "msl", //Presión media a nivel del mar
-    "sp", //Presión en la superficie
-    "z", //Geopotencial
-    "z_surface",  //Geopotencial en la superficie
+    "swvl", //Contenido volumétrico de agua
   ],
   "lineas": [
     "u", //viento
@@ -40,10 +38,12 @@ export const mapaVariables: { [key: string]: string[] } = {
     "sp", //Presión en la superficie
     "q", //humedad especifica
     "tisr", //radiación solar incidentes
+    "swvl", //Contenido volumétrico de agua
   ],
   "dispersion": [
     "anor", //ángulo de la orografía a escala subcuadrícula.
     "slor", //pendiente de la orografía a escala subcuadrícula.
+    "swvl", //Contenido volumétrico de agua
   ],
   "polares": [
     "isor", //Anisotropía de la orografía a escala subcuadrícula

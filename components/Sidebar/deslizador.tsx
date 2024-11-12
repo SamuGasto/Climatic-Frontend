@@ -5,8 +5,8 @@ type Props = {
   step: number;
   minimo: number;
   maximo: number;
-  defaultValue: number[];
-  onChangeEnd: (valor: number | number[]) => void;
+  defaultValue: number;
+  onChangeEnd?: (valor: number | number[]) => void;
 };
 
 export default function Deslizador(props: Props) {
@@ -21,7 +21,7 @@ export default function Deslizador(props: Props) {
       defaultValue={defaultValue}
       className="max-w-md"
       onChangeEnd={(value) => {
-        onChangeEnd(value);
+        onChangeEnd?.(value);
       }}
     />
   );
