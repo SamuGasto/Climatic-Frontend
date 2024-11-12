@@ -44,6 +44,7 @@ export default function NavbarComponent() {
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          className="md:hidden"
         />
         <NavbarBrand>
           <Image alt="Logo" src="/logo2.png" width={50} height={50} />

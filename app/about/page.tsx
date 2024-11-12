@@ -11,7 +11,7 @@ export default function About() {
 
       <hr className="my-8 h-1 border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25 dark:via-neutral-400" />
 
-      <section className="grid grid-cols-1 md:grid-cols-2 gap-y-16 justify-items-center md:mx-72 mt-4 mb-24">
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-y-6 md:gap-y-16 justify-items-center md:mx-72 mt-4 mb-14">
         <CardMember
           nombre="Mauricio Gregorio de las Heras"
           rol="Scrum master"
