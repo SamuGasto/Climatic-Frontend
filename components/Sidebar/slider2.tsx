@@ -10,12 +10,16 @@ export default function Slider2(props: Props) {
   const { setNivel } = props;
   const [valorSeleccionado, setValorSeleccionado] = useState(niveles[0]);
 
-  const onChange = (value: number | number[]) => {
+  const onChange = (value: any) => {
     value = Number(value);
-    const valorMasCercano = niveles.reduce((prev, curr) =>
-      Math.abs(curr - value) < Math.abs(prev - value) ? curr : prev
-    );
-    setValorSeleccionado(valorMasCercano);
+    if (typeof value === "object") {
+      return;
+    } else {
+      const valorMasCercano = niveles.reduce((prev, curr) =>
+        Math.abs(curr - value) < Math.abs(prev - value) ? curr : prev
+      );
+      setValorSeleccionado(valorMasCercano);
+    }
   };
 
   return (

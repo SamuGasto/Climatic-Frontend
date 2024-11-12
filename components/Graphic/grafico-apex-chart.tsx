@@ -5,6 +5,7 @@ import VentanaGrafico from "./ventana-grafico";
 import { useTheme } from "next-themes";
 import { useChartStore } from "@/providers/chart-store-provider";
 import GenerateApexChart from "@/utils/GenerateChart";
+import { exampleData } from "@/config/test-data";
 
 export default function GraficoApex() {
   const chartSelected = useChartStore((state) => state.chartSelected);
@@ -13,7 +14,7 @@ export default function GraficoApex() {
   const color = ["#ffcd6d"];
 
   const { Interactive } = GenerateApexChart(
-    chartSelected.backendData,
+    chartSelected ? chartSelected.backendData : exampleData,
     typeChart === "barras" ? "clasificacion" : "barras", //Hay que arreglar esto, la opcion del caso false
     {
       color: color,

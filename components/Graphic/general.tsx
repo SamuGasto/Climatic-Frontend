@@ -18,7 +18,7 @@ export default function Visualizador() {
           <Subtitulo />
         </div>
         <Divider className="" />
-        {chartSelected.active ? (
+        {chartSelected?.active ? (
           <div className="flex w-full min-h-[360px]">
             {chartSelected.typeChart == "contorno" ||
             chartSelected.typeChart == "vectoriales" ||

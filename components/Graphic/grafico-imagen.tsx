@@ -13,7 +13,7 @@ function GraficoImagen() {
   useEffect(() => {
     const fetchImage = () => {
       try {
-        const response = chartSelected.backendData.image;
+        const response = chartSelected?.backendData.image;
         setImageSrc(`data:image/png;base64,${response}`);
         setLoading(false);
       } catch (error) {

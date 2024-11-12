@@ -7,15 +7,17 @@ import Sidebar from "@/components/Dashboard/Sidebar/sidebar";
 
 export default function Home() {
   return (
-    <section className="flex flex-col w-full h-full items-center justify-center gap-4 py-8 md:py-10">
-      <div className="flex flex-row min-h-[720] w-full">
+    <div className="flex w-full h-full">
+      <section className="flex flex-row h-full w-full items-center py-8 md:py-10 mb-6">
         <Sidebar />
         <MainPanel />
+      </section>
+      <section>
         <ModalCreateBoard />
         <ModalCreateChart />
         <ModalEditBoard />
         <ModalConfirm />
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }

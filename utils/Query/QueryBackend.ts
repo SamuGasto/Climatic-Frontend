@@ -58,13 +58,14 @@ export async function SendQuery(consulta: Consulta) {
       console.log(backendData);
       console.log(active);
 
-      updateChart(
-        userData[id_boardSelected],
-        chartSelected,
-        active,
-        backendData,
-        consulta.typeChart
-      );
+      if (chartSelected)
+        updateChart(
+          userData[id_boardSelected],
+          chartSelected,
+          active,
+          backendData,
+          consulta.typeChart
+        );
       return res.data;
     });
   } catch (error) {

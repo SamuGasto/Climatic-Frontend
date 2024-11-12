@@ -4,6 +4,7 @@ import GenerateApexChart from "@/utils/GenerateChart";
 import { useChartStore } from "@/providers/chart-store-provider";
 import { useTheme } from "next-themes";
 import React from "react";
+import { exampleData } from "@/config/test-data";
 
 function ChartImage() {
   const chartSelected = useChartStore((state) => state.chartSelected);
@@ -12,8 +13,8 @@ function ChartImage() {
   const color = ["#ffcd6d"];
 
   const { NoInteractive } = GenerateApexChart(
-    chartSelected.backendData,
-    typeChart === "barras" ? "bar" : "area", //HAY QUE CORREGIR ESTO
+    chartSelected ? chartSelected.backendData : exampleData,
+    typeChart === "barras" ? "barras" : "contorno", //HAY QUE CORREGIR ESTO
     {
       color: color,
       theme: actualTheme,

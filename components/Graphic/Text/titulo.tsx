@@ -12,17 +12,18 @@ export default function Titulo() {
   const updateChart = useBoardStore((state) => state.updateChart);
   const chartSelected = useChartStore((state) => state.chartSelected);
   const [editMode, setEditMode] = useState(false);
-  const [title, setTitle] = useState(chartSelected.title);
+  const [title, setTitle] = useState(chartSelected?.title);
 
   function SaveTitle() {
-    updateChart(
-      userData[id_boardSelected],
-      chartSelected,
-      chartSelected.active,
-      undefined,
-      undefined,
-      title === "" ? "Sin título" : title
-    );
+    if (chartSelected)
+      updateChart(
+        userData[id_boardSelected],
+        chartSelected,
+        chartSelected.active,
+        undefined,
+        undefined,
+        title === "" ? "Sin título" : title
+      );
   }
 
   return (

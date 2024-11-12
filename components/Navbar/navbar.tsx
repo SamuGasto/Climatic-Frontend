@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
 import {
-  Image,
   Navbar,
   NavbarBrand,
   NavbarContent,
@@ -14,10 +13,13 @@ import { usePathname } from "next/navigation";
 import Sidebar from "@/components/Dashboard/Sidebar/sidebar";
 import { useTheme } from "next-themes";
 import { CloseIcon, MenuHamburgerIcon } from "../icons";
+import Image from "next/image";
 
 export default function NavbarComponent() {
   const pathname = usePathname();
   const actualTheme = useTheme();
+
+  const menuItems = ["Dashboard", "Re-Análisis", "Q&A", "Sobre Nosotros"];
 
   const isActive = (path: string) => pathname === path;
 
@@ -57,7 +59,7 @@ export default function NavbarComponent() {
       >
         {/* Marca / Logo */}
         <NavbarBrand className="flex items-center">
-          <Image src="/logo2.png" width={50} height={50} radius="none" />
+          <Image alt="Logo" src="/logo2.png" width={50} height={50} />
           <p className="font-bold text-inherit ml-3">CLIMATIC</p>
         </NavbarBrand>
 
@@ -121,7 +123,7 @@ export default function NavbarComponent() {
       >
         <div className="grid grid-cols-1 items-center m-3 justify-items-start">
           <div className="flex flex-row justify-evenly w-full mb-2 gap-x-16">
-            <Image src="/logo2.png" width={50} height={50} radius="none" />
+            <Image alt="Logo" src="/logo2.png" width={50} height={50} />
             <ThemeSwitch />
           </div>
           <Link

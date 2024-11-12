@@ -3,12 +3,12 @@ import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
 export type ChartStates = {
-  chartSelected: Chart;
+  chartSelected: Chart | null;
   typeChart: typeChart;
 };
 
 export type ChartActions = {
-  selectChart: (newChart: Chart) => void;
+  selectChart: (newChart: Chart | null) => void;
   changeTypeChart: (newType: typeChart) => void;
 };
 
@@ -18,24 +18,9 @@ export const createChartStore = () => {
   return create<ChartStore>()(
     persist(
       (set, get) => ({
-        chartSelected: {
-          id: -1,
-          title: "",
-          subtitle: "",
-          active: false,
-          backendData: {
-            latitude: [],
-            longitude: [],
-            image: "",
-            data: [],
-            time: [],
-            level: [],
-            units: "",
-          },
-          typeChart: "barras",
-        },
+        chartSelected: null,
         typeChart: "contorno",
-        selectChart: (newChart: Chart) => {
+        selectChart: (newChart: Chart | null) => {
           set((state) => ({ ...state, chartSelected: newChart }));
         },
         changeTypeChart: (newType) => {

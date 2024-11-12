@@ -11,7 +11,7 @@ function ButtonAddBoard() {
   );
   const actualTheme = useTheme();
   return (
-    <div className="mt-8">
+    <div className="py-4">
       <Button
         color="primary"
         className="w-full text-base"

@@ -16,7 +16,7 @@ function ChartsCards(props: PropType) {
 
   return (
     <div className="flex min-h-[600] w-full flex-col gap-5 justify-between">
-      <motion.div className="grid grid-cols-4 gap-x-2 gap-y-5 w-full">
+      <div className="grid grid-cols-4 gap-4 w-full">
         {charts
           .slice(segmentChart * 8, segmentChart * 8 + 8)
           .map((chart, index) => (
@@ -29,15 +29,17 @@ function ChartsCards(props: PropType) {
             <NoChartCard key={"NoCard"} />
           </div>
         )}
-      </motion.div>
-      <Pagination
-        className="flex w-full justify-center align-bottom"
-        isCompact
-        showControls
-        total={Math.ceil(charts.length / 8)}
-        initialPage={1}
-        onChange={(page) => setSegmentChart(page - 1)}
-      />
+      </div>
+      {Math.ceil(charts.length / 8) > 1 && (
+        <Pagination
+          className="flex w-full justify-center align-bottom"
+          isCompact
+          showControls
+          total={Math.ceil(charts.length / 8)}
+          initialPage={1}
+          onChange={(page) => setSegmentChart(page - 1)}
+        />
+      )}
     </div>
   );
 }

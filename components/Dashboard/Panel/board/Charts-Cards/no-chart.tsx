@@ -3,6 +3,7 @@ import React from "react";
 import Image from "next/image";
 import addChartIcon from "@/public/add-chart.svg";
 import { useModalStore } from "@/providers/modal-store-provider";
+import { AddChart } from "@/components/icons";
 
 function NoChartCard() {
   const toggleModalCreateChart = useModalStore(
@@ -19,7 +20,7 @@ function NoChartCard() {
       }}
     >
       <CardBody className="flex w-full justify-center items-center">
-        <Image alt="addChartIcon" src={addChartIcon} width={180} height={180} />
+        <AddChart width={160} />
       </CardBody>
     </Card>
   );

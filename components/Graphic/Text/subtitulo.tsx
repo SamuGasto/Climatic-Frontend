@@ -12,18 +12,19 @@ function Subtitulo() {
   const updateChart = useBoardStore((state) => state.updateChart);
   const chartSelected = useChartStore((state) => state.chartSelected);
   const [editMode, setEditMode] = useState(false);
-  const [subtitle, setSubtitle] = useState(chartSelected.subtitle);
+  const [subtitle, setSubtitle] = useState(chartSelected?.subtitle);
 
   function SaveSubtitle() {
-    updateChart(
-      userData[id_boardSelected],
-      chartSelected,
-      chartSelected.active,
-      undefined,
-      undefined,
-      undefined,
-      subtitle === "" ? "Sin título" : subtitle
-    );
+    if (chartSelected)
+      updateChart(
+        userData[id_boardSelected],
+        chartSelected,
+        chartSelected.active,
+        undefined,
+        undefined,
+        undefined,
+        subtitle === "" ? "Sin título" : subtitle
+      );
   }
 
   return (

@@ -5,6 +5,7 @@ import { exampleData } from "@/config/test-data";
 import BackendData from "@/types/backend-data";
 import { createJSONStorage, persist } from "zustand/middleware";
 import _ from "lodash";
+import { useChartStore } from "@/providers/chart-store-provider";
 
 export type BoardStates = {
   userData: Board[];

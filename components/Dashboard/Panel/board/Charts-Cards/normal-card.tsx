@@ -25,6 +25,7 @@ function NormalCard(props: PropType) {
   const deleteChart = useBoardStore((state) => state.deleteChart);
   const toggleModalConfirm = useModalStore((state) => state.toggleModalConfirm);
   const selectChart = useChartStore((state) => state.selectChart);
+  const chartSelected = useChartStore((state) => state.chartSelected);
 
   return (
     <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.9 }}>
@@ -47,6 +48,9 @@ function NormalCard(props: PropType) {
                   true,
                   "¿Estás seguro en eliminar este gráfico?",
                   () => {
+                    if (chart.id === chartSelected?.id) {
+                      selectChart(null);
+                    }
                     deleteChart(userData[id_boardSelected], chart);
                   }
                 );
