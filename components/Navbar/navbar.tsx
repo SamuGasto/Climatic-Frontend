@@ -61,6 +61,8 @@ export default function NavbarComponent() {
             <Link href={item.route}>{item.name}</Link>
           </NavbarItem>
         ))}
+      </NavbarContent>
+      <NavbarContent className="md:hidden" justify="end">
         <NavbarItem>
           <ThemeSwitch />
         </NavbarItem>

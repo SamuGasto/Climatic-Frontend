@@ -9,7 +9,6 @@ function ButtonAddBoard() {
   const toggleModalCreateBoard = useModalStore(
     (state) => state.toggleModalCreateBoard
   );
-  const actualTheme = useTheme();
   return (
     <div className="py-4">
       <Button

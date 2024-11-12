@@ -13,7 +13,7 @@ export default function page() {
   return (
     <div className="flex w-full">
       {chartSelected ? (
-        <div className="grid grid-cols-1 md:flex md:flex-row h-full w-full justify-center self-start -mt-10">
+        <div className="grid grid-cols md:flex md:flex-row h-full w-full justify-center self-start -mt-10 ">
           <Sidebar />
           <Visualizador />
         </div>
