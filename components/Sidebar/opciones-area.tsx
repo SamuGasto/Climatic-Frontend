@@ -2,8 +2,8 @@ import React from "react";
 import Deslizador from "./deslizador";
 
 type Props = {
-  setLatitud: React.Dispatch<React.SetStateAction<number>>;
-  setLongitud: React.Dispatch<React.SetStateAction<number>>;
+  setLatitud: React.Dispatch<React.SetStateAction<number[]>>;
+  setLongitud: React.Dispatch<React.SetStateAction<number[]>>;
   deshabilitado: boolean;
 };
 
@@ -12,17 +12,17 @@ const OpcionesArea = (props: Props) => {
 
   const modificarLatitud = (valor: number | number[]) => {
     if (Array.isArray(valor)) {
-      setLatitud(valor[0]);
-    } else {
       setLatitud(valor);
+    } else {
+      setLatitud([valor,valor]);
     }
   };
 
   const modificarLongitud = (valor: number | number[]) => {
     if (Array.isArray(valor)) {
-      setLongitud(valor[0]);
-    } else {
       setLongitud(valor);
+    } else {
+      setLongitud([valor,valor]);
     }
   };
 

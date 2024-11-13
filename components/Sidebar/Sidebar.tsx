@@ -5,14 +5,14 @@ import Boton from "@/components/Sidebar/boton";
 import { Consulta } from "@/types/consulta";
 import OpcionesVariable from "./opciones-variable";
 import { varUsanImagen } from "@/config/var_usan_imagen";
-import { SendQuery } from "@/utils/QueryBackend";
+import { SendQuery } from "@/utils/Query/QueryBackend";
+import { typeChart } from "@/types/chart";
 
 const consultaInicial: Consulta = {
   variable: "",
-  latitud: -34,
-  longitud: 108,
+  latitud: [-34,-34],
+  longitud: [108,108],
   typeChart: "contorno",
-  imagen: false,
 };
 
 //Al elegir var con el Enter, no se actualiza
@@ -20,12 +20,12 @@ const Sidebar = ({ refresh }: { refresh: () => void }) => {
   const [hayTiempo, setHayTiempo] = useState(false);
 
   const [variable, setVariable] = useState("");
-  const [latitud, setLatitud] = useState(-34);
-  const [longitud, setLongitud] = useState(108);
+  const [latitud, setLatitud] = useState<number[]>([-34,-35]);
+  const [longitud, setLongitud] = useState<number[]>([77,109]);
   const [nivel, setNivel] = useState<number | null>(null);
-  const [fecha, setFecha] = useState<string[] | null>(null);
+  const [fecha, setFecha] = useState< string[] | null>(null);
   const [hora, setHora] = useState("00:00:00.000000000");
-  const [typeChart, setTypeChart] = useState<string>("contorno");
+  const [typeChart, setTypeChart] = useState<typeChart>("contorno");
   const [unidadMedida, setUnidadMedida] = useState<string>("K");
   const [calculoDatos, setCalculoDatos] = useState<string>("mean");
 
@@ -39,7 +39,6 @@ const Sidebar = ({ refresh }: { refresh: () => void }) => {
       variable: variable,
       latitud: latitud,
       longitud: longitud,
-      imagen: true,
       typeChart: "contorno",
       unidadMedida: unidadMedida,
       calculoDatos: calculoDatos,
@@ -57,20 +56,17 @@ const Sidebar = ({ refresh }: { refresh: () => void }) => {
 
     newConsulta.typeChart = typeChart;
 
-    if (varUsanImagen.includes(variable)) {
-      newConsulta.imagen = true;
-      newConsulta.typeChart = "contorno";
-    } else {
-      newConsulta.imagen = false;
-    }
+    setCargandoConsulta(false)
+    console.log(newConsulta);
+    
 
-    setConsulta(newConsulta);
-    SendQuery(newConsulta)
-      .then(() => setCargandoConsulta(false))
-      .then(() => {
-        console.log("por recargar");
-        refresh();
-      });
+    //setConsulta(newConsulta);
+    //SendQuery(newConsulta)
+    //  .then(() => setCargandoConsulta(false))
+    //  .then(() => {
+    //   console.log("por recargar");
+    //    refresh();
+    //  });
   };
 
   return (

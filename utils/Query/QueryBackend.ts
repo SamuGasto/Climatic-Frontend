@@ -21,6 +21,8 @@ export async function SendQuery(consulta: Consulta) {
 
   const latitude = consulta.latitud;
   const longitude = consulta.longitud;
+
+
   let time: string[] = [];
   if (consulta.tiempo) {
     time = [
@@ -52,6 +54,9 @@ export async function SendQuery(consulta: Consulta) {
     } else {
       finalText = `http://127.0.0.1:8000/zarr/${consulta.variable}/${imagen}/${latitude[0]}${latitude[1]}/${longitude[0]}${longitude[1]}`;
     }
+
+    console.log(finalText);
+    
 
     backendData = await axios.get(finalText).then((res) => {
       active = true;
