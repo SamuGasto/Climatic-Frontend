@@ -5,6 +5,8 @@ export interface Consulta {
   latitud: number[];
   longitud: number[];
   typeChart: typeChart;
-  tiempo?: string[];
+  tiempo?: string;
   nivel?: number;
+  unidadMedida?: string;
+  calculoDatos?: string;
 }

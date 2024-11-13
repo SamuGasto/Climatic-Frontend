@@ -1,33 +1,52 @@
-import React, { useState } from "react";
-import Deslizador from "./slider";
+import React from "react";
+import Deslizador from "./deslizador";
 
 type Props = {
-  setLatitud: React.Dispatch<React.SetStateAction<number[]>>;
-  setLongitud: React.Dispatch<React.SetStateAction<number[]>>;
+  setLatitud: React.Dispatch<React.SetStateAction<number>>;
+  setLongitud: React.Dispatch<React.SetStateAction<number>>;
+  deshabilitado: boolean;
 };
 
 const OpcionesArea = (props: Props) => {
-  const { setLatitud, setLongitud } = props;
+  const { setLatitud, setLongitud, deshabilitado } = props;
+
+  const modificarLatitud = (valor: number | number[]) => {
+    if (Array.isArray(valor)) {
+      setLatitud(valor[0]);
+    } else {
+      setLatitud(valor);
+    }
+  };
+
+  const modificarLongitud = (valor: number | number[]) => {
+    if (Array.isArray(valor)) {
+      setLongitud(valor[0]);
+    } else {
+      setLongitud(valor);
+    }
+  };
 
   return (
     <div className="flex w-full flex-col gap-3">
       <p className="flex place-content-center">Selección del área</p>
       <Deslizador
-        label="Rango de la latitud"
+        label="Latitud"
         maximo={-34}
         minimo={-35}
         step={0.25}
-        defaultValue={[-34.75, -34.25]}
-        setValores={setLatitud}
+        defaultValue={-34}
+        onChangeEnd={modificarLatitud}
+        deshabilitado={deshabilitado}
       />
 
       <Deslizador
-        label="Rango de la longitud"
+        label="Longitud"
         maximo={110}
         minimo={108}
         step={0.25}
-        defaultValue={[108.25, 109]}
-        setValores={setLongitud}
+        defaultValue={108}
+        onChangeEnd={modificarLongitud}
+        deshabilitado={deshabilitado}
       />
     </div>
   );

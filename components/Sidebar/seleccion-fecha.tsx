@@ -27,7 +27,6 @@ export default function SeleccionFecha(props: Props) {
 
   return (
     <DatePicker
-      isRequired
       isDisabled={desabilitado}
       minValue={parseDate("1959-01-01")}
       maxValue={parseDate("2021-12-31")}
