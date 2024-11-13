@@ -10,7 +10,7 @@ function ButtonAddBoard() {
     (state) => state.toggleModalCreateBoard
   );
   return (
-    <div className="py-4">
+    <div className="py-4 w-2/3">
       <Button
         color="primary"
         className="w-full text-base"

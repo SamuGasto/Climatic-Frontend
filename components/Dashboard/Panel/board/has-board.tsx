@@ -59,7 +59,7 @@ function BoardPanel() {
       </section>
       <Divider />
       {/* Tarjetas */}
-      <div className="flex w-full h-full min-h-[530] justify-center md:justify-start">
+      <div className="flex w-full h-full min-h-[530px] justify-center md:justify-start">
         {userData[id_boardSelected].charts.length > 0 ? (
           <ChartsCards
             charts={dataFiltered.slice(

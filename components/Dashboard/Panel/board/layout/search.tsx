@@ -13,7 +13,7 @@ function Search(props: PropType) {
     <Input
       startContent={<SearchIcon />}
       isClearable
-      className="max-w-[300]"
+      className="max-w-[300px]"
       placeholder="Buscar gráfico..."
       value={filterQuery}
       onValueChange={(newValue) => {

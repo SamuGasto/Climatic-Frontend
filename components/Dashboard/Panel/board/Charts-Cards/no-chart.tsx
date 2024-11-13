@@ -10,7 +10,7 @@ function NoChartCard() {
   return (
     <Card
       aria-label="Añadir gráfico"
-      className="h-64 min-w-[360]"
+      className="h-64 w-80 shrink-0 grow-0"
       key={"NoChart"}
       shadow="sm"
       isPressable

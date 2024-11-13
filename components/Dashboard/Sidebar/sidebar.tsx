@@ -30,14 +30,18 @@ function Sidebar({ inNavMenu = false }: PropType) {
               />
             </div>
           ) : (
-            <h1 className="text-left text-xl pb-2">Mis Tableros</h1>
+            <h1 className="text-center text-xl p-4 align-middle">
+              Mis Tableros
+            </h1>
           )}
           <Divider />
           <nav className="py-4">
             <BoardList />
           </nav>
           <Divider />
-          <ButtonAddBoard />
+          <div className="flex w-full justify-center">
+            <ButtonAddBoard />
+          </div>
         </CardBody>
       </Card>
     </div>

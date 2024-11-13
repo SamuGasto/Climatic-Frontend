@@ -58,7 +58,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="flex flex-col gap-12 p-6 w-full md:w-1/3 shadow-md order-last md:order-first">
+    <div className="flex flex-col gap-12 p-6 w-full md:w-1/3 shadow-md order-last lg:order-first">
       <div className="flex flex-col gap-3">
         <p className="text-center">
           <strong>Configuración del gráfico</strong>
