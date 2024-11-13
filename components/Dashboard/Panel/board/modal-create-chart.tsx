@@ -55,7 +55,7 @@ function ModalCreateChart(props: PropType) {
           <ModalBody>
             <Input
               autoFocus
-              label="Titulo del gráfico"
+              label="Titulo del gráfico (Maximo 40 caracteres)"
               placeholder="Ingresa un nombre para tu gráfico"
               value={title}
               onValueChange={(value) => {

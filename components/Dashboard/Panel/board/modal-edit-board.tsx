@@ -54,7 +54,7 @@ function ModalEditBoard(props: PropType) {
           <ModalBody>
             <Input
               autoFocus
-              label="Titulo del tablero"
+              label="Titulo del tablero (Maximo 40 caracteres)"
               placeholder="Ingresa un nuevo nombre para tu tablero"
               value={title}
               onValueChange={(value) => {
