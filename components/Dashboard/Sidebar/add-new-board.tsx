@@ -16,7 +16,7 @@ function ButtonAddBoard(props: PropType) {
     <div className="mt-8">
       <Button
         color="primary"
-        className="w-full text-base"
+        className ="w-auto text-base flex flex-row container mx-auto"
         onPress={() => {
           toggleModalCreateBoard(true);
           refresh();
