@@ -47,12 +47,15 @@ function ModalCreateChart() {
         onKeyDown={(event) => {
           if (ModalCreateChart && event.key === "Enter") ReadyButtonFunction();
         }}
+        className="m-4 md:m-0"
+        placement="center"
       >
         <ModalContent>
           <ModalHeader>Nuevo Gráfico</ModalHeader>
           <ModalBody>
             <Input
               autoFocus
+              aria-label="Titulo"
               label="Titulo del gráfico"
               placeholder="Ingresa un nombre para tu gráfico"
               value={title}
@@ -62,6 +65,7 @@ function ModalCreateChart() {
               variant="underlined"
             />
             <Input
+              aria-label="Subtitulo"
               label="Subtitulo del gráfico"
               placeholder="Ingresa un subtitulo para tu gráfico"
               value={subtitle}
@@ -71,6 +75,7 @@ function ModalCreateChart() {
           </ModalBody>
           <ModalFooter className="flex justify-between">
             <Button
+              aria-label="Cancelar"
               color="danger"
               variant="flat"
               onPress={() => {
@@ -82,6 +87,7 @@ function ModalCreateChart() {
               Cancelar
             </Button>
             <Button
+              aria-label="Listo"
               color="primary"
               onPress={() => {
                 ReadyButtonFunction();

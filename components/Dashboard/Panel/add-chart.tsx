@@ -10,8 +10,9 @@ function ButtonAddChart() {
   );
 
   return (
-    <div className="flex md:self-center mr-5">
+    <div className="flex self-center mr-5">
       <Button
+        aria-label="Añadir Gráfico"
         size="lg"
         color="primary"
         onPress={() => {

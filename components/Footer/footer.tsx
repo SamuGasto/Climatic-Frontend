@@ -63,7 +63,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-2 text-center">
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-gray-100">
             © {new Date().getFullYear()} Di-Dema. Todos los derechos
             reservados.
           </p>

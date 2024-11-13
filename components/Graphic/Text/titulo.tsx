@@ -29,9 +29,9 @@ export default function Titulo() {
   return (
     <div className="flex text-center md:text-5xl text-3xl font-bold items-center justify-center">
       {editMode ? (
-        <div className="flex md:flex-row flex-col gap-1">
+        <div className="flex flex-row gap-1">
           <Input
-            className="w-auto"
+            className="w-full"
             value={title}
             onValueChange={(value) => {
               setTitle(value);
@@ -39,6 +39,7 @@ export default function Titulo() {
             variant="bordered"
           ></Input>
           <Button
+            className="flex"
             isIconOnly
             onClick={() => {
               setEditMode(false);

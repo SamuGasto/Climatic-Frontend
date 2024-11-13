@@ -47,12 +47,15 @@ function ModalEditBoard() {
         onKeyDown={(event) => {
           if (ModalEditBoard && event.key === "Enter") ReadyButtonFunction();
         }}
+        className="m-4 md:m-0"
+        placement="center"
       >
         <ModalContent>
           <ModalHeader>Configuración</ModalHeader>
           <ModalBody>
             <Input
               autoFocus
+              aria-label="Titulo"
               label="Titulo del tablero"
               placeholder="Ingresa un nuevo nombre para tu tablero"
               value={title}
@@ -64,6 +67,7 @@ function ModalEditBoard() {
           </ModalBody>
           <ModalFooter className="flex justify-between">
             <Button
+              aria-label="Cancelar"
               color="danger"
               variant="flat"
               onPress={() => {
@@ -74,6 +78,7 @@ function ModalEditBoard() {
               Cancelar
             </Button>
             <Button
+              aria-label="Listo"
               color="primary"
               onPress={() => {
                 ReadyButtonFunction();

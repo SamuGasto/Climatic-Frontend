@@ -40,6 +40,8 @@ function ModalConfirm() {
         onKeyDown={(event) => {
           if (ModalConfirm && event.key === "Enter") ReadyButtonFunction();
         }}
+        className="m-4 md:m-0"
+        placement="center"
       >
         <ModalContent>
           <ModalHeader>Confirmación</ModalHeader>
@@ -48,6 +50,7 @@ function ModalConfirm() {
           </ModalBody>
           <ModalFooter className="flex justify-between">
             <Button
+              aria-label="Cancelar"
               color="danger"
               variant="flat"
               onPress={() => {
@@ -57,6 +60,7 @@ function ModalConfirm() {
               Cancelar
             </Button>
             <Button
+              aria-label="Aceptar"
               color="primary"
               onPress={() => {
                 ReadyButtonFunction();

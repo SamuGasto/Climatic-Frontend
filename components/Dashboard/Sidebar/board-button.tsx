@@ -35,6 +35,7 @@ function BoardButton(props: PropType) {
     <div className="flex flex-row gap-1 justify-center">
       {active && (
         <Button
+          aria-label="Eliminar tablero"
           isIconOnly
           variant="light"
           color="danger"
@@ -59,6 +60,7 @@ function BoardButton(props: PropType) {
       )}
 
       <Button
+        aria-label={`Tablero ${board.name}`}
         className="w-44 text-center"
         variant={active ? "solid" : "light"}
         color="primary"
@@ -74,6 +76,7 @@ function BoardButton(props: PropType) {
 
       {active && (
         <Button
+          aria-label="Editar tablero"
           isIconOnly
           variant="light"
           color="primary"

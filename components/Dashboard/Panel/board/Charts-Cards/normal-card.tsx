@@ -28,8 +28,8 @@ function NormalCard(props: PropType) {
   const chartSelected = useChartStore((state) => state.chartSelected);
 
   return (
-    <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.9 }}>
-      <Card className="h-64 w-[360]" key={index} shadow="sm">
+    <motion.div whileHover={{ scale: 1.02 }}>
+      <Card className="h-64 w-[350] shrink-0 grow-0" key={index} shadow="sm">
         <CardHeader>
           <div className="flex flex-row w-full justify-between">
             <div className="flex w-5/6 flex-col">

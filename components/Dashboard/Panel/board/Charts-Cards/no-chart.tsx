@@ -1,7 +1,5 @@
 import { Card, CardBody } from "@nextui-org/card";
 import React from "react";
-import Image from "next/image";
-import addChartIcon from "@/public/add-chart.svg";
 import { useModalStore } from "@/providers/modal-store-provider";
 import { AddChart } from "@/components/icons";
 
@@ -11,7 +9,8 @@ function NoChartCard() {
   );
   return (
     <Card
-      className="h-64 w-[360]"
+      aria-label="Añadir gráfico"
+      className="h-64 min-w-[360]"
       key={"NoChart"}
       shadow="sm"
       isPressable
