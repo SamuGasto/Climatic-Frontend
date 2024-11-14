@@ -13,6 +13,7 @@ import ModalConfirm from "@/components/Dashboard/Modals/modal-confirm";
 import ModalCreateBoard from "@/components/Dashboard/Modals/modal-create-board";
 import ModalCreateChart from "@/components/Dashboard/Modals/modal-create-chart";
 import ModalEditBoard from "@/components/Dashboard/Modals/modal-edit-board";
+import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
   title: {
@@ -49,6 +50,7 @@ export default function RootLayout({
         <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}>
           <div className="relative flex flex-col h-screen">
             <Navbar />
+            <Toaster position="bottom-left" />
             <main className="flex-1 my-24">{children}</main>
             <Footer />
             <section>

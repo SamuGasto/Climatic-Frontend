@@ -8,6 +8,7 @@ import { typeChart } from "@/types/chart";
 import { RequestData } from "@/utils/BackendConection";
 import { useChartStore } from "@/providers/chart-store-provider";
 import { useBoardStore } from "@/providers/board-store-provider";
+import toast from "react-hot-toast";
 
 const consultaInicial: Consulta = {
   variable: "",
@@ -67,6 +68,12 @@ const Sidebar = () => {
     console.log(newConsulta);
 
     RequestData(newConsulta).then((res) => {
+      if ("Mensaje del Servidor" in res) {
+        setCargandoConsulta(false);
+        toast.error(res["Mensaje del Servidor"]);
+        return;
+      }
+
       updateChart(
         id_boardSelected,
         chartSelected,
@@ -84,6 +91,7 @@ const Sidebar = () => {
       });
       console.log(res);
       setCargandoConsulta(false);
+      toast.success("Se ha cargado el gráfico correctamente");
     });
   };
 

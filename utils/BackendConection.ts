@@ -12,29 +12,18 @@ export const RequestData = async (consulta: Consulta) => {
     ];
   }
 
-  let imagen = false;
-
-  if (
-    consulta.typeChart == "contorno" ||
-    consulta.typeChart == "vectoriales" ||
-    consulta.typeChart == "isobaras" ||
-    consulta.typeChart == "dispersion"
-  ) {
-    imagen = true;
-  }
-
   try {
     let finalText = "";
     if (consulta.tiempo && consulta.nivel) {
-      finalText = `http://127.0.0.1:8000/zarr/${consulta.variable}/${imagen}/${consulta.latitud[0]},${consulta.latitud[1]}/${consulta.longitud[0]},${consulta.longitud[1]}/${time[0]}${time[1]}/${consulta.nivel}`;
+      finalText = `http://127.0.0.1:8000/zarr/${consulta.variable}/${consulta.typeChart}/${consulta.latitud[0]},${consulta.latitud[1]}/${consulta.longitud[0]},${consulta.longitud[1]}/${time[0]}${time[1]}/${consulta.nivel}`;
     } else if (consulta.tiempo) {
-      finalText = `http://127.0.0.1:8000/zarr/${consulta.variable}/${imagen}/${consulta.latitud[0]},${consulta.latitud[1]}/${consulta.longitud[0]},${consulta.longitud[1]}/${time[0]}${time[1]}`;
+      finalText = `http://127.0.0.1:8000/zarr/${consulta.variable}/${consulta.typeChart}/${consulta.latitud[0]},${consulta.latitud[1]}/${consulta.longitud[0]},${consulta.longitud[1]}/${time[0]}${time[1]}`;
     } else {
-      finalText = `http://127.0.0.1:8000/zarr/${consulta.variable}/${imagen}/${consulta.latitud[0]},${consulta.latitud[1]}/${consulta.longitud[0]},${consulta.longitud[1]}`;
+      finalText = `http://127.0.0.1:8000/zarr/${consulta.variable}/${consulta.typeChart}/${consulta.latitud[0]},${consulta.latitud[1]}/${consulta.longitud[0]},${consulta.longitud[1]}`;
     }
 
     return (await axios.get(finalText)).data;
   } catch (error) {
-    console.log(error);
+    return null;
   }
 };
