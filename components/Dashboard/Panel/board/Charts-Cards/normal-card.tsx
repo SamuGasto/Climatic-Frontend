@@ -73,9 +73,9 @@ function NormalCard(props: PropType) {
                 chart.typeChart == "vectoriales" ||
                 chart.typeChart == "isobaras" ||
                 chart.typeChart == "dispersion" ? (
-                  <ChartImage />
-                ) : (
                   <ImageChartCard chart={chart} />
+                ) : (
+                  <ChartImage />
                 )}
               </div>
             )}

@@ -5,7 +5,7 @@ import { exampleData } from "@/config/test-data";
 import BackendData from "@/types/backend-data";
 import { createJSONStorage, persist } from "zustand/middleware";
 import _ from "lodash";
-import { useChartStore } from "@/providers/chart-store-provider";
+import { produce } from "immer";
 
 export type BoardStates = {
   userData: Board[];
@@ -22,13 +22,13 @@ export type BoardActions = {
     newLastChartId?: number
   ) => void;
   updateChart: (
-    boardFather: Board,
+    id_boardFather: number,
     chart: Chart,
     active: boolean,
-    backendData?: BackendData,
-    typeChart?: typeChart,
-    newTitle?: string,
-    newSubtitle?: string
+    backendData: BackendData,
+    typeChart: typeChart,
+    newTitle: string,
+    newSubtitle: string
   ) => void;
   deleteBoard: (id: number) => void;
   deleteChart: (boardFather: Board, chart: Chart) => void;
@@ -110,44 +110,53 @@ export const createBoardStore = () => {
               return boardLocal;
             });
 
-            set((state) => ({ ...state, userData: finalData }));
+            set(
+              produce((state: BoardStates) => ({
+                ...state,
+                userData: finalData,
+              }))
+            );
           } catch (error) {
             console.error(error);
           }
         },
         updateChart: (
-          boardFather: Board,
+          id_boardFather: number,
           chart: Chart,
           active: boolean,
-          backendData?: BackendData,
-          typeChart?: typeChart,
-          newTitle?: string,
-          newSubtitle?: string
+          backendData: BackendData,
+          typeChart: typeChart,
+          newTitle: string,
+          newSubtitle: string
         ) => {
           try {
-            let newChart: Chart = {
-              ...chart,
-              active: active,
-              backendData: backendData ? backendData : chart.backendData,
-              typeChart: typeChart ? typeChart : chart.typeChart,
-              title: newTitle ? newTitle : chart.title,
-              subtitle: newSubtitle ? newSubtitle : chart.subtitle,
-            };
-
-            const newData = get().userData.map((boardLocal) => {
-              if (boardLocal.id === boardFather.id) {
-                const updatedCharts = boardFather.charts.map((chart) => {
-                  if (chart.id === newChart.id) {
-                    return newChart;
+            set(
+              produce((state: BoardStates) => {
+                const board = state.userData.find(
+                  (b) => b.id === id_boardFather
+                );
+                if (board) {
+                  const grafico = board.charts.find((c) => c.id === chart.id);
+                  if (grafico) {
+                    Object.assign(grafico, {
+                      active: active,
+                      backendData: {
+                        data: backendData.data,
+                        image: backendData.image,
+                        latitude: backendData.latitude,
+                        longitude: backendData.longitude,
+                        level: backendData.level,
+                        time: backendData.time,
+                        units: backendData.units,
+                      },
+                      typeChart: typeChart,
+                      title: newTitle,
+                      subtitle: newSubtitle,
+                    });
                   }
-                  return chart;
-                });
-                return { ...boardLocal, charts: updatedCharts };
-              }
-              return boardLocal;
-            });
-
-            set((state) => ({ ...state, userData: newData }));
+                }
+              })
+            );
           } catch (error) {
             console.error(error);
           }

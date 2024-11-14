@@ -4,26 +4,31 @@ import OpcionesTiempo from "@/components/Sidebar/opciones-tiempo";
 import Boton from "@/components/Sidebar/boton";
 import { Consulta } from "@/types/consulta";
 import OpcionesVariable from "./opciones-variable";
-import { varUsanImagen } from "@/config/var_usan_imagen";
-import { SendQuery } from "@/utils/Query/QueryBackend";
 import { typeChart } from "@/types/chart";
+import { RequestData } from "@/utils/BackendConection";
+import { useChartStore } from "@/providers/chart-store-provider";
+import { useBoardStore } from "@/providers/board-store-provider";
 
 const consultaInicial: Consulta = {
   variable: "",
-  latitud: [-34,-34],
-  longitud: [108,108],
+  latitud: [-34, -35],
+  longitud: [108, 108],
   typeChart: "contorno",
 };
 
 //Al elegir var con el Enter, no se actualiza
-const Sidebar = ({ refresh }: { refresh: () => void }) => {
+const Sidebar = () => {
   const [hayTiempo, setHayTiempo] = useState(false);
+  const chartSelected = useChartStore((state) => state.chartSelected);
+  const selectChart = useChartStore((state) => state.selectChart);
+  const updateChart = useBoardStore((state) => state.updateChart);
+  const id_boardSelected = useBoardStore((state) => state.id_boardSelected);
 
   const [variable, setVariable] = useState("");
-  const [latitud, setLatitud] = useState<number[]>([-34,-35]);
-  const [longitud, setLongitud] = useState<number[]>([77,109]);
+  const [latitud, setLatitud] = useState<number[]>([-34, -35]);
+  const [longitud, setLongitud] = useState<number[]>([108, 110]);
   const [nivel, setNivel] = useState<number | null>(null);
-  const [fecha, setFecha] = useState< string[] | null>(null);
+  const [fecha, setFecha] = useState<string[] | null>(null);
   const [hora, setHora] = useState("00:00:00.000000000");
   const [typeChart, setTypeChart] = useState<typeChart>("contorno");
   const [unidadMedida, setUnidadMedida] = useState<string>("K");
@@ -33,6 +38,7 @@ const Sidebar = ({ refresh }: { refresh: () => void }) => {
   const [cargandoConsulta, setCargandoConsulta] = useState(false);
 
   const funcionBoton = async () => {
+    if (!chartSelected) return;
     setCargandoConsulta(true);
 
     let newConsulta: Consulta = {
@@ -56,21 +62,33 @@ const Sidebar = ({ refresh }: { refresh: () => void }) => {
 
     newConsulta.typeChart = typeChart;
 
-    setCargandoConsulta(false)
-    console.log(newConsulta);
-    
+    setConsulta(newConsulta);
 
-    //setConsulta(newConsulta);
-    //SendQuery(newConsulta)
-    //  .then(() => setCargandoConsulta(false))
-    //  .then(() => {
-    //   console.log("por recargar");
-    //    refresh();
-    //  });
+    console.log(newConsulta);
+
+    RequestData(newConsulta).then((res) => {
+      updateChart(
+        id_boardSelected,
+        chartSelected,
+        true,
+        res,
+        typeChart,
+        chartSelected.title,
+        chartSelected.subtitle
+      );
+      selectChart({
+        ...chartSelected,
+        typeChart: typeChart,
+        active: true,
+        backendData: res,
+      });
+      console.log(res);
+      setCargandoConsulta(false);
+    });
   };
 
   return (
-    <div className="flex flex-col gap-12 p-6 w-1/3 shadow-md">
+    <div className="flex flex-col gap-12 p-6 w-full shadow-md order-last lg:w-1/3 lg:order-first">
       <div className="flex flex-col gap-3">
         <p className="text-center">
           <strong>Configuración del gráfico</strong>

@@ -24,12 +24,12 @@ type elemento = {
 };
 
 type Props = {
-  setHayTiempo: React.Dispatch<React.SetStateAction<boolean>>;
-  setVariable: React.Dispatch<React.SetStateAction<string>>;
-  setNivel: React.Dispatch<React.SetStateAction<number | null>>;
-  setTypeChart: React.Dispatch<React.SetStateAction<typeChart>>;
-  setUnidadMedida: React.Dispatch<React.SetStateAction<string>>;
-  setCalculoDatos: React.Dispatch<React.SetStateAction<string>>;
+  setHayTiempo: (newTiempo: boolean) => void;
+  setVariable: (newVar: string) => void;
+  setNivel: (newNivel: number | null) => void;
+  setTypeChart: (newType: typeChart) => void;
+  setUnidadMedida: (newUnidad: string) => void;
+  setCalculoDatos: (newCalculoDatos: string) => void;
   typeChart: string;
 };
 
@@ -169,16 +169,18 @@ export default function OpcionesVariable(props: Props) {
   );
 
   const cambiarTipoGrafico = (valor: string) => {
-    if (valor !== "contorno"
-      || "vectoriales"
-      || "clasificacion"
-      || "isobaras"
-      || "lineas"
-      || "dispersion"
-      || "rosa_de_vientos"
-      || "polares"
-      || "barras")
-      return
+    if (
+      valor !== "contorno" ||
+      "vectoriales" ||
+      "clasificacion" ||
+      "isobaras" ||
+      "lineas" ||
+      "dispersion" ||
+      "rosa_de_vientos" ||
+      "polares" ||
+      "barras"
+    )
+      return;
     setTypeChart(valor);
 
     let listAux1: elemento[] = [];
