@@ -10,6 +10,7 @@ function Subtitulo() {
   const id_boardSelected = useBoardStore((state) => state.id_boardSelected);
   const updateChart = useBoardStore((state) => state.updateChart);
   const chartSelected = useChartStore((state) => state.chartSelected);
+  const selectChart = useChartStore((state) => state.selectChart);
   const [editMode, setEditMode] = useState(false);
   const [subtitle, setSubtitle] = useState(
     chartSelected ? chartSelected.subtitle : "Sin subtitulo"
@@ -26,6 +27,10 @@ function Subtitulo() {
         chartSelected.title,
         subtitle === "" ? "Sin subtitulo" : subtitle
       );
+      selectChart({
+        ...chartSelected,
+        subtitle: subtitle === "" ? "Sin subtitulo" : subtitle,
+      });
     }
   }
 

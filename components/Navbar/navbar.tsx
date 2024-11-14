@@ -46,7 +46,7 @@ export default function NavbarComponent() {
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="md:hidden"
         />
-        <NavbarBrand>
+        <NavbarBrand className="flex-1 flex-row">
           <Image alt="Logo" src="/logo2.png" width={50} height={50} />
           <p className="font-bold text-inherit ml-3">CLIMATIC</p>
         </NavbarBrand>

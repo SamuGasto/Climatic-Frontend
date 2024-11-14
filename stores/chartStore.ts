@@ -22,13 +22,12 @@ export const createChartStore = () => {
         chartSelected: null,
         typeChart: "contorno",
         selectChart: (newChart: Chart | null) => {
-          console.log(newChart);
-
-          if (newChart) {
-            set(
-              produce((draft: ChartStates) => {
-                if (draft.chartSelected)
-                  Object.assign(draft.chartSelected, {
+          set(
+            produce((state: ChartStates) => {
+              if (newChart) {
+                if (state.chartSelected)
+                  Object.assign(state.chartSelected, {
+                    id: newChart.id,
                     active: newChart.active,
                     backendData: {
                       data: newChart.backendData.data,
@@ -43,11 +42,14 @@ export const createChartStore = () => {
                     title: newChart.title,
                     subtitle: newChart.subtitle,
                   });
-              })
-            );
-          } else {
-            set((state) => ({ ...state, chartSelected: null }));
-          }
+                else {
+                  state.chartSelected = { ...newChart };
+                }
+              } else {
+                state.chartSelected = null;
+              }
+            })
+          );
         },
         changeTypeChart: (newType) => {
           set((state) => ({ ...state, typeChart: newType }));

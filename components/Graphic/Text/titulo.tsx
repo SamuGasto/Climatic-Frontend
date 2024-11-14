@@ -10,6 +10,7 @@ export default function Titulo() {
   const id_boardSelected = useBoardStore((state) => state.id_boardSelected);
   const updateChart = useBoardStore((state) => state.updateChart);
   const chartSelected = useChartStore((state) => state.chartSelected);
+  const selectChart = useChartStore((state) => state.selectChart);
   const [editMode, setEditMode] = useState(false);
   const [title, setTitle] = useState(
     chartSelected ? chartSelected.title : "Sin título"
@@ -26,6 +27,10 @@ export default function Titulo() {
         title === "" ? "Sin título" : title,
         chartSelected.subtitle
       );
+      selectChart({
+        ...chartSelected,
+        title: title === "" ? "Sin título" : title,
+      });
     }
   }
 

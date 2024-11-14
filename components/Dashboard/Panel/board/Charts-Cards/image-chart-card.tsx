@@ -19,6 +19,8 @@ function ImageChartCard(props: PropType) {
         <Image
           aria-label="Imágen del gráfico"
           src={`data:image/png;base64,${chart.backendData.image}`}
+          height={156}
+          width={"100%"}
         />
       )}
     </div>
