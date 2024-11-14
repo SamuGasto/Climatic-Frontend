@@ -1,5 +1,5 @@
-import { useBoardStore } from "@/utils/Stores/boardStore";
-import useModalStore from "@/utils/Stores/modalStore";
+"use client";
+import { useModalStore } from "@/providers/modal-store-provider";
 import {
   Button,
   Input,
@@ -12,25 +12,19 @@ import {
 import { useTheme } from "next-themes";
 import React from "react";
 
-interface PropType {
-  refresh: () => void;
-}
-
-function ModalConfirm(props: PropType) {
-  const { refresh } = props;
-  const {
-    ModalConfirm,
-    ModalConfirmText,
-    functionModalConfirm,
-    toggleModalConfirm,
-  } = useModalStore.getState();
+function ModalConfirm() {
+  const ModalConfirm = useModalStore((state) => state.ModalConfirm);
+  const ModalConfirmText = useModalStore((state) => state.ModalConfirmText);
+  const functionModalConfirm = useModalStore(
+    (state) => state.functionModalConfirm
+  );
+  const toggleModalConfirm = useModalStore((state) => state.toggleModalConfirm);
   const actualTheme = useTheme();
 
   function ReadyButtonFunction() {
     functionModalConfirm();
 
     toggleModalConfirm(false, "", () => {});
-    refresh();
   }
 
   return (
@@ -42,11 +36,12 @@ function ModalConfirm(props: PropType) {
           if (!value) {
             toggleModalConfirm(false, "", () => {});
           }
-          refresh();
         }}
         onKeyDown={(event) => {
           if (ModalConfirm && event.key === "Enter") ReadyButtonFunction();
         }}
+        className="m-4 md:m-0"
+        placement="center"
       >
         <ModalContent>
           <ModalHeader>Confirmación</ModalHeader>
@@ -55,16 +50,17 @@ function ModalConfirm(props: PropType) {
           </ModalBody>
           <ModalFooter className="flex justify-between">
             <Button
+              aria-label="Cancelar"
               color="danger"
               variant="flat"
               onPress={() => {
                 toggleModalConfirm(false, "", () => {});
-                refresh();
               }}
             >
               Cancelar
             </Button>
             <Button
+              aria-label="Aceptar"
               color="primary"
               onPress={() => {
                 ReadyButtonFunction();

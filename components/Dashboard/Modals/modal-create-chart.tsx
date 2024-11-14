@@ -1,6 +1,6 @@
-import { Board } from "@/types/board";
-import { useBoardStore } from "@/utils/Stores/boardStore";
-import useModalStore from "@/utils/Stores/modalStore";
+"use client";
+import { useBoardStore } from "@/providers/board-store-provider";
+import { useModalStore } from "@/providers/modal-store-provider";
 import {
   Button,
   Input,
@@ -13,14 +13,14 @@ import {
 import { useTheme } from "next-themes";
 import React, { useState } from "react";
 
-interface PropType {
-  refresh: () => void;
-}
-
-function ModalCreateChart(props: PropType) {
-  const { refresh } = props;
-  const { userData, id_boardSelected, addNewChart } = useBoardStore.getState();
-  const { ModalCreateChart, toggleModalCreateChart } = useModalStore.getState();
+function ModalCreateChart() {
+  const userData = useBoardStore((state) => state.userData);
+  const id_boardSelected = useBoardStore((state) => state.id_boardSelected);
+  const addNewChart = useBoardStore((state) => state.addNewChart);
+  const toggleModalCreateChart = useModalStore(
+    (state) => state.toggleModalCreateChart
+  );
+  const ModalCreateChart = useModalStore((state) => state.ModalCreateChart);
   const [title, setTitle] = useState("");
   const [subtitle, setSubtitle] = useState("");
   const actualTheme = useTheme();
@@ -35,7 +35,6 @@ function ModalCreateChart(props: PropType) {
     setTitle("");
     setSubtitle("");
     toggleModalCreateChart(false);
-    refresh();
   }
 
   return (
@@ -44,17 +43,19 @@ function ModalCreateChart(props: PropType) {
         isOpen={ModalCreateChart}
         onOpenChange={(value) => {
           toggleModalCreateChart(value);
-          refresh();
         }}
         onKeyDown={(event) => {
           if (ModalCreateChart && event.key === "Enter") ReadyButtonFunction();
         }}
+        className="m-4 md:m-0"
+        placement="center"
       >
         <ModalContent>
           <ModalHeader>Nuevo Gráfico</ModalHeader>
           <ModalBody>
             <Input
               autoFocus
+
               label="Titulo del gráfico (Maximo 40 caracteres)"
               placeholder="Ingresa un nombre para tu gráfico"
               value={title}
@@ -64,6 +65,7 @@ function ModalCreateChart(props: PropType) {
               variant="underlined"
             />
             <Input
+              aria-label="Subtitulo"
               label="Subtitulo del gráfico"
               placeholder="Ingresa un subtitulo para tu gráfico"
               value={subtitle}
@@ -73,18 +75,19 @@ function ModalCreateChart(props: PropType) {
           </ModalBody>
           <ModalFooter className="flex justify-between">
             <Button
+              aria-label="Cancelar"
               color="danger"
               variant="flat"
               onPress={() => {
                 toggleModalCreateChart(false);
                 setTitle("");
                 setSubtitle("");
-                refresh();
               }}
             >
               Cancelar
             </Button>
             <Button
+              aria-label="Listo"
               color="primary"
               onPress={() => {
                 ReadyButtonFunction();

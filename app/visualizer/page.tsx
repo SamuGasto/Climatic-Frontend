@@ -2,41 +2,19 @@
 import Visualizador from "@/components/Graphic/general";
 import { BarChartOffIcon } from "@/components/icons";
 import Sidebar from "@/components/Sidebar/Sidebar";
-import { useChartStore } from "@/utils/Stores/chartStore";
+import { useChartStore } from "@/providers/chart-store-provider";
 import { Button } from "@nextui-org/button";
-import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
-import Plotly from "@/components/Graphic/Test/plotly";
+import Link from "next/link";
+import React from "react";
 
 export default function page() {
-  const { chartSelected, loadChartData } = useChartStore.getState();
-  const [hasChart, setHasChart] = useState(false);
-  const [refresh, setRefresh] = useState(false);
-
-  function Refresh() {
-    setRefresh(!refresh);
-  }
-
-  const router = useRouter();
-
-  useEffect(() => {
-    loadChartData();
-    if (chartSelected.id !== -1) {
-      setHasChart(true);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (chartSelected.id !== -1) {
-      setHasChart(true);
-    }
-  }, [chartSelected]);
+  const chartSelected = useChartStore((state) => state.chartSelected);
 
   return (
-    <div className="flex w-full">
-      {hasChart ? (
-        <div className="grid grid-cols-1 md:flex md:flex-row h-full w-full justify-center self-start -mt-10">
-          <Sidebar refresh={() => Refresh()} />
+    <div className="flex w-full mt-4">
+      {chartSelected ? (
+        <div className="grid grid-cols lg:flex lg:flex-row h-full w-full justify-center self-start -mt-10 ">
+          <Sidebar />
           <Visualizador />
         </div>
       ) : (
@@ -45,17 +23,16 @@ export default function page() {
             Todavía no se ha seleccionado ningún gráfico...
           </h1>
           <BarChartOffIcon className="flex justify-center" width={120} />
-          <Button
-            className="flex w-44"
-            size="lg"
-            variant="solid"
-            color="primary"
-            onPress={() => {
-              router.push("/");
-            }}
-          >
-            Volver a los Tableros
-          </Button>
+          <Link href={"/"}>
+            <Button
+              className="flex w-44"
+              size="lg"
+              variant="solid"
+              color="primary"
+            >
+              Volver a los Tableros
+            </Button>
+          </Link>
         </div>
       )}
     </div>

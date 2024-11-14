@@ -1,5 +1,5 @@
 "use client";
-import { Image } from "@nextui-org/image";
+import Image from "next/image";
 import Link from "next/link";
 
 import React from "react";
@@ -10,7 +10,7 @@ export default function Footer() {
       <div className="container mx-auto px-2">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
           <div className="flex flex-col items-center">
-            <Image src="/logo.png" alt="Di-Dema Logo" width={50} height={50} />
+            <Image src="/logo2.png" alt="Di-Dema Logo" width={50} height={50} />
             <h4 className="text-lg font-semibold mt-2 text-white">Di-Dema</h4>
             <p className="text-sm text-gray-400">Climatic App</p>
           </div>
@@ -63,7 +63,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-2 text-center">
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-gray-100">
             © {new Date().getFullYear()} Di-Dema. Todos los derechos
             reservados.
           </p>

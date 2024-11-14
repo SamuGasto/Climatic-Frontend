@@ -17,6 +17,12 @@ export const varConTiempo = [
   "sp",
   "tisr",
   "tcc",
-  
-  "w"
-]
+
+  "w",
+
+  "swvl",
+  "swvl1",
+  "swvl2",
+  "swvl3",
+  "swvl4",
+];

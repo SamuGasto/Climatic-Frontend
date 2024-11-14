@@ -1,48 +1,47 @@
-"use client";
-import React, { useEffect } from "react";
+import React, { ReactNode } from "react";
 import ButtonAddBoard from "./add-new-board";
-import BoardButton from "./board-button";
-import { Image } from "@nextui-org/image";
 import { Card, CardBody } from "@nextui-org/card";
-import { useBoardStore } from "@/utils/Stores/boardStore";
 import BoardList from "./board-list";
+import { Divider } from "@nextui-org/react";
+import Image from "next/image";
 
 interface PropType {
-  refresh: () => void;
-  isMobile?: boolean; // Nueva prop para diferenciar cuándo el Sidebar está en mobile
+  inNavMenu?: boolean; // Nueva prop para diferenciar cuándo el Sidebar está en mobile
 }
 
-function Sidebar({ refresh, isMobile = false }: PropType) {
-  const { loadData } = useBoardStore.getState();
-
-  useEffect(() => {
-    loadData();
-  }, []);
-
+function Sidebar({ inNavMenu = false }: PropType) {
   return (
     <div
-      className={`${
-        isMobile ? "block" : "hidden md:flex"
-      } md:flex-col md:basis-1/12 md:px-6 md:mr-5`}
+      className={`${!inNavMenu ? "hidden md:visible" : ""} md:flex md:flex-col md:basis-1/12 md:px-6 md:mr-5 md:h-full md:min-h-[700]`}
     >
-      <Card className="w-full h-full bg-white dark:bg-black" shadow={isMobile ? "none":"md"}>
+      <Card
+        className="w-full h-full bg-transparent md:bg-default-50"
+        shadow={inNavMenu ? "none" : "md"}
+      >
         <CardBody>
           {/* Mostrar imagen solo si no está en móvil */}
-          {!isMobile && (
-            <div className="flex w-full mb-8 justify-center">
+          {!inNavMenu ? (
+            <div className="flex w-full mt-1 mb-4 justify-center">
               <Image
-                radius="none"
                 src="/logo2.png"
                 alt="Climatic Logo"
                 width={50}
                 height={50}
               />
             </div>
+          ) : (
+            <h1 className="text-center text-xl p-4 align-middle">
+              Mis Tableros
+            </h1>
           )}
-          <nav>
-            <BoardList refresh={refresh} />
+          <Divider />
+          <nav className="py-4">
+            <BoardList />
           </nav>
-          <ButtonAddBoard refresh={refresh} />
+          <Divider />
+          <div className="flex w-full justify-center">
+            <ButtonAddBoard />
+          </div>
         </CardBody>
       </Card>
     </div>

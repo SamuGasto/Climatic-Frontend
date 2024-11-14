@@ -2,6 +2,7 @@ import {
   ChartConfig,
   ChartConfigInteractive,
   ChartConfigNoInteractive,
+  typeChart,
 } from "@/types/chart";
 import BackendData from "@/types/backend-data";
 import { UseThemeProps } from "next-themes/dist/types";
@@ -27,29 +28,13 @@ export function CreateEmptyApexChart() {
     time: "",
     units: "",
   };
-  const { Interactive, NoInteractive } = GenerateApexChart(emptyData, "bar");
+  const { Interactive, NoInteractive } = GenerateApexChart(emptyData, "barras");
   return { Interactive, NoInteractive };
 }
 
 function GenerateApexChart(
   data: BackendData,
-  typeChart:
-    | "line"
-    | "area"
-    | "bar"
-    | "pie"
-    | "donut"
-    | "radialBar"
-    | "scatter"
-    | "bubble"
-    | "heatmap"
-    | "candlestick"
-    | "boxPlot"
-    | "radar"
-    | "polarArea"
-    | "rangeBar"
-    | "rangeArea"
-    | "treemap",
+  typeChart: typeChart,
   options?: ChartOptions
 ): FinalCharts {
   const seriesData = TransformToSeries(data);

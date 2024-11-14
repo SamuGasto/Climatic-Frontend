@@ -1,10 +1,11 @@
-import { useChartStore } from "@/utils/Stores/chartStore";
+"use client";
+import { useChartStore } from "@/providers/chart-store-provider";
 import { Image } from "@nextui-org/image";
 import { CircularProgress } from "@nextui-org/progress";
 import React, { useEffect, useState } from "react";
 
 function GraficoImagen() {
-  const { chartSelected } = useChartStore.getState();
+  const chartSelected = useChartStore((state) => state.chartSelected);
 
   const [imageSrc, setImageSrc] = useState("");
   const [loading, setLoading] = useState(true);
@@ -12,8 +13,9 @@ function GraficoImagen() {
   useEffect(() => {
     const fetchImage = () => {
       try {
-        const response = chartSelected.backendData.image;
+        const response = chartSelected?.backendData.image;
         console.log(response)
+
         setImageSrc(`data:image/png;base64,${response}`);
         setLoading(false);
       } catch (error) {

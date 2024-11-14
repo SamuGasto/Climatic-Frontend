@@ -1,19 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Titulo from "./Text/titulo";
 import GraficoApex from "./grafico-apex-chart";
 import GraficoImagen from "./grafico-imagen";
-import { useChartStore } from "@/utils/Stores/chartStore";
+import { useChartStore } from "@/providers/chart-store-provider";
 import { BarChartOffIcon } from "../icons";
 import Subtitulo from "./Text/subtitulo";
 import { Divider } from "@nextui-org/react";
 
 export default function Visualizador() {
-  const { chartSelected } = useChartStore.getState();
-  const [refresh, SetRefresh] = useState(false);
-
-  useEffect(() => {
-    SetRefresh(!refresh);
-  }, [chartSelected]);
+  const chartSelected = useChartStore((state) => state.chartSelected);
 
   return (
     <div className="flex w-full">
@@ -23,9 +18,12 @@ export default function Visualizador() {
           <Subtitulo />
         </div>
         <Divider className="" />
-        {chartSelected.active ? (
+        {chartSelected?.active ? (
           <div className="flex w-full min-h-[360px]">
-            {chartSelected.typeChart == "image" ? (
+            {chartSelected.typeChart == "contorno" ||
+            chartSelected.typeChart == "vectoriales" ||
+            chartSelected.typeChart == "isobaras" ||
+            chartSelected.typeChart == "dispersion" ? (
               <GraficoImagen />
             ) : (
               <GraficoApex />

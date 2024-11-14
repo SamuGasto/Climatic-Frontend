@@ -1,20 +1,16 @@
-import { useBoardStore } from "@/utils/Stores/boardStore";
-import React, { useState } from "react";
+"use client";
+import { useBoardStore } from "@/providers/board-store-provider";
+import React from "react";
 import BoardButton from "./board-button";
 
-interface PropType {
-  refresh: () => void;
-}
-
-function BoardList(props: PropType) {
-  const { refresh } = props;
-  const { userData } = useBoardStore.getState();
+function BoardList() {
+  const userData = useBoardStore((state) => state.userData);
 
   return (
-    <ul className="flex flex-col space-y-2">
+    <ul className="flex flex-col items-center space-y-2">
       {userData.map((board, index) => (
         <li key={index}>
-          <BoardButton id={index} board={board} refresh={refresh} />
+          <BoardButton id={index} board={board} />
         </li>
       ))}
     </ul>

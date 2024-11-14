@@ -1,25 +1,29 @@
 import { Button } from "@nextui-org/button";
 import React, { useEffect, useState } from "react";
-import { useBoardStore } from "@/utils/Stores/boardStore";
+
 import { Board } from "@/types/board";
 import {
   DeleteOffOutlineIcon,
   DeleteOutlineIcon,
   EditIcon,
 } from "@/components/icons";
-import useModalStore from "@/utils/Stores/modalStore";
+import { useModalStore } from "@/providers/modal-store-provider";
+import { useBoardStore } from "@/providers/board-store-provider";
 
 interface PropType {
   id: number;
   board: Board;
-  refresh: () => void;
 }
 
 function BoardButton(props: PropType) {
-  const { id, board, refresh } = props;
-  const { id_boardSelected, selectBoard, deleteBoard } =
-    useBoardStore.getState();
-  const { toggleModalConfirm, toggleModalEditBoard } = useModalStore.getState();
+  const { id, board } = props;
+  const id_boardSelected = useBoardStore((state) => state.id_boardSelected);
+  const selectBoard = useBoardStore((state) => state.selectBoard);
+  const deleteBoard = useBoardStore((state) => state.deleteBoard);
+  const toggleModalConfirm = useModalStore((state) => state.toggleModalConfirm);
+  const toggleModalEditBoard = useModalStore(
+    (state) => state.toggleModalEditBoard
+  );
   const [active, setActive] = useState(false);
 
   useEffect(() => {
@@ -31,6 +35,7 @@ function BoardButton(props: PropType) {
     <div className="flex flex-row gap-1 justify-center">
       {active && (
         <Button
+          aria-label="Eliminar tablero"
           isIconOnly
           variant="light"
           color="danger"
@@ -41,10 +46,8 @@ function BoardButton(props: PropType) {
                 "¿Estás seguro de eliminar este tablero?",
                 () => {
                   deleteBoard(id);
-                  refresh();
                 }
               );
-              refresh();
             }
           }}
         >
@@ -57,13 +60,13 @@ function BoardButton(props: PropType) {
       )}
 
       <Button
+        aria-label={`Tablero ${board.name}`}
         className="w-44 text-center"
         variant={active ? "solid" : "light"}
         color="primary"
         onClick={() => {
           selectBoard(id);
           setActive(true);
-          refresh();
         }}
       >
         <h1 className="w-full text-center text-pretty truncate">
@@ -73,12 +76,12 @@ function BoardButton(props: PropType) {
 
       {active && (
         <Button
+          aria-label="Editar tablero"
           isIconOnly
           variant="light"
           color="primary"
           onPress={() => {
             toggleModalEditBoard(true);
-            refresh();
           }}
         >
           <EditIcon width={28} />

@@ -22,7 +22,6 @@ export default function SeleccionHora(props: Props) {
     <TimeInput
       isDisabled={desabilitado}
       label="Seleccione la hora"
-      isRequired
       granularity="hour"
       onChange={(value) => configurarConsulta(value.hour)}
     />

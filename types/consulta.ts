@@ -1,26 +1,12 @@
+import { typeChart } from "./chart";
+
 export interface Consulta {
   variable: string;
   latitud: number[];
   longitud: number[];
-  imagen: boolean;
-  typeChart:
-    | "image"
-    | "line"
-    | "area"
-    | "bar"
-    | "pie"
-    | "donut"
-    | "radialBar"
-    | "scatter"
-    | "bubble"
-    | "heatmap"
-    | "candlestick"
-    | "boxPlot"
-    | "radar"
-    | "polarArea"
-    | "rangeBar"
-    | "rangeArea"
-    | "treemap";
-  tiempo?: string[];
+  typeChart: typeChart;
+  tiempo?: string;
   nivel?: number;
+  unidadMedida?: string;
+  calculoDatos?: string;
 }

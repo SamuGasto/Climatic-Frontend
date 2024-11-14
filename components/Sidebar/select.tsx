@@ -34,6 +34,7 @@ export default function Desplegable(props: DesplegableProps) {
         className="flex w-full"
         isDisabled={desabilitado}
         defaultSelectedKeys={valPorDefecto}
+        disallowEmptySelection
       >
         {elementos.map((elemento) => (
           <SelectItem

@@ -1,29 +1,25 @@
 import { Card, CardBody } from "@nextui-org/card";
 import React from "react";
-import Image from "next/image";
-import addChartIcon from "@/public/add-chart.svg";
-import useModalStore from "@/utils/Stores/modalStore";
+import { useModalStore } from "@/providers/modal-store-provider";
+import { AddChart } from "@/components/icons";
 
-interface PropType {
-  refresh: () => void;
-}
-
-function NoChartCard(props: PropType) {
-  const { refresh } = props;
-  const { toggleModalCreateChart } = useModalStore.getState();
+function NoChartCard() {
+  const toggleModalCreateChart = useModalStore(
+    (state) => state.toggleModalCreateChart
+  );
   return (
     <Card
-      className="h-72 w-96"
+      aria-label="Añadir gráfico"
+      className="h-64 w-80 shrink-0 grow-0"
       key={"NoChart"}
       shadow="sm"
       isPressable
       onPress={() => {
         toggleModalCreateChart(true);
-        refresh();
       }}
     >
       <CardBody className="flex w-full justify-center items-center">
-        <Image alt="addChartIcon" src={addChartIcon} width={180} height={180} />
+        <AddChart width={160} />
       </CardBody>
     </Card>
   );

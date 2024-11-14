@@ -11,10 +11,9 @@ function Search(props: PropType) {
   const { filterQuery, setFilterQuery } = props;
   return (
     <Input
-      
       startContent={<SearchIcon />}
       isClearable
-      className="md:w-1/3 w-auto"
+      className="max-w-[300px]"
       placeholder="Buscar gráfico..."
       value={filterQuery}
       onValueChange={(newValue) => {

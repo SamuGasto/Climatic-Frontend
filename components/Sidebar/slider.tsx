@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Slider } from "@nextui-org/react";
 export type SliderValue = number | number[];
 
@@ -11,7 +11,7 @@ type Props = {
   setValores: React.Dispatch<React.SetStateAction<number[]>>;
 };
 
-export default function Deslizador(props: Props) {
+export default function DeslizadorDoble(props: Props) {
   const { maximo, minimo, step, label, defaultValue, setValores } = props;
 
   return (

@@ -9,9 +9,9 @@ import { SendQuery } from "@/utils/QueryBackend";
 
 const consultaInicial: Consulta = {
   variable: "",
-  latitud: [-34.75, -34.25],
-  longitud: [108.25, 109],
-  typeChart: "heatmap",
+  latitud: -34,
+  longitud: 108,
+  typeChart: "contorno",
   imagen: false,
 };
 
@@ -20,30 +20,14 @@ const Sidebar = ({ refresh }: { refresh: () => void }) => {
   const [hayTiempo, setHayTiempo] = useState(false);
 
   const [variable, setVariable] = useState("");
-  const [latitud, setLatitud] = useState([-34.75, -34.25]);
-  const [longitud, setLongitud] = useState([108.25, 109]);
+  const [latitud, setLatitud] = useState(-34);
+  const [longitud, setLongitud] = useState(108);
   const [nivel, setNivel] = useState<number | null>(null);
   const [fecha, setFecha] = useState<string[] | null>(null);
   const [hora, setHora] = useState("00:00:00.000000000");
-  const [typeChart, setTypeChart] = useState<
-    | "image"
-    | "line"
-    | "area"
-    | "bar"
-    | "pie"
-    | "donut"
-    | "radialBar"
-    | "scatter"
-    | "bubble"
-    | "heatmap"
-    | "candlestick"
-    | "boxPlot"
-    | "radar"
-    | "polarArea"
-    | "rangeBar"
-    | "rangeArea"
-    | "treemap"
-  >("heatmap");
+  const [typeChart, setTypeChart] = useState<string>("contorno");
+  const [unidadMedida, setUnidadMedida] = useState<string>("K");
+  const [calculoDatos, setCalculoDatos] = useState<string>("mean");
 
   const [consulta, setConsulta] = useState<Consulta>(consultaInicial);
   const [cargandoConsulta, setCargandoConsulta] = useState(false);
@@ -56,7 +40,9 @@ const Sidebar = ({ refresh }: { refresh: () => void }) => {
       latitud: latitud,
       longitud: longitud,
       imagen: true,
-      typeChart: "area",
+      typeChart: "contorno",
+      unidadMedida: unidadMedida,
+      calculoDatos: calculoDatos,
     };
 
     if (nivel) newConsulta.nivel = nivel;
@@ -73,7 +59,7 @@ const Sidebar = ({ refresh }: { refresh: () => void }) => {
 
     if (varUsanImagen.includes(variable)) {
       newConsulta.imagen = true;
-      newConsulta.typeChart = "image";
+      newConsulta.typeChart = "contorno";
     } else {
       newConsulta.imagen = false;
     }
@@ -101,9 +87,24 @@ const Sidebar = ({ refresh }: { refresh: () => void }) => {
         setVariable={setVariable}
         setNivel={setNivel}
         setTypeChart={setTypeChart}
+        setUnidadMedida={setUnidadMedida}
+        typeChart={typeChart}
+        setCalculoDatos={setCalculoDatos}
       />
 
-      <OpcionesArea setLatitud={setLatitud} setLongitud={setLongitud} />
+      {typeChart !== "lineas" ? (
+        <OpcionesArea
+          setLatitud={setLatitud}
+          setLongitud={setLongitud}
+          deshabilitado={false}
+        />
+      ) : (
+        <OpcionesArea
+          setLatitud={setLatitud}
+          setLongitud={setLongitud}
+          deshabilitado={true}
+        />
+      )}
 
       <OpcionesTiempo
         desabilitado={!hayTiempo}
