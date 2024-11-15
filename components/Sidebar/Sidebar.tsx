@@ -4,8 +4,11 @@ import OpcionesTiempo from "@/components/Sidebar/opciones-tiempo";
 import Boton from "@/components/Sidebar/boton";
 import { Consulta } from "@/types/consulta";
 import OpcionesVariable from "./opciones-variable";
-import { varUsanImagen } from "@/config/var_usan_imagen";
-import { SendQuery } from "@/utils/Query/QueryBackend";
+import { typeChart } from "@/types/chart";
+import { RequestData } from "@/utils/BackendConection";
+import { useChartStore } from "@/providers/chart-store-provider";
+import { useBoardStore } from "@/providers/board-store-provider";
+import toast from "react-hot-toast";
 
 const consultaInicial: Consulta = {
   variable: "",
