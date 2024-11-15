@@ -234,7 +234,7 @@ export default function OpcionesVariable(props: Props) {
           step={1}
           defaultValue={1}
           onChangeEnd={handleContenidoVolumetrico}
-          deshabilitado={false}
+          deshabilitado={true}
         />
       ) : null}
 
