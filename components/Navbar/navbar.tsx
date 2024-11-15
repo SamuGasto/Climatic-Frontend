@@ -35,7 +35,7 @@ export default function NavbarComponent() {
 
   return (
     <Navbar
-      className="flex fixed w-full p-1 shadow-md dark:border-white dark:border-b-1"
+      className="flex fixed w-full p-1 shadow-md border-black border-b-1 dark:border-white dark:border-b-1"
       isMenuOpen={isMenuOpen}
       onMenuOpenChange={(value) => setIsMenuOpen(value)}
       position="static"
