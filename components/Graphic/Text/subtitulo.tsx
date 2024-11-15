@@ -7,24 +7,31 @@ import { Input, Textarea } from "@nextui-org/input";
 import React, { useState } from "react";
 
 function Subtitulo() {
-  const userData = useBoardStore((state) => state.userData);
   const id_boardSelected = useBoardStore((state) => state.id_boardSelected);
   const updateChart = useBoardStore((state) => state.updateChart);
   const chartSelected = useChartStore((state) => state.chartSelected);
+  const selectChart = useChartStore((state) => state.selectChart);
   const [editMode, setEditMode] = useState(false);
-  const [subtitle, setSubtitle] = useState(chartSelected?.subtitle);
+  const [subtitle, setSubtitle] = useState(
+    chartSelected ? chartSelected.subtitle : "Sin subtitulo"
+  );
 
   function SaveSubtitle() {
-    if (chartSelected)
+    if (chartSelected) {
       updateChart(
-        userData[id_boardSelected],
+        id_boardSelected,
         chartSelected,
         chartSelected.active,
-        undefined,
-        undefined,
-        undefined,
-        subtitle === "" ? "Sin título" : subtitle
+        chartSelected.backendData,
+        chartSelected.typeChart,
+        chartSelected.title,
+        subtitle === "" ? "Sin subtitulo" : subtitle
       );
+      selectChart({
+        ...chartSelected,
+        subtitle: subtitle === "" ? "Sin subtitulo" : subtitle,
+      });
+    }
   }
 
   return (
@@ -35,7 +42,6 @@ function Subtitulo() {
             value={subtitle}
             onValueChange={(value) => {
               setSubtitle(value);
-              console.log(value);
             }}
             variant="bordered"
           />

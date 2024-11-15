@@ -7,27 +7,16 @@ import React, { useEffect, useState } from "react";
 function GraficoImagen() {
   const chartSelected = useChartStore((state) => state.chartSelected);
 
-  const [imageSrc, setImageSrc] = useState("");
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchImage = () => {
-      try {
-        const response = chartSelected?.backendData.image;
-        setImageSrc(`data:image/png;base64,${response}`);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching the image:", error);
-        setLoading(false);
-      }
-    };
-
-    fetchImage();
-  }, []);
-
   return (
     <div className="flex w-full justify-center align-middle">
-      {loading ? <CircularProgress /> : <Image src={imageSrc} />}
+      {!chartSelected ? (
+        <CircularProgress />
+      ) : (
+        <Image
+          aria-label="Imágen del gráfico"
+          src={`data:image/png;base64,${chartSelected.backendData.image}`}
+        />
+      )}
     </div>
   );
 }

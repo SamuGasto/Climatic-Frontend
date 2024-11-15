@@ -7,23 +7,31 @@ import { SaveIcon } from "@/components/icons";
 import { useBoardStore } from "@/providers/board-store-provider";
 
 export default function Titulo() {
-  const userData = useBoardStore((state) => state.userData);
   const id_boardSelected = useBoardStore((state) => state.id_boardSelected);
   const updateChart = useBoardStore((state) => state.updateChart);
   const chartSelected = useChartStore((state) => state.chartSelected);
+  const selectChart = useChartStore((state) => state.selectChart);
   const [editMode, setEditMode] = useState(false);
-  const [title, setTitle] = useState(chartSelected?.title);
+  const [title, setTitle] = useState(
+    chartSelected ? chartSelected.title : "Sin título"
+  );
 
   function SaveTitle() {
-    if (chartSelected)
+    if (chartSelected) {
       updateChart(
-        userData[id_boardSelected],
+        id_boardSelected,
         chartSelected,
         chartSelected.active,
-        undefined,
-        undefined,
-        title === "" ? "Sin título" : title
+        chartSelected.backendData,
+        chartSelected.typeChart,
+        title === "" ? "Sin título" : title,
+        chartSelected.subtitle
       );
+      selectChart({
+        ...chartSelected,
+        title: title === "" ? "Sin título" : title,
+      });
+    }
   }
 
   return (

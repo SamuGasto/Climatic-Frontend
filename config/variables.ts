@@ -13,7 +13,7 @@ export const variables = [
   },
   {
     key: "t2m",
-    label: "Temperatura a 2 metro de la superficie",
+    label: "Temperatura a 2 metros de la superficie",
   },
   {
     key: "anor",

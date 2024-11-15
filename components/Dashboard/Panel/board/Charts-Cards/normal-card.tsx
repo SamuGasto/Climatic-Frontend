@@ -1,7 +1,7 @@
 "use-client";
 import { Chart } from "@/types/chart";
 import { Card, CardBody, CardHeader } from "@nextui-org/card";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ChartImage from "../../chart-image";
 import { useChartStore } from "@/providers/chart-store-provider";
 import { BarChartOffIcon, DeleteOutlineIcon } from "@/components/icons";
@@ -20,7 +20,6 @@ interface PropType {
 
 function NormalCard(props: PropType) {
   const { index, chart } = props;
-  const userData = useBoardStore((state) => state.userData);
   const id_boardSelected = useBoardStore((state) => state.id_boardSelected);
   const deleteChart = useBoardStore((state) => state.deleteChart);
   const toggleModalConfirm = useModalStore((state) => state.toggleModalConfirm);
@@ -29,7 +28,7 @@ function NormalCard(props: PropType) {
 
   return (
     <motion.div whileHover={{ scale: 1.02 }}>
-      <Card className="h-64 w-80 shrink-0 grow-0" key={index} shadow="sm">
+      <Card className="h-64 w-80 shrink-0 grow-0 border-1 border-gray-500" key={index} shadow="sm">
         <CardHeader>
           <div className="flex flex-row w-full justify-between">
             <div className="flex w-5/6 flex-col">
@@ -39,6 +38,7 @@ function NormalCard(props: PropType) {
               <p className="truncate ">{chart.subtitle}</p>
             </div>
             <Button
+              aria-label="Eliminar gráfico"
               isIconOnly
               color="danger"
               variant="light"
@@ -51,7 +51,7 @@ function NormalCard(props: PropType) {
                     if (chart.id === chartSelected?.id) {
                       selectChart(null);
                     }
-                    deleteChart(userData[id_boardSelected], chart);
+                    deleteChart(id_boardSelected, chart.id);
                   }
                 );
               }}
@@ -61,11 +61,17 @@ function NormalCard(props: PropType) {
           </div>
         </CardHeader>
         <Divider />
-        <Link href={"/visualizer"} onClick={() => selectChart(chart)}>
-          <CardBody className="flex w-full h-full justify-center items-center">
+        <Link href={"/visualizer"}>
+          <CardBody
+            className="flex-1 items-center"
+            onClick={() => {
+              selectChart(chart);
+              console.log(chart);
+            }}
+          >
             {!chart.active ? (
-              <div className="flex w-full h-full justify-center items-center">
-                <BarChartOffIcon width={100} />
+              <div className="flex-1 justify-center items-center">
+                <BarChartOffIcon aria-label="No posee gráfico" width={100} />
               </div>
             ) : (
               <div className="flex w-5/6 h-5/6 justify-center items-center">
@@ -73,9 +79,9 @@ function NormalCard(props: PropType) {
                 chart.typeChart == "vectoriales" ||
                 chart.typeChart == "isobaras" ||
                 chart.typeChart == "dispersion" ? (
-                  <ChartImage />
-                ) : (
                   <ImageChartCard chart={chart} />
+                ) : (
+                  <ChartImage />
                 )}
               </div>
             )}

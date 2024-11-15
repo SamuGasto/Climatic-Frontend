@@ -9,23 +9,26 @@ import { SendQuery } from "@/utils/Query/QueryBackend";
 
 const consultaInicial: Consulta = {
   variable: "",
-  latitud: -34,
-  longitud: 108,
+  latitud: [-34, -35],
+  longitud: [108, 108],
   typeChart: "contorno",
-  imagen: false,
 };
 
 //Al elegir var con el Enter, no se actualiza
-const Sidebar = ({ refresh }: { refresh: () => void }) => {
+const Sidebar = () => {
   const [hayTiempo, setHayTiempo] = useState(false);
+  const chartSelected = useChartStore((state) => state.chartSelected);
+  const selectChart = useChartStore((state) => state.selectChart);
+  const updateChart = useBoardStore((state) => state.updateChart);
+  const id_boardSelected = useBoardStore((state) => state.id_boardSelected);
 
   const [variable, setVariable] = useState("");
-  const [latitud, setLatitud] = useState(-34);
-  const [longitud, setLongitud] = useState(108);
+  const [latitud, setLatitud] = useState<number[]>([-34, -35]);
+  const [longitud, setLongitud] = useState<number[]>([108, 110]);
   const [nivel, setNivel] = useState<number | null>(null);
   const [fecha, setFecha] = useState<string[] | null>(null);
   const [hora, setHora] = useState("00:00:00.000000000");
-  const [typeChart, setTypeChart] = useState<string>("contorno");
+  const [typeChart, setTypeChart] = useState<typeChart>("contorno");
   const [unidadMedida, setUnidadMedida] = useState<string>("K");
   const [calculoDatos, setCalculoDatos] = useState<string>("mean");
 
@@ -33,13 +36,13 @@ const Sidebar = ({ refresh }: { refresh: () => void }) => {
   const [cargandoConsulta, setCargandoConsulta] = useState(false);
 
   const funcionBoton = async () => {
+    if (!chartSelected) return;
     setCargandoConsulta(true);
 
     let newConsulta: Consulta = {
       variable: variable,
       latitud: latitud,
       longitud: longitud,
-      imagen: true,
       typeChart: "contorno",
       unidadMedida: unidadMedida,
       calculoDatos: calculoDatos,
@@ -57,24 +60,40 @@ const Sidebar = ({ refresh }: { refresh: () => void }) => {
 
     newConsulta.typeChart = typeChart;
 
-    if (varUsanImagen.includes(variable)) {
-      newConsulta.imagen = true;
-      newConsulta.typeChart = "contorno";
-    } else {
-      newConsulta.imagen = false;
-    }
-
     setConsulta(newConsulta);
-    SendQuery(newConsulta)
-      .then(() => setCargandoConsulta(false))
-      .then(() => {
-        console.log("por recargar");
-        refresh();
+
+    console.log(newConsulta);
+
+    RequestData(newConsulta).then((res) => {
+      if ("Mensaje del Servidor" in res) {
+        setCargandoConsulta(false);
+        toast.error(res["Mensaje del Servidor"]);
+        return;
+      }
+
+      updateChart(
+        id_boardSelected,
+        chartSelected,
+        true,
+        res,
+        typeChart,
+        chartSelected.title,
+        chartSelected.subtitle
+      );
+      selectChart({
+        ...chartSelected,
+        typeChart: typeChart,
+        active: true,
+        backendData: res,
       });
+      console.log(res);
+      setCargandoConsulta(false);
+      toast.success("Se ha cargado el gráfico correctamente");
+    });
   };
 
   return (
-    <div className="flex flex-col gap-12 p-6 w-1/3 shadow-md">
+    <div className="flex flex-col gap-12 p-6 w-full shadow-md order-last lg:w-1/3 lg:order-first">
       <div className="flex flex-col gap-3">
         <p className="text-center">
           <strong>Configuración del gráfico</strong>

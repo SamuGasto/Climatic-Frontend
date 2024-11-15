@@ -16,6 +16,7 @@ import { varContenidoVolumetrico } from "@/config/subvariables/var_contenido_vol
 import { varUnidadesTemperatura } from "@/config/subvariables/var_unidades_temperatura";
 import { unidadesTemperatura } from "@/config/subvariables/opcion_unidades_temperaturas";
 import { opcionesSerieTiempo } from "@/config/subvariables/opciones_serie_tiempo";
+import { typeChart } from "@/types/chart";
 
 type elemento = {
   key: string;
@@ -23,12 +24,12 @@ type elemento = {
 };
 
 type Props = {
-  setHayTiempo: React.Dispatch<React.SetStateAction<boolean>>;
-  setVariable: React.Dispatch<React.SetStateAction<string>>;
-  setNivel: React.Dispatch<React.SetStateAction<number | null>>;
-  setTypeChart: React.Dispatch<React.SetStateAction<string>>;
-  setUnidadMedida: React.Dispatch<React.SetStateAction<string>>;
-  setCalculoDatos: React.Dispatch<React.SetStateAction<string>>;
+  setHayTiempo: (newTiempo: boolean) => void;
+  setVariable: (newVar: string) => void;
+  setNivel: (newNivel: number | null) => void;
+  setTypeChart: (newType: typeChart) => void;
+  setUnidadMedida: (newUnidad: string) => void;
+  setCalculoDatos: (newCalculoDatos: string) => void;
   typeChart: string;
 };
 
@@ -168,6 +169,18 @@ export default function OpcionesVariable(props: Props) {
   );
 
   const cambiarTipoGrafico = (valor: string) => {
+    if (
+      valor !== "contorno" ||
+      "vectoriales" ||
+      "clasificacion" ||
+      "isobaras" ||
+      "lineas" ||
+      "dispersion" ||
+      "rosa_de_vientos" ||
+      "polares" ||
+      "barras"
+    )
+      return;
     setTypeChart(valor);
 
     let listAux1: elemento[] = [];

@@ -28,9 +28,8 @@ export default function CardMember({ src, nombre, rol, main_text, bottom_text, l
   const mappedColor = colorMap[color.toLowerCase()] || "default";
 
   return (
-    <Card className="max-w-[600px]"
+    <Card className="max-w-[600px] border-principal border-2"
           fullWidth
-          isHoverable
           shadow="lg">
       <CardHeader className="flex gap-5 px-6">
         <Avatar className="w-10 h-10"isBordered color={mappedColor} src={src}/>
@@ -39,12 +38,12 @@ export default function CardMember({ src, nombre, rol, main_text, bottom_text, l
           <p className="text-lg sm:text-xl text-default-500">{rol}</p>
         </div>
       </CardHeader>
-      <Divider />
+      <Divider className="bg-black dark:bg-white" />
       <CardBody>
         <p className="sm:text-2xl text-lg py-4">{main_text}</p>
         <p className="sm:text-lg text-sm">{bottom_text}</p>
       </CardBody>
-      <Divider />
+      <Divider className="bg-black dark:bg-white"/>
       <CardFooter>
         <div className="flex flex-col">
           <Link isExternal showAnchorIcon href={link_ref}>

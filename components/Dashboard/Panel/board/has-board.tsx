@@ -12,6 +12,7 @@ import NoChartCard from "./Charts-Cards/no-chart";
 function BoardPanel() {
   const userData = useBoardStore((state) => state.userData);
   const id_boardSelected = useBoardStore((state) => state.id_boardSelected);
+  const getCharts = useBoardStore((state) => state.getCharts);
   const [filterQuery, setFilterQuery] = useState("");
   const [dataFiltered, setDataFiltered] = useState<Chart[]>(
     userData[id_boardSelected].charts
@@ -19,10 +20,11 @@ function BoardPanel() {
   const [segmentsOfCharts, setSegmentOfCharts] = useState(0);
 
   useEffect(() => {
-    if (filterQuery === "") setDataFiltered(userData[id_boardSelected].charts);
-    else
+    if (filterQuery === "") {
+      setDataFiltered(getCharts(id_boardSelected));
+    } else
       setDataFiltered(
-        userData[id_boardSelected].charts.filter(
+        getCharts(id_boardSelected).filter(
           (chart) =>
             chart.title
               .toLowerCase()
