@@ -28,7 +28,7 @@ function NormalCard(props: PropType) {
 
   return (
     <motion.div whileHover={{ scale: 1.02 }}>
-      <Card className="h-64 w-80 shrink-0 grow-0" key={index} shadow="sm">
+      <Card className="h-64 w-80 shrink-0 grow-0 border-1 border-gray-500" key={index} shadow="sm">
         <CardHeader>
           <div className="flex flex-row w-full justify-between">
             <div className="flex w-5/6 flex-col">

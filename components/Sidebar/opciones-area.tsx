@@ -1,5 +1,6 @@
 import React from "react";
 import Deslizador from "./deslizador";
+import Tooltip from "@/components/Tooltip/tooltip";
 
 type Props = {
   setLatitud: (newLatitud: number[]) => void;
@@ -28,7 +29,11 @@ const OpcionesArea = (props: Props) => {
 
   return (
     <div className="flex w-full flex-col gap-3 items-center">
-      <p className="flex place-content-center">Selección del área</p>
+      <div className="flex items-center justify-center relative">
+        <p className="flex place-content-center">Selección del área</p>
+        <Tooltip color="primary" texto="Latitud y longitud son sólo ajustables para series de tiempo." txtBoton="?"/>
+      </div>
+      
       <Deslizador
         label="Latitud"
         maximo={-34}
