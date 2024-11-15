@@ -15,7 +15,7 @@ export default function GraficoApex() {
 
   const { Interactive } = GenerateApexChart(
     chartSelected ? chartSelected.backendData : exampleData,
-    typeChart === "barras" ? "clasificacion" : "barras", //Hay que arreglar esto, la opcion del caso false
+    typeChart === "barras" ? "clasifiacion" : "barras", //Hay que arreglar esto, la opcion del caso false
     {
       color: color,
       theme: actualTheme,

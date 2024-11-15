@@ -66,7 +66,6 @@ function NormalCard(props: PropType) {
             className="flex-1 items-center"
             onClick={() => {
               selectChart(chart);
-              console.log(chart);
             }}
           >
             {!chart.active ? (

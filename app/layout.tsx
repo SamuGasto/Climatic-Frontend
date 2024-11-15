@@ -50,7 +50,7 @@ export default function RootLayout({
         <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}>
           <div className="relative flex flex-col h-screen">
             <Navbar />
-            <Toaster position="bottom-left" />
+            <Toaster position="top-center" />
             <main className="flex-1 my-24">{children}</main>
             <Footer />
             <section>
