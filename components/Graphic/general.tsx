@@ -22,7 +22,6 @@ export default function Visualizador() {
           <div className="flex w-full min-h-[360px]">
             {chartSelected.typeChart == "contorno" ||
             chartSelected.typeChart == "vectoriales" ||
-            chartSelected.typeChart == "isobaras" ||
             chartSelected.typeChart == "dispersion" ? (
               <GraficoImagen />
             ) : (

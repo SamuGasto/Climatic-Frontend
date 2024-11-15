@@ -28,7 +28,10 @@ export function CreateEmptyApexChart() {
     time: "",
     units: "",
   };
-  const { Interactive, NoInteractive } = GenerateApexChart(emptyData, "barras");
+  const { Interactive, NoInteractive } = GenerateApexChart(
+    emptyData,
+    "contorno"
+  );
   return { Interactive, NoInteractive };
 }
 
@@ -37,17 +40,29 @@ function GenerateApexChart(
   typeChart: typeChart,
   options?: ChartOptions
 ): FinalCharts {
-  const seriesData = TransformToSeries(data);
+  const seriesData = TransformToSeries(typeChart, data);
+  let x_axis = "Longitud";
+  let y_axis = "Latitud";
 
-  const labels = data.longitude.map((l) => {
+  let labels = data.longitude.map((l) => {
     return l.toString();
   });
+
+  if (typeChart === "lineas" && Array.isArray(data.time)) {
+    labels = data.time.map((t) => {
+      return t;
+    });
+    x_axis = "Día";
+    y_axis = "Valor";
+  }
 
   const InteractiveChart = ChartConfigInteractive({
     data: seriesData,
     theme: options?.theme?.theme === "light" ? "light" : "dark",
     typeChart: typeChart,
     categories: labels,
+    x_axis: x_axis,
+    y_axis: y_axis,
     colors: options?.color ? options?.color : ["#858585"],
   });
   const NoInteractiveChart = ChartConfigNoInteractive({
@@ -55,6 +70,8 @@ function GenerateApexChart(
     theme: options?.theme?.theme === "light" ? "light" : "dark",
     typeChart: typeChart,
     categories: labels,
+    x_axis: x_axis,
+    y_axis: y_axis,
     colors: options?.color ? options?.color : ["#858585"],
   });
   return { Interactive: InteractiveChart, NoInteractive: NoInteractiveChart };

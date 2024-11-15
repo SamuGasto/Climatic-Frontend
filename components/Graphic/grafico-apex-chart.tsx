@@ -13,9 +13,13 @@ export default function GraficoApex() {
   const actualTheme = useTheme();
   const color = ["#ffcd6d"];
 
+  if (!chartSelected?.backendData) {
+    return;
+  }
+
   const { Interactive } = GenerateApexChart(
-    chartSelected ? chartSelected.backendData : exampleData,
-    typeChart === "barras" ? "clasifiacion" : "barras", //Hay que arreglar esto, la opcion del caso false
+    chartSelected.backendData,
+    chartSelected.typeChart, //Hay que arreglar esto, la opcion del caso false
     {
       color: color,
       theme: actualTheme,

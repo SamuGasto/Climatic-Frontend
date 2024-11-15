@@ -69,6 +69,12 @@ const Sidebar = () => {
       newConsulta.tiempo = undefined;
     }
 
+    if (calculoDatos && typeChart === "lineas") {
+      newConsulta.calculoDatos = calculoDatos;
+    } else {
+      newConsulta.calculoDatos = undefined;
+    }
+
     newConsulta.typeChart = typeChart;
 
     setConsulta(newConsulta);

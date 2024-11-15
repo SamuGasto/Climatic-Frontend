@@ -4,6 +4,6 @@ export default interface BackendData {
   image: string;
   time?: string | string[];
   level?: number | number[];
-  data: number[][];
+  data: number[][][];
   units: string;
 }
