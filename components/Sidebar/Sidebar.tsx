@@ -5,7 +5,7 @@ import Boton from "@/components/Sidebar/boton";
 import { Consulta } from "@/types/consulta";
 import OpcionesVariable from "./opciones-variable";
 import { varUsanImagen } from "@/config/var_usan_imagen";
-import { SendQuery } from "@/utils/QueryBackend";
+import { SendQuery } from "@/utils/Query/QueryBackend";
 
 const consultaInicial: Consulta = {
   variable: "",
