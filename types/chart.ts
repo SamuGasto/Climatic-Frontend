@@ -18,7 +18,6 @@ export type typeChart =
   | "isobaras"
   | "lineas"
   | "dispersion"
-  | "rosa_de_vientos"
   | "polares"
   | "barras";
 
