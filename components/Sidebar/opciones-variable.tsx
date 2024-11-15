@@ -168,35 +168,41 @@ export default function OpcionesVariable(props: Props) {
     []
   );
 
+  function esTypeChart(valor: any): valor is typeChart {
+    const valoresPermitidos: typeChart[] = [
+      "contorno",
+      "vectoriales",
+      "clasificacion",
+      "isobaras",
+      "lineas",
+      "dispersion",
+      "polares",
+      "barras",
+    ];
+    return valoresPermitidos.includes(valor);
+  }
+
+
   const cambiarTipoGrafico = (valor: string) => {
-    if (
-      valor !== "contorno" ||
-      "vectoriales" ||
-      "clasificacion" ||
-      "isobaras" ||
-      "lineas" ||
-      "dispersion" ||
-      "rosa_de_vientos" ||
-      "polares" ||
-      "barras"
-    )
-      return;
-    setTypeChart(valor);
+    if (esTypeChart(valor)) {
+      setTypeChart(valor);
 
-    let listAux1: elemento[] = [];
-    let listAux2: elemento[] = [];
+      let listAux1: elemento[] = [];
+      let listAux2: elemento[] = [];
 
-    variables.forEach((elemento) => {
-      if (mapaVariables[valor].includes(elemento.key)) {
-        listAux1.push({ key: elemento.key, label: elemento.label });
-      } else {
-        listAux2.push({ key: elemento.key, label: elemento.label });
-      }
-    });
+      variables.forEach((elemento) => {
+        if (mapaVariables[valor].includes(elemento.key)) {
+          listAux1.push({ key: elemento.key, label: elemento.label });
+        } else {
+          listAux2.push({ key: elemento.key, label: elemento.label });
+        }
+      });
 
-    setElementosParaGrafico(listAux1);
-    setElementosOtroGrafico(listAux2);
+      setElementosParaGrafico(listAux1);
+      setElementosOtroGrafico(listAux2);
+    }
   };
+
 
   return (
     <div className="flex flex-col gap-3 w-full">
