@@ -30,7 +30,7 @@ export default function Visualizador() {
             )}
           </div>
         ) : (
-          <div className="flex flex-col w-full h-full gap-10 items-center justify-center">
+           <div className="flex flex-col w-full h-full gap-10 items-center justify-center">
             <h1 className="font-semibold text-4xl text-center">
               No se ha creado ningún gráfico todavía...
             </h1>
