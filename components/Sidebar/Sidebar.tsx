@@ -9,6 +9,8 @@ import { RequestData } from "@/utils/BackendConection";
 import { useChartStore } from "@/providers/chart-store-provider";
 import { useBoardStore } from "@/providers/board-store-provider";
 import toast from "react-hot-toast";
+import { varConAltura } from "@/config/var_con_altura";
+import { varConTiempo } from "@/config/var_con_tiempo";
 
 const consultaInicial: Consulta = {
   variable: "",
@@ -46,19 +48,25 @@ const Sidebar = () => {
       variable: variable,
       latitud: latitud,
       longitud: longitud,
-      typeChart: "contorno",
+      typeChart: typeChart,
       unidadMedida: unidadMedida,
       calculoDatos: calculoDatos,
     };
 
-    if (nivel) newConsulta.nivel = nivel;
+    if (nivel && varConAltura.includes(variable)) {
+      newConsulta.nivel = nivel;
+    } else {
+      newConsulta.nivel = undefined;
+    }
 
-    if (fecha) {
+    if (fecha && varConTiempo.includes(variable)) {
       if (fecha[1]) {
         newConsulta.tiempo = [fecha[0] + "T" + hora, fecha[1] + "T" + hora];
       } else {
         newConsulta.tiempo = [fecha[0] + "T" + hora];
       }
+    } else {
+      newConsulta.tiempo = undefined;
     }
 
     newConsulta.typeChart = typeChart;

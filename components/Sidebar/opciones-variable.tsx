@@ -16,7 +16,7 @@ import { varContenidoVolumetrico } from "@/config/subvariables/var_contenido_vol
 import { varUnidadesTemperatura } from "@/config/subvariables/var_unidades_temperatura";
 import { unidadesTemperatura } from "@/config/subvariables/opcion_unidades_temperaturas";
 import { opcionesSerieTiempo } from "@/config/subvariables/opciones_serie_tiempo";
-import { typeChart } from "@/types/chart";
+import { isTypeChart, typeChart } from "@/types/chart";
 
 type elemento = {
   key: string;
@@ -172,7 +172,7 @@ export default function OpcionesVariable(props: Props) {
     const valoresPermitidos: typeChart[] = [
       "contorno",
       "vectoriales",
-      "clasificacion",
+      "clasifiacion",
       "isobaras",
       "lineas",
       "dispersion",
@@ -181,7 +181,6 @@ export default function OpcionesVariable(props: Props) {
     ];
     return valoresPermitidos.includes(valor);
   }
-
 
   const cambiarTipoGrafico = (valor: string) => {
     if (esTypeChart(valor)) {
@@ -202,7 +201,6 @@ export default function OpcionesVariable(props: Props) {
       setElementosOtroGrafico(listAux2);
     }
   };
-
 
   return (
     <div className="flex flex-col gap-3 w-full">

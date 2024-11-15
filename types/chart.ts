@@ -11,15 +11,20 @@ export interface ChartConfig {
   options: ApexOptions;
 }
 
-export type typeChart =
-  | "contorno"
-  | "vectoriales"
-  | "clasificacion"
-  | "isobaras"
-  | "lineas"
-  | "dispersion"
-  | "polares"
-  | "barras";
+const typecharts = [
+  "contorno",
+  "vectoriales",
+  "clasifiacion",
+  "isobaras",
+  "lineas",
+  "dispersion",
+  "polares",
+  "barras",
+] as const;
+
+export type typeChart = (typeof typecharts)[number];
+
+export const isTypeChart = (x: any): x is typeChart => typecharts.includes(x);
 
 export interface Chart {
   id: number;
@@ -40,7 +45,6 @@ interface Props {
 
 export function ChartConfigInteractive(props: Props): ChartConfig {
   const { data, theme, typeChart, categories, colors } = props;
-
   return {
     series: data,
     options: {
