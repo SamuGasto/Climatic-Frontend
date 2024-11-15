@@ -16,7 +16,7 @@ import { varContenidoVolumetrico } from "@/config/subvariables/var_contenido_vol
 import { varUnidadesTemperatura } from "@/config/subvariables/var_unidades_temperatura";
 import { unidadesTemperatura } from "@/config/subvariables/opcion_unidades_temperaturas";
 import { opcionesSerieTiempo } from "@/config/subvariables/opciones_serie_tiempo";
-import { typeChart } from "@/types/chart";
+import { isTypeChart, typeChart } from "@/types/chart";
 
 type elemento = {
   key: string;
@@ -169,18 +169,8 @@ export default function OpcionesVariable(props: Props) {
   );
 
   const cambiarTipoGrafico = (valor: string) => {
-    if (
-      valor !== "contorno" ||
-      "vectoriales" ||
-      "clasificacion" ||
-      "isobaras" ||
-      "lineas" ||
-      "dispersion" ||
-      "rosa_de_vientos" ||
-      "polares" ||
-      "barras"
-    )
-      return;
+    if (!isTypeChart(valor)) return;
+
     setTypeChart(valor);
 
     let listAux1: elemento[] = [];
