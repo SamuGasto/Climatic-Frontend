@@ -168,24 +168,38 @@ export default function OpcionesVariable(props: Props) {
     []
   );
 
+  function esTypeChart(valor: any): valor is typeChart {
+    const valoresPermitidos: typeChart[] = [
+      "contorno",
+      "vectoriales",
+      "clasifiacion",
+      "isobaras",
+      "lineas",
+      "dispersion",
+      "polares",
+      "barras",
+    ];
+    return valoresPermitidos.includes(valor);
+  }
+
   const cambiarTipoGrafico = (valor: string) => {
-    if (!isTypeChart(valor)) return;
+    if (esTypeChart(valor)) {
+      setTypeChart(valor);
 
-    setTypeChart(valor);
+      let listAux1: elemento[] = [];
+      let listAux2: elemento[] = [];
 
-    let listAux1: elemento[] = [];
-    let listAux2: elemento[] = [];
+      variables.forEach((elemento) => {
+        if (mapaVariables[valor].includes(elemento.key)) {
+          listAux1.push({ key: elemento.key, label: elemento.label });
+        } else {
+          listAux2.push({ key: elemento.key, label: elemento.label });
+        }
+      });
 
-    variables.forEach((elemento) => {
-      if (mapaVariables[valor].includes(elemento.key)) {
-        listAux1.push({ key: elemento.key, label: elemento.label });
-      } else {
-        listAux2.push({ key: elemento.key, label: elemento.label });
-      }
-    });
-
-    setElementosParaGrafico(listAux1);
-    setElementosOtroGrafico(listAux2);
+      setElementosParaGrafico(listAux1);
+      setElementosOtroGrafico(listAux2);
+    }
   };
 
   return (
