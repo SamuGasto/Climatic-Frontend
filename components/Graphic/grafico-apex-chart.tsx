@@ -9,7 +9,6 @@ import { exampleData } from "@/config/test-data";
 
 export default function GraficoApex() {
   const chartSelected = useChartStore((state) => state.chartSelected);
-  const typeChart = useChartStore((state) => state.typeChart);
   const actualTheme = useTheme();
   const color = ["#ffcd6d"];
 
@@ -36,7 +35,7 @@ export default function GraficoApex() {
             options={Interactive.options}
             series={Interactive.series}
             type={Interactive.options.chart?.type}
-            width={"98%"}
+            width={"100%"}
             height={"100%"}
           />
         </CardBody>

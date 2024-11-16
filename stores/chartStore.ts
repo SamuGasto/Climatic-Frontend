@@ -25,11 +25,12 @@ export const createChartStore = () => {
           set(
             produce((state: ChartStates) => {
               if (newChart) {
-                if (state.chartSelected)
+                if (state.chartSelected) {
                   Object.assign(state.chartSelected, {
                     id: newChart.id,
                     active: newChart.active,
                     backendData: {
+                      var: newChart.backendData.var,
                       data: newChart.backendData.data,
                       image: newChart.backendData.image,
                       latitude: newChart.backendData.latitude,
@@ -41,8 +42,9 @@ export const createChartStore = () => {
                     typeChart: newChart.typeChart,
                     title: newChart.title,
                     subtitle: newChart.subtitle,
+                    stats: newChart.stats,
                   });
-                else {
+                } else {
                   state.chartSelected = { ...newChart };
                 }
               } else {

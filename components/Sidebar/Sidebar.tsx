@@ -11,6 +11,8 @@ import { useBoardStore } from "@/providers/board-store-provider";
 import toast from "react-hot-toast";
 import { varConAltura } from "@/config/var_con_altura";
 import { varConTiempo } from "@/config/var_con_tiempo";
+import { CalcularEstadisticas } from "@/utils/ObtenerEstadisticas";
+import { ChartStats } from "@/types/stats";
 
 const consultaInicial: Consulta = {
   variable: "",
@@ -96,6 +98,23 @@ const Sidebar = () => {
         return;
       }
 
+      let datos: number[] = [];
+      res.data.map((lat: number[] | number[][]) => {
+        lat.map((long) => {
+          if (Array.isArray(long))
+            long.map((data) => {
+              datos.push(data);
+            });
+          else {
+            datos.push(long);
+          }
+        });
+      });
+
+      const newStats: ChartStats = CalcularEstadisticas(datos);
+
+      console.log(newStats);
+
       updateChart(
         id_boardSelected,
         chartSelected,
@@ -103,13 +122,15 @@ const Sidebar = () => {
         res,
         typeChart,
         chartSelected.title,
-        chartSelected.subtitle
+        chartSelected.subtitle,
+        newStats
       );
       selectChart({
         ...chartSelected,
         typeChart: typeChart,
         active: true,
         backendData: res,
+        stats: newStats,
       });
       console.log(res);
       setCargandoConsulta(false);

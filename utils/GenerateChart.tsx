@@ -21,6 +21,7 @@ interface FinalCharts {
 
 export function CreateEmptyApexChart() {
   const emptyData: BackendData = {
+    var: "",
     latitude: [],
     longitude: [],
     image: "",

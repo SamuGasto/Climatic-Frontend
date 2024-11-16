@@ -6,6 +6,9 @@ import BackendData from "@/types/backend-data";
 import { createJSONStorage, persist } from "zustand/middleware";
 import _ from "lodash";
 import { produce } from "immer";
+import { CalcularEstadisticas } from "@/utils/ObtenerEstadisticas";
+import { ChartStats } from "@/types/stats";
+import { log } from "console";
 
 export type BoardStates = {
   userData: Board[];
@@ -28,7 +31,8 @@ export type BoardActions = {
     backendData: BackendData,
     typeChart: typeChart,
     newTitle: string,
-    newSubtitle: string
+    newSubtitle: string,
+    newStats: ChartStats
   ) => void;
   deleteBoard: (id: number) => void;
   deleteChart: (id_boardFather: number, id_chart: number) => void;
@@ -86,6 +90,15 @@ export const createBoardStore = () => {
                     active: false,
                     backendData: exampleData,
                     typeChart: "contorno",
+                    stats: {
+                      max: 0,
+                      mean: 0,
+                      median: 0,
+                      min: 0,
+                      mode: [],
+                      range: 0,
+                      stdDeviation: 0,
+                    },
                   });
                 }
               })
@@ -127,7 +140,8 @@ export const createBoardStore = () => {
           backendData: BackendData,
           typeChart: typeChart,
           newTitle: string,
-          newSubtitle: string
+          newSubtitle: string,
+          newStats: ChartStats
         ) => {
           try {
             set(
@@ -137,10 +151,12 @@ export const createBoardStore = () => {
                 );
                 if (board) {
                   const grafico = board.charts.find((c) => c.id === chart.id);
+
                   if (grafico) {
                     Object.assign(grafico, {
                       active: active,
                       backendData: {
+                        var: backendData.var,
                         data: backendData.data,
                         image: backendData.image,
                         latitude: backendData.latitude,
@@ -152,6 +168,15 @@ export const createBoardStore = () => {
                       typeChart: typeChart,
                       title: newTitle,
                       subtitle: newSubtitle,
+                      stats: {
+                        max: newStats.max,
+                        min: newStats.min,
+                        mean: newStats.mean,
+                        stdDeviation: newStats.stdDeviation,
+                        median: newStats.median,
+                        mode: newStats.mode,
+                        range: newStats.range,
+                      },
                     });
                   }
                 }

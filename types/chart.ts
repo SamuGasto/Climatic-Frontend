@@ -1,5 +1,6 @@
 import { ApexOptions } from "apexcharts";
 import BackendData from "./backend-data";
+import { ChartStats } from "./stats";
 
 export type Series =
   | {
@@ -41,6 +42,7 @@ export interface Chart {
   active: boolean;
   backendData: BackendData;
   typeChart: typeChart;
+  stats: ChartStats;
 }
 
 interface Props {

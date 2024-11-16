@@ -25,7 +25,8 @@ function Subtitulo() {
         chartSelected.backendData,
         chartSelected.typeChart,
         chartSelected.title,
-        subtitle === "" ? "Sin subtitulo" : subtitle
+        subtitle === "" ? "Sin subtitulo" : subtitle,
+        chartSelected.stats
       );
       selectChart({
         ...chartSelected,
