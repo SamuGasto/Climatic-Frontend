@@ -9,13 +9,16 @@ import { exampleData } from "@/config/test-data";
 
 export default function GraficoApex() {
   const chartSelected = useChartStore((state) => state.chartSelected);
-  const typeChart = useChartStore((state) => state.typeChart);
   const actualTheme = useTheme();
   const color = ["#ffcd6d"];
 
+  if (!chartSelected?.backendData) {
+    return <div>Falta información del backend...</div>;
+  }
+
   const { Interactive } = GenerateApexChart(
-    chartSelected ? chartSelected.backendData : exampleData,
-    typeChart === "barras" ? "clasifiacion" : "barras", //Hay que arreglar esto, la opcion del caso false
+    chartSelected.backendData,
+    chartSelected.typeChart, //Hay que arreglar esto, la opcion del caso false
     {
       color: color,
       theme: actualTheme,
@@ -32,8 +35,8 @@ export default function GraficoApex() {
             options={Interactive.options}
             series={Interactive.series}
             type={Interactive.options.chart?.type}
-            width={"98%"}
-            height={"98%"}
+            width={"100%"}
+            height={"100%"}
           />
         </CardBody>
       </Card>

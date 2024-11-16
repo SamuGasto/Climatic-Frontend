@@ -11,7 +11,7 @@ export default function page() {
   const chartSelected = useChartStore((state) => state.chartSelected);
 
   return (
-    <div className="flex w-full mt-4">
+    <div className="flex w-screen mt-4">
       {chartSelected ? (
         <div className="grid grid-cols lg:flex lg:flex-row h-full w-full justify-center self-start -mt-10 ">
           <Sidebar />

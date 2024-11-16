@@ -16,7 +16,7 @@ import { varContenidoVolumetrico } from "@/config/subvariables/var_contenido_vol
 import { varUnidadesTemperatura } from "@/config/subvariables/var_unidades_temperatura";
 import { unidadesTemperatura } from "@/config/subvariables/opcion_unidades_temperaturas";
 import { opcionesSerieTiempo } from "@/config/subvariables/opciones_serie_tiempo";
-import { isTypeChart, typeChart } from "@/types/chart";
+import { typeChart } from "@/types/chart";
 
 type elemento = {
   key: string;
@@ -172,12 +172,9 @@ export default function OpcionesVariable(props: Props) {
     const valoresPermitidos: typeChart[] = [
       "contorno",
       "vectoriales",
-      "clasifiacion",
-      "isobaras",
       "lineas",
       "dispersion",
       "polares",
-      "barras",
     ];
     return valoresPermitidos.includes(valor);
   }

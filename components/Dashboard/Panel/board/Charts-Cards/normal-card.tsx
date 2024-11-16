@@ -28,7 +28,11 @@ function NormalCard(props: PropType) {
 
   return (
     <motion.div whileHover={{ scale: 1.02 }}>
-      <Card className="h-64 w-80 shrink-0 grow-0 border-1 border-gray-500" key={index} shadow="sm">
+      <Card
+        className="h-64 w-80 shrink-0 grow-0 border-1 border-gray-500"
+        key={index}
+        shadow="sm"
+      >
         <CardHeader>
           <div className="flex flex-row w-full justify-between">
             <div className="flex w-5/6 flex-col">
@@ -73,14 +77,13 @@ function NormalCard(props: PropType) {
                 <BarChartOffIcon aria-label="No posee gráfico" width={100} />
               </div>
             ) : (
-              <div className="flex w-5/6 h-5/6 justify-center items-center">
+              <div className="flex-1 justify-center items-center">
                 {chart.typeChart == "contorno" ||
                 chart.typeChart == "vectoriales" ||
-                chart.typeChart == "isobaras" ||
                 chart.typeChart == "dispersion" ? (
                   <ImageChartCard chart={chart} />
                 ) : (
-                  <ChartImage />
+                  <ChartImage chart={chart} />
                 )}
               </div>
             )}

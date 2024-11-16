@@ -25,7 +25,8 @@ export default function Titulo() {
         chartSelected.backendData,
         chartSelected.typeChart,
         title === "" ? "Sin título" : title,
-        chartSelected.subtitle
+        chartSelected.subtitle,
+        chartSelected.stats
       );
       selectChart({
         ...chartSelected,
