@@ -47,7 +47,9 @@ export default function NavbarComponent() {
           className="md:hidden"
         />
         <NavbarBrand className="flex-1 flex-row">
+          <Link href = "/"> 
           <Image alt="Logo" src="/logo2.png" width={50} height={50} />
+           </Link>
           <p className="font-bold text-inherit ml-3">CLIMATIC</p>
         </NavbarBrand>
       </NavbarContent>
