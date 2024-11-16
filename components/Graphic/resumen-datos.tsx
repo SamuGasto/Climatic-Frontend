@@ -13,7 +13,7 @@ function ResumenDatos(props: Props) {
   const decimals = 8;
   return (
     <Card className="flex-1" shadow="sm">
-      <CardBody className="flex-1 flex-row items-center text-center gap-3">
+      <CardBody className="flex-1 flex-row flex-wrap items-center text-center gap-3">
         <section className="flex-1 flex-col">
           <h1 className="font-semibold">Mínino:</h1>
           <p>{chart.stats.min.toFixed(decimals)}</p>

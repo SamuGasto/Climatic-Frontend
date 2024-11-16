@@ -1,5 +1,6 @@
 import BackendData from "@/types/backend-data";
 import { Series, typeChart } from "@/types/chart";
+import { first } from "lodash";
 
 export function TransformToSeries(
   typeChart: typeChart,
@@ -16,22 +17,33 @@ export function TransformToSeries(
 
     const firstData = [...data.data];
 
-    if (!Array.isArray(firstData[0][0])) {
+    if (!Array.isArray(firstData[0][0]) || !Array.isArray(time)) {
       return [
         { name: "Conjunto de datos incorrecto", data: [{ x: "nada", y: 0 }] },
       ];
     }
 
-    let finalData: Series = {
-      data: [{ x: time[0].split("T")[0], y: firstData[0][0][0] }],
-    };
+    const initialTime = time[0].split("T")[0];
+    const initialValue = firstData[0][0][0];
+
+    const finalData: { x: string; y: number }[] = [
+      { x: initialTime, y: initialValue },
+    ];
 
     firstData.map((latitud, index) => {
-      if (index > 0 && Array.isArray(latitud[0]))
-        finalData.data.push({ x: time[index].split("T")[0], y: latitud[0][0] });
+      if (index > 0 && Array.isArray(latitud[0])) {
+        const t: string = time[index].split("T")[0];
+        const value = latitud[0][0] as number;
+        const newData: { x: string; y: number } = { x: t, y: value };
+        finalData.push(newData);
+      }
     });
 
-    return [finalData];
+    let DataResponse: Series = {
+      data: finalData,
+    };
+
+    return [DataResponse];
   } else if (typeChart === "clasificacion") {
     // Mapa de clasificación
     return [{ name: "Respuesta clasificación", data: [{ x: "nada", y: 0 }] }];

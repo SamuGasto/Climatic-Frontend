@@ -10,9 +10,8 @@ export type Series =
       data: [number, number][];
     }
   | {
-      data: { x: number; y: number }[];
+      data: { x: number | string; y: number }[];
     }
-  | { data: { x: string; y: number }[] }
   | {
       name: string;
       data: { x: string; y: number }[];

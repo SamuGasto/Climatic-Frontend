@@ -14,11 +14,11 @@ export default function Visualizador() {
   const chartSelected = useChartStore((state) => state.chartSelected);
 
   if (!chartSelected) {
-    return;
+    return <div>No hay un gráfico seleccionado...</div>;
   }
 
   return (
-    <div className="flex w-full">
+    <div className="flex w-screen">
       <div className="flex w-full flex-col gap-10 p-6">
         <div className="flex flex-col w-full gap-6 justify-center items-center">
           <Titulo />
@@ -38,23 +38,17 @@ export default function Visualizador() {
             </section>
             <Divider />
             <section className="flex-1">
-              {chartSelected.typeChart === "lineas" ? (
-                <div className="flex flex-col gap-4">
-                  <h1 className="font-semibold text-4xl text-center mb-6">
-                    {chartSelected.backendData.var}
-                  </h1>
-                  <ResumenDatos chart={chartSelected} />
+              <div className="flex flex-col gap-4">
+                <h1 className="font-semibold text-4xl text-center mb-6">
+                  {chartSelected.backendData.var}
+                </h1>
+                <ResumenDatos chart={chartSelected} />
+                {chartSelected.typeChart === "lineas" ? (
                   <InfoApexChart backendData={chartSelected.backendData} />
-                </div>
-              ) : (
-                <div className="flex flex-col gap-4">
-                  <h1 className="font-semibold text-4xl text-center mb-6">
-                    {chartSelected.backendData.var}
-                  </h1>
-                  <ResumenDatos chart={chartSelected} />
+                ) : (
                   <InfoGraficoImagen chart={chartSelected} />
-                </div>
-              )}
+                )}
+              </div>
             </section>
           </div>
         ) : (

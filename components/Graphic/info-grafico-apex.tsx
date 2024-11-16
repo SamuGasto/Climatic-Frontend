@@ -78,7 +78,8 @@ function InfoApexChart(props: Props) {
     if (backendData.level) {
       if (Array.isArray(backendData.time)) {
         return backendData.time.map((t, index) => {
-          if (!Array.isArray(backendData.data[index][0])) {
+          const valor = backendData.data[index][0];
+          if (!Array.isArray(valor)) {
             return {
               latitud: -1,
               longitud: -1,
@@ -92,7 +93,7 @@ function InfoApexChart(props: Props) {
               latitud: backendData.latitude[0],
               longitud: backendData.longitude[0],
               altura: backendData.level,
-              valor: backendData.data[index][0][0],
+              valor: valor[0],
               unidad_de_medida: backendData.units,
             };
           }
@@ -124,7 +125,8 @@ function InfoApexChart(props: Props) {
     } else {
       if (Array.isArray(backendData.time)) {
         return backendData.time.map((t, index) => {
-          if (!Array.isArray(backendData.data[index][0])) {
+          const valor = backendData.data[index][0];
+          if (!Array.isArray(valor)) {
             return {
               latitud: -1,
               longitud: -1,
@@ -137,13 +139,14 @@ function InfoApexChart(props: Props) {
               tiempo: `${t.split("T")[0]} - ${t.split(":")[0].split("T")[1]}:00 hrs`,
               latitud: backendData.latitude[0],
               longitud: backendData.longitude[0],
-              valor: backendData.data[index][0][0],
+              valor: valor[0],
               unidad_de_medida: backendData.units,
             };
           }
         });
       } else {
-        if (!Array.isArray(backendData.data[0][0])) {
+        const valor = backendData.data[0][0];
+        if (!Array.isArray(valor)) {
           return [
             {
               latitud: -1,
@@ -159,7 +162,7 @@ function InfoApexChart(props: Props) {
               tiempo: `${backendData.time.split("T")[0]} - ${backendData.time.split(":")[0].split("T")[1]}:00 hrs`,
               latitud: backendData.latitude[0],
               longitud: backendData.longitude[0],
-              valor: backendData.data[0][0][0],
+              valor: valor[0],
               unidad_de_medida: backendData.units,
             },
           ];

@@ -13,7 +13,7 @@ export default function GraficoApex() {
   const color = ["#ffcd6d"];
 
   if (!chartSelected?.backendData) {
-    return;
+    return <div>Falta información del backend...</div>;
   }
 
   const { Interactive } = GenerateApexChart(

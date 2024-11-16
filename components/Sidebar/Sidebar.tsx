@@ -139,7 +139,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="flex flex-col gap-12 p-6 w-full shadow-md order-last lg:w-1/3 lg:order-first">
+    <div className="flex flex-col gap-12 p-6 w-screen shadow-md order-last lg:w-1/3 lg:order-first">
       <div className="flex flex-col gap-3">
         <p className="text-center">
           <strong>Configuración del gráfico</strong>
