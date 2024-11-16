@@ -11,11 +11,13 @@ import { useBoardStore } from "@/providers/board-store-provider";
 import toast from "react-hot-toast";
 import { varConAltura } from "@/config/var_con_altura";
 import { varConTiempo } from "@/config/var_con_tiempo";
+import { CalcularEstadisticas } from "@/utils/ObtenerEstadisticas";
+import { ChartStats } from "@/types/stats";
 
 const consultaInicial: Consulta = {
   variable: "",
   latitud: [-34, -35],
-  longitud: [108, 108],
+  longitud: [108, 110],
   typeChart: "contorno",
 };
 
@@ -69,7 +71,21 @@ const Sidebar = () => {
       newConsulta.tiempo = undefined;
     }
 
+    if (calculoDatos && typeChart === "lineas") {
+      newConsulta.calculoDatos = calculoDatos;
+    } else {
+      newConsulta.calculoDatos = undefined;
+    }
+
     newConsulta.typeChart = typeChart;
+    console.log(typeChart);
+
+    if (typeChart !== "lineas") {
+      console.log("no lineas");
+
+      newConsulta.latitud = consultaInicial.latitud;
+      newConsulta.longitud = consultaInicial.longitud;
+    }
 
     setConsulta(newConsulta);
 
@@ -82,6 +98,23 @@ const Sidebar = () => {
         return;
       }
 
+      let datos: number[] = [];
+      res.data.map((lat: number[] | number[][]) => {
+        lat.map((long) => {
+          if (Array.isArray(long))
+            long.map((data) => {
+              datos.push(data);
+            });
+          else {
+            datos.push(long);
+          }
+        });
+      });
+
+      const newStats: ChartStats = CalcularEstadisticas(datos);
+
+      console.log(newStats);
+
       updateChart(
         id_boardSelected,
         chartSelected,
@@ -89,13 +122,15 @@ const Sidebar = () => {
         res,
         typeChart,
         chartSelected.title,
-        chartSelected.subtitle
+        chartSelected.subtitle,
+        newStats
       );
       selectChart({
         ...chartSelected,
         typeChart: typeChart,
         active: true,
         backendData: res,
+        stats: newStats,
       });
       console.log(res);
       setCargandoConsulta(false);
@@ -104,7 +139,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="flex flex-col gap-12 p-6 w-full shadow-md order-last lg:w-1/3 lg:order-first">
+    <div className="flex flex-col gap-12 p-6 w-screen shadow-md order-last lg:w-1/3 lg:order-first">
       <div className="flex flex-col gap-3">
         <p className="text-center">
           <strong>Configuración del gráfico</strong>
