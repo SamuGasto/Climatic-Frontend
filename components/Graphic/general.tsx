@@ -6,9 +6,14 @@ import { useChartStore } from "@/providers/chart-store-provider";
 import { BarChartOffIcon } from "../icons";
 import Subtitulo from "./Text/subtitulo";
 import { Divider } from "@nextui-org/react";
+import InfoChart from "./info-grafico";
 
 export default function Visualizador() {
   const chartSelected = useChartStore((state) => state.chartSelected);
+
+  if (!chartSelected) {
+    return;
+  }
 
   return (
     <div className="flex w-full">
@@ -18,7 +23,7 @@ export default function Visualizador() {
           <Subtitulo />
         </div>
         <Divider className="" />
-        {chartSelected?.active ? (
+        {chartSelected.active ? (
           <div className="flex w-full min-h-[360px]">
             {chartSelected.typeChart == "contorno" ||
             chartSelected.typeChart == "vectoriales" ||
@@ -36,6 +41,7 @@ export default function Visualizador() {
             <BarChartOffIcon width={200} />
           </div>
         )}
+        <InfoChart backendData={chartSelected.backendData} />
       </div>
     </div>
   );

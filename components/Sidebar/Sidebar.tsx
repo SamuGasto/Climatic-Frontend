@@ -15,7 +15,7 @@ import { varConTiempo } from "@/config/var_con_tiempo";
 const consultaInicial: Consulta = {
   variable: "",
   latitud: [-34, -35],
-  longitud: [108, 108],
+  longitud: [108, 110],
   typeChart: "contorno",
 };
 
@@ -76,6 +76,14 @@ const Sidebar = () => {
     }
 
     newConsulta.typeChart = typeChart;
+    console.log(typeChart);
+
+    if (typeChart !== "lineas") {
+      console.log("no lineas");
+
+      newConsulta.latitud = consultaInicial.latitud;
+      newConsulta.longitud = consultaInicial.longitud;
+    }
 
     setConsulta(newConsulta);
 

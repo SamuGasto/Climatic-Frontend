@@ -91,11 +91,24 @@ export function ChartConfigInteractive(props: Props): ChartConfig {
           enabled: true,
           type: "xy",
         },
+        animations: {
+          enabled: false,
+        },
       },
       plotOptions: {
         heatmap: {
           radius: 6,
         },
+      },
+      grid: {
+        borderColor: "#e7e7e7",
+        row: {
+          colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
+          opacity: 0.5,
+        },
+      },
+      markers: {
+        size: 5,
       },
       colors: colors,
       xaxis: {
@@ -110,7 +123,7 @@ export function ChartConfigInteractive(props: Props): ChartConfig {
         title: {
           text: y_axis,
         },
-        decimalsInFloat: 5,
+        decimalsInFloat: 8,
       },
       tooltip: {
         y: {
@@ -176,7 +189,16 @@ export function ChartConfigNoInteractive(props: Props): ChartConfig {
         offsetX: -12,
         offsetY: -8,
       },
-
+      grid: {
+        borderColor: "#e7e7e7",
+        row: {
+          colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
+          opacity: 0.5,
+        },
+      },
+      markers: {
+        size: 4,
+      },
       colors: colors,
       xaxis: {
         labels: {

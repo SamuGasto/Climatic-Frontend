@@ -37,7 +37,7 @@ export default function GraficoApex() {
             series={Interactive.series}
             type={Interactive.options.chart?.type}
             width={"98%"}
-            height={"98%"}
+            height={"100%"}
           />
         </CardBody>
       </Card>
