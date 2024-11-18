@@ -18,7 +18,6 @@ export const mapaVariables: { [key: string]: string[] } = {
   "vectoriales": [
     "u", //viento
     "u10", //viento a 10 metros sobre la superficie.
-    "w", //Velocidad vertical en la atmósfera
   ],
   "clasificacion": [
     "cvh", //Covertura de vegetación
