@@ -55,6 +55,14 @@ export default function Acordeon() {
         más. Los tipos de gráficos dependerán de las variables climáticas que
         desees analizar.
       </AccordionItem>
+      <AccordionItem
+        key="5"
+        aria-label="Pregunta 5"
+        title="¿Cuáles zonas geográficas se pueden graficar?"
+        className="border-2 border-principal"
+      >
+        Por ahora la zona geográfica está restringida a la región de O'Higgins.
+      </AccordionItem>
     </Accordion>
   );
 }
