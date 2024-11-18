@@ -13,7 +13,7 @@ export default function page() {
   return (
     <div className="flex w-screen mt-4">
       {chartSelected ? (
-        <div className="grid grid-cols lg:flex lg:flex-row h-full w-full justify-center self-start -mt-10 ">
+        <div className="flex flex-col lg:flex-row h-full w-full justify-center self-start -mt-10 ">
           <Sidebar />
           <Visualizador />
         </div>

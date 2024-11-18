@@ -18,7 +18,7 @@ export default function Visualizador() {
   }
 
   return (
-    <div className="flex w-screen">
+    <div className="flex w-full">
       <div className="flex w-full flex-col gap-10 p-6">
         <div className="flex flex-col w-full gap-6 justify-center items-center">
           <Titulo />

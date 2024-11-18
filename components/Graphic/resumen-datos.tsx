@@ -15,7 +15,7 @@ function ResumenDatos(props: Props) {
     <Card className="flex-1" shadow="sm">
       <CardBody className="flex-1 flex-row flex-wrap items-center text-center gap-3">
         <section className="flex-1 flex-col">
-          <h1 className="font-semibold">Mínino:</h1>
+          <h1 className="font-semibold">Mínimo:</h1>
           <p>{chart.stats.min.toFixed(decimals)}</p>
         </section>
         <section className="flex-1 flex-col">

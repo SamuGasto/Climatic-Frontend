@@ -12,10 +12,10 @@ interface PropType {
 function Sidebar({ inNavMenu = false }: PropType) {
   return (
     <div
-      className={`${!inNavMenu ? "hidden md:visible" : ""} md:flex md:flex-col md:basis-1/12 md:px-6 md:mr-5 md:h-full md:min-h-[700]`}
+      className={`${!inNavMenu ? "hidden md:visible" : ""} md:flex md:flex-col  md:basis-1/12 md:px-6 md:mr-5 md:h-full md:min-h-[700]`}
     >
       <Card
-        className="w-full h-full bg-transparent md:bg-default-50"
+        className="w-full h-full bg-transparent md:bg-default-50 shadow-md border-black border dark:border-white"
         shadow={inNavMenu ? "none" : "md"}
       >
         <CardBody>
