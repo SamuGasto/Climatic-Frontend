@@ -107,9 +107,7 @@ export default function OpcionesVariable(props: Props) {
 
   const handleVariable = (key: string) => {
     setVari(key);
-    if (varComponente.includes(key)) {
-      key = definirVariable(key, componente);
-    } else if (varTamañoVegetacion.includes(key)) {
+    if (varTamañoVegetacion.includes(key)) {
       key = definirVariable(key, tamañoVegetacionActual);
     } else if (varContenidoVolumetrico.includes(key)) {
       key = definirVariable(key, contenidoVolumetrico);
@@ -135,12 +133,6 @@ export default function OpcionesVariable(props: Props) {
       : setUsaTemperatura(false);
 
     varConTiempo.includes(key) ? setHayTiempo(true) : setHayTiempo(false);
-  };
-
-  const handleComponente = (key: string) => {
-    setComponente(key);
-    key = definirVariable(vari, key);
-    setVariable(key);
   };
 
   const handleTamañoVegetacion = (key: string) => {
@@ -220,16 +212,6 @@ export default function OpcionesVariable(props: Props) {
 
       {hayAltura ? <Slider2 setNivel={setNivel} /> : null}
 
-      {hayComponente ? (
-        <Desplegable
-          titulo="Componente del viento"
-          explicacion="Elija el componente del viento"
-          elementos={componentes}
-          onSelect={handleComponente}
-          valPorDefecto={"u"}
-        />
-      ) : null}
-
       {hayTamañoVegetacion ? (
         <Desplegable
           titulo="Tamaño de la vegetación"
@@ -259,16 +241,6 @@ export default function OpcionesVariable(props: Props) {
           elementos={unidadesTemperatura}
           onSelect={setUnidadMedida}
           valPorDefecto={"K"}
-        />
-      ) : null}
-
-      {typeChart === "lineas" ? (
-        <Desplegable
-          titulo="Cálculo de los datos"
-          explicacion="Seleccione como se mostrarán los datos"
-          elementos={opcionesSerieTiempo}
-          onSelect={setCalculoDatos}
-          valPorDefecto={"mean"}
         />
       ) : null}
     </div>
