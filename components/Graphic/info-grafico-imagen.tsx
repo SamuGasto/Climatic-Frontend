@@ -1,5 +1,6 @@
 import BackendData from "@/types/backend-data";
 import { Chart } from "@/types/chart";
+import { check_first_decimal_pos } from "@/utils/check_first_decimal_pos";
 import { Card, CardBody } from "@nextui-org/card";
 import {
   Table,
@@ -32,6 +33,8 @@ type Rows = (backendData: BackendData) => {
 function InfoGraficoImagen(props: Props) {
   const { chart } = props;
 
+  const decimals = check_first_decimal_pos(chart.stats.min);
+
   const columns: Columns = (backendData) => {
     if (backendData.time) {
       if (backendData.level) {
@@ -63,54 +66,46 @@ function InfoGraficoImagen(props: Props) {
   };
 
   const rows: Rows = (backendData: BackendData) => {
+    const initialRow = {
+      latitud: `[${backendData.latitude[0]} , ${backendData.latitude.slice(-1)}]`,
+      longitud: `[${backendData.longitude[0]} , ${backendData.longitude.slice(-1)}]`,
+    };
     if (!backendData.time) {
-      return {
-        latitud: `[${backendData.latitude[0]} , ${backendData.latitude.slice(-1)}]`,
-        longitud: `[${backendData.longitude[0]} , ${backendData.longitude.slice(-1)}]`,
-        valor: `[${chart.stats.min} , ${chart.stats.max}]`,
+      const finalRow = Object.assign(initialRow, {
+        valor: `[${chart.stats.min.toFixed(decimals)} , ${chart.stats.max.toFixed(decimals)}]`,
         unidad_de_medida: `${backendData.units}`,
-      };
+      });
+      return finalRow;
     }
 
     if (backendData.level) {
       if (Array.isArray(backendData.time)) {
-        return {
-          latitud: `[${backendData.latitude[0]} , ${backendData.latitude.slice(-1)}]`,
-          longitud: `[${backendData.longitude[0]} , ${backendData.longitude.slice(-1)}]`,
+        Object.assign(initialRow, {
           tiempo: `[${backendData.time[0].split("T")[0]} - ${backendData.time[0].split(":")[0].split("T")[1]}:00 hrs , ${backendData.time[backendData.time.length - 1].split("T")[0]} - ${backendData.time[backendData.time.length - 1].split(":")[0].split("T")[1]}:00 hrs]`,
           altura: `[${backendData.level}]`,
-          valor: `[${chart.stats.min} , ${chart.stats.max}]`,
-          unidad_de_medida: `${backendData.units}`,
-        };
+        });
       } else {
-        return {
-          latitud: `[${backendData.latitude[0]} , ${backendData.latitude.slice(-1)}]`,
-          longitud: `[${backendData.longitude[0]} , ${backendData.longitude.slice(-1)}]`,
+        Object.assign(initialRow, {
           tiempo: `[${backendData.time.split("T")[0]} - ${backendData.time.split(":")[0].split("T")[1]}:00 hrs]`,
           altura: `[${backendData.level}]`,
-          valor: `[${chart.stats.min} , ${chart.stats.max}]`,
-          unidad_de_medida: `${backendData.units}`,
-        };
+        });
       }
     } else {
       if (Array.isArray(backendData.time)) {
-        return {
-          latitud: `[${backendData.latitude[0]} , ${backendData.latitude.slice(-1)}]`,
-          longitud: `[${backendData.longitude[0]} , ${backendData.longitude.slice(-1)}]`,
+        Object.assign(initialRow, {
           tiempo: `[${backendData.time[0].split(":")[0].split("T")[0]} - ${backendData.time[0].split(":")[0].split("T")[1]}:00 hrs , ${backendData.time[backendData.time.length - 1].split(":")[0].split("T")[0]} - ${backendData.time[backendData.time.length - 1].split(":")[0].split("T")[1]}:00 hrs]`,
-          valor: `[${chart.stats.min} , ${chart.stats.max}]`,
-          unidad_de_medida: `${backendData.units}`,
-        };
+        });
       } else {
-        return {
-          latitud: `[${backendData.latitude[0]} , ${backendData.latitude.slice(-1)}]`,
-          longitud: `[${backendData.longitude[0]}, ${backendData.longitude.slice(-1)}]`,
+        Object.assign(initialRow, {
           tiempo: `[${backendData.time.split("T")[0]} - ${backendData.time.split(":")[0].split("T")[1]}:00 hrs]`,
-          valor: `[${chart.stats.min}, ${chart.stats.max}]`,
-          unidad_de_medida: `${backendData.units}`,
-        };
+        });
       }
     }
+    const row = Object.assign(initialRow, {
+      valor: `[${chart.stats.min.toFixed(decimals)}, ${chart.stats.max.toFixed(decimals)}]`,
+      unidad_de_medida: `${backendData.units}`,
+    });
+    return row;
   };
   console.log(chart.backendData.var);
 

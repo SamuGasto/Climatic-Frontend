@@ -44,7 +44,10 @@ export default function Visualizador() {
                 </h1>
                 <ResumenDatos chart={chartSelected} />
                 {chartSelected.typeChart === "lineas" ? (
-                  <InfoApexChart backendData={chartSelected.backendData} />
+                  <InfoApexChart
+                    backendData={chartSelected.backendData}
+                    stats={chartSelected.stats}
+                  />
                 ) : (
                   <InfoGraficoImagen chart={chartSelected} />
                 )}

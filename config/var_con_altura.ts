@@ -1,8 +1,1 @@
-export const varConAltura = [
-  "u",
-  "v",
-  "t",
-  "z",
-  "q",
-  "w",
-]
+export const varConAltura = ["u", "t", "q", "w"];

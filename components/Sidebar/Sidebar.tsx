@@ -19,6 +19,7 @@ const consultaInicial: Consulta = {
   latitud: [-34, -35],
   longitud: [108, 110],
   typeChart: "contorno",
+  unidadMedida: "K",
 };
 
 //Al elegir var con el Enter, no se actualiza
@@ -112,8 +113,6 @@ const Sidebar = () => {
       });
 
       const newStats: ChartStats = CalcularEstadisticas(datos);
-
-      console.log(newStats);
 
       updateChart(
         id_boardSelected,

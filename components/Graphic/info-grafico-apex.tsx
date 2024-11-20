@@ -1,5 +1,7 @@
 import BackendData from "@/types/backend-data";
 import { typeChart } from "@/types/chart";
+import { ChartStats } from "@/types/stats";
+import { check_first_decimal_pos } from "@/utils/check_first_decimal_pos";
 import { Card, CardBody } from "@nextui-org/card";
 import {
   Table,
@@ -13,6 +15,7 @@ import React from "react";
 
 interface Props {
   backendData: BackendData;
+  stats: ChartStats;
 }
 
 type Columns = (backendData: BackendData) => {
@@ -23,14 +26,16 @@ type Columns = (backendData: BackendData) => {
 type Rows = (backendData: BackendData) => {
   latitud: number;
   longitud: number;
-  valor: number;
+  valor: string;
   tiempo?: string;
   altura?: number;
   unidad_de_medida: string;
 }[];
 
 function InfoApexChart(props: Props) {
-  const { backendData } = props;
+  const { backendData, stats } = props;
+
+  const decimals = check_first_decimal_pos(stats.min);
 
   const columns: Columns = (backendData) => {
     if (backendData.time) {
@@ -68,7 +73,7 @@ function InfoApexChart(props: Props) {
         {
           latitud: -1,
           longitud: -1,
-          valor: -1,
+          valor: "-1",
           altura: -1,
           unidad_de_medida: "t",
         },
@@ -83,7 +88,7 @@ function InfoApexChart(props: Props) {
             return {
               latitud: -1,
               longitud: -1,
-              valor: -1,
+              valor: "-1",
               altura: -1,
               unidad_de_medida: "t",
             };
@@ -93,7 +98,7 @@ function InfoApexChart(props: Props) {
               latitud: backendData.latitude[0],
               longitud: backendData.longitude[0],
               altura: backendData.level,
-              valor: valor[0],
+              valor: valor[0].toFixed(decimals),
               unidad_de_medida: backendData.units,
             };
           }
@@ -104,7 +109,7 @@ function InfoApexChart(props: Props) {
             {
               latitud: -1,
               longitud: -1,
-              valor: -1,
+              valor: "-1",
               altura: -1,
               unidad_de_medida: "t",
             },
@@ -116,7 +121,7 @@ function InfoApexChart(props: Props) {
               latitud: backendData.latitude[0],
               longitud: backendData.longitude[0],
               altura: backendData.level,
-              valor: backendData.data[0][0][0],
+              valor: backendData.data[0][0][0].toFixed(decimals),
               unidad_de_medida: backendData.units,
             },
           ];
@@ -130,7 +135,7 @@ function InfoApexChart(props: Props) {
             return {
               latitud: -1,
               longitud: -1,
-              valor: -1,
+              valor: "-1",
               altura: -1,
               unidad_de_medida: "t",
             };
@@ -139,7 +144,7 @@ function InfoApexChart(props: Props) {
               tiempo: `${t.split("T")[0]} - ${t.split(":")[0].split("T")[1]}:00 hrs`,
               latitud: backendData.latitude[0],
               longitud: backendData.longitude[0],
-              valor: valor[0],
+              valor: valor[0].toFixed(decimals),
               unidad_de_medida: backendData.units,
             };
           }
@@ -151,7 +156,7 @@ function InfoApexChart(props: Props) {
             {
               latitud: -1,
               longitud: -1,
-              valor: -1,
+              valor: "-1",
               altura: -1,
               unidad_de_medida: "t",
             },
@@ -162,7 +167,7 @@ function InfoApexChart(props: Props) {
               tiempo: `${backendData.time.split("T")[0]} - ${backendData.time.split(":")[0].split("T")[1]}:00 hrs`,
               latitud: backendData.latitude[0],
               longitud: backendData.longitude[0],
-              valor: valor[0],
+              valor: valor[0].toFixed(decimals),
               unidad_de_medida: backendData.units,
             },
           ];

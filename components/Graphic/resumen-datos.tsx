@@ -1,5 +1,6 @@
 import BackendData from "@/types/backend-data";
 import { Chart } from "@/types/chart";
+import { check_first_decimal_pos } from "@/utils/check_first_decimal_pos";
 import { Card, CardBody } from "@nextui-org/card";
 import { Divider } from "@nextui-org/react";
 import React from "react";
@@ -10,7 +11,7 @@ interface Props {
 
 function ResumenDatos(props: Props) {
   const { chart } = props;
-  const decimals = 8;
+  const decimals = check_first_decimal_pos(chart.stats.min);
   return (
     <Card className="flex-1" shadow="sm">
       <CardBody className="flex-1 flex-row flex-wrap items-center text-center gap-3">

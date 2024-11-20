@@ -124,7 +124,7 @@ export function ChartConfigInteractive(props: Props): ChartConfig {
         title: {
           text: y_axis,
         },
-        decimalsInFloat: 8,
+        decimalsInFloat: 3,
       },
       tooltip: {
         y: {

@@ -1,22 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Desplegable from "./select";
 import Slider2 from "./slider2";
 import { variables } from "@/config/variables";
-import { componentes } from "@/config/componente";
-import { varComponente } from "@/config/subvariables/var_componente";
 import { varConAltura } from "@/config/var_con_altura";
 import { varConTiempo } from "@/config/var_con_tiempo";
-import { tamañoVegetacion } from "@/config/tamaño_vegetacion";
 import { varTamañoVegetacion } from "@/config/subvariables/var_tamaño_vegetacion";
 import { tiposGraficos } from "@/config/tipos_de_graficos";
 import Desplegable2 from "./desplegable2";
 import { mapaVariables } from "@/config/mapa-variables";
 import Deslizador from "./deslizador";
 import { varContenidoVolumetrico } from "@/config/subvariables/var_contenido_volumetrico";
-import { varUnidadesTemperatura } from "@/config/subvariables/var_unidades_temperatura";
-import { unidadesTemperatura } from "@/config/subvariables/opcion_unidades_temperaturas";
-import { opcionesSerieTiempo } from "@/config/subvariables/opciones_serie_tiempo";
 import { typeChart } from "@/types/chart";
+import {
+  unidadesCoverturaNubes,
+  unidadesHumedadEspecifica,
+  unidadesPrecipitacion,
+  unidadesPresionNivelDelMar,
+  unidadesPresionSuperficie,
+  unidadesRadiacionSolar,
+  unidadesTemperatura,
+  unidadesVelocidadVertical,
+  unidadesViento,
+} from "@/config/subvariables/opciones_unidades";
 
 type elemento = {
   key: string;
@@ -45,20 +50,48 @@ export default function OpcionesVariable(props: Props) {
   } = props;
 
   const [hayAltura, sethayAltura] = useState(false);
-
-  const [hayComponente, sethayComponente] = useState(false);
-  const [componente, setComponente] = useState("u");
-
-  const [hayTamañoVegetacion, setHayTamañoVegetacion] = useState(false);
   const [tamañoVegetacionActual, setTamañoVegetacionActual] = useState("h");
-
   const [hayContenidoVolumetrico, setHayContenidoVolumetrico] = useState(false);
   const [contenidoVolumetrico, setContenidoVolumetrico] = useState("1");
 
-  const [usaTemperatura, setUsaTemperatura] = useState(false);
-
   const [vari, setVari] = useState("");
+  const [unidadMedidaDefecto, setUnidadMedidaDefecto] = useState("K");
+  const [unidades, setUnidades] = useState<{ key: string; label: string }[]>(
+    []
+  );
 
+  const ObtenerUnidades = (
+    variable: string
+  ): { key: string; label: string }[] => {
+    switch (variable) {
+      case "u":
+        return unidadesViento;
+      case "u10":
+        return unidadesViento;
+      case "t":
+        return unidadesTemperatura;
+      case "t2m":
+        return unidadesTemperatura;
+      case "msl":
+        return unidadesPresionNivelDelMar;
+      case "q":
+        return unidadesHumedadEspecifica;
+      case "tisr":
+        return unidadesRadiacionSolar;
+      case "tcc":
+        return unidadesCoverturaNubes;
+      case "sp":
+        return unidadesPresionSuperficie;
+      case "tcc":
+        return unidadesCoverturaNubes;
+      case "w":
+        return unidadesVelocidadVertical;
+      case "tp":
+        return unidadesPrecipitacion;
+      default:
+        return [];
+    }
+  };
   const definirVariable = (variable: string, subVariable: string) => {
     switch (variable) {
       case "u":
@@ -116,29 +149,11 @@ export default function OpcionesVariable(props: Props) {
 
     varConAltura.includes(key) ? sethayAltura(true) : sethayAltura(false);
 
-    varComponente.includes(key)
-      ? sethayComponente(true)
-      : sethayComponente(false);
-
-    varTamañoVegetacion.includes(key)
-      ? setHayTamañoVegetacion(true)
-      : setHayTamañoVegetacion(false);
-
     varContenidoVolumetrico.includes(key)
       ? setHayContenidoVolumetrico(true)
       : setHayContenidoVolumetrico(false);
 
-    varUnidadesTemperatura.includes(key)
-      ? setUsaTemperatura(true)
-      : setUsaTemperatura(false);
-
     varConTiempo.includes(key) ? setHayTiempo(true) : setHayTiempo(false);
-  };
-
-  const handleTamañoVegetacion = (key: string) => {
-    setTamañoVegetacionActual(key);
-    key = definirVariable(vari, key);
-    setVariable(key);
   };
 
   const handleContenidoVolumetrico = (valor: number | number[]) => {
@@ -191,6 +206,13 @@ export default function OpcionesVariable(props: Props) {
     }
   };
 
+  useEffect(() => {
+    if (vari == "") return;
+    const unidades = ObtenerUnidades(vari);
+    setUnidades(unidades);
+    setUnidadMedidaDefecto(unidades[0].key);
+  }, [vari]);
+
   return (
     <div className="flex flex-col gap-3 w-full">
       <Desplegable
@@ -212,16 +234,6 @@ export default function OpcionesVariable(props: Props) {
 
       {hayAltura ? <Slider2 setNivel={setNivel} /> : null}
 
-      {hayTamañoVegetacion ? (
-        <Desplegable
-          titulo="Tamaño de la vegetación"
-          explicacion="Elija el tamaño de la vegetación"
-          elementos={tamañoVegetacion}
-          onSelect={handleTamañoVegetacion}
-          valPorDefecto={"h"}
-        />
-      ) : null}
-
       {hayContenidoVolumetrico ? (
         <Deslizador
           label="Capa del suelo"
@@ -234,15 +246,14 @@ export default function OpcionesVariable(props: Props) {
         />
       ) : null}
 
-      {usaTemperatura ? (
+      {vari && (
         <Desplegable
           titulo="Unidad de medida"
           explicacion="Elija la unidad de medida"
-          elementos={unidadesTemperatura}
+          elementos={unidades}
           onSelect={setUnidadMedida}
-          valPorDefecto={"K"}
         />
-      ) : null}
+      )}
     </div>
   );
 }
