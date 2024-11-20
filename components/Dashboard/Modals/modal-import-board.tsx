@@ -2,10 +2,10 @@
 import { useBoardStore } from "@/providers/board-store-provider";
 import { useModalStore } from "@/providers/modal-store-provider";
 import { Chart } from "@/types/chart";
+import read_files_to_json from "@/utils/read-files-to-json";
 import {
   Button,
   Divider,
-  Input,
   Modal,
   ModalBody,
   ModalContent,
@@ -20,7 +20,7 @@ import {
 } from "@nextui-org/react";
 import { useTheme } from "next-themes";
 import React, { useState } from "react";
-import { DropEvent, FileRejection, useDropzone } from "react-dropzone/";
+import { DropEvent, FileRejection, useDropzone } from "react-dropzone";
 import toast from "react-hot-toast";
 
 function ModalImportBoard() {
@@ -31,7 +31,6 @@ function ModalImportBoard() {
   const importCharts = useBoardStore((state) => state.importCharts);
   const actualTheme = useTheme();
   const [chartsToAdd, setChartsToAdd] = useState<Chart[]>([]);
-  const reader = new FileReader();
 
   function onDrop(
     acceptedFiles: File[],
@@ -41,12 +40,12 @@ function ModalImportBoard() {
     console.log(acceptedFiles, fileRejections, event);
     try {
       acceptedFiles.forEach((file) => {
-        reader.readAsText(file);
-        reader.onload = (e) => {
-          const data = e.target?.result as string;
-          const json = JSON.parse(data);
-          setChartsToAdd(json);
+        const chart = read_files_to_json(file)
+        if (chart.id === -1) {
+          toast.error("Error al leer el archivo");
+          console.log("error");
         };
+        setChartsToAdd([...chartsToAdd,chart]);
       });
     } catch (error) {
       toast.error("Error al leer el archivo");
