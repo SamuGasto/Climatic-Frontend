@@ -4,6 +4,8 @@ import { Card, CardBody } from "@nextui-org/card";
 import BoardList from "./board-list";
 import { Divider } from "@nextui-org/react";
 import Image from "next/image";
+import ButtonExportBoard from "../Panel/board/export-board-button";
+import OptionImportExport from "../Panel/board/options-import-export";
 
 interface PropType {
   inNavMenu?: boolean; // Nueva prop para diferenciar cuándo el Sidebar está en mobile

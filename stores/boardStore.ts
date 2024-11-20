@@ -6,9 +6,9 @@ import BackendData from "@/types/backend-data";
 import { createJSONStorage, persist } from "zustand/middleware";
 import _ from "lodash";
 import { produce } from "immer";
-import { CalcularEstadisticas } from "@/utils/ObtenerEstadisticas";
 import { ChartStats } from "@/types/stats";
-import { log } from "console";
+import { saveAs } from "file-saver";
+import { user } from "@nextui-org/theme";
 
 export type BoardStates = {
   userData: Board[];
@@ -38,6 +38,8 @@ export type BoardActions = {
   deleteChart: (id_boardFather: number, id_chart: number) => void;
   selectBoard: (id: number) => void;
   getCharts: (id_board: number) => Chart[];
+  exportBoard: (id: number, id_charts: number[]) => void;
+  importBoard: (file: File) => void;
 };
 
 export type BoardStore = BoardStates & BoardActions;
@@ -225,6 +227,57 @@ export const createBoardStore = () => {
         },
         getCharts(id_board) {
           return get().userData[id_board].charts;
+        },
+        exportBoard: (id: number, id_charts: number[]) => {
+          try {
+            const data = get().userData[id].charts.filter((c) =>
+              id_charts.includes(c.id)
+            );
+            const data2 = JSON.stringify(data);
+            saveAs(
+              new Blob([data2], { type: "application/json" }),
+              "data.json"
+            );
+          } catch (error) {
+            console.error(error);
+          }
+        },
+        importBoard: (file: File) => {
+          try {
+            const reader = new FileReader();
+            reader.readAsText(file);
+            reader.onload = () => {
+              if (typeof reader.result !== "string") {
+                return;
+              }
+              const data: Chart[] = JSON.parse(reader.result);
+
+              if (!data) {
+                console.log("No se ha podido leer el archivo");
+                return;
+              }
+
+              set(
+                produce((state: BoardStates) => {
+                  const board = state.userData.find(
+                    (b) => b.id === state.id_boardSelected
+                  );
+                  console.log(board);
+
+                  if (board) {
+                    Object.assign(board, {
+                      charts: [...board.charts, ...data],
+                    });
+                  }
+                })
+              );
+            };
+            reader.onerror = (error) => {
+              console.error(error);
+            };
+          } catch (error) {
+            console.error(error);
+          }
         },
       }),
       { name: "board-store", storage: createJSONStorage(() => localStorage) }

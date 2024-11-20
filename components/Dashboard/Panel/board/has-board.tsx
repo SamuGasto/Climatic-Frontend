@@ -8,6 +8,7 @@ import ChartsCards from "./Charts-Cards/charts-card";
 import { useBoardStore } from "@/providers/board-store-provider";
 import { Divider, Pagination } from "@nextui-org/react";
 import NoChartCard from "./Charts-Cards/no-chart";
+import OptionImportExport from "./options-import-export";
 
 function BoardPanel() {
   const userData = useBoardStore((state) => state.userData);
@@ -53,7 +54,10 @@ function BoardPanel() {
       <section className="flex flex-col w-full gap-4 md:flex-row md:gap-0">
         <div className="flex flex-col w-full gap-2 items-center md:items-start">
           <Suspense>
-            <TitleCardBoard />
+            <div className="flex flex-row justify-center items-center gap-2">
+              <TitleCardBoard />
+              <OptionImportExport />
+            </div>
           </Suspense>
           <Search filterQuery={filterQuery} setFilterQuery={setFilterQuery} />
         </div>

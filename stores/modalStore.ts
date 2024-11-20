@@ -7,6 +7,8 @@ export type ModalState = {
   ModalCreateChart: boolean;
   ModalConfirm: boolean;
   ModalConfirmText: string;
+  ModalExportBoard: boolean;
+  ModalImportBoard: boolean;
 };
 
 export type ModalActions = {
@@ -19,6 +21,8 @@ export type ModalActions = {
     newText: string,
     newFunction: () => void
   ) => void;
+  toggleModalExportBoard: (newValue: boolean) => void;
+  toggleModalImportBoard: (newValue: boolean) => void;
 };
 
 export type ModalStore = ModalState & ModalActions;
@@ -29,6 +33,8 @@ export const defaultInitState: ModalState = {
   ModalCreateChart: false,
   ModalConfirm: false,
   ModalConfirmText: "",
+  ModalExportBoard: false,
+  ModalImportBoard: false,
 };
 
 export const createModalStore = (initState: ModalState = defaultInitState) => {
@@ -57,6 +63,12 @@ export const createModalStore = (initState: ModalState = defaultInitState) => {
             ModalConfirmText: newText,
             functionModalConfirm: newFunction,
           }));
+        },
+        toggleModalExportBoard: (newValue: boolean) => {
+          set((state) => ({ ...state, ModalExportBoard: newValue }));
+        },
+        toggleModalImportBoard: (newValue: boolean) => {
+          set((state) => ({ ...state, ModalImportBoard: newValue }));
         },
       }),
       { name: "modal-store", storage: createJSONStorage(() => localStorage) }

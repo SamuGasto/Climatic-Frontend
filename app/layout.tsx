@@ -14,6 +14,8 @@ import ModalCreateBoard from "@/components/Dashboard/Modals/modal-create-board";
 import ModalCreateChart from "@/components/Dashboard/Modals/modal-create-chart";
 import ModalEditBoard from "@/components/Dashboard/Modals/modal-edit-board";
 import { Toaster } from "react-hot-toast";
+import ModalImportBoard from "@/components/Dashboard/Modals/modal-import-board";
+import ModalExportBoard from "@/components/Dashboard/Modals/modal-export-board";
 
 export const metadata: Metadata = {
   title: {
@@ -58,6 +60,8 @@ export default function RootLayout({
               <ModalCreateChart />
               <ModalEditBoard />
               <ModalConfirm />
+              <ModalExportBoard />
+              <ModalImportBoard />
             </section>
           </div>
         </Providers>
