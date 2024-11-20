@@ -55,6 +55,7 @@ function ModalCreateBoard() {
                 if (value.length <= 40) setTitle(value);
               }}
               variant="underlined"
+              description="Max. 40 carácteres"
             />
           </ModalBody>
           <ModalFooter className="flex justify-between">

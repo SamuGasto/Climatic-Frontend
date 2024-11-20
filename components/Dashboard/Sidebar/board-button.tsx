@@ -17,6 +17,7 @@ interface PropType {
 
 function BoardButton(props: PropType) {
   const { id, board } = props;
+  const boardLenght = useBoardStore((state)=> state.userData).length
   const id_boardSelected = useBoardStore((state) => state.id_boardSelected);
   const selectBoard = useBoardStore((state) => state.selectBoard);
   const deleteBoard = useBoardStore((state) => state.deleteBoard);
@@ -40,7 +41,7 @@ function BoardButton(props: PropType) {
           variant="light"
           color="danger"
           onPress={() => {
-            if (id > 0) {
+            if (boardLenght > 1) {
               toggleModalConfirm(
                 true,
                 "¿Estás seguro de eliminar este tablero?",
@@ -51,7 +52,7 @@ function BoardButton(props: PropType) {
             }
           }}
         >
-          {id > 0 ? (
+          {boardLenght > 1 ? (
             <DeleteOutlineIcon width={28} />
           ) : (
             <DeleteOffOutlineIcon width={28} />

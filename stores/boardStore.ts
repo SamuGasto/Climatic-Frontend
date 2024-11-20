@@ -38,8 +38,8 @@ export type BoardActions = {
   deleteChart: (id_boardFather: number, id_chart: number) => void;
   selectBoard: (id: number) => void;
   getCharts: (id_board: number) => Chart[];
-  exportBoard: (id: number, id_charts: number[]) => void;
-  importBoard: (file: File) => void;
+  exportCharts: (id_board: number, id_charts: number[]) => void;
+  importCharts: (charts: Chart[]) => void;
 };
 
 export type BoardStore = BoardStates & BoardActions;
@@ -200,7 +200,7 @@ export const createBoardStore = () => {
                 board.id = index;
                 return board;
               }),
-              id_boardSelected: id - 1,
+              id_boardSelected: id-1 >= 0? id - 1: id = 0,
             }));
           } catch (error) {
             console.error(error);
@@ -228,35 +228,22 @@ export const createBoardStore = () => {
         getCharts(id_board) {
           return get().userData[id_board].charts;
         },
-        exportBoard: (id: number, id_charts: number[]) => {
+        exportCharts: (id_board: number, id_charts: number[]) => {
           try {
-            const data = get().userData[id].charts.filter((c) =>
+            const data = get().userData[id_board].charts.filter((c) =>
               id_charts.includes(c.id)
             );
             const data2 = JSON.stringify(data);
             saveAs(
               new Blob([data2], { type: "application/json" }),
-              "data.json"
+              "charts.json"
             );
           } catch (error) {
             console.error(error);
           }
         },
-        importBoard: (file: File) => {
+        importCharts: (charts: Chart[]) => {
           try {
-            const reader = new FileReader();
-            reader.readAsText(file);
-            reader.onload = () => {
-              if (typeof reader.result !== "string") {
-                return;
-              }
-              const data: Chart[] = JSON.parse(reader.result);
-
-              if (!data) {
-                console.log("No se ha podido leer el archivo");
-                return;
-              }
-
               set(
                 produce((state: BoardStates) => {
                   const board = state.userData.find(
@@ -266,15 +253,11 @@ export const createBoardStore = () => {
 
                   if (board) {
                     Object.assign(board, {
-                      charts: [...board.charts, ...data],
+                      charts: [...board.charts, ...charts]
                     });
                   }
                 })
               );
-            };
-            reader.onerror = (error) => {
-              console.error(error);
-            };
           } catch (error) {
             console.error(error);
           }

@@ -63,6 +63,7 @@ function ModalCreateChart() {
                 if (value.length <= 40) setTitle(value);
               }}
               variant="underlined"
+              description="Max. 40 carácteres"
             />
             <Input
               aria-label="Subtitulo"

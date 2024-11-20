@@ -23,7 +23,7 @@ function ModalExportBoard() {
   const toggleModalExportBoard = useModalStore(
     (state) => state.toggleModalExportBoard
   );
-  const exportBoard = useBoardStore((state) => state.exportBoard);
+  const exportCharts = useBoardStore((state) => state.exportCharts);
   const userData = useBoardStore((state) => state.userData);
   const id_boardSelected = useBoardStore((state) => state.id_boardSelected);
   const actualTheme = useTheme();
@@ -51,7 +51,7 @@ function ModalExportBoard() {
         final_values.push(parseInt(chart_id));
       }
     });
-    exportBoard(id_boardSelected, final_values);
+    exportCharts(id_boardSelected, final_values);
     toggleModalExportBoard(false);
   }
 
