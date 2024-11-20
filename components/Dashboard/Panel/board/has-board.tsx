@@ -51,10 +51,10 @@ function BoardPanel() {
 
   return (
     <div className=" flex flex-col w-full h-full items-center gap-4">
-      <section className="flex flex-col w-full gap-4 md:flex-row md:gap-0">
-        <div className="flex flex-col w-full gap-2 items-center md:items-start">
+      <section className="flex flex-col w-full gap-4 lg:flex-row lg:gap-0 justify-normal lg:justify-between">
+        <div className="flex flex-col gap-2 items-center md:items-start ">
           <Suspense>
-            <div className="flex flex-row justify-center items-center gap-2">
+            <div className="flex w-full px-5 md:px-0 flex-wrap justify-center md:justify-start items-center gap-2">
               <TitleCardBoard />
               <OptionImportExport />
             </div>

@@ -55,18 +55,19 @@ function ModalImportBoard() {
         placement="center"
       >
         <ModalContent>
-          <ModalHeader>Importar Tablero</ModalHeader>
+          <ModalHeader>Importar Gráficos</ModalHeader>
           <ModalBody>
             <div
               {...getRootProps()}
-              className="flex-1 p-10 border border-dashed"
+              className="flex-1 p-10 border-dashed border-large"
             >
               <input {...getInputProps()} />
               {isDragActive ? (
-                <p>Suelta tu archivo aquí ...</p>
+                <p>Suelta tu archivo con gráficos aquí ...</p>
               ) : (
                 <p className="text-center">
-                  Suelta tu archivo aquí o haz click para seleccionar un archivo
+                  Suelta tu archivo con gráficos aquí o haz click para
+                  seleccionarlo
                 </p>
               )}
             </div>

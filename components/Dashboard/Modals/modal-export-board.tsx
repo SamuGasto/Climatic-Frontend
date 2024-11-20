@@ -72,12 +72,12 @@ function ModalExportBoard() {
         placement="center"
       >
         <ModalContent>
-          <ModalHeader>Exportar Tablero</ModalHeader>
+          <ModalHeader>Exportar Gráficos</ModalHeader>
           <ModalBody>
             <div>
               <Select
-                aria-label="Selecciona el gráfico"
-                placeholder="Selecciona el gráfico"
+                aria-label="Selecciona los gráficos a exportar"
+                placeholder="Selecciona los gráficos a exportar"
                 selectionMode="multiple"
                 className="w-full"
                 onSelectionChange={(value) => {
