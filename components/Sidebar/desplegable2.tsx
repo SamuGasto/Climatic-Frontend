@@ -13,7 +13,6 @@ interface DesplegableProps {
   onSelect?: (key: string) => void;
   desabilitado?: boolean;
   valPorDefecto?: string;
-  typeChart: string;
   elementosParaGrafico: elemento[];
   elementosOtroGrafico: elemento[];
 }
