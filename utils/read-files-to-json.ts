@@ -1,30 +1,26 @@
 import { exampleData } from "@/config/test-data";
 import { Chart } from "@/types/chart";
 
-const read_files_to_json = (file: File): Chart => {
+const ReadFilesToJson = (file: File): Promise<Chart[]> => {
+  return new Promise((resolve, reject) => {
     const reader = new FileReader();
-    reader.readAsText(file);
-    reader.onload = (e) => {
-      const data = e.target?.result as string;
-      const json: Chart = JSON.parse(data);
-      return json;
+
+    reader.onload = () => {
+      try {
+        const data = reader.result as string;
+        const charts: Chart[] = JSON.parse(data);
+        resolve(charts); // Devuelve los gráficos leídos
+      } catch (error) {
+        reject(error); // Maneja errores en la lectura o el JSON
+      }
     };
-    return {
-      title: "error", 
-      backendData: exampleData, 
-      typeChart: "contorno",
-      subtitle: "error", 
-      active: false, 
-      stats: 
-      {
-        max:0, 
-        min:0, 
-        mean:0, 
-        median:0, 
-        stdDeviation:0, 
-        range:0, 
-        mode:[]
-      },
-      id:-1};
-}
-export default read_files_to_json;
+
+    reader.onerror = () => {
+      reject(new Error("Error al leer el archivo"));
+    };
+
+    reader.readAsText(file);
+  });
+};
+
+export default ReadFilesToJson;

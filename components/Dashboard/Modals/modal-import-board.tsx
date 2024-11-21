@@ -2,6 +2,7 @@
 import { useBoardStore } from "@/providers/board-store-provider";
 import { useModalStore } from "@/providers/modal-store-provider";
 import { Chart } from "@/types/chart";
+import ReadFilesToJson from "@/utils/read-files-to-json";
 import read_files_to_json from "@/utils/read-files-to-json";
 import {
   Button,
@@ -32,26 +33,31 @@ function ModalImportBoard() {
   const actualTheme = useTheme();
   const [chartsToAdd, setChartsToAdd] = useState<Chart[]>([]);
 
-  function onDrop(
+  async function onDrop(
     acceptedFiles: File[],
     fileRejections: FileRejection[],
     event: DropEvent
   ) {
     console.log(acceptedFiles, fileRejections, event);
     try {
-      acceptedFiles.forEach((file) => {
-        const chart = read_files_to_json(file)
-        if (chart.id === -1) {
-          toast.error("Error al leer el archivo");
-          console.log("error");
-        };
-        setChartsToAdd([...chartsToAdd,chart]);
-      });
+      const finalCharts: Chart[] = [];
+
+      // Lee cada archivo de forma asíncrona y combina los resultados
+      for (const file of acceptedFiles) {
+        const chartsInFile = await ReadFilesToJson(file);
+        finalCharts.push(...chartsInFile); // Agrega los gráficos al array final
+      }
+
+      console.log(finalCharts);
+
+      // Actualiza el estado o haz lo que necesites con los gráficos leídos
+      setChartsToAdd([...chartsToAdd, ...finalCharts]);
+
+      toast.success("Archivo(s) cargado(s) correctamente");
     } catch (error) {
       toast.error("Error al leer el archivo");
-      console.log(error);
+      console.error(error);
     }
-    toast.success("Archivo cargado correctamente");
   }
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
@@ -84,7 +90,7 @@ function ModalImportBoard() {
         <ModalContent>
           <ModalHeader>Importar Gráficos</ModalHeader>
           <ModalBody>
-          <div
+            <div
               {...getRootProps()}
               className="flex-1 p-10 border-dashed border-large"
             >
@@ -100,8 +106,10 @@ function ModalImportBoard() {
             </div>
             {chartsToAdd.length > 0 && (
               <div className="flex flex-col gap-4">
-                <Divider/>
-                <h1 className="flex justify-center text-center text-xl font-semibold">Gráficos a importar</h1>
+                <Divider />
+                <h1 className="flex justify-center text-center text-xl font-semibold">
+                  Gráficos a importar
+                </h1>
                 <Table className="flex max-h-32">
                   <TableHeader>
                     <TableColumn>Título</TableColumn>
@@ -109,16 +117,19 @@ function ModalImportBoard() {
                     <TableColumn>Tipo de gráfico</TableColumn>
                   </TableHeader>
                   <TableBody>
-                    {chartsToAdd.map((chart, index) => (<TableRow key={index}>
-                      <TableCell className="truncate">{chart.title}</TableCell>
-                      <TableCell>{chart.backendData.var}</TableCell>
-                      <TableCell>{chart.typeChart}</TableCell>
-                    </TableRow>))}
+                    {chartsToAdd.map((chart, index) => (
+                      <TableRow key={index}>
+                        <TableCell className="truncate">
+                          {chart.title}
+                        </TableCell>
+                        <TableCell>{chart.backendData.var}</TableCell>
+                        <TableCell>{chart.typeChart}</TableCell>
+                      </TableRow>
+                    ))}
                   </TableBody>
                 </Table>
               </div>
             )}
-            
           </ModalBody>
           <ModalFooter className="flex justify-between">
             <Button
