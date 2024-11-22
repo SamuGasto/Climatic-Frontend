@@ -2,6 +2,7 @@
 import { SaveIcon } from "@/components/icons";
 import { useBoardStore } from "@/providers/board-store-provider";
 import { useChartStore } from "@/providers/chart-store-provider";
+import { Chart } from "@/types/chart";
 import { Button } from "@nextui-org/button";
 import { Input, Textarea } from "@nextui-org/input";
 import React, { useState } from "react";
@@ -18,16 +19,17 @@ function Subtitulo() {
 
   function SaveSubtitle() {
     if (chartSelected) {
-      updateChart(
-        id_boardSelected,
-        chartSelected,
-        chartSelected.active,
-        chartSelected.backendData,
-        chartSelected.typeChart,
-        chartSelected.title,
-        subtitle === "" ? "Sin subtitulo" : subtitle,
-        chartSelected.stats
-      );
+      const newChart: Chart = {
+        active: chartSelected.active,
+        backendData: chartSelected.backendData,
+        id: chartSelected.id,
+        stats: chartSelected.stats,
+        subtitle: subtitle === "" ? "Sin subtitulo" : subtitle,
+        title: chartSelected.title,
+        typeChart: chartSelected.typeChart,
+      };
+
+      updateChart(id_boardSelected, chartSelected.id, newChart);
       selectChart({
         ...chartSelected,
         subtitle: subtitle === "" ? "Sin subtitulo" : subtitle,

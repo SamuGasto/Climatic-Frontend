@@ -21,7 +21,7 @@ type Columns = (backendData: BackendData) => {
   value: string;
 }[];
 
-type Rows = (backendData: BackendData) => {
+type Rows = {
   latitud: string;
   longitud: string;
   valor: string;
@@ -33,7 +33,13 @@ type Rows = (backendData: BackendData) => {
 function InfoGraficoImagen(props: Props) {
   const { chart } = props;
 
-  const decimals = check_first_decimal_pos(chart.stats.min);
+  const decimals = check_first_decimal_pos(
+    chart.stats.length > 1
+      ? chart.stats[0].min < chart.stats[1].min
+        ? chart.stats[0].min
+        : chart.stats[1].min
+      : chart.stats[0].min
+  );
 
   const columns: Columns = (backendData) => {
     if (backendData.time) {
@@ -65,14 +71,14 @@ function InfoGraficoImagen(props: Props) {
     }
   };
 
-  const rows: Rows = (backendData: BackendData) => {
+  function createRow(backendData: BackendData, indexStats: number): Rows {
     const initialRow = {
       latitud: `[${backendData.latitude[0]} , ${backendData.latitude.slice(-1)}]`,
       longitud: `[${backendData.longitude[0]} , ${backendData.longitude.slice(-1)}]`,
     };
     if (!backendData.time) {
       const finalRow = Object.assign(initialRow, {
-        valor: `[${chart.stats.min.toFixed(decimals)} , ${chart.stats.max.toFixed(decimals)}]`,
+        valor: `[${chart.stats[indexStats].min.toFixed(decimals)} , ${chart.stats[indexStats].max.toFixed(decimals)}]`,
         unidad_de_medida: `${backendData.units}`,
       });
       return finalRow;
@@ -102,11 +108,18 @@ function InfoGraficoImagen(props: Props) {
       }
     }
     const row = Object.assign(initialRow, {
-      valor: `[${chart.stats.min.toFixed(decimals)}, ${chart.stats.max.toFixed(decimals)}]`,
+      valor: `[${chart.stats[indexStats].min.toFixed(decimals)}, ${chart.stats[indexStats].max.toFixed(decimals)}]`,
       unidad_de_medida: `${backendData.units}`,
     });
     return row;
-  };
+  }
+
+  const rows: Rows[] = [createRow(chart.backendData, 0)];
+
+  if (chart.stats.length > 1) {
+    const row2: Rows = createRow(chart.backendData, 1);
+    rows.push(row2);
+  }
 
   return (
     <Table aria-label="Resumen del gráfico" title={"Resumen gráfico"}>
@@ -116,11 +129,17 @@ function InfoGraficoImagen(props: Props) {
         })}
       </TableHeader>
       <TableBody>
-        <TableRow>
-          {Object.values(rows(chart.backendData)).map((c, index) => {
-            return <TableCell key={`cell-${index}`}>{c}</TableCell>;
-          })}
-        </TableRow>
+        {rows.map((c, index) => {
+          return (
+            <TableRow key={`row-${index}`}>
+              {Object.values(c).map((val, index) => {
+                return (
+                  <TableCell key={`cell-${val}-${index}`}>{val}</TableCell>
+                );
+              })}
+            </TableRow>
+          );
+        })}
       </TableBody>
     </Table>
   );

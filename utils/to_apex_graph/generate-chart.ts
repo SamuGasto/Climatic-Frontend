@@ -1,17 +1,16 @@
-import {
-  ChartConfig,
-  ChartConfigInteractive,
-  ChartConfigNoInteractive,
-  typeChart,
-} from "@/types/chart";
 import BackendData from "@/types/backend-data";
 import { UseThemeProps } from "next-themes/dist/types";
-import { TransformToSeries } from "./TransformToSeries";
+import { ChartConfig } from "@/types/chart-config";
+import { typeChart } from "@/types/typeChart";
+import { ChartConfigInteractive } from "./chart-config-interactive";
+import { ChartConfigNoInteractive } from "./chart-config-no-interactive";
+import { TransformToSeries } from "./transform-to-series";
 
 interface ChartOptions {
   color?: any[];
   isNormalized?: boolean;
   theme?: UseThemeProps;
+  decimals?: number;
 }
 
 interface FinalCharts {
@@ -54,7 +53,16 @@ function GenerateApexChart(
       return t;
     });
     x_axis = "Día";
-    y_axis = "Valor";
+    y_axis = data.units;
+  }
+
+  if (typeChart === "dispersion") {
+    labels = data.data.map((t) => {
+      return `${t[0]}`;
+    });
+
+    x_axis = data.var.split(" v/s ")[0];
+    y_axis = data.var.split(" v/s ")[1];
   }
 
   const InteractiveChart = ChartConfigInteractive({
@@ -65,6 +73,7 @@ function GenerateApexChart(
     x_axis: x_axis,
     y_axis: y_axis,
     colors: options?.color ? options?.color : ["#858585"],
+    decimals: options?.decimals ? options?.decimals : 3,
   });
   const NoInteractiveChart = ChartConfigNoInteractive({
     data: seriesData,

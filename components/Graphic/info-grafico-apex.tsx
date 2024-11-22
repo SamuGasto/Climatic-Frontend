@@ -1,8 +1,6 @@
 import BackendData from "@/types/backend-data";
-import { typeChart } from "@/types/chart";
 import { ChartStats } from "@/types/stats";
 import { check_first_decimal_pos } from "@/utils/check_first_decimal_pos";
-import { Card, CardBody } from "@nextui-org/card";
 import {
   Table,
   TableBody,
@@ -15,7 +13,7 @@ import React from "react";
 
 interface Props {
   backendData: BackendData;
-  stats: ChartStats;
+  stats: ChartStats[];
 }
 
 type Columns = (backendData: BackendData) => {
@@ -35,7 +33,9 @@ type Rows = (backendData: BackendData) => {
 function InfoApexChart(props: Props) {
   const { backendData, stats } = props;
 
-  const decimals = check_first_decimal_pos(stats.min);
+  const decimals = check_first_decimal_pos(
+    stats[0].min < stats[1].min ? stats[0].min : stats[1].min
+  );
 
   const columns: Columns = (backendData) => {
     if (backendData.time) {

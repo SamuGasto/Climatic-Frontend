@@ -4,8 +4,9 @@ import { Card, CardBody } from "@nextui-org/card";
 import VentanaGrafico from "./ventana-grafico";
 import { useTheme } from "next-themes";
 import { useChartStore } from "@/providers/chart-store-provider";
-import GenerateApexChart from "@/utils/GenerateChart";
+import GenerateApexChart from "@/utils/to_apex_graph/generate-chart";
 import { exampleData } from "@/config/test-data";
+import { check_first_decimal_pos } from "@/utils/check_first_decimal_pos";
 
 export default function GraficoApex() {
   const chartSelected = useChartStore((state) => state.chartSelected);
@@ -16,12 +17,21 @@ export default function GraficoApex() {
     return <div>Falta información del backend...</div>;
   }
 
+  const decimals = check_first_decimal_pos(
+    chartSelected.stats.length > 1
+      ? chartSelected.stats[0].min < chartSelected.stats[1].min
+        ? chartSelected.stats[0].min
+        : chartSelected.stats[1].min
+      : chartSelected.stats[0].min
+  );
+
   const { Interactive } = GenerateApexChart(
     chartSelected.backendData,
-    chartSelected.typeChart, //Hay que arreglar esto, la opcion del caso false
+    chartSelected.typeChart,
     {
       color: color,
       theme: actualTheme,
+      decimals: decimals,
     }
   );
 

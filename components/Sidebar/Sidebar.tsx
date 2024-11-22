@@ -4,15 +4,19 @@ import OpcionesTiempo from "@/components/Sidebar/opciones-tiempo";
 import Boton from "@/components/Sidebar/boton";
 import { Consulta } from "@/types/consulta";
 import OpcionesVariable from "./opciones-variable";
-import { typeChart } from "@/types/chart";
-import { RequestData } from "@/utils/BackendConection";
+import { RequestData } from "@/utils/backend/BackendConection";
 import { useChartStore } from "@/providers/chart-store-provider";
 import { useBoardStore } from "@/providers/board-store-provider";
 import toast from "react-hot-toast";
 import { varConAltura } from "@/config/var_con_altura";
 import { varConTiempo } from "@/config/var_con_tiempo";
-import { CalcularEstadisticas } from "@/utils/ObtenerEstadisticas";
+import { CalcularEstadisticas } from "@/utils/obtener-estadisticas";
 import { ChartStats } from "@/types/stats";
+import BackendData from "@/types/backend-data";
+import { typeChart } from "@/types/typeChart";
+import { ProcessTwoVar } from "@/utils/backend/process-two-var";
+import { ProcessSingleVar } from "@/utils/backend/process-single-var";
+import { Chart } from "@/types/chart";
 
 const consultaInicial: Consulta = {
   variable: "",
@@ -49,6 +53,17 @@ const Sidebar = () => {
     if (!chartSelected) return;
     setCargandoConsulta(true);
 
+    let newConsulta2: Consulta = {
+      variable: variable2,
+      variable2: variable,
+      latitud: latitud,
+      longitud: longitud,
+      typeChart: typeChart,
+      unidadMedida: unidadMedida2,
+      unidadMedida2: unidadMedida,
+      calculoDatos: calculoDatos,
+    };
+
     let newConsulta: Consulta = {
       variable: variable,
       variable2: variable2,
@@ -62,82 +77,108 @@ const Sidebar = () => {
 
     if (nivel && varConAltura.includes(variable)) {
       newConsulta.nivel = nivel;
+      newConsulta2.nivel = nivel;
     } else {
       newConsulta.nivel = undefined;
+      newConsulta2.nivel = undefined;
     }
 
     if (fecha && varConTiempo.includes(variable)) {
       if (fecha[1]) {
         newConsulta.tiempo = [fecha[0] + "T" + hora, fecha[1] + "T" + hora];
+        newConsulta2.tiempo = [fecha[0] + "T" + hora, fecha[1] + "T" + hora];
       } else {
         newConsulta.tiempo = [fecha[0] + "T" + hora];
+        newConsulta2.tiempo = [fecha[0] + "T" + hora];
       }
     } else {
       newConsulta.tiempo = undefined;
+      newConsulta2.tiempo = undefined;
     }
 
     if (calculoDatos && typeChart === "lineas") {
       newConsulta.calculoDatos = calculoDatos;
+      newConsulta2.calculoDatos = calculoDatos;
     } else {
       newConsulta.calculoDatos = undefined;
+      newConsulta2.calculoDatos = undefined;
     }
 
     newConsulta.typeChart = typeChart;
-    console.log(typeChart);
+    newConsulta2.typeChart = typeChart;
 
     if (typeChart !== "lineas") {
       console.log("no lineas");
 
       newConsulta.latitud = consultaInicial.latitud;
       newConsulta.longitud = consultaInicial.longitud;
+      newConsulta2.latitud = consultaInicial.latitud;
+      newConsulta2.longitud = consultaInicial.longitud;
+    }
+
+    if (typeChart !== "dispersion") {
+      newConsulta.variable2 = "";
+      newConsulta.unidadMedida2 = "";
+      newConsulta2.variable2 = "";
+      newConsulta2.unidadMedida2 = "";
     }
 
     setConsulta(newConsulta);
 
+    console.log("------- NEW CONSULTA -------");
     console.log(newConsulta);
+    console.log(newConsulta2);
+    console.log("--------------");
 
-    RequestData(newConsulta).then((res) => {
-      if ("Mensaje del Servidor" in res) {
+    RequestData(newConsulta).then((res1) => {
+      if ("Mensaje del Servidor" in res1) {
         setCargandoConsulta(false);
-        toast.error(res["Mensaje del Servidor"]);
+        toast.error(res1["Mensaje del Servidor"]);
         return;
       }
 
-      console.log(res);
+      let finalBackendData: BackendData = res1;
+      let stats: ChartStats[] = [];
 
-      let datos: number[] = [];
-      res.data.map((lat: number[] | number[][]) => {
-        lat.map((long) => {
-          if (Array.isArray(long))
-            long.map((data) => {
-              datos.push(data);
-            });
-          else {
-            datos.push(long);
+      if (newConsulta2.variable2 !== "") {
+        RequestData(newConsulta2).then((res2) => {
+          if ("Mensaje del Servidor" in res2) {
+            setCargandoConsulta(false);
+            toast.error(res2["Mensaje del Servidor"]);
+            return;
           }
+
+          const response = ProcessTwoVar(res1, res2);
+          finalBackendData = response.backendData;
+          stats = response.stats;
         });
-      });
+      } else {
+        console.log("Consulta 1");
 
-      const newStats: ChartStats = CalcularEstadisticas(datos);
+        const response = ProcessSingleVar(res1);
+        finalBackendData = response.backendData;
+        stats = response.stats;
+      }
 
-      updateChart(
-        id_boardSelected,
-        chartSelected,
-        true,
-        res,
-        typeChart,
-        chartSelected.title,
-        chartSelected.subtitle,
-        newStats
-      );
+      const newChart: Chart = {
+        id: chartSelected.id,
+        title: chartSelected.title,
+        subtitle: chartSelected.subtitle,
+        active: true,
+        backendData: finalBackendData,
+        typeChart: typeChart,
+        stats: stats,
+      };
+
+      updateChart(id_boardSelected, chartSelected.id, newChart);
       selectChart({
         ...chartSelected,
         typeChart: typeChart,
         active: true,
-        backendData: res,
-        stats: newStats,
+        backendData: res1,
+        stats: stats,
       });
-      console.log(res);
+
       setCargandoConsulta(false);
       toast.success("Se ha cargado el gráfico correctamente");
     });

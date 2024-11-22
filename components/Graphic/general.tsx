@@ -29,8 +29,7 @@ export default function Visualizador() {
           <div className="flex w-full h-full flex-col gap-10">
             <section className="flex w-full min-h-[360px]">
               {chartSelected.typeChart == "contorno" ||
-              chartSelected.typeChart == "vectoriales" ||
-              chartSelected.typeChart == "dispersion" ? (
+              chartSelected.typeChart == "vectoriales" ? (
                 <GraficoImagen />
               ) : (
                 <GraficoApex />
@@ -42,15 +41,22 @@ export default function Visualizador() {
                 <h1 className="font-semibold text-4xl text-center">
                   {chartSelected.backendData.var}
                 </h1>
-                <ResumenDatos chart={chartSelected} />
+                <ResumenDatos chart={chartSelected} index={0} />
                 <div className="flex w-full max-h-48">
-                  {chartSelected.typeChart === "lineas" ? (
+                  {chartSelected.typeChart === "contorno" && (
+                    <InfoGraficoImagen chart={chartSelected} />
+                  )}
+                  {chartSelected.typeChart === "lineas" && (
                     <InfoApexChart
                       backendData={chartSelected.backendData}
                       stats={chartSelected.stats}
                     />
-                  ) : (
-                    <InfoGraficoImagen chart={chartSelected} />
+                  )}
+                  {chartSelected.typeChart === "dispersion" && (
+                    <InfoApexChart
+                      backendData={chartSelected.backendData}
+                      stats={chartSelected.stats}
+                    />
                   )}
                 </div>
               </div>

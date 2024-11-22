@@ -1,14 +1,11 @@
 import { Board } from "@/types/board";
-import { Chart, typeChart } from "@/types/chart";
+import { Chart } from "@/types/chart";
 import { create } from "zustand";
 import { exampleData } from "@/config/test-data";
-import BackendData from "@/types/backend-data";
 import { createJSONStorage, persist } from "zustand/middleware";
 import _ from "lodash";
 import { produce } from "immer";
-import { ChartStats } from "@/types/stats";
 import { saveAs } from "file-saver";
-import { user } from "@nextui-org/theme";
 
 export type BoardStates = {
   userData: Board[];
@@ -26,13 +23,8 @@ export type BoardActions = {
   ) => void;
   updateChart: (
     id_boardFather: number,
-    chart: Chart,
-    active: boolean,
-    backendData: BackendData,
-    typeChart: typeChart,
-    newTitle: string,
-    newSubtitle: string,
-    newStats: ChartStats
+    id_chart: number,
+    newChart: Chart
   ) => void;
   deleteBoard: (id: number) => void;
   deleteChart: (id_boardFather: number, id_chart: number) => void;
@@ -92,15 +84,17 @@ export const createBoardStore = () => {
                     active: false,
                     backendData: exampleData,
                     typeChart: "contorno",
-                    stats: {
-                      max: 0,
-                      mean: 0,
-                      median: 0,
-                      min: 0,
-                      mode: [],
-                      range: 0,
-                      stdDeviation: 0,
-                    },
+                    stats: [
+                      {
+                        max: 0,
+                        mean: 0,
+                        median: 0,
+                        min: 0,
+                        mode: [],
+                        range: 0,
+                        stdDeviation: 0,
+                      },
+                    ],
                   });
                 }
               })
@@ -137,13 +131,8 @@ export const createBoardStore = () => {
         },
         updateChart: (
           id_boardFather: number,
-          chart: Chart,
-          active: boolean,
-          backendData: BackendData,
-          typeChart: typeChart,
-          newTitle: string,
-          newSubtitle: string,
-          newStats: ChartStats
+          id_chart: number,
+          newChart: Chart
         ) => {
           try {
             set(
@@ -152,33 +141,25 @@ export const createBoardStore = () => {
                   (b) => b.id === id_boardFather
                 );
                 if (board) {
-                  const grafico = board.charts.find((c) => c.id === chart.id);
+                  const grafico = board.charts.find((c) => c.id === id_chart);
 
                   if (grafico) {
                     Object.assign(grafico, {
-                      active: active,
+                      active: newChart.active,
                       backendData: {
-                        var: backendData.var,
-                        data: backendData.data,
-                        image: backendData.image,
-                        latitude: backendData.latitude,
-                        longitude: backendData.longitude,
-                        level: backendData.level,
-                        time: backendData.time,
-                        units: backendData.units,
+                        var: newChart.backendData.var,
+                        data: newChart.backendData.data,
+                        image: newChart.backendData.image,
+                        latitude: newChart.backendData.latitude,
+                        longitude: newChart.backendData.longitude,
+                        level: newChart.backendData.level,
+                        time: newChart.backendData.time,
+                        units: newChart.backendData.units,
                       },
-                      typeChart: typeChart,
-                      title: newTitle,
-                      subtitle: newSubtitle,
-                      stats: {
-                        max: newStats.max,
-                        min: newStats.min,
-                        mean: newStats.mean,
-                        stdDeviation: newStats.stdDeviation,
-                        median: newStats.median,
-                        mode: newStats.mode,
-                        range: newStats.range,
-                      },
+                      typeChart: newChart.typeChart,
+                      title: newChart.title,
+                      subtitle: newChart.subtitle,
+                      stats: [...newChart.stats],
                     });
                   }
                 }

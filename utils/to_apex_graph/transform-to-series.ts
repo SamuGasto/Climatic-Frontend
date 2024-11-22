@@ -1,6 +1,10 @@
 import BackendData from "@/types/backend-data";
-import { Series, typeChart } from "@/types/chart";
-import { first } from "lodash";
+import { Series } from "@/types/series";
+import { typeChart } from "@/types/typeChart";
+import {
+  isArrayOfArrayOfArrays,
+  isArrayOfArrays,
+} from "@/utils/to_apex_graph/check-arrays";
 
 export function TransformToSeries(
   typeChart: typeChart,
@@ -44,9 +48,23 @@ export function TransformToSeries(
     };
 
     return [DataResponse];
-  } else if (typeChart === "clasificacion") {
-    // Mapa de clasificación
-    return [{ name: "Respuesta clasificación", data: [{ x: "nada", y: 0 }] }];
+  } else if (typeChart === "dispersion") {
+    // Gráfico de dispersión
+    const final_data: Series[] = [];
+    if (isArrayOfArrays(data.data)) {
+      // Es arreglo de arreglos
+      final_data.push({ name: data.var, data: data.data });
+    }
+    if (isArrayOfArrayOfArrays(data.data)) {
+      // Es arreglo de arreglos de arreglos
+      final_data.push({
+        name: "Conjunto de datos incorrecto",
+        data: [{ x: "nada", y: 0 }],
+      });
+    }
+    console.log(final_data);
+
+    return final_data;
   } else if (typeChart === "polares") {
     // Gráfico polar
     const firstData = [...data.data];

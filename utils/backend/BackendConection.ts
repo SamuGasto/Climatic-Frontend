@@ -22,7 +22,8 @@ export const RequestData = async (consulta: Consulta) => {
       finalText = `http://127.0.0.1:8000/zarr/${consulta.variable}/${consulta.typeChart}/${consulta.unidadMedida}/${consulta.latitud[0]},${consulta.latitud[1]}/${consulta.longitud[0]},${consulta.longitud[1]}`;
     }
 
-    return (await axios.get(finalText)).data;
+    const res = (await axios.get(finalText)).data;
+    return res;
   } catch (error) {
     return null;
   }

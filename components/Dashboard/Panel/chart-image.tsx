@@ -1,6 +1,6 @@
 import VentanaGrafico from "@/components/Graphic/ventana-grafico";
 import { Chart, ChartConfig } from "@/types/chart";
-import GenerateApexChart from "@/utils/GenerateChart";
+import GenerateApexChart from "@/utils/to_apex_graph/generate-chart";
 import { useChartStore } from "@/providers/chart-store-provider";
 import { useTheme } from "next-themes";
 import React, { useEffect, useState } from "react";

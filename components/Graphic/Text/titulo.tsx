@@ -5,6 +5,7 @@ import { Input } from "@nextui-org/input";
 import { Button } from "@nextui-org/button";
 import { SaveIcon } from "@/components/icons";
 import { useBoardStore } from "@/providers/board-store-provider";
+import { Chart } from "@/types/chart";
 
 export default function Titulo() {
   const id_boardSelected = useBoardStore((state) => state.id_boardSelected);
@@ -18,16 +19,16 @@ export default function Titulo() {
 
   function SaveTitle() {
     if (chartSelected) {
-      updateChart(
-        id_boardSelected,
-        chartSelected,
-        chartSelected.active,
-        chartSelected.backendData,
-        chartSelected.typeChart,
-        title === "" ? "Sin título" : title,
-        chartSelected.subtitle,
-        chartSelected.stats
-      );
+      const newChart: Chart = {
+        id: chartSelected.id,
+        title: title === "" ? "Sin título" : title,
+        subtitle: chartSelected.subtitle,
+        active: chartSelected.active,
+        backendData: chartSelected.backendData,
+        typeChart: chartSelected.typeChart,
+        stats: chartSelected.stats,
+      };
+      updateChart(id_boardSelected, chartSelected.id, newChart);
       selectChart({
         ...chartSelected,
         title: title === "" ? "Sin título" : title,
