@@ -200,7 +200,7 @@ export const createBoardStore = () => {
                 board.id = index;
                 return board;
               }),
-              id_boardSelected: id-1 >= 0? id - 1: id = 0,
+              id_boardSelected: id - 1 >= 0 ? id - 1 : (id = 0),
             }));
           } catch (error) {
             console.error(error);
@@ -244,20 +244,23 @@ export const createBoardStore = () => {
         },
         importCharts: (charts: Chart[]) => {
           try {
-              set(
-                produce((state: BoardStates) => {
-                  const board = state.userData.find(
-                    (b) => b.id === state.id_boardSelected
-                  );
-                  console.log(board);
-
-                  if (board) {
-                    Object.assign(board, {
-                      charts: [...board.charts, ...charts]
-                    });
-                  }
-                })
-              );
+            set(
+              produce((state: BoardStates) => {
+                const board = state.userData.find(
+                  (b) => b.id === state.id_boardSelected
+                );
+                if (board) {
+                  let newCharts = [...board.charts, ...charts];
+                  newCharts = newCharts.map((chart, index) => {
+                    chart.id = index;
+                    return chart;
+                  });
+                  Object.assign(board, {
+                    charts: newCharts,
+                  });
+                }
+              })
+            );
           } catch (error) {
             console.error(error);
           }

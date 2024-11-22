@@ -99,6 +99,8 @@ const Sidebar = () => {
         return;
       }
 
+      console.log(res);
+
       let datos: number[] = [];
       res.data.map((lat: number[] | number[][]) => {
         lat.map((long) => {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Titulo from "./Text/titulo";
 import GraficoApex from "./grafico-apex-chart";
 import GraficoImagen from "./grafico-imagen";
@@ -39,18 +39,20 @@ export default function Visualizador() {
             <Divider />
             <section className="flex-1">
               <div className="flex flex-col gap-4">
-                <h1 className="font-semibold text-4xl text-center mb-6">
+                <h1 className="font-semibold text-4xl text-center">
                   {chartSelected.backendData.var}
                 </h1>
                 <ResumenDatos chart={chartSelected} />
-                {chartSelected.typeChart === "lineas" ? (
-                  <InfoApexChart
-                    backendData={chartSelected.backendData}
-                    stats={chartSelected.stats}
-                  />
-                ) : (
-                  <InfoGraficoImagen chart={chartSelected} />
-                )}
+                <div className="flex w-full max-h-48">
+                  {chartSelected.typeChart === "lineas" ? (
+                    <InfoApexChart
+                      backendData={chartSelected.backendData}
+                      stats={chartSelected.stats}
+                    />
+                  ) : (
+                    <InfoGraficoImagen chart={chartSelected} />
+                  )}
+                </div>
               </div>
             </section>
           </div>

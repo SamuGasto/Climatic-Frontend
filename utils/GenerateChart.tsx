@@ -26,7 +26,6 @@ export function CreateEmptyApexChart() {
     longitude: [],
     image: "",
     data: [],
-    data2: [],
     time: "",
     units: "",
   };

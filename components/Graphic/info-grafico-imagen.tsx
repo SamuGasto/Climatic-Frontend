@@ -107,10 +107,9 @@ function InfoGraficoImagen(props: Props) {
     });
     return row;
   };
-  console.log(chart.backendData.var);
 
   return (
-    <Table aria-label="Resumen del gráfico" title={chart.backendData.var}>
+    <Table aria-label="Resumen del gráfico" title={"Resumen gráfico"}>
       <TableHeader>
         {columns(chart.backendData).map((col) => {
           return <TableColumn key={col.key}>{col.value}</TableColumn>;
