@@ -271,7 +271,7 @@ export default function OpcionesVariable(props: Props) {
             />
           ) : null}
 
-          {hayAltura ? (
+          {hayAltura || hayAltura2 ? (
             <div className="flex flex-col gap-3 w-full">
               {"Ambas variables"}
 
