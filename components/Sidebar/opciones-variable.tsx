@@ -31,9 +31,11 @@ type elemento = {
 type Props = {
   setHayTiempo: (newTiempo: boolean) => void;
   setVariable: (newVar: string) => void;
+  setVariable2: (newVar: string) => void;
   setNivel: (newNivel: number | null) => void;
   setTypeChart: (newType: typeChart) => void;
   setUnidadMedida: (newUnidad: string) => void;
+  setUnidadMedida2: (newUnidad: string) => void;
   setCalculoDatos: (newCalculoDatos: string) => void;
   typeChart: string;
 };
@@ -42,21 +44,26 @@ export default function OpcionesVariable(props: Props) {
   const {
     setHayTiempo,
     setVariable,
+    setVariable2,
     setNivel,
     setTypeChart,
     typeChart,
     setUnidadMedida,
-    setCalculoDatos,
+    setUnidadMedida2,
   } = props;
 
   const [hayAltura, sethayAltura] = useState(false);
+  const [hayAltura2, sethayAltura2] = useState(false);
   const [tamañoVegetacionActual, setTamañoVegetacionActual] = useState("h");
-  const [hayContenidoVolumetrico, setHayContenidoVolumetrico] = useState(false);
-  const [contenidoVolumetrico, setContenidoVolumetrico] = useState("1");
 
   const [vari, setVari] = useState("");
+  const [vari2, setVari2] = useState("");
   const [unidadMedidaDefecto, setUnidadMedidaDefecto] = useState("K");
+  const [unidadMedidaDefecto2, setUnidadMedidaDefecto2] = useState("K");
   const [unidades, setUnidades] = useState<{ key: string; label: string }[]>(
+    []
+  );
+  const [unidades2, setUnidades2] = useState<{ key: string; label: string }[]>(
     []
   );
 
@@ -142,38 +149,26 @@ export default function OpcionesVariable(props: Props) {
     setVari(key);
     if (varTamañoVegetacion.includes(key)) {
       key = definirVariable(key, tamañoVegetacionActual);
-    } else if (varContenidoVolumetrico.includes(key)) {
-      key = definirVariable(key, contenidoVolumetrico);
     }
     setVariable(key);
 
     varConAltura.includes(key) ? sethayAltura(true) : sethayAltura(false);
 
-    varContenidoVolumetrico.includes(key)
-      ? setHayContenidoVolumetrico(true)
-      : setHayContenidoVolumetrico(false);
-
     varConTiempo.includes(key) ? setHayTiempo(true) : setHayTiempo(false);
   };
 
-  const handleContenidoVolumetrico = (valor: number | number[]) => {
-    let key;
-    if (Array.isArray(valor)) {
-      key = String(valor[0]);
-    } else {
-      key = String(valor);
+  const handleVariable2 = (key: string) => {
+    setVari2(key);
+    if (varTamañoVegetacion.includes(key)) {
+      key = definirVariable(key, tamañoVegetacionActual);
     }
-    setContenidoVolumetrico(key);
+    setVariable2(key);
 
-    key = definirVariable(vari, key);
-    setVariable(key);
+    varConAltura.includes(key) ? sethayAltura2(true) : sethayAltura2(false);
   };
 
   const [elementosParaGrafico, setElementosParaGrafico] =
     useState<elemento[]>(variables);
-  const [elementosOtroGrafico, setElementosOtroGrafico] = useState<elemento[]>(
-    []
-  );
 
   function esTypeChart(valor: any): valor is typeChart {
     const valoresPermitidos: typeChart[] = [
@@ -191,18 +186,14 @@ export default function OpcionesVariable(props: Props) {
       setTypeChart(valor);
 
       let listAux1: elemento[] = [];
-      let listAux2: elemento[] = [];
 
       variables.forEach((elemento) => {
         if (mapaVariables[valor].includes(elemento.key)) {
           listAux1.push({ key: elemento.key, label: elemento.label });
-        } else {
-          listAux2.push({ key: elemento.key, label: elemento.label });
         }
       });
 
       setElementosParaGrafico(listAux1);
-      setElementosOtroGrafico(listAux2);
     }
   };
 
@@ -213,6 +204,13 @@ export default function OpcionesVariable(props: Props) {
     setUnidadMedidaDefecto(unidades[0].key);
   }, [vari]);
 
+  useEffect(() => {
+    if (vari2 == "") return;
+    const unidades = ObtenerUnidades(vari2);
+    setUnidades2(unidades);
+    setUnidadMedidaDefecto2(unidades[0].key);
+  }, [vari2]);
+
   return (
     <div className="flex flex-col gap-3 w-full">
       <Desplegable
@@ -222,28 +220,23 @@ export default function OpcionesVariable(props: Props) {
         onSelect={(value) => cambiarTipoGrafico(value)}
       />
 
+      {typeChart === "dispersion" ? (
+        <div className="flex flex-col gap-3 w-full">
+          {"Variable 1"}
+          <hr />
+        </div>
+      ) : null}
+
       <Desplegable2
         titulo="Variable"
         explicacion="Elija la variable que desea graficar"
         elementos={variables}
         onSelect={handleVariable}
-        typeChart={typeChart}
         elementosParaGrafico={elementosParaGrafico}
-        elementosOtroGrafico={elementosOtroGrafico}
       />
 
-      {hayAltura ? <Slider2 setNivel={setNivel} /> : null}
-
-      {hayContenidoVolumetrico ? (
-        <Deslizador
-          label="Capa del suelo"
-          minimo={1}
-          maximo={4}
-          step={1}
-          defaultValue={1}
-          onChangeEnd={handleContenidoVolumetrico}
-          deshabilitado={false}
-        />
+      {typeChart !== "dispersion" && hayAltura ? (
+        <Slider2 setNivel={setNivel} />
       ) : null}
 
       {vari && (
@@ -254,6 +247,41 @@ export default function OpcionesVariable(props: Props) {
           onSelect={setUnidadMedida}
         />
       )}
+
+      {typeChart === "dispersion" ? (
+        <div className="flex flex-col gap-3 w-full">
+          {"Variable 2"}
+
+          <hr />
+
+          <Desplegable2
+            titulo="Variable"
+            explicacion="Elija la variable que desea graficar"
+            elementos={variables}
+            onSelect={handleVariable2}
+            elementosParaGrafico={elementosParaGrafico}
+          />
+
+          {vari2 ? (
+            <Desplegable
+              titulo="Unidad de medida"
+              explicacion="Elija la unidad de medida"
+              elementos={unidades2}
+              onSelect={setUnidadMedida2}
+            />
+          ) : null}
+
+          {hayAltura || hayAltura2 ? (
+            <div className="flex flex-col gap-3 w-full">
+              {"Ambas variables"}
+
+              <hr />
+
+              <Slider2 setNivel={setNivel} />
+            </div>
+          ) : null}
+        </div>
+      ) : null}
     </div>
   );
 }

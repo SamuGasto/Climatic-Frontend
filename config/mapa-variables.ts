@@ -44,6 +44,17 @@ export const mapaVariables: { [key: string]: string[] } = {
     "anor", //ángulo de la orografía a escala subcuadrícula.
     "slor", //pendiente de la orografía a escala subcuadrícula.
     "swvl", //Contenido volumétrico de agua
+    "u", //viento
+    "u10", //viento a 10 metros sobre la superficie.
+    "t", //temperatura
+    "t2m", //t a 2 m de la superficie
+    "msl", //Presión media a nivel del mar
+    "q", //humedad especifica
+    "sp", //Presión en la superficie
+    "tisr", //radiación solar incidentes
+    "tcc", //Covertura total de nubes
+    "w", //Velocidad vertical en la atmósfera
+    "tp", //Precipitación total
   ],
   polares: [
     "isor", //Anisotropía de la orografía a escala subcuadrícula

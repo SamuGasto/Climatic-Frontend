@@ -31,6 +31,7 @@ const Sidebar = () => {
   const id_boardSelected = useBoardStore((state) => state.id_boardSelected);
 
   const [variable, setVariable] = useState("");
+  const [variable2, setVariable2] = useState("");
   const [latitud, setLatitud] = useState<number[]>([-34, -35]);
   const [longitud, setLongitud] = useState<number[]>([108, 110]);
   const [nivel, setNivel] = useState<number | null>(null);
@@ -38,6 +39,7 @@ const Sidebar = () => {
   const [hora, setHora] = useState("00:00:00.000000000");
   const [typeChart, setTypeChart] = useState<typeChart>("contorno");
   const [unidadMedida, setUnidadMedida] = useState<string>("K");
+  const [unidadMedida2, setUnidadMedida2] = useState<string>("K");
   const [calculoDatos, setCalculoDatos] = useState<string>("mean");
 
   const [consulta, setConsulta] = useState<Consulta>(consultaInicial);
@@ -49,10 +51,12 @@ const Sidebar = () => {
 
     let newConsulta: Consulta = {
       variable: variable,
+      variable2: variable2,
       latitud: latitud,
       longitud: longitud,
       typeChart: typeChart,
       unidadMedida: unidadMedida,
+      unidadMedida2: unidadMedida2,
       calculoDatos: calculoDatos,
     };
 
@@ -151,9 +155,11 @@ const Sidebar = () => {
       <OpcionesVariable
         setHayTiempo={setHayTiempo}
         setVariable={setVariable}
+        setVariable2={setVariable2}
         setNivel={setNivel}
         setTypeChart={setTypeChart}
         setUnidadMedida={setUnidadMedida}
+        setUnidadMedida2={setUnidadMedida2}
         typeChart={typeChart}
         setCalculoDatos={setCalculoDatos}
       />
