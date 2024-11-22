@@ -55,15 +55,15 @@ export default function OpcionesVariable(props: Props) {
   const [hayAltura, sethayAltura] = useState(false);
   const [hayAltura2, sethayAltura2] = useState(false);
   const [tamañoVegetacionActual, setTamañoVegetacionActual] = useState("h");
-  const [hayContenidoVolumetrico, setHayContenidoVolumetrico] = useState(false);
-  const [hayContenidoVolumetrico2, setHayContenidoVolumetrico2] =
-    useState(false);
-  const [contenidoVolumetrico, setContenidoVolumetrico] = useState("1");
 
   const [vari, setVari] = useState("");
   const [vari2, setVari2] = useState("");
   const [unidadMedidaDefecto, setUnidadMedidaDefecto] = useState("K");
+  const [unidadMedidaDefecto2, setUnidadMedidaDefecto2] = useState("K");
   const [unidades, setUnidades] = useState<{ key: string; label: string }[]>(
+    []
+  );
+  const [unidades2, setUnidades2] = useState<{ key: string; label: string }[]>(
     []
   );
 
@@ -149,16 +149,10 @@ export default function OpcionesVariable(props: Props) {
     setVari(key);
     if (varTamañoVegetacion.includes(key)) {
       key = definirVariable(key, tamañoVegetacionActual);
-    } else if (varContenidoVolumetrico.includes(key)) {
-      key = definirVariable(key, contenidoVolumetrico);
     }
     setVariable(key);
 
     varConAltura.includes(key) ? sethayAltura(true) : sethayAltura(false);
-
-    varContenidoVolumetrico.includes(key)
-      ? setHayContenidoVolumetrico(true)
-      : setHayContenidoVolumetrico(false);
 
     varConTiempo.includes(key) ? setHayTiempo(true) : setHayTiempo(false);
   };
@@ -167,36 +161,14 @@ export default function OpcionesVariable(props: Props) {
     setVari2(key);
     if (varTamañoVegetacion.includes(key)) {
       key = definirVariable(key, tamañoVegetacionActual);
-    } else if (varContenidoVolumetrico.includes(key)) {
-      key = definirVariable(key, contenidoVolumetrico);
     }
     setVariable2(key);
 
     varConAltura.includes(key) ? sethayAltura2(true) : sethayAltura2(false);
-
-    varContenidoVolumetrico.includes(key)
-      ? setHayContenidoVolumetrico2(true)
-      : setHayContenidoVolumetrico2(false);
-  };
-
-  const handleContenidoVolumetrico = (valor: number | number[]) => {
-    let key;
-    if (Array.isArray(valor)) {
-      key = String(valor[0]);
-    } else {
-      key = String(valor);
-    }
-    setContenidoVolumetrico(key);
-
-    key = definirVariable(vari, key);
-    setVariable(key);
   };
 
   const [elementosParaGrafico, setElementosParaGrafico] =
     useState<elemento[]>(variables);
-  const [elementosOtroGrafico, setElementosOtroGrafico] = useState<elemento[]>(
-    []
-  );
 
   function esTypeChart(valor: any): valor is typeChart {
     const valoresPermitidos: typeChart[] = [
@@ -214,18 +186,14 @@ export default function OpcionesVariable(props: Props) {
       setTypeChart(valor);
 
       let listAux1: elemento[] = [];
-      let listAux2: elemento[] = [];
 
       variables.forEach((elemento) => {
         if (mapaVariables[valor].includes(elemento.key)) {
           listAux1.push({ key: elemento.key, label: elemento.label });
-        } else {
-          listAux2.push({ key: elemento.key, label: elemento.label });
         }
       });
 
       setElementosParaGrafico(listAux1);
-      setElementosOtroGrafico(listAux2);
     }
   };
 
@@ -235,6 +203,13 @@ export default function OpcionesVariable(props: Props) {
     setUnidades(unidades);
     setUnidadMedidaDefecto(unidades[0].key);
   }, [vari]);
+
+  useEffect(() => {
+    if (vari2 == "") return;
+    const unidades = ObtenerUnidades(vari2);
+    setUnidades2(unidades);
+    setUnidadMedidaDefecto2(unidades[0].key);
+  }, [vari2]);
 
   return (
     <div className="flex flex-col gap-3 w-full">
@@ -258,21 +233,10 @@ export default function OpcionesVariable(props: Props) {
         elementos={variables}
         onSelect={handleVariable}
         elementosParaGrafico={elementosParaGrafico}
-        elementosOtroGrafico={elementosOtroGrafico}
       />
 
-      {hayAltura ? <Slider2 setNivel={setNivel} /> : null}
-
-      {hayContenidoVolumetrico ? (
-        <Deslizador
-          label="Capa del suelo"
-          minimo={1}
-          maximo={4}
-          step={1}
-          defaultValue={1}
-          onChangeEnd={handleContenidoVolumetrico}
-          deshabilitado={false}
-        />
+      {typeChart !== "dispersion" && hayAltura ? (
+        <Slider2 setNivel={setNivel} />
       ) : null}
 
       {vari && (
@@ -296,16 +260,25 @@ export default function OpcionesVariable(props: Props) {
             elementos={variables}
             onSelect={handleVariable2}
             elementosParaGrafico={elementosParaGrafico}
-            elementosOtroGrafico={elementosOtroGrafico}
           />
 
           {vari2 ? (
             <Desplegable
               titulo="Unidad de medida"
               explicacion="Elija la unidad de medida"
-              elementos={unidades}
+              elementos={unidades2}
               onSelect={setUnidadMedida2}
             />
+          ) : null}
+
+          {hayAltura ? (
+            <div className="flex flex-col gap-3 w-full">
+              {"Ambas variables"}
+
+              <hr />
+
+              <Slider2 setNivel={setNivel} />
+            </div>
           ) : null}
         </div>
       ) : null}
