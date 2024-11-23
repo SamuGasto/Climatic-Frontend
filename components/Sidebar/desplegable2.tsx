@@ -13,9 +13,7 @@ interface DesplegableProps {
   onSelect?: (key: string) => void;
   desabilitado?: boolean;
   valPorDefecto?: string;
-  typeChart: string;
   elementosParaGrafico: elemento[];
-  elementosOtroGrafico: elemento[];
 }
 
 export default function Desplegable2(props: DesplegableProps) {
@@ -26,7 +24,6 @@ export default function Desplegable2(props: DesplegableProps) {
     desabilitado,
     valPorDefecto,
     elementosParaGrafico,
-    elementosOtroGrafico,
   } = props;
 
   return (
@@ -40,19 +37,8 @@ export default function Desplegable2(props: DesplegableProps) {
         defaultSelectedKeys={valPorDefecto}
         disallowEmptySelection
       >
-        <SelectSection showDivider title="Variables recomendadas">
+        <SelectSection title="">
           {elementosParaGrafico.map((elemento) => (
-            <SelectItem
-              onClick={() => onSelect?.(elemento.key)}
-              key={elemento.key}
-            >
-              {elemento.label}
-            </SelectItem>
-          ))}
-        </SelectSection>
-
-        <SelectSection title="Otras variables">
-          {elementosOtroGrafico.map((elemento) => (
             <SelectItem
               onClick={() => onSelect?.(elemento.key)}
               key={elemento.key}
