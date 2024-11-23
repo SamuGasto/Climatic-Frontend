@@ -1,4 +1,5 @@
 export type Series =
+  | number
   | {
       data: number[];
     }

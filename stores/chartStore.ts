@@ -1,4 +1,5 @@
-import { Chart, typeChart } from "@/types/chart";
+import { Chart } from "@/types/chart";
+import { typeChart } from "@/types/typeChart";
 import { produce } from "immer";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";

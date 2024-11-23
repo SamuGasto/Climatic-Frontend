@@ -35,7 +35,6 @@ function ModalExportBoard() {
   useEffect(() => {
     try {
       setListOfCharts(userData[id_boardSelected].charts);
-      console.log(userData[id_boardSelected].charts);
     } catch (error) {
       console.error(error);
     }

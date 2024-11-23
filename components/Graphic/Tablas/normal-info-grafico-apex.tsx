@@ -27,7 +27,7 @@ type Rows = (backendData: BackendData) => {
   valor: string;
   tiempo?: string;
   altura?: number;
-  unidad_de_medida: string[];
+  unidad_de_medida: string | string[];
 }[];
 
 function InfoApexChart(props: Props) {

@@ -54,16 +54,25 @@ function GenerateApexChart(
       return t;
     });
     x_axis = "Día";
-    y_axis = data.units[0];
-  }
-
-  if (typeChart === "dispersion") {
+    if (Array.isArray(data.units)) {
+      y_axis = `${data.var} [${data.units[0]}]`;
+    } else {
+      y_axis = `${data.var} [${data.units}]`;
+    }
+  } else if (typeChart === "dispersion") {
     labels = data.data.map((t) => {
       return `${t[0]}`;
     });
 
     x_axis = `${data.var.split(" v/s ")[0]} [${data.units[0]}]`;
     y_axis = `${data.var.split(" v/s ")[1]} [${data.units[1]}]`;
+  } else if (typeChart === "polares") {
+    labels = data.data.map((t) => {
+      return `${t[0]}`;
+    });
+
+    x_axis = `Grados`;
+    y_axis = `Grados`;
   }
 
   const InteractiveChart = ChartConfigInteractive({

@@ -19,6 +19,10 @@ export default function Slider2(props: Props) {
     }
   };
 
+  const onFinalChange = () => {
+    setNivel(valorSeleccionado);
+  };
+
   return (
     <div>
       <Slider
@@ -29,7 +33,7 @@ export default function Slider2(props: Props) {
         onChange={(value) => {
           onChange(value);
         }}
-        onChangeEnd={() => setNivel(valorSeleccionado)}
+        onChangeEnd={() => onFinalChange()}
       />
     </div>
   );

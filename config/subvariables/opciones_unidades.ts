@@ -45,12 +45,12 @@ export const unidadesPresionNivelDelMar = [
 
 export const unidadesHumedadEspecifica = [
   {
-    key: "g|kg",
-    label: "Gramos por kilogramo",
-  },
-  {
     key: "kg|kg",
     label: "Kilogramos por kilogramo",
+  },
+  {
+    key: "g|kg",
+    label: "Gramos por kilogramo",
   },
 ];
 
@@ -86,15 +86,19 @@ export const unidadesCoverturaNubes = [
 export const unidadesVelocidadVertical = [
   {
     key: "Pa|s",
-    label: "Metros por segundo",
+    label: "Pascales por segundo",
   },
   {
     key: "Pa|h",
-    label: "Metros por segundo",
+    label: "Pascales por hora",
   },
 ];
 
 export const unidadesPrecipitacion = [
+  {
+    key: "m",
+    label: "Metros",
+  },
   {
     key: "mm",
     label: "Milímetros",

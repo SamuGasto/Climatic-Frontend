@@ -64,27 +64,17 @@ export function TransformToSeries(
     }
     return final_data;
   } else if (typeChart === "polares") {
-    // Gráfico polar
-    const firstData = [...data.data];
-    let time = data.time;
+    // Gráfico polar, recibe solamente lo del viento, osea: data: [[1,...], [2,...], ...]
 
-    if (!Array.isArray(firstData[0][0])) {
-      return [
-        { name: "Conjunto de datos incorrecto", data: [{ x: "nada", y: 0 }] },
-      ];
+    let finalData: Series[] = [];
+    if (isArrayOfArrays(data.data)) {
+      //Es arreglo de arreglos
+      data.data.map((valor, index) => {
+        valor.map((valor2) => {
+          finalData.push(valor2);
+        });
+      });
     }
-
-    let finalData: Series[] = [
-      {
-        name: time[0],
-        data: [firstData[0][0][0]],
-      },
-    ];
-
-    firstData.map((latitud, index) => {
-      if (index > 0 && Array.isArray(latitud[0]))
-        finalData.push({ name: time[index], data: [latitud[0][0]] });
-    });
 
     return finalData;
   } else {

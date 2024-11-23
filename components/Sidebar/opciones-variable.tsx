@@ -10,7 +10,7 @@ import Desplegable2 from "./desplegable2";
 import { mapaVariables } from "@/config/mapa-variables";
 import Deslizador from "./deslizador";
 import { varContenidoVolumetrico } from "@/config/subvariables/var_contenido_volumetrico";
-import { typeChart } from "@/types/chart";
+
 import {
   unidadesCoverturaNubes,
   unidadesHumedadEspecifica,
@@ -22,6 +22,7 @@ import {
   unidadesVelocidadVertical,
   unidadesViento,
 } from "@/config/subvariables/opciones_unidades";
+import { typeChart } from "@/types/typeChart";
 
 type elemento = {
   key: string;

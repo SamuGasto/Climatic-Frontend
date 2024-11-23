@@ -42,8 +42,11 @@ export default function Visualizador() {
               <div className="flex flex-col gap-4">
                 <ResumenDatos chart={chartSelected} index={0} />
                 <div className="flex w-full max-h-48">
-                  {chartSelected.typeChart === "contorno" && (
+                  {chartSelected.typeChart === "contorno" ||
+                  chartSelected.typeChart === "vectoriales" ? (
                     <InfoGraficoImagen chart={chartSelected} />
+                  ) : (
+                    <></>
                   )}
                   {chartSelected.typeChart === "lineas" && (
                     <InfoApexChart

@@ -23,6 +23,13 @@ export async function ProcessSingleVar(res: BackendData): Promise<{
 
   const newStats: ChartStats = CalcularEstadisticas(datos1);
 
+  let finalUnidadMedida = "";
+  if (Array.isArray(res1.units)) {
+    finalUnidadMedida = res1.units[0];
+  } else {
+    finalUnidadMedida = res1.units;
+  }
+
   const finalBackendData: BackendData = {
     var: res1.var,
     latitude: res1.latitude,
@@ -31,7 +38,7 @@ export async function ProcessSingleVar(res: BackendData): Promise<{
     time: res1.time,
     level: res1.level,
     data: res1.data,
-    units: [res1.units[0]],
+    units: [finalUnidadMedida],
   };
 
   return { backendData: finalBackendData, stats: [newStats] };
