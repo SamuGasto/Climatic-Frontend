@@ -11,10 +11,11 @@ interface Props {
   y_axis: string;
   colors: any[] | undefined;
   decimals?: number;
+  title?: string;
 }
 
 export function ChartConfigNoInteractive(props: Props): ChartConfig {
-  const { data, typeChart, categories, x_axis, y_axis, colors } = props;
+  const { data, typeChart, categories, x_axis, y_axis, colors, title } = props;
 
   let type:
     | "line"
@@ -36,8 +37,8 @@ export function ChartConfigNoInteractive(props: Props): ChartConfig {
     | undefined = "area";
   if (typeChart === "lineas") {
     type = "line";
-  } else if (typeChart === "clasificacion") {
-    type = "pie"; // HAY QUE ARREGLAR ESTO
+  } else if (typeChart === "dispersion") {
+    type = "scatter"; // HAY QUE ARREGLAR ESTO
   } else if (typeChart === "polares") {
     type = "polarArea";
   }
@@ -75,7 +76,10 @@ export function ChartConfigNoInteractive(props: Props): ChartConfig {
         type: "category",
         categories: categories,
         title: {
-          text: x_axis,
+          text: `${x_axis.slice(0, 30)}...`,
+          style: {
+            color: "#767676",
+          },
         },
         offsetY: -35,
         decimalsInFloat: 1,
@@ -85,7 +89,10 @@ export function ChartConfigNoInteractive(props: Props): ChartConfig {
           show: false,
         },
         title: {
-          text: y_axis,
+          text: `${y_axis.slice(0, 11)}...`,
+          style: {
+            color: "#767676",
+          },
         },
 
         decimalsInFloat: 1,

@@ -32,6 +32,7 @@ export default function GraficoApex() {
       color: color,
       theme: actualTheme,
       decimals: decimals,
+      title: chartSelected.backendData.var,
     }
   );
 

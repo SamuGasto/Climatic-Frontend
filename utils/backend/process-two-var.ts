@@ -2,10 +2,10 @@ import BackendData from "@/types/backend-data";
 import { ChartStats } from "@/types/stats";
 import { CalcularEstadisticas } from "../obtener-estadisticas";
 
-export function ProcessTwoVar(
+export async function ProcessTwoVar(
   res1: BackendData,
   res2: BackendData
-): { backendData: BackendData; stats: ChartStats[] } {
+): Promise<{ backendData: BackendData; stats: ChartStats[] }> {
   let datos1: number[] = [];
   res1.data.map((lat: number[] | number[][]) => {
     lat.map((long) => {
@@ -50,14 +50,9 @@ export function ProcessTwoVar(
     longitude: res1.longitude,
     image: res1.image,
     time: res1.time,
-    level: res1.level,
+    level: res1.level ? res1.level : res2.level ? res2.level : undefined,
     data: res2.data.length > 0 ? finalDatos : res1.data,
-    units: res1.units,
+    units: [res1.units[0], res2.units[0]],
   };
-
-  console.log("------------- RESPUESTA 2 --------------");
-  console.log(res2);
-  console.log("--------------");
-
   return { backendData: finalBackendData, stats: [newStats, newStats2] };
 }

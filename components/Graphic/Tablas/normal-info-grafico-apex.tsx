@@ -27,14 +27,18 @@ type Rows = (backendData: BackendData) => {
   valor: string;
   tiempo?: string;
   altura?: number;
-  unidad_de_medida: string;
+  unidad_de_medida: string[];
 }[];
 
 function InfoApexChart(props: Props) {
   const { backendData, stats } = props;
 
   const decimals = check_first_decimal_pos(
-    stats[0].min < stats[1].min ? stats[0].min : stats[1].min
+    stats.length > 1
+      ? stats[0].min < stats[1].min
+        ? stats[0].min
+        : stats[1].min
+      : stats[0].min
   );
 
   const columns: Columns = (backendData) => {
@@ -75,7 +79,7 @@ function InfoApexChart(props: Props) {
           longitud: -1,
           valor: "-1",
           altura: -1,
-          unidad_de_medida: "t",
+          unidad_de_medida: ["t"],
         },
       ];
     }
@@ -90,7 +94,7 @@ function InfoApexChart(props: Props) {
               longitud: -1,
               valor: "-1",
               altura: -1,
-              unidad_de_medida: "t",
+              unidad_de_medida: ["t"],
             };
           } else {
             return {
@@ -111,7 +115,7 @@ function InfoApexChart(props: Props) {
               longitud: -1,
               valor: "-1",
               altura: -1,
-              unidad_de_medida: "t",
+              unidad_de_medida: ["t"],
             },
           ];
         } else {
@@ -137,7 +141,7 @@ function InfoApexChart(props: Props) {
               longitud: -1,
               valor: "-1",
               altura: -1,
-              unidad_de_medida: "t",
+              unidad_de_medida: ["t"],
             };
           } else {
             return {
@@ -158,7 +162,7 @@ function InfoApexChart(props: Props) {
               longitud: -1,
               valor: "-1",
               altura: -1,
-              unidad_de_medida: "t",
+              unidad_de_medida: ["t"],
             },
           ];
         } else {

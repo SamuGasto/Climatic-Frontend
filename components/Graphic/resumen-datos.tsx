@@ -11,11 +11,13 @@ interface Props {
 }
 
 function ResumenDatos(props: Props) {
-  const { chart, index } = props;
-  const decimals = check_first_decimal_pos(chart.stats[index].min);
-  return (
-    <Card className="flex-1" shadow="sm">
-      <CardBody className="flex-1 flex-row flex-wrap items-center text-center gap-3">
+  const { chart } = props;
+
+  let decimals = check_first_decimal_pos(chart.stats[0].min);
+
+  const Body = ({ index }: { index: number }) => {
+    return (
+      <div className="flex w-full flex-row flex-wrap items-center text-center gap-3">
         <section className="flex-1 flex-col">
           <h1 className="font-semibold">Mínimo:</h1>
           <p>{chart.stats[index].min.toFixed(decimals)}</p>
@@ -40,6 +42,29 @@ function ResumenDatos(props: Props) {
           <h1 className="font-semibold">Rango:</h1>
           <p>{chart.stats[index].range.toFixed(decimals)}</p>
         </section>
+      </div>
+    );
+  };
+
+  return (
+    <Card className="flex-1" shadow="sm">
+      <CardBody className="flex-1 flex-col items-center text-center gap-3">
+        <h1 className="font-semibold text-xl text-center">
+          {chart.typeChart === "dispersion"
+            ? chart.backendData.var.split(" v/s ")[0]
+            : chart.backendData.var}
+        </h1>
+        <Body index={0} />
+
+        {chart.typeChart === "dispersion" && <Divider />}
+        {chart.typeChart === "dispersion" && (
+          <h1 className="font-semibold text-xl text-center">
+            {chart.typeChart === "dispersion"
+              ? chart.backendData.var.split(" v/s ")[1]
+              : chart.backendData.var}
+          </h1>
+        )}
+        {chart.typeChart === "dispersion" && <Body index={1} />}
       </CardBody>
     </Card>
   );

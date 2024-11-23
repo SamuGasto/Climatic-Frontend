@@ -20,10 +20,13 @@ import { Chart } from "@/types/chart";
 
 const consultaInicial: Consulta = {
   variable: "",
+  variable2: undefined,
   latitud: [-34, -35],
   longitud: [108, 110],
   typeChart: "contorno",
   unidadMedida: "K",
+  unidadMedida2: undefined,
+  calculoDatos: undefined,
 };
 
 //Al elegir var con el Enter, no se actualiza
@@ -77,22 +80,32 @@ const Sidebar = () => {
 
     if (nivel && varConAltura.includes(variable)) {
       newConsulta.nivel = nivel;
-      newConsulta2.nivel = nivel;
     } else {
       newConsulta.nivel = undefined;
+    }
+    if (nivel && varConAltura.includes(variable2)) {
+      newConsulta2.nivel = nivel;
+    } else {
       newConsulta2.nivel = undefined;
     }
 
     if (fecha && varConTiempo.includes(variable)) {
       if (fecha[1]) {
         newConsulta.tiempo = [fecha[0] + "T" + hora, fecha[1] + "T" + hora];
-        newConsulta2.tiempo = [fecha[0] + "T" + hora, fecha[1] + "T" + hora];
       } else {
         newConsulta.tiempo = [fecha[0] + "T" + hora];
-        newConsulta2.tiempo = [fecha[0] + "T" + hora];
       }
     } else {
       newConsulta.tiempo = undefined;
+    }
+
+    if (fecha && varConTiempo.includes(variable2)) {
+      if (fecha[1]) {
+        newConsulta2.tiempo = [fecha[0] + "T" + hora, fecha[1] + "T" + hora];
+      } else {
+        newConsulta2.tiempo = [fecha[0] + "T" + hora];
+      }
+    } else {
       newConsulta2.tiempo = undefined;
     }
 
@@ -130,57 +143,124 @@ const Sidebar = () => {
     console.log(newConsulta2);
     console.log("--------------");
 
-    RequestData(newConsulta).then((res1) => {
-      if ("Mensaje del Servidor" in res1) {
+    let finalBackendData: BackendData = {
+      var: "",
+      latitude: [],
+      longitude: [],
+      image: "",
+      time: "",
+      level: 0,
+      data: [],
+      units: [""],
+    };
+    let stats: ChartStats[] = [];
+    let res1: BackendData = {
+      var: "",
+      latitude: [],
+      longitude: [],
+      image: "",
+      time: "",
+      level: 0,
+      data: [],
+      units: [""],
+    };
+    let res2: BackendData = {
+      var: "no_existe",
+      latitude: [],
+      longitude: [],
+      image: "",
+      time: "",
+      level: 0,
+      data: [],
+      units: [""],
+    };
+
+    RequestData(newConsulta).then((res) => {
+      if ("Mensaje del Servidor" in res) {
         setCargandoConsulta(false);
-        toast.error(res1["Mensaje del Servidor"]);
+        toast.error(res["Mensaje del Servidor"]);
         return;
       }
-
-      let finalBackendData: BackendData = res1;
-      let stats: ChartStats[] = [];
-
-      if (newConsulta2.variable2 !== "") {
-        RequestData(newConsulta2).then((res2) => {
-          if ("Mensaje del Servidor" in res2) {
-            setCargandoConsulta(false);
-            toast.error(res2["Mensaje del Servidor"]);
-            return;
-          }
-
-          const response = ProcessTwoVar(res1, res2);
+      const response = ProcessSingleVar(res)
+        .then((response) => {
           finalBackendData = response.backendData;
           stats = response.stats;
+          res1 = res;
+          console.log("------------- RESPUESTA 1 --------------");
+          console.log(res1);
+          console.log("--------------");
+          console.log(finalBackendData);
+          console.log("--------------");
+          console.log(stats);
+          console.log("--------------");
+        })
+        .then(() => {
+          if (newConsulta2.variable2 !== "") {
+            RequestData(newConsulta2).then((res) => {
+              if ("Mensaje del Servidor" in res) {
+                setCargandoConsulta(false);
+                toast.error(res["Mensaje del Servidor"]);
+                return;
+              }
+              const response = ProcessTwoVar(res1, res).then((response) => {
+                finalBackendData = response.backendData;
+                stats = response.stats;
+                res2 = res;
+
+                console.log("------------- RESPUESTA 2 --------------");
+                console.log(res2);
+                console.log("--------------");
+                console.log(finalBackendData);
+                console.log("--------------");
+                console.log(stats);
+                console.log("--------------");
+                const newChart: Chart = {
+                  id: chartSelected.id,
+                  title: chartSelected.title,
+                  subtitle: chartSelected.subtitle,
+                  active: true,
+                  backendData: finalBackendData,
+                  typeChart: typeChart,
+                  stats: stats,
+                };
+
+                updateChart(id_boardSelected, chartSelected.id, newChart);
+                selectChart({
+                  ...chartSelected,
+                  typeChart: typeChart,
+                  active: true,
+                  backendData: finalBackendData,
+                  stats: stats,
+                });
+
+                setCargandoConsulta(false);
+                toast.success("Se ha cargado el gráfico correctamente");
+              });
+            });
+          } else {
+            const newChart: Chart = {
+              id: chartSelected.id,
+              title: chartSelected.title,
+              subtitle: chartSelected.subtitle,
+              active: true,
+              backendData: finalBackendData,
+              typeChart: typeChart,
+              stats: stats,
+            };
+
+            updateChart(id_boardSelected, chartSelected.id, newChart);
+            selectChart({
+              ...chartSelected,
+              typeChart: typeChart,
+              active: true,
+              backendData: res1,
+              stats: stats,
+            });
+
+            setCargandoConsulta(false);
+            toast.success("Se ha cargado el gráfico correctamente");
+          }
         });
-      } else {
-        console.log("Consulta 1");
-
-        const response = ProcessSingleVar(res1);
-        finalBackendData = response.backendData;
-        stats = response.stats;
-      }
-
-      const newChart: Chart = {
-        id: chartSelected.id,
-        title: chartSelected.title,
-        subtitle: chartSelected.subtitle,
-        active: true,
-        backendData: finalBackendData,
-        typeChart: typeChart,
-        stats: stats,
-      };
-
-      updateChart(id_boardSelected, chartSelected.id, newChart);
-      selectChart({
-        ...chartSelected,
-        typeChart: typeChart,
-        active: true,
-        backendData: res1,
-        stats: stats,
-      });
-
-      setCargandoConsulta(false);
-      toast.success("Se ha cargado el gráfico correctamente");
     });
   };
 

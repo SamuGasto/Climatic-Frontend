@@ -2,10 +2,10 @@ import BackendData from "@/types/backend-data";
 import { ChartStats } from "@/types/stats";
 import { CalcularEstadisticas } from "../obtener-estadisticas";
 
-export function ProcessSingleVar(res: BackendData): {
+export async function ProcessSingleVar(res: BackendData): Promise<{
   backendData: BackendData;
   stats: ChartStats[];
-} {
+}> {
   const res1: BackendData = res;
 
   let datos1: number[] = [];
@@ -31,7 +31,7 @@ export function ProcessSingleVar(res: BackendData): {
     time: res1.time,
     level: res1.level,
     data: res1.data,
-    units: res1.units,
+    units: [res1.units[0]],
   };
 
   return { backendData: finalBackendData, stats: [newStats] };

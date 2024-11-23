@@ -1,10 +1,8 @@
 import VentanaGrafico from "@/components/Graphic/ventana-grafico";
-import { Chart, ChartConfig } from "@/types/chart";
+import { Chart } from "@/types/chart";
 import GenerateApexChart from "@/utils/to_apex_graph/generate-chart";
-import { useChartStore } from "@/providers/chart-store-provider";
 import { useTheme } from "next-themes";
-import React, { useEffect, useState } from "react";
-import { exampleData } from "@/config/test-data";
+import React from "react";
 
 interface chartImage {
   chart: Chart;
@@ -20,15 +18,14 @@ function ChartImage(props: chartImage) {
     {
       color: color,
       theme: actualTheme,
+      title: chart.backendData.var,
     }
   ).NoInteractive;
 
-  console.log(chart.typeChart);
-
   return (
-    <div className="flex h-40 w-full ">
+    <div className="flex h-40 w-full p-1">
       <VentanaGrafico
-        className="flex w-full h-full  p-2"
+        className="flex w-full h-full p-2"
         options={noInteractive.options}
         series={noInteractive.series}
         type={noInteractive.options.chart?.type}

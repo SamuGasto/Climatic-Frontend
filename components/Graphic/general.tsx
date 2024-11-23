@@ -6,9 +6,11 @@ import { useChartStore } from "@/providers/chart-store-provider";
 import { BarChartOffIcon } from "../icons";
 import Subtitulo from "./Text/subtitulo";
 import { Divider } from "@nextui-org/react";
-import InfoApexChart from "./info-grafico-apex";
-import InfoGraficoImagen from "./info-grafico-imagen";
+import InfoApexChart from "./Tablas/normal-info-grafico-apex";
+import InfoGraficoImagen from "./Tablas/normal-info-grafico-imagen";
 import ResumenDatos from "./resumen-datos";
+import TablaTiempoInfoApex from "./Tablas/dispersion-tiempo-info-apex";
+import TablaAlturaInfoApex from "./Tablas/dispersion-altura-info-apex";
 
 export default function Visualizador() {
   const chartSelected = useChartStore((state) => state.chartSelected);
@@ -38,9 +40,6 @@ export default function Visualizador() {
             <Divider />
             <section className="flex-1">
               <div className="flex flex-col gap-4">
-                <h1 className="font-semibold text-4xl text-center">
-                  {chartSelected.backendData.var}
-                </h1>
                 <ResumenDatos chart={chartSelected} index={0} />
                 <div className="flex w-full max-h-48">
                   {chartSelected.typeChart === "contorno" && (
@@ -52,12 +51,12 @@ export default function Visualizador() {
                       stats={chartSelected.stats}
                     />
                   )}
-                  {chartSelected.typeChart === "dispersion" && (
-                    <InfoApexChart
-                      backendData={chartSelected.backendData}
-                      stats={chartSelected.stats}
-                    />
-                  )}
+                  {chartSelected.typeChart === "dispersion" &&
+                    (chartSelected.backendData.level ? (
+                      <TablaAlturaInfoApex chart={chartSelected} />
+                    ) : (
+                      <TablaTiempoInfoApex chart={chartSelected} />
+                    ))}
                 </div>
               </div>
             </section>

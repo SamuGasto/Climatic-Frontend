@@ -62,8 +62,6 @@ export function TransformToSeries(
         data: [{ x: "nada", y: 0 }],
       });
     }
-    console.log(final_data);
-
     return final_data;
   } else if (typeChart === "polares") {
     // Gráfico polar

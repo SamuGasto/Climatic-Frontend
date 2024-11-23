@@ -11,6 +11,7 @@ interface ChartOptions {
   isNormalized?: boolean;
   theme?: UseThemeProps;
   decimals?: number;
+  title?: string;
 }
 
 interface FinalCharts {
@@ -26,7 +27,7 @@ export function CreateEmptyApexChart() {
     image: "",
     data: [],
     time: "",
-    units: "",
+    units: [""],
   };
   const { Interactive, NoInteractive } = GenerateApexChart(
     emptyData,
@@ -53,7 +54,7 @@ function GenerateApexChart(
       return t;
     });
     x_axis = "Día";
-    y_axis = data.units;
+    y_axis = data.units[0];
   }
 
   if (typeChart === "dispersion") {
@@ -61,8 +62,8 @@ function GenerateApexChart(
       return `${t[0]}`;
     });
 
-    x_axis = data.var.split(" v/s ")[0];
-    y_axis = data.var.split(" v/s ")[1];
+    x_axis = `${data.var.split(" v/s ")[0]} [${data.units[0]}]`;
+    y_axis = `${data.var.split(" v/s ")[1]} [${data.units[1]}]`;
   }
 
   const InteractiveChart = ChartConfigInteractive({
@@ -83,6 +84,7 @@ function GenerateApexChart(
     x_axis: x_axis,
     y_axis: y_axis,
     colors: options?.color ? options?.color : ["#858585"],
+    title: options?.title ? options?.title : "",
   });
   return { Interactive: InteractiveChart, NoInteractive: NoInteractiveChart };
 }

@@ -11,6 +11,7 @@ interface Props {
   y_axis: string;
   colors: any[] | undefined;
   decimals?: number;
+  title?: string;
 }
 
 export function ChartConfigInteractive(props: Props): ChartConfig {
@@ -23,6 +24,7 @@ export function ChartConfigInteractive(props: Props): ChartConfig {
     y_axis,
     colors,
     decimals,
+    title,
   } = props;
   let type:
     | "line"

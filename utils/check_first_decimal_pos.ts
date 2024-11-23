@@ -1,6 +1,5 @@
 export const check_first_decimal_pos = (number: number) => {
   let value = number.toFixed(12).toString().split(".")[1];
-  console.log(value);
 
   if (!value) return 0;
 

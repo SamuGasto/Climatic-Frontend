@@ -1,4 +1,4 @@
-import { typeChart } from "./chart";
+import { typeChart } from "./typeChart";
 
 export interface Consulta {
   variable: string;

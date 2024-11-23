@@ -6,5 +6,5 @@ export default interface BackendData {
   time?: string | string[];
   level?: number;
   data: number[][] | number[][][];
-  units: string;
+  units: string[];
 }
