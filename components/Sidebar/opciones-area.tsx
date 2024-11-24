@@ -1,46 +1,57 @@
-import React, { useRef, useState } from "react";
-import Deslizador from "./slider";
-import Boton from "./boton";
-import { Consulta } from "@/types/consulta";
+import React from "react";
+import Deslizador from "./deslizador";
+import Tooltip from "@/components/Tooltip/tooltip";
 
 type Props = {
-  consultaOriginal: Consulta;
-  setConsulta: (consulta: Consulta) => void;
+  setLatitud: (newLatitud: number[]) => void;
+  setLongitud: (newLongitud: number[]) => void;
+  deshabilitado: boolean;
 };
 
 const OpcionesArea = (props: Props) => {
-  const { setConsulta, consultaOriginal } = props;
-  const [valores, setValores] = useState("hola");
+  const { setLatitud, setLongitud, deshabilitado } = props;
 
-  const getValores = (v: string) => {
-    setValores(v);
-    console.log(valores);
+  const modificarLatitud = (valor: number | number[]) => {
+    if (Array.isArray(valor)) {
+      setLatitud(valor);
+    } else {
+      setLatitud([valor, valor]);
+    }
+  };
+
+  const modificarLongitud = (valor: number | number[]) => {
+    if (Array.isArray(valor)) {
+      setLongitud(valor);
+    } else {
+      setLongitud([valor, valor]);
+    }
   };
 
   return (
-    <div className="flex w-full flex-col gap-3">
-      <p>Configuración del area del gráfico</p>
+    <div className="flex w-full flex-col gap-3 items-center">
+      <div className="flex items-center justify-center relative">
+        <p className="flex place-content-center">Selección del área</p>
+        <Tooltip color="primary" texto="Latitud y longitud son sólo ajustables para series de tiempo." txtBoton="?"/>
+      </div>
+      
       <Deslizador
-        label="Rango de la latitud"
+        label="Latitud"
         maximo={-34}
         minimo={-35}
         step={0.25}
-        defaultValue={[-34.75, -34.25]}
-        getValores={getValores}
-        setConsulta={setConsulta}
-        consultaOriginal={consultaOriginal}
-        tipo="latitud"
+        defaultValue={-34}
+        onChangeEnd={(number) => modificarLatitud(number)}
+        deshabilitado={deshabilitado}
       />
 
       <Deslizador
-        label="Rango de la longitud"
+        label="Longitud"
         maximo={110}
         minimo={108}
         step={0.25}
-        defaultValue={[108.25, 109]}
-        setConsulta={setConsulta}
-        consultaOriginal={consultaOriginal}
-        tipo="longitud"
+        defaultValue={108}
+        onChangeEnd={(number) => modificarLongitud(number)}
+        deshabilitado={deshabilitado}
       />
     </div>
   );

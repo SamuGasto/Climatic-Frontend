@@ -1,7 +1,14 @@
+import { typeChart } from "./typeChart";
+
 export interface Consulta {
-  variable: string,
-  latitud: number[],
-  longitud: number[],
-  tiempo?: string,
-  altura?: number,
+  variable: string;
+  variable2?: string;
+  latitud: number[];
+  longitud: number[];
+  typeChart: typeChart;
+  tiempo?: string | string[];
+  nivel?: number;
+  unidadMedida?: string;
+  unidadMedida2?: string;
+  calculoDatos?: string;
 }

@@ -1,14 +1,21 @@
 import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
-import { Link } from "@nextui-org/link";
 import clsx from "clsx";
 
 import { Providers } from "./providers";
 
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
-import  Navbar  from "@/components/Navbar/navbar";
+import Navbar from "@/components/Navbar/navbar";
 import Footer from "@/components/Footer/footer";
+import Sidebar from "@/components/Dashboard/Sidebar/sidebar";
+import ModalConfirm from "@/components/Dashboard/Modals/modal-confirm";
+import ModalCreateBoard from "@/components/Dashboard/Modals/modal-create-board";
+import ModalCreateChart from "@/components/Dashboard/Modals/modal-create-chart";
+import ModalEditBoard from "@/components/Dashboard/Modals/modal-edit-board";
+import { Toaster } from "react-hot-toast";
+import ModalImportBoard from "@/components/Dashboard/Modals/modal-import-board";
+import ModalExportBoard from "@/components/Dashboard/Modals/modal-export-board";
 
 export const metadata: Metadata = {
   title: {
@@ -45,8 +52,17 @@ export default function RootLayout({
         <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}>
           <div className="relative flex flex-col h-screen">
             <Navbar />
-            <main className="pt-16 px-6 flex-grow">{children}</main>
+            <Toaster position="top-center" />
+            <main className="flex-1 my-24">{children}</main>
             <Footer />
+            <section>
+              <ModalCreateBoard />
+              <ModalCreateChart />
+              <ModalEditBoard />
+              <ModalConfirm />
+              <ModalExportBoard />
+              <ModalImportBoard />
+            </section>
           </div>
         </Providers>
       </body>

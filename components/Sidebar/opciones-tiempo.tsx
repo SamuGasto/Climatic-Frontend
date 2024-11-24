@@ -1,26 +1,29 @@
-import { DateRangePicker } from "@nextui-org/react";
 import React from "react";
 import SeleccionHora from "./time-input";
-import { DatePicker } from "@nextui-org/react";
+import FechaRango from "./fecha-rango";
+import SeleccionFecha from "./seleccion-fecha";
 
 type Props = {
   desabilitado: boolean;
+  setFecha: React.Dispatch<React.SetStateAction<string[] | null>>;
+  setHora: React.Dispatch<React.SetStateAction<string>>;
+  typeChart: string;
 };
 
 const OpcionesTiempo = (props: Props) => {
-  const { desabilitado } = props;
+  const { desabilitado, setFecha, setHora, typeChart } = props;
 
   return (
     <div className="flex flex-col gap-3 w-full">
-      <p>Selección del momento de los datos</p>
-      <DatePicker
-        isRequired
-        isDisabled={desabilitado}
-        label="Escoja una fecha"
-        className="flex w-full"
-      />
+      <p className="flex place-content-center">Selección de la fecha</p>
 
-      <SeleccionHora desabilitado={desabilitado} />
+      {typeChart !== "lineas" ? (
+        <SeleccionFecha desabilitado={desabilitado} setFecha={setFecha} />
+      ) : null}
+
+      {typeChart === "lineas" ? <FechaRango setFecha={setFecha} /> : null}
+
+      <SeleccionHora desabilitado={desabilitado} setHora={setHora} />
     </div>
   );
 };

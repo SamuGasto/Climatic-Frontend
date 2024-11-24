@@ -1,6 +1,7 @@
 "use client";
-import { Image } from "@nextui-org/image";
+import Image from "next/image";
 import Link from "next/link";
+
 import React from "react";
 
 export default function Footer() {
@@ -9,9 +10,9 @@ export default function Footer() {
       <div className="container mx-auto px-2">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
           <div className="flex flex-col items-center">
-            <Image src="/logo.png" alt="Di-Dema Logo" width={50} height={50} />
-            <h4 className="text-lg font-semibold mt-2 text-white">Di-Dema</h4>
-            <p className="text-sm text-gray-400">Climatic App</p>
+            <Image src="/logo2.png" alt="Di-Dema Logo" width={50} height={50} />
+            <h1 className="text-lg font-semibold mt-2 text-white">Di-Dema</h1>
+            <h2 className="text-sm text-gray-400">Climatic App</h2>
           </div>
           <div className="flex flex-col">
             <h5 className="text-lg font-semibold mb-2 text-white">Sitemap</h5>
@@ -44,8 +45,9 @@ export default function Footer() {
                 href="https://cloud.google.com/storage/docs/public-datasets/era5?hl=es-419"
                 color="foreground"
                 className="text-gray-400 hover:text-white transition-colors inline-block"
+                legacyBehavior
               >
-                Datos de ERA5
+                <a target="_blank">Datos de ERA5</a>
               </Link>
             </div>
             <div>
@@ -53,14 +55,15 @@ export default function Footer() {
                 href="https://cl.linkedin.com/in/ra%C3%BAl-valenzuela-ruiz-5b9b05257"
                 color="foreground"
                 className="text-gray-400 hover:text-white transition-colors inline-block"
+                legacyBehavior
               >
-                Cliente: Raúl Valenzuela
+                <a target="_blank">Cliente: Raúl Valenzuela</a>
               </Link>
             </div>
           </div>
         </div>
         <div className="mt-2 text-center">
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-gray-100">
             © {new Date().getFullYear()} Di-Dema. Todos los derechos
             reservados.
           </p>

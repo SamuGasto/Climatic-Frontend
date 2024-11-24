@@ -1,20 +1,23 @@
 import React from "react";
 import { Button } from "@nextui-org/react";
+import { useTheme } from "next-themes";
 
 type Props = {
   texto: string;
   funcion: () => void;
+  Loading: boolean;
 };
 
 export default function Boton(props: Props) {
-  const { texto, funcion } = props;
-
+  const { texto, funcion, Loading } = props;
   return (
     <Button
+      isLoading={Loading}
       color="primary"
       fullWidth={false}
-      onClick={funcion}
+      onClick={() => funcion()}
       className="flex flex-shrink-0"
+      variant="solid"
     >
       {texto}
     </Button>

@@ -1,48 +1,96 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
+import Link from "next/link";
+import { ThemeSwitch } from "../theme-switch";
+import { usePathname } from "next/navigation";
+import Image from "next/image";
 import {
-  Image,
   Navbar,
   NavbarBrand,
   NavbarContent,
   NavbarItem,
-  Link,
-  Button,
-} from "@nextui-org/react";
-import { ThemeSwitch } from "../theme-switch";
+  NavbarMenu,
+  NavbarMenuItem,
+  NavbarMenuToggle,
+} from "@nextui-org/navbar";
+import { Divider } from "@nextui-org/react";
+import Sidebar from "../Dashboard/Sidebar/sidebar";
 
-export default function navbar() {
+type MenuItems = {
+  name: string;
+  route: string;
+};
+
+export default function NavbarComponent() {
+  const pathname = usePathname();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuItems: MenuItems[] = [
+    { name: "Dashboard", route: "/" },
+    { name: "Re-Análisis", route: "/visualizer" },
+    { name: "Q&A", route: "/faq" },
+    { name: "Sobre Nosotros", route: "/about" },
+  ];
+
+  const isActive = (path: string) => pathname === path;
+
   return (
-    <Navbar className="flex w-full shadow-md">
-      <Navbar className="flex w-full" position="static">
-        <NavbarBrand>
-          <Image src="/logo.png" width={60} height={55} />
+    <Navbar
+      className="flex fixed w-full p-1 shadow-md border-black border-b-1 dark:border-white dark:border-b-1"
+      isMenuOpen={isMenuOpen}
+      onMenuOpenChange={(value) => setIsMenuOpen(value)}
+      position="static"
+      maxWidth="full"
+    >
+      <NavbarContent>
+        <NavbarMenuToggle
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          className="md:hidden"
+        />
+        <NavbarBrand className="flex-1 flex-row">
+          <Link href = "/"> 
+          <Image alt="Logo" src="/logo2.png" width={50} height={50} />
+           </Link>
           <p className="font-bold text-inherit ml-3">CLIMATIC</p>
         </NavbarBrand>
-        <NavbarContent className="hidden sm:flex gap-4" justify="end">
-          <NavbarItem isActive>
-            <Link color="foreground" href="/">
-              Dashboard
-            </Link>
+      </NavbarContent>
+
+      <NavbarContent className="hidden sm:flex gap-4" justify="center">
+        {menuItems.map((item, index) => (
+          <NavbarItem
+            key={`${item.name}-${index}`}
+            isActive={isActive(item.route)}
+          >
+            <Link href={item.route}>{item.name}</Link>
           </NavbarItem>
-          <NavbarItem>
-            <Link color="foreground" href="/visualizer">
-              Re-Analisís
-            </Link>
-          </NavbarItem>
-          <NavbarItem>
-            <Link color="foreground" href="#" aria-current="page">
-              Preguntas Frecuentes
-            </Link>
-          </NavbarItem>
-          <NavbarItem>
-         </NavbarItem>
-        </NavbarContent>
-        <NavbarItem className="hidden lg:flex"></NavbarItem>
+        ))}
         <NavbarItem>
           <ThemeSwitch />
         </NavbarItem>
-      </Navbar>
+      </NavbarContent>
+      <NavbarContent className="md:hidden" justify="end">
+        <NavbarItem>
+          <ThemeSwitch />
+        </NavbarItem>
+      </NavbarContent>
+      <NavbarMenu>
+        {menuItems.map((item: MenuItems, index) => (
+          <NavbarMenuItem
+            isActive={isActive(item.route)}
+            key={`${item}-${index}`}
+          >
+            <Link
+              href={item.route}
+              onClick={() => {
+                setIsMenuOpen(false);
+              }}
+            >
+              {item.name}
+            </Link>
+          </NavbarMenuItem>
+        ))}
+        <Divider />
+        {isActive("/") && <Sidebar inNavMenu={true} />}
+      </NavbarMenu>
     </Navbar>
   );
-}      
+}

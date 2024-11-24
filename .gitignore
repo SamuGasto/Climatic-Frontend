@@ -2,7 +2,6 @@ node_modules/
 .next/
 .swc/
 .*.env
-.vscode/settings.json
-.next
-.vscode
+
 .devcontainer
+.vscode
