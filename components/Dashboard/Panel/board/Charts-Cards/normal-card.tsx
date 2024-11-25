@@ -78,8 +78,9 @@ function NormalCard(props: PropType) {
               </div>
             ) : (
               <div className="flex-1 justify-center items-center">
-                {chart.typeChart == "contorno" ||
-                chart.typeChart == "vectoriales" ? (
+                {chart.typeChart === "contorno" ||
+                chart.typeChart === "vectoriales" ||
+                chart.typeChart === "polares" ? (
                   <ImageChartCard chart={chart} />
                 ) : (
                   <ChartImage chart={chart} />

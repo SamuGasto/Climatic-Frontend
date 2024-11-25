@@ -220,14 +220,14 @@ const Sidebar = () => {
                   subtitle: chartSelected.subtitle,
                   active: true,
                   backendData: finalBackendData,
-                  typeChart: typeChart,
+                  typeChart: newConsulta.typeChart,
                   stats: stats,
                 };
 
                 updateChart(id_boardSelected, chartSelected.id, newChart);
                 selectChart({
                   ...chartSelected,
-                  typeChart: typeChart,
+                  typeChart: newConsulta.typeChart,
                   active: true,
                   backendData: finalBackendData,
                   stats: stats,
@@ -244,14 +244,14 @@ const Sidebar = () => {
               subtitle: chartSelected.subtitle,
               active: true,
               backendData: finalBackendData,
-              typeChart: typeChart,
+              typeChart: newConsulta.typeChart,
               stats: stats,
             };
 
             updateChart(id_boardSelected, chartSelected.id, newChart);
             selectChart({
               ...chartSelected,
-              typeChart: typeChart,
+              typeChart: newConsulta.typeChart,
               active: true,
               backendData: res1,
               stats: stats,
