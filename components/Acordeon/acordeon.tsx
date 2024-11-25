@@ -4,8 +4,9 @@ import React from "react";
 
 export default function Acordeon() {
   return (
-    <Accordion variant="splitted" >
-      <AccordionItem className="border-2 border-principal"
+    <Accordion variant="splitted">
+      <AccordionItem
+        className="border-2 border-principal"
         key="1"
         aria-label="Pregunta 1"
         title="¿Con qué datos se realizan los gráficos en Climatic?"
@@ -16,10 +17,10 @@ export default function Acordeon() {
         relevantes para el análisis del clima local, como viento, temperatura,
         humedad relativa, precipitación, entre otras.
       </AccordionItem>
-      <AccordionItem 
-        key="2" 
-        aria-label="Pregunta 2" 
-        title="¿Qué es ERA5?" 
+      <AccordionItem
+        key="2"
+        aria-label="Pregunta 2"
+        title="¿Qué es ERA5?"
         className="border-2 border-principal"
       >
         Corresponde a un reanálisis atmosférico global. Esto quiere decir que se
@@ -61,7 +62,7 @@ export default function Acordeon() {
         title="¿Cuáles zonas geográficas se pueden graficar?"
         className="border-2 border-principal"
       >
-        Por ahora la zona geográfica está restringida a la región de O'Higgins.
+        Por ahora, la zona geográfica está restringida a la región de O'Higgins.
       </AccordionItem>
     </Accordion>
   );
