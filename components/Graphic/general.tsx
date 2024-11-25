@@ -31,7 +31,8 @@ export default function Visualizador() {
           <div className="flex w-full h-full flex-col gap-10">
             <section className="flex w-full min-h-[360px]">
               {chartSelected.typeChart == "contorno" ||
-              chartSelected.typeChart == "vectoriales" ? (
+              chartSelected.typeChart == "vectoriales" ||
+              chartSelected.typeChart == "polares" ? (
                 <GraficoImagen />
               ) : (
                 <GraficoApex />
@@ -43,7 +44,8 @@ export default function Visualizador() {
                 <ResumenDatos chart={chartSelected} index={0} />
                 <div className="flex w-full max-h-48">
                   {chartSelected.typeChart === "contorno" ||
-                  chartSelected.typeChart === "vectoriales" ? (
+                  chartSelected.typeChart === "vectoriales" ||
+                  chartSelected.typeChart === "polares" ? (
                     <InfoGraficoImagen chart={chartSelected} />
                   ) : (
                     <></>
