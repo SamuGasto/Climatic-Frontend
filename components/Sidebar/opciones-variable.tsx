@@ -4,7 +4,7 @@ import Slider2 from "./slider2";
 import { variables } from "@/config/variables";
 import { varConAltura } from "@/config/var_con_altura";
 import { varConTiempo } from "@/config/var_con_tiempo";
-import { varTamañoVegetacion } from "@/config/subvariables/var_tamaño_vegetacion";
+import { varTamanoVegetacion } from "@/config/subvariables/var_tamano_vegetacion";
 import { tiposGraficos } from "@/config/tipos_de_graficos";
 import Desplegable2 from "./desplegable2";
 import { mapaVariables } from "@/config/mapa-variables";
@@ -148,7 +148,7 @@ export default function OpcionesVariable(props: Props) {
 
   const handleVariable = (key: string) => {
     setVari(key);
-    if (varTamañoVegetacion.includes(key)) {
+    if (varTamanoVegetacion.includes(key)) {
       key = definirVariable(key, tamañoVegetacionActual);
     }
     setVariable(key);
@@ -160,7 +160,7 @@ export default function OpcionesVariable(props: Props) {
 
   const handleVariable2 = (key: string) => {
     setVari2(key);
-    if (varTamañoVegetacion.includes(key)) {
+    if (varTamanoVegetacion.includes(key)) {
       key = definirVariable(key, tamañoVegetacionActual);
     }
     setVariable2(key);
