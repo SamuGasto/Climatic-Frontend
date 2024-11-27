@@ -19,7 +19,7 @@ export default function About() {
           bottom_text="Universidad de O'Higgins."
           color="amarillo"
           link_ref="http://www.linkedin.com/in/mauricio-gregorio-de-las-heras"
-          src="https://media.licdn.com/dms/image/v2/D4D03AQGX9i8xgXym-A/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1693866871592?e=1733961600&v=beta&t=JBpVMRg1WlrTrEOIiKo97ZNPmIko04cykYS7EAi8Psw"
+          src="/Di-Dema-members/Mauricio_picture.png"
         />
         <CardMember
           nombre="Samuel Ramírez"
@@ -28,7 +28,7 @@ export default function About() {
           bottom_text="Universidad de O'Higgins."
           color="verde"
           link_ref="http://www.linkedin.com/in/samuelramirezzuniga"
-          src="https://media.licdn.com/dms/image/v2/D4E03AQHkFJRKTn2I-w/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1709057890054?e=1733961600&v=beta&t=DgEzJq4s-avt1CuGs8qgfG3IZ11RG06sACXXsis2zpI"
+          src="/Di-Dema-members/Samuel_picture.png"
         />
         <CardMember
           nombre="Nicolás Muñoz"
@@ -37,6 +37,7 @@ export default function About() {
           bottom_text="Universidad de O'Higgins."
           color="rojo"
           link_ref="https://www.linkedin.com/in/nicol%C3%A1s-mu%C3%B1oz-sanchez-44824228b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+          src="/Di-Dema-members/Avatar.png"
         />
         <CardMember
           nombre="Bayron Astudillo"
@@ -45,7 +46,7 @@ export default function About() {
           bottom_text="Universidad de O'Higgins."
           color="morado"
           link_ref="https://www.linkedin.com/in/bayron-astudillo-7a446128a/"
-          src="https://media.licdn.com/dms/image/v2/D4E03AQFC2aE7jfkYeQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1693004597177?e=1733961600&v=beta&t=VMPuyzaXSvoLxC9XW5dqn4HioM8Xo29dW19LoB1kwto"
+          src="/Di-Dema-members/Bayron_picture.png"
         />
       </section>
     </div>
