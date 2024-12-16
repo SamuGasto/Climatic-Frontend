@@ -1,5 +1,6 @@
 import { DateRangePicker } from "@nextui-org/react";
 import { parseDate } from "@internationalized/date";
+import { useState } from "react";
 
 type Props = {
   setFecha: React.Dispatch<React.SetStateAction<string[] | null>>;
@@ -8,6 +9,8 @@ type Props = {
 
 export default function FechaRango(props: Props) {
   const { setFecha, desabilitado } = props;
+
+  const [esInvalido, setEsInvalido] = useState(false);
 
   const crearFecha = (dia: number, mes: number, año: number) => {
     if (año >= 1959 && año <= 2021) {
@@ -33,13 +36,28 @@ export default function FechaRango(props: Props) {
     finMes: number,
     finAño: number
   ) => {
-    const inicio = crearFecha(iniDia, iniMes, iniAño);
-    const final = crearFecha(finDia, finMes, finAño);
+    const diaInicio = new Date(iniAño, iniMes - 1, iniDia);
+    const diaFinal = new Date(finAño, finMes - 1, finDia);
 
-    if (inicio && final) {
-      setFecha([inicio, final]);
+    const diferenciaMilisegundos = Math.abs(
+      diaFinal.getTime() - diaInicio.getTime()
+    );
+
+    const diferenciaDias = diferenciaMilisegundos / (1000 * 60 * 60 * 24);
+
+    if (diferenciaDias <= 14) {
+      const inicio = crearFecha(iniDia, iniMes, iniAño);
+      const final = crearFecha(finDia, finMes, finAño);
+
+      if (inicio && final) {
+        setFecha([inicio, final]);
+      } else {
+        console.log("Hay un tipo indefinido");
+      }
+
+      setEsInvalido(false);
     } else {
-      console.log("Hay un tipo indefinido");
+      setEsInvalido(true);
     }
   };
 
@@ -60,6 +78,8 @@ export default function FechaRango(props: Props) {
           value.end.year
         )
       }
+      isInvalid={esInvalido}
+      errorMessage="El rango de fechas no puede ser mayor a 2 semanas."
     />
   );
 }

@@ -380,3 +380,65 @@ export function CloseIcon(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+
+export function AddChart(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height={props.height}
+      viewBox="0 -960 960 960"
+      width={props.width}
+      fill="currentColor"
+    >
+      <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h360v80H200v560h560v-360h80v360q0 33-23.5 56.5T760-120H200Zm80-160h80v-280h-80v280Zm160 0h80v-400h-80v400Zm160 0h80v-160h-80v160Zm80-320v-80h-80v-80h80v-80h80v80h80v80h-80v80h-80ZM480-480Z" />
+    </svg>
+  );
+}
+
+export function ExportIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height={props.height}
+      width={props.width}
+      viewBox="0 0 24 24"
+      {...props}
+    >
+      <g fill="none">
+        <path
+          fill="currentColor"
+          d="m12 5l-.707-.707l.707-.707l.707.707zm1 9a1 1 0 1 1-2 0zM6.293 9.293l5-5l1.414 1.414l-5 5zm6.414-5l5 5l-1.414 1.414l-5-5zM13 5v9h-2V5z"
+        ></path>
+        <path
+          stroke="currentColor"
+          strokeWidth={2}
+          d="M5 16v1a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-1"
+        ></path>
+      </g>
+    </svg>
+  );
+}
+
+export function ImportIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height={props.height}
+      width={props.width}
+      viewBox="0 0 24 24"
+      {...props}
+    >
+      <g fill="none">
+        <path
+          fill="currentColor"
+          d="m12 14l-.707.707l.707.707l.707-.707zm1-9a1 1 0 1 0-2 0zM6.293 9.707l5 5l1.414-1.414l-5-5zm6.414 5l5-5l-1.414-1.414l-5 5zM13 14V5h-2v9z"
+        ></path>
+        <path
+          stroke="currentColor"
+          strokeWidth={2}
+          d="M5 16v1a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-1"
+        ></path>
+      </g>
+    </svg>
+  );
+}

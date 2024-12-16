@@ -15,7 +15,7 @@ export default function Boton(props: Props) {
       isLoading={Loading}
       color="primary"
       fullWidth={false}
-      onClick={funcion}
+      onClick={() => funcion()}
       className="flex flex-shrink-0"
       variant="solid"
     >

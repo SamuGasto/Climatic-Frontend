@@ -1,5 +1,6 @@
-import { useBoardStore } from "@/utils/Stores/boardStore";
-import useModalStore from "@/utils/Stores/modalStore";
+"use client";
+import { useBoardStore } from "@/providers/board-store-provider";
+import { useModalStore } from "@/providers/modal-store-provider";
 import {
   Button,
   Input,
@@ -10,66 +11,75 @@ import {
   ModalHeader,
 } from "@nextui-org/react";
 import { useTheme } from "next-themes";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-interface PropType {
-  refresh: () => void;
-}
-
-function ModalCreateBoard(props: PropType) {
-  const { refresh } = props;
-  const { addNewBoard } = useBoardStore.getState();
-  const { ModalCreateBoard, toggleModalCreateBoard } = useModalStore.getState();
+function ModalEditBoard() {
+  const userData = useBoardStore((state) => state.userData);
+  const id_boardSelected = useBoardStore((state) => state.id_boardSelected);
+  const addNewBoard = useBoardStore((state) => state.addNewBoard);
+  const updateBoard = useBoardStore((state) => state.updateBoard);
+  const ModalEditBoard = useModalStore((state) => state.ModalEditBoard);
+  const toggleModalEditBoard = useModalStore(
+    (state) => state.toggleModalEditBoard
+  );
   const [title, setTitle] = useState("");
   const actualTheme = useTheme();
+
+  useEffect(() => {
+    if (userData[id_boardSelected]) setTitle(userData[id_boardSelected].name);
+  }, [ModalEditBoard]);
+
   function ReadyButtonFunction() {
     if (title.trim() === "") addNewBoard("Nuevo Tablero");
-    else addNewBoard(title);
+    else updateBoard(userData[id_boardSelected], title);
 
     setTitle("");
-    toggleModalCreateBoard(false);
-    refresh();
+    toggleModalEditBoard(false);
   }
 
   return (
     <div>
       <Modal
-        isOpen={ModalCreateBoard}
+        isOpen={ModalEditBoard}
         onOpenChange={(value) => {
-          toggleModalCreateBoard(value);
-          refresh();
+          toggleModalEditBoard(value);
         }}
         onKeyDown={(event) => {
-          if (ModalCreateBoard && event.key === "Enter") ReadyButtonFunction();
+          if (ModalEditBoard && event.key === "Enter") ReadyButtonFunction();
         }}
+        className="m-4 md:m-0"
+        placement="center"
       >
         <ModalContent>
-          <ModalHeader>Nuevo Tablero</ModalHeader>
+          <ModalHeader>Configuración</ModalHeader>
           <ModalBody>
             <Input
               autoFocus
+              aria-label="Titulo"
               label="Titulo del tablero"
-              placeholder="Ingresa un nombre para tu tablero"
+              placeholder="Ingresa un nuevo nombre para tu tablero"
               value={title}
               onValueChange={(value) => {
                 if (value.length <= 40) setTitle(value);
               }}
               variant="underlined"
+              description="Max. 40 carácteres"
             />
           </ModalBody>
           <ModalFooter className="flex justify-between">
             <Button
+              aria-label="Cancelar"
               color="danger"
               variant="flat"
               onPress={() => {
-                toggleModalCreateBoard(false);
+                toggleModalEditBoard(false);
                 setTitle("");
-                refresh();
               }}
             >
               Cancelar
             </Button>
             <Button
+              aria-label="Listo"
               color="primary"
               onPress={() => {
                 ReadyButtonFunction();
@@ -85,4 +95,4 @@ function ModalCreateBoard(props: PropType) {
   );
 }
 
-export default ModalCreateBoard;
+export default ModalEditBoard;

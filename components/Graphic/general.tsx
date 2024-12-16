@@ -2,18 +2,22 @@ import React, { useEffect, useState } from "react";
 import Titulo from "./Text/titulo";
 import GraficoApex from "./grafico-apex-chart";
 import GraficoImagen from "./grafico-imagen";
-import { useChartStore } from "@/utils/Stores/chartStore";
+import { useChartStore } from "@/providers/chart-store-provider";
 import { BarChartOffIcon } from "../icons";
 import Subtitulo from "./Text/subtitulo";
 import { Divider } from "@nextui-org/react";
+import InfoApexChart from "./Tablas/normal-info-grafico-apex";
+import InfoGraficoImagen from "./Tablas/normal-info-grafico-imagen";
+import ResumenDatos from "./resumen-datos";
+import TablaTiempoInfoApex from "./Tablas/dispersion-tiempo-info-apex";
+import TablaAlturaInfoApex from "./Tablas/dispersion-altura-info-apex";
 
 export default function Visualizador() {
-  const { chartSelected } = useChartStore.getState();
-  const [refresh, SetRefresh] = useState(false);
+  const chartSelected = useChartStore((state) => state.chartSelected);
 
-  useEffect(() => {
-    SetRefresh(!refresh);
-  }, [chartSelected]);
+  if (!chartSelected) {
+    return <div>No hay un gráfico seleccionado...</div>;
+  }
 
   return (
     <div className="flex w-full">
@@ -24,12 +28,43 @@ export default function Visualizador() {
         </div>
         <Divider className="" />
         {chartSelected.active ? (
-          <div className="flex w-full min-h-[360px]">
-            {chartSelected.typeChart == "image" ? (
-              <GraficoImagen />
-            ) : (
-              <GraficoApex />
-            )}
+          <div className="flex w-full h-full flex-col gap-10">
+            <section className="flex w-full min-h-[360px]">
+              {chartSelected.typeChart == "contorno" ||
+              chartSelected.typeChart == "vectoriales" ||
+              chartSelected.typeChart == "polares" ? (
+                <GraficoImagen />
+              ) : (
+                <GraficoApex />
+              )}
+            </section>
+            <Divider />
+            <section className="flex-1">
+              <div className="flex flex-col gap-4">
+                <ResumenDatos chart={chartSelected} index={0} />
+                <div className="flex w-full max-h-48">
+                  {chartSelected.typeChart === "contorno" ||
+                  chartSelected.typeChart === "vectoriales" ||
+                  chartSelected.typeChart === "polares" ? (
+                    <InfoGraficoImagen chart={chartSelected} />
+                  ) : (
+                    <></>
+                  )}
+                  {chartSelected.typeChart === "lineas" && (
+                    <InfoApexChart
+                      backendData={chartSelected.backendData}
+                      stats={chartSelected.stats}
+                    />
+                  )}
+                  {chartSelected.typeChart === "dispersion" &&
+                    (chartSelected.backendData.level ? (
+                      <TablaAlturaInfoApex chart={chartSelected} />
+                    ) : (
+                      <TablaTiempoInfoApex chart={chartSelected} />
+                    ))}
+                </div>
+              </div>
+            </section>
           </div>
         ) : (
           <div className="flex flex-col w-full h-full gap-10 items-center justify-center">

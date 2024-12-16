@@ -1,10 +1,11 @@
+"use client";
 import { Accordion, AccordionItem } from "@nextui-org/accordion";
 import React from "react";
 
 export default function Acordeon() {
   return (
-    <Accordion variant="splitted">
-      <AccordionItem
+    <Accordion variant="splitted" >
+      <AccordionItem className="border-2 border-principal"
         key="1"
         aria-label="Pregunta 1"
         title="¿Con qué datos se realizan los gráficos en Climatic?"
@@ -15,7 +16,12 @@ export default function Acordeon() {
         relevantes para el análisis del clima local, como viento, temperatura,
         humedad relativa, precipitación, entre otras.
       </AccordionItem>
-      <AccordionItem key="2" aria-label="Pregunta 2" title="¿Qué es ERA5?">
+      <AccordionItem 
+        key="2" 
+        aria-label="Pregunta 2" 
+        title="¿Qué es ERA5?" 
+        className="border-2 border-principal"
+      >
         Corresponde a un reanálisis atmosférico global. Esto quiere decir que se
         utiliza un modelo pronóstico meteorológico numérico en conjunto con
         observaciones meteorológicas de superficie y de altura para estimar el
@@ -29,6 +35,7 @@ export default function Acordeon() {
         key="3"
         aria-label="Pregunta 3"
         title="¿Cómo puedo acceder a los datos de ERA5?"
+        className="border-2 border-principal"
       >
         Los datos originales se encuentran públicamente disponible en el sitio
         Climate Data Store (CDS) de Copernicus
@@ -41,11 +48,20 @@ export default function Acordeon() {
         key="4"
         aria-label="Pregunta 4"
         title="¿Qué tipo de gráficos puedo crear en Climatic?"
+        className="border-2 border-principal"
       >
         Puedes crear una gran variedad de gráficos, incluyendo mapas de
         temperatura, gráficos de precipitación, visualizaciones de viento, y
         más. Los tipos de gráficos dependerán de las variables climáticas que
         desees analizar.
+      </AccordionItem>
+      <AccordionItem
+        key="5"
+        aria-label="Pregunta 5"
+        title="¿Cuáles zonas geográficas se pueden graficar?"
+        className="border-2 border-principal"
+      >
+        Por ahora la zona geográfica está restringida a la región de O'Higgins.
       </AccordionItem>
     </Accordion>
   );
